@@ -1,0 +1,83 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --foreground: #0f172a;
+  --primary: #2563eb;
+  --primary-dark: #1e3a8a;
+  --primary-foreground: #ffffff;
+  --secondary: #eff6ff;
+  --secondary-foreground: #2563eb;
+  --accent-green: #22c55e;
+  --accent-green-dark: #16a34a;
+  --surface: #f8fafc;
+  --border: #e2e8f0;
+  --input: #e2e8f0;
+  --ring: #2563eb;
+  --muted: #f8fafc;
+  --muted-foreground: #94a3b8;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #94a3b8;
+  --error: #ef4444;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--text-primary);
+  font-family: var(--font-inter), sans-serif;
+}
+
+* {
+  border-color: var(--border);
+}
+
+@layer base {
+  h1 {
+    @apply text-[42px] font-bold leading-[1.15] tracking-[-0.03em] text-text-primary md:text-[56px];
+  }
+
+  h2 {
+    @apply text-[34px] font-bold leading-[1.2] tracking-[-0.03em] text-text-primary md:text-[40px];
+  }
+
+  h3 {
+    @apply text-[24px] font-semibold leading-[1.3] tracking-[-0.02em] text-text-primary md:text-[28px];
+  }
+
+  h4 {
+    @apply text-[20px] font-semibold leading-[1.4] text-text-primary;
+  }
+
+  p {
+    @apply text-base leading-[1.7] text-text-secondary;
+  }
+}
+
+@layer utilities {
+  .section-padding {
+    @apply py-16 md:py-24;
+  }
+
+  .body-large {
+    @apply text-lg font-normal leading-[1.7] text-text-secondary;
+  }
+
+  .text-small {
+    @apply text-sm font-normal leading-[1.6] text-text-muted;
+  }
+
+  .label {
+    @apply text-xs font-medium uppercase tracking-[0.08em] text-text-muted;
+  }
+
+  .balanced {
+    text-wrap: balance;
+  }
+}
