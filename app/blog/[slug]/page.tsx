@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-import { AdSlot } from "@/components/ad-slot";
+// import { AdSlot } from "@/components/ad-slot";
 import { Badge } from "@/components/ui/badge";
 import { ButtonLink } from "@/components/ui/button";
 import { getArticleBySlug, blogArticles } from "@/lib/blog";
@@ -104,11 +104,11 @@ export default function ArticlePage({ params }: ArticlePageProps) {
                   return (
                     <div key={`${section.heading}-${paragraph.slice(0, 24)}`}>
                       <p>{paragraph}</p>
-                      {paragraphCount === 3 ? (
+                      {/* {paragraphCount === 3 ? (
                         <div className="mt-8">
                           <AdSlot slot="article-mid" />
                         </div>
-                      ) : null}
+                      ) : null} */
                     </div>
                   );
                 })}
@@ -116,9 +116,9 @@ export default function ArticlePage({ params }: ArticlePageProps) {
             ))}
           </div>
 
-          <div className="mt-12">
+          {/* <div className="mt-12">
             <AdSlot slot="article-end" />
-          </div>
+          </div> */}
 
           <div className="mt-12 rounded-[16px] bg-surface p-8 text-center">
             <h3>See where your profile can go next.</h3>

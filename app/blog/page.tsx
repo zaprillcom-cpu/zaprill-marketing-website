@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
-import { AdSlot } from "@/components/ad-slot";
+// import { AdSlot } from "@/components/ad-slot";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { blogArticles } from "@/lib/blog";
@@ -53,11 +53,11 @@ export default function BlogPage() {
                     </Link>
                   </div>
                 </Card>
-                {index === 1 ? (
+                {/* {index === 1 ? (
                   <div className="lg:col-span-3">
                     <AdSlot slot="blog-index-mid" />
                   </div>
-                ) : null}
+                ) : null} */}
               </div>
             ))}
           </div>

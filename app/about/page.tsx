@@ -1,8 +1,5 @@
 import type { Metadata } from "next";
 
-import { AdSlot } from "@/components/ad-slot";
-import { Card } from "@/components/ui/card";
-
 export const metadata: Metadata = {
   title: "About",
   description:
@@ -44,51 +41,15 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="pb-16">
+      <section className="pb-24">
         <div className="container max-w-4xl">
           <div className="rounded-r-xl border-l-4 border-primary bg-[#EFF6FF] p-8">
             <p className="text-[24px] font-semibold leading-[1.5] text-text-primary">
-              “Our mission is to give every professional — at every level — access
+              "Our mission is to give every professional — at every level — access
               to the salary data and career intelligence that was previously
-              available only to the well-connected.”
+              available only to the well-connected."
             </p>
           </div>
-        </div>
-      </section>
-
-      <section className="pb-16">
-        <div className="container max-w-4xl">
-          <h2 className="text-center">Team</h2>
-          <Card className="mx-auto mt-10 max-w-xl rounded-[16px] p-8 text-center">
-            <div className="mx-auto h-24 w-24 rounded-full bg-slate-200" />
-            <h4 className="mt-5">Vishnu Raj Vishwakarma</h4>
-            <p className="mt-1 text-sm text-text-muted">Founder</p>
-            <p className="mt-4">
-              Building Zaprill with a focus on practical clarity: better salary
-              visibility, better job matching, and less guesswork for candidates
-              trying to move forward.
-            </p>
-          </Card>
-        </div>
-      </section>
-
-      <section className="pb-16">
-        <div className="container max-w-4xl">
-          <div className="rounded-xl border border-border bg-surface p-6">
-            <h3 className="text-[22px]">Advertising disclosure</h3>
-            <p className="mt-3">
-              Zaprill.com displays third-party advertisements served by Google
-              AdSense. These ads help keep our tools free. We do not control ad
-              content and are not responsible for advertiser claims. Ad
-              personalisation is governed by our Privacy Policy.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section className="pb-24">
-        <div className="container max-w-4xl">
-          <AdSlot slot="about-disclosure" />
         </div>
       </section>
     </div>

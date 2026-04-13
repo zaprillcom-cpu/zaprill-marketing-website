@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 
-import { AdSlot } from "@/components/ad-slot";
 import { ContactForm } from "@/components/contact-form";
 import { siteConfig } from "@/lib/site";
 
@@ -40,9 +39,8 @@ export default function ContactPage() {
               </div>
             </div>
           </div>
-          <div className="space-y-6">
+          <div>
             <ContactForm />
-            <AdSlot slot="contact-below-form" />
           </div>
         </div>
       </section>

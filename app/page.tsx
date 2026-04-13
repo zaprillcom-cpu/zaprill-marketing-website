@@ -133,7 +133,7 @@ export default function HomePage() {
       {/* Hero Section */}
       <section className="relative overflow-hidden pt-36 pb-32">
         <div className="container relative z-10 grid items-center gap-16 lg:grid-cols-[1.1fr,0.9fr] max-w-[1200px]">
-          <Reveal delay={0.1} className="max-w-2xl">
+          <Reveal delay={0.1} className="max-w-2xl text-center lg:text-left">
             <h1 className="text-5xl md:text-[68px] leading-[1.05] tracking-tighter text-slate-900 dark:text-white mb-6">
               <Typewriter text="You're probably underpaid." delay={0.1} />
               <br/>
@@ -142,11 +142,11 @@ export default function HomePage() {
               </span>
             </h1>
             
-            <p className="mt-8 text-[19px] text-slate-600 dark:text-white/60 max-w-lg balanced leading-relaxed font-light">
+            <p className="mt-8 text-[19px] text-slate-600 dark:text-white/60 max-w-lg mx-auto lg:mx-0 balanced leading-relaxed font-light">
               Upload your resume. In 2 minutes you'll know your exact market value, which jobs you actually qualify for, and what's silently blocking your next salary jump.
             </p>
             
-            <div className="mt-12 flex flex-col sm:flex-row gap-4 mb-8">
+            <div className="mt-12 flex flex-col sm:flex-row sm:justify-center lg:justify-start gap-4 mb-8">
               <SpringButton href={siteConfig.appUrl} className="bg-slate-900 dark:bg-white text-white dark:text-slate-900 transition-all hover:bg-slate-800 dark:hover:bg-slate-200 border-0 h-14 px-8 text-base font-semibold rounded-full min-w-[200px]">
                 Upload Resume — Free
               </SpringButton>
@@ -159,7 +159,7 @@ export default function HomePage() {
             </div>
             
             <div className="text-[13px] text-slate-400 dark:text-white/30 font-medium tracking-wide">
-              No account needed <span className="opacity-40 mx-2">·</span> Works with PDF and Word <span className="opacity-40 mx-2">·</span> 2 min to results
+              Works with PDF and Word <span className="opacity-40 mx-2">·</span> 2 min to results
             </div>
           </Reveal>
 
@@ -298,18 +298,20 @@ export default function HomePage() {
               className="mb-24 text-center [&_h2]:tracking-tighter [&_h2]:text-4xl md:[&_h2]:text-[48px] [&_p]:text-[19px] [&_p]:font-light [&_p]:mt-6"
             />
           </Reveal>
-          <div className="relative mt-20 grid gap-16 lg:grid-cols-3">
+          <div className="relative mt-20 grid gap-0 lg:gap-16 lg:grid-cols-3">
             <div className="absolute left-[16.66%] right-[16.66%] top-6 hidden border-t border-slate-200 dark:border-white/10 lg:block" />
             {processSteps.map((item, idx) => (
-              <Reveal key={item.step} delay={idx * 0.15} className="relative flex flex-col items-center text-center max-lg:pb-12">
+              <Reveal key={item.step} delay={idx * 0.15} className="relative flex max-lg:flex-row max-lg:gap-6 max-lg:pb-10 lg:flex-col lg:items-center lg:text-center">
                 {item.step !== "03" ? (
-                  <div className="absolute left-1/2 top-12 h-full -translate-x-1/2 border-l border-slate-200 dark:border-white/10 lg:hidden" />
+                  <div className="absolute left-[27px] top-14 bottom-0 w-px bg-slate-200 dark:bg-white/10 lg:hidden" />
                 ) : null}
-                <div className="relative z-10 flex h-14 w-14 items-center justify-center rounded-full bg-slate-900 dark:bg-white text-[15px] font-bold text-white dark:text-slate-900 shadow-[0_0_0_12px_#ffffff] dark:shadow-[0_0_0_12px_#0A0A0A]">
+                <div className="relative z-10 flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-slate-900 dark:bg-white text-[15px] font-bold text-white dark:text-slate-900 shadow-[0_0_0_12px_#ffffff] dark:shadow-[0_0_0_12px_#0A0A0A]">
                   {item.step}
                 </div>
-                <h3 className="mt-10 text-[22px] font-bold tracking-tight text-slate-900 dark:text-white/90">{item.title}</h3>
-                <p className="mt-5 max-w-sm text-slate-500 dark:text-white/50 text-[15px] leading-relaxed font-light">{item.body}</p>
+                <div className="max-lg:pt-1">
+                  <h3 className="text-[22px] lg:mt-10 font-bold tracking-tight text-slate-900 dark:text-white/90">{item.title}</h3>
+                  <p className="mt-3 lg:mt-5 max-w-sm text-slate-500 dark:text-white/50 text-[15px] leading-relaxed font-light">{item.body}</p>
+                </div>
               </Reveal>
             ))}
           </div>
@@ -393,7 +395,7 @@ export default function HomePage() {
           <div className="text-[100px] md:text-[140px] font-bold text-slate-900 dark:text-white leading-none tracking-tighter mb-4 opacity-90">2 <span className="text-[60px] md:text-[80px]">min</span></div>
           <h2 className="text-3xl md:text-5xl font-bold tracking-tighter text-slate-900 dark:text-white mb-8">Speed matters.</h2>
           <p className="text-[19px] text-slate-500 dark:text-white/50 mb-12 max-w-xl mx-auto font-light leading-relaxed">
-            No account required. Upload your resume and get immediate insights into your complete market profile.
+            Upload your resume and get immediate insights into your complete market profile.
           </p>
           <ButtonLink href={siteConfig.appUrl} className="rounded-full px-10 h-14 text-[15px] font-bold bg-slate-900 dark:bg-white text-white dark:text-slate-900 hover:bg-slate-800 dark:hover:bg-slate-200 border-0 shadow-sm transition-all active:scale-[0.97]">
             Upload Now
@@ -453,10 +455,10 @@ export default function HomePage() {
                 </div>
                 <h3 className="text-[28px] font-bold tracking-tight text-white mb-2">Professional</h3>
                 <div className="flex items-end gap-2 mb-2">
-                  <div className="text-[54px] font-bold tracking-tighter leading-none text-white">₹499</div>
+                  <div className="text-[54px] font-bold tracking-tighter leading-none text-white">₹99</div>
                   <div className="text-slate-400 mb-2 font-medium">/ month</div>
                 </div>
-                <div className="text-[13px] font-medium text-white/50 mb-10">or ₹4,499/year — save 25%</div>
+                <div className="text-[13px] font-medium text-white/50 mb-10">or ₹899/year — save 25%</div>
                 <ul className="space-y-5 mb-12 flex-1">
                   {pricing.pro.map((feature) => (
                     <li key={feature} className="flex gap-4 items-start text-slate-300">
@@ -487,7 +489,7 @@ export default function HomePage() {
             </SpringButton>
           </div>
           <div className="text-[13px] text-slate-500 font-medium tracking-wide">
-            No account needed <span className="opacity-40 mx-3">·</span> Cancel Pro anytime <span className="opacity-40 mx-3">·</span> Data deleted on request
+            Cancel Pro anytime <span className="opacity-40 mx-3">·</span> Data deleted on request
           </div>
         </Reveal>
       </section>

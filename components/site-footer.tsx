@@ -32,38 +32,43 @@ const footerGroups = [
 export function SiteFooter() {
   return (
     <footer className="bg-slate-900 dark:bg-black text-white border-t border-slate-800/50 dark:border-white/5">
-      <div className="container grid gap-10 py-16 md:grid-cols-[1.4fr,1fr,1fr,1fr]">
-        <div className="space-y-4">
-          <Logo className="[&_span]:text-white" />
-          <p className="max-w-xs text-[15px] leading-relaxed text-slate-400 font-light">
+      <div className="container py-16">
+        {/* Logo & tagline — centered on mobile, left on desktop */}
+        <div className="text-center md:text-left space-y-4 mb-12">
+          <div className="flex justify-center md:justify-start">
+            <Logo className="[&_span]:text-white" />
+          </div>
+          <p className="max-w-xs mx-auto md:mx-0 text-[15px] leading-relaxed text-slate-400 font-light">
             Know Your Worth. Get the Job.
           </p>
-          <p className="text-[13px] text-slate-500 font-medium">
-            &copy; 2025 Zaprill. All rights reserved.
-          </p>
         </div>
-        {footerGroups.map((group) => (
-          <div key={group.title} className="space-y-4">
-            <h2 className="text-base font-semibold text-white">{group.title}</h2>
-            <ul className="space-y-3">
-              {group.links.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="text-[15px] text-slate-400 font-light transition-colors hover:text-white"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
+
+        {/* Link groups — 2-col on mobile, 3-col on md+ */}
+        <div className="grid grid-cols-2 gap-8 md:grid-cols-3">
+          {footerGroups.map((group, idx) => (
+            <div key={group.title} className={`space-y-4 text-center md:text-left ${idx === footerGroups.length - 1 ? "col-span-2 md:col-span-1" : ""}`}>
+              <h2 className="text-base font-semibold text-white">{group.title}</h2>
+              <ul className="space-y-3">
+                {group.links.map((link) => (
+                  <li key={link.href}>
+                    <Link
+                      href={link.href}
+                      className="text-[15px] text-slate-400 font-light transition-colors hover:text-white"
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
       </div>
+
       <div className="border-t border-slate-800/50 dark:border-white/5">
-        <div className="container py-8">
-          <p className="max-w-3xl text-[13px] leading-relaxed text-slate-500 font-medium">
-            Zaprill is an AI-powered career platform. Salary data is sourced from
+        <div className="container py-8 text-center md:text-left">
+          <p className="max-w-3xl mx-auto md:mx-0 text-[13px] leading-relaxed text-slate-500 font-medium">
+            &copy; 2025 Zaprill. All rights reserved. Zaprill is an AI-powered career platform. Salary data is sourced from
             public job listings and may vary by location and experience.
           </p>
         </div>
