@@ -131,7 +131,7 @@ export default function HomePage() {
     <main className="bg-[#fcfcfc] dark:bg-[#070707] text-slate-900 dark:text-white transition-colors duration-300">
 
       {/* Hero Section */}
-      <section className="relative overflow-hidden pt-36 pb-32">
+      <section className="relative overflow-hidden pt-20 pb-28">
         <div className="container relative z-10 grid items-center gap-16 lg:grid-cols-[1.1fr,0.9fr] max-w-[1200px]">
           <Reveal delay={0.1} className="max-w-2xl text-center lg:text-left">
             <h1 className="text-5xl md:text-[68px] leading-[1.05] tracking-tighter text-slate-900 dark:text-white mb-6">
