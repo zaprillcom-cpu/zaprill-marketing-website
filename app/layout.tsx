@@ -73,7 +73,9 @@ export const metadata: Metadata = {
       "max-snippet": -1
     }
   },
-  verification: {}
+  verification: {
+    google: "r7wL5AWlqdyv31Tom9GqzZjV4bYNUifr1EWkAS-eRkw"
+  }
 };
 
 // Organization + WebSite structured data (global)
