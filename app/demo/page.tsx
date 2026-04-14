@@ -6,9 +6,23 @@ import { siteConfig } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Demo",
   description:
-    "Preview the Zaprill product experience and jump into the app when you're ready.",
+    "Preview the Zaprill product experience — see how resume analysis, salary intelligence, and skill gap mapping work.",
   alternates: {
     canonical: "/demo"
+  },
+  openGraph: {
+    title: "Demo — Zaprill",
+    description:
+      "Preview the Zaprill product experience — see how resume analysis, salary intelligence, and skill gap mapping work.",
+    type: "website",
+    images: ["/og"]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Demo — Zaprill",
+    description:
+      "Preview the Zaprill product experience — see how resume analysis, salary intelligence, and skill gap mapping work.",
+    images: ["/og"]
   }
 };
 

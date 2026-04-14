@@ -38,7 +38,15 @@ export async function generateMetadata({
       url: `${siteConfig.url}/blog/${article.slug}`,
       type: "article",
       publishedTime: article.publishedAt,
+      modifiedTime: article.updatedAt || article.publishedAt,
       authors: [article.author],
+      section: article.category,
+      images: ["/og"]
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: article.title,
+      description: article.description,
       images: ["/og"]
     }
   };
@@ -52,43 +60,137 @@ export default function ArticlePage({ params }: ArticlePageProps) {
   }
 
   let paragraphCount = 0;
+
+  // Calculate word count for schema
+  const wordCount = article.sections.reduce(
+    (total, section) =>
+      total + section.paragraphs.reduce((sTotal, p) => sTotal + p.split(/\s+/).length, 0),
+    0
+  );
+
+  // Enhanced Article schema with all recommended fields
   const articleSchema = {
     "@context": "https://schema.org",
     "@type": "Article",
     headline: article.title,
     description: article.description,
     datePublished: article.publishedAt,
+    dateModified: article.updatedAt || article.publishedAt,
+    wordCount,
+    articleSection: article.category,
+    inLanguage: "en",
+    image: `${siteConfig.url}/og`,
     author: {
       "@type": "Organization",
-      name: article.author
+      name: article.author,
+      url: siteConfig.url
     },
     publisher: {
       "@type": "Organization",
       name: siteConfig.name,
-      url: siteConfig.url
+      url: siteConfig.url,
+      logo: {
+        "@type": "ImageObject",
+        url: `${siteConfig.url}/og`
+      }
     },
-    mainEntityOfPage: `${siteConfig.url}/blog/${article.slug}`
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `${siteConfig.url}/blog/${article.slug}`
+    }
+  };
+
+  // BreadcrumbList schema for navigation hierarchy
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: siteConfig.url
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Blog",
+        item: `${siteConfig.url}/blog`
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: article.title,
+        item: `${siteConfig.url}/blog/${article.slug}`
+      }
+    ]
   };
 
   return (
     <article className="bg-white">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify([articleSchema, breadcrumbSchema])
+        }}
       />
+
       <section className="section-padding">
         <div className="container max-w-4xl">
+          {/* Breadcrumb navigation (visible) */}
+          <nav aria-label="Breadcrumb" className="mb-6 text-sm text-text-muted">
+            <ol className="flex items-center gap-1.5">
+              <li>
+                <a href="/" className="hover:text-text-primary transition-colors">
+                  Home
+                </a>
+              </li>
+              <li aria-hidden="true" className="select-none">
+                /
+              </li>
+              <li>
+                <a href="/blog" className="hover:text-text-primary transition-colors">
+                  Blog
+                </a>
+              </li>
+              <li aria-hidden="true" className="select-none">
+                /
+              </li>
+              <li aria-current="page" className="text-text-primary font-medium truncate max-w-[300px]">
+                {article.title}
+              </li>
+            </ol>
+          </nav>
+
           <Badge className={article.badgeClass}>{article.category}</Badge>
           <h1 className="mt-6">{article.title}</h1>
           <p className="mt-5 max-w-3xl">{article.description}</p>
-          <p className="mt-4 text-sm text-text-muted">
-            {new Date(article.publishedAt).toLocaleDateString("en-IN", {
-              year: "numeric",
-              month: "long",
-              day: "numeric"
-            })}{" "}
-            · {article.author}
-          </p>
+          <div className="mt-4 flex items-center gap-3 text-sm text-text-muted">
+            <time dateTime={article.publishedAt}>
+              {new Date(article.publishedAt).toLocaleDateString("en-IN", {
+                year: "numeric",
+                month: "long",
+                day: "numeric"
+              })}
+            </time>
+            <span aria-hidden="true">·</span>
+            <span>{article.author}</span>
+            {article.updatedAt && article.updatedAt !== article.publishedAt && (
+              <>
+                <span aria-hidden="true">·</span>
+                <span>
+                  Updated{" "}
+                  <time dateTime={article.updatedAt}>
+                    {new Date(article.updatedAt).toLocaleDateString("en-IN", {
+                      year: "numeric",
+                      month: "long",
+                      day: "numeric"
+                    })}
+                  </time>
+                </span>
+              </>
+            )}
+          </div>
         </div>
       </section>
 

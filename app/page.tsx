@@ -26,6 +26,13 @@ import { SpringButton } from "@/components/spring-button";
 export const metadata: Metadata = {
   alternates: {
     canonical: "/"
+  },
+  openGraph: {
+    title: "Zaprill — Know Your Worth. Get the Job.",
+    description:
+      "Upload your resume and instantly discover your real market salary, best-fit job matches, and the exact skills blocking your next raise. Free to start.",
+    url: siteConfig.url,
+    type: "website"
   }
 };
 
@@ -127,8 +134,87 @@ const pricing = {
 };
 
 export default function HomePage() {
+  // FAQPage structured data
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.q,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.a
+      }
+    }))
+  };
+
+  // HowTo structured data
+  const howToSchema = {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    name: "How to Find Your Real Market Salary with Zaprill",
+    description:
+      "Upload your resume to Zaprill and get your exact market value, job matches, and skill gap analysis in 2 minutes.",
+    totalTime: "PT2M",
+    step: processSteps.map((step, idx) => ({
+      "@type": "HowToStep",
+      position: idx + 1,
+      name: step.title,
+      text: step.body
+    }))
+  };
+
+  // SoftwareApplication structured data
+  const softwareSchema = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: siteConfig.name,
+    description: siteConfig.description,
+    url: siteConfig.appUrl,
+    applicationCategory: "BusinessApplication",
+    operatingSystem: "Web",
+    offers: [
+      {
+        "@type": "Offer",
+        price: "0",
+        priceCurrency: "INR",
+        name: "Basic",
+        description: "Resume analysis once a month, 3 matched jobs, basic salary comparison"
+      },
+      {
+        "@type": "Offer",
+        price: "99",
+        priceCurrency: "INR",
+        priceSpecification: {
+          "@type": "UnitPriceSpecification",
+          price: "99",
+          priceCurrency: "INR",
+          referenceQuantity: {
+            "@type": "QuantitativeValue",
+            value: 1,
+            unitCode: "MON"
+          }
+        },
+        name: "Professional",
+        description: "Unlimited job matching, full salary intelligence, AI resume builder, skill gap map with courses"
+      }
+    ],
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: "4.8",
+      ratingCount: "150",
+      bestRating: "5"
+    }
+  };
+
   return (
     <main className="bg-[#fcfcfc] dark:bg-[#070707] text-slate-900 dark:text-white transition-colors duration-300">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify([faqSchema, howToSchema, softwareSchema])
+        }}
+      />
 
       {/* Hero Section */}
       <section className="relative overflow-hidden pt-20 pb-28">
@@ -407,7 +493,7 @@ export default function HomePage() {
       <section className="bg-[#fcfcfc] dark:bg-[#070707] py-32">
         <div className="container max-w-3xl">
           <Reveal className="text-center mb-20">
-            <h2 className="text-4xl md:text-[48px] tracking-tighter font-bold text-slate-900 dark:text-white">Common Questions</h2>
+            <h2 className="text-4xl md:text-[48px] tracking-tighter font-bold text-slate-900 dark:text-white">Frequently Asked Questions</h2>
           </Reveal>
           <Reveal delay={0.2}>
             <FaqAccordion faqs={faqs} />

@@ -5,6 +5,7 @@ export type BlogArticle = {
   excerpt: string;
   category: "Salary" | "Resume" | "Career";
   publishedAt: string;
+  updatedAt?: string;
   author: string;
   tintClass: string;
   badgeClass: string;
@@ -24,6 +25,7 @@ export const blogArticles: BlogArticle[] = [
       "Most professionals don’t find out they’re underpaid until after they leave. Here’s how to catch the gap sooner and act on it.",
     category: "Salary",
     publishedAt: "2026-04-12",
+    updatedAt: "2026-04-14",
     author: "Zaprill Team",
     tintClass: "bg-[#EFF6FF]",
     badgeClass: "bg-[#DBEAFE] text-primary",
@@ -79,6 +81,7 @@ export const blogArticles: BlogArticle[] = [
       "When a resume disappears into silence, the problem is often format, clarity, or relevance before it is quality. Here’s what really happens.",
     category: "Resume",
     publishedAt: "2026-04-12",
+    updatedAt: "2026-04-14",
     author: "Zaprill Team",
     tintClass: "bg-[#FEF3C7]",
     badgeClass: "bg-[#FEF3C7] text-[#B45309]",
@@ -134,6 +137,7 @@ export const blogArticles: BlogArticle[] = [
       "Premium pay doesn’t always follow job title. It often follows capability combinations that are rare, current, and commercially useful.",
     category: "Career",
     publishedAt: "2026-04-12",
+    updatedAt: "2026-04-14",
     author: "Zaprill Team",
     tintClass: "bg-[#DCFCE7]",
     badgeClass: "bg-[#DCFCE7] text-accent-greenDark",

@@ -23,6 +23,21 @@ export const metadata: Metadata = {
   },
   description:
     "Upload your resume and instantly see salary potential, best-fit job matches, and the skills holding you back.",
+  keywords: [
+    "salary calculator India",
+    "resume analysis",
+    "ATS checker",
+    "skill gap analysis",
+    "salary benchmarking",
+    "career intelligence",
+    "job matching",
+    "market value calculator",
+    "resume optimization",
+    "salary negotiation"
+  ],
+  authors: [{ name: siteConfig.name, url: siteConfig.url }],
+  creator: siteConfig.name,
+  publisher: siteConfig.name,
   openGraph: {
     title: "Zaprill — Know Your Worth. Get the Job.",
     description:
@@ -34,7 +49,7 @@ export const metadata: Metadata = {
         url: "/og",
         width: 1200,
         height: 630,
-        alt: "Zaprill"
+        alt: "Zaprill — AI-Powered Career Intelligence Platform"
       }
     ],
     locale: "en_IN",
@@ -46,6 +61,57 @@ export const metadata: Metadata = {
     description:
       "Upload your resume and instantly see salary potential, best-fit job matches, and the skills holding you back.",
     images: ["/og"]
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1
+    }
+  },
+  verification: {}
+};
+
+// Organization + WebSite structured data (global)
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: siteConfig.name,
+  url: siteConfig.url,
+  logo: `${siteConfig.url}/og`,
+  description: siteConfig.description,
+  email: siteConfig.email,
+  foundingDate: "2025",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Mumbai",
+    addressCountry: "IN"
+  },
+  sameAs: []
+};
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: siteConfig.name,
+  url: siteConfig.url,
+  description: siteConfig.description,
+  publisher: {
+    "@type": "Organization",
+    name: siteConfig.name,
+    url: siteConfig.url
+  },
+  potentialAction: {
+    "@type": "SearchAction",
+    target: {
+      "@type": "EntryPoint",
+      urlTemplate: `${siteConfig.appUrl}?q={search_term_string}`
+    },
+    "query-input": "required name=search_term_string"
   }
 };
 
@@ -57,6 +123,12 @@ export default function RootLayout({
       <body className="font-sans min-h-screen bg-background text-foreground antialiased">
         <GoogleAnalytics />
         <AdsenseScript />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify([organizationSchema, websiteSchema])
+          }}
+        />
         <div className="relative flex min-h-screen flex-col">
           <SiteHeader />
           <main className="flex-1">{children}</main>

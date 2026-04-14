@@ -6,6 +6,20 @@ export const metadata: Metadata = {
     "Learn why Zaprill was built and the mission behind making salary and career intelligence more accessible.",
   alternates: {
     canonical: "/about"
+  },
+  openGraph: {
+    title: "About — Zaprill",
+    description:
+      "Learn why Zaprill was built and the mission behind making salary and career intelligence accessible to every professional.",
+    type: "website",
+    images: ["/og"]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "About — Zaprill",
+    description:
+      "Learn why Zaprill was built and the mission behind making salary and career intelligence accessible to every professional.",
+    images: ["/og"]
   }
 };
 

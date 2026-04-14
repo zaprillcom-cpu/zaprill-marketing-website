@@ -4,25 +4,62 @@ import { blogArticles } from "@/lib/blog";
 import { siteConfig } from "@/lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const staticPages = [
-    "",
-    "/about",
-    "/blog",
-    "/contact",
-    "/privacy",
-    "/terms",
-    "/cookies",
-    "/demo"
-  ];
+  const now = new Date("2026-04-14");
 
   return [
-    ...staticPages.map((path) => ({
-      url: `${siteConfig.url}${path}`,
-      lastModified: new Date("2026-04-12")
-    })),
+    {
+      url: siteConfig.url,
+      lastModified: now,
+      changeFrequency: "weekly",
+      priority: 1.0
+    },
+    {
+      url: `${siteConfig.url}/about`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.7
+    },
+    {
+      url: `${siteConfig.url}/blog`,
+      lastModified: now,
+      changeFrequency: "weekly",
+      priority: 0.8
+    },
+    {
+      url: `${siteConfig.url}/contact`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.5
+    },
+    {
+      url: `${siteConfig.url}/demo`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.7
+    },
+    {
+      url: `${siteConfig.url}/privacy`,
+      lastModified: now,
+      changeFrequency: "yearly",
+      priority: 0.3
+    },
+    {
+      url: `${siteConfig.url}/terms`,
+      lastModified: now,
+      changeFrequency: "yearly",
+      priority: 0.3
+    },
+    {
+      url: `${siteConfig.url}/cookies`,
+      lastModified: now,
+      changeFrequency: "yearly",
+      priority: 0.3
+    },
     ...blogArticles.map((article) => ({
       url: `${siteConfig.url}/blog/${article.slug}`,
-      lastModified: new Date(article.publishedAt)
+      lastModified: new Date(article.updatedAt || article.publishedAt),
+      changeFrequency: "monthly" as const,
+      priority: 0.8
     }))
   ];
 }

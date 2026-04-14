@@ -9,6 +9,19 @@ export const metadata: Metadata = {
     "Contact Zaprill for support, partnerships, press, or general inquiries.",
   alternates: {
     canonical: "/contact"
+  },
+  openGraph: {
+    title: "Contact — Zaprill",
+    description:
+      "Contact Zaprill for support, partnerships, press, or general inquiries.",
+    type: "website",
+    images: ["/og"]
+  },
+  twitter: {
+    card: "summary",
+    title: "Contact — Zaprill",
+    description:
+      "Contact Zaprill for support, partnerships, press, or general inquiries."
   }
 };
 

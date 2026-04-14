@@ -12,6 +12,20 @@ export const metadata: Metadata = {
     "Career, salary, and resume advice from Zaprill to help professionals make smarter job decisions.",
   alternates: {
     canonical: "/blog"
+  },
+  openGraph: {
+    title: "Blog — Zaprill",
+    description:
+      "Career, salary, and resume advice from Zaprill to help professionals make smarter job decisions.",
+    type: "website",
+    images: ["/og"]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Blog — Zaprill",
+    description:
+      "Career, salary, and resume advice from Zaprill to help professionals make smarter job decisions.",
+    images: ["/og"]
   }
 };
 

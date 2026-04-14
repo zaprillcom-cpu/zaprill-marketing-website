@@ -68,7 +68,7 @@ export function SiteFooter() {
       <div className="border-t border-slate-800/50 dark:border-white/5">
         <div className="container py-8 text-center md:text-left">
           <p className="max-w-3xl mx-auto md:mx-0 text-[13px] leading-relaxed text-slate-500 font-medium">
-            &copy; 2025 Zaprill. All rights reserved. Zaprill is an AI-powered career platform. Salary data is sourced from
+            &copy; 2026 Zaprill. All rights reserved. Zaprill is an AI-powered career platform. Salary data is sourced from
             public job listings and may vary by location and experience.
           </p>
         </div>
