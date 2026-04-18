@@ -12,7 +12,7 @@ export function Logo({ className }: { className?: string }) {
         className,
       )}
     >
-      <Image alt="Zaprill" src={"/logo.png"} width={100} height={100} />
+      <Image alt="Zaprill" src={"/logo.png"} width={100} height={100} className="h-8 w-auto md:h-9" loading="eager" />
     </Link>
   );
 }

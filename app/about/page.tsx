@@ -25,11 +25,11 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <div className="bg-white">
+    <div className="bg-background transition-colors duration-300">
       <section className="section-padding">
-        <div className="container max-w-4xl text-center">
-          <h1>Built because job hunting deserved better.</h1>
-          <div className="mx-auto mt-8 max-w-3xl space-y-6 text-left">
+        <div className="container text-center">
+          <h1 className="max-w-3xl mx-auto">Built because job hunting deserved better.</h1>
+          <div className="mx-auto mt-12 max-w-2xl space-y-8 text-left">
             <p>
               Zaprill started from a frustration that felt strangely universal:
               smart, hardworking people were making career decisions with almost
@@ -55,10 +55,10 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="pb-24">
-        <div className="container max-w-4xl">
-          <div className="rounded-r-xl border-l-4 border-primary bg-[#EFF6FF] p-8">
-            <p className="text-[24px] font-semibold leading-[1.5] text-text-primary">
+      <section className="pb-32">
+        <div className="container">
+          <div className="max-w-3xl mx-auto rounded-2xl border border-border bg-muted/30 p-10 md:p-14 text-center">
+            <p className="text-2xl md:text-3xl font-bold leading-tight tracking-tight text-foreground balance">
               "Our mission is to give every professional — at every level — access
               to the salary data and career intelligence that was previously
               available only to the well-connected."

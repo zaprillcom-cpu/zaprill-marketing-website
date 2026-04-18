@@ -16,10 +16,10 @@ const lastUpdated = "April 12, 2026";
 
 export default function TermsPage() {
   return (
-    <section className="bg-white py-20">
+    <section className="bg-background py-20 transition-colors duration-300">
       <div className="container max-w-[720px]">
-        <h1>Terms &amp; Conditions</h1>
-        <p className="mt-3 text-sm text-text-muted">Last updated: {lastUpdated}</p>
+        <h1 className="text-foreground">Terms &amp; Conditions</h1>
+        <p className="mt-3 text-sm text-muted-foreground">Last updated: {lastUpdated}</p>
         <div className="mt-10 space-y-10">
           <TermsSection title="1. Acceptance of terms">
             By accessing or using Zaprill, you agree to these Terms &amp;

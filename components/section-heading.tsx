@@ -27,7 +27,7 @@ export function SectionHeading({
       )}
     >
       {pill ? (
-        <Badge className={cn("bg-[#EFF6FF] text-primary", pillClassName)}>
+        <Badge className={cn("bg-primary/10 text-primary border-0", pillClassName)}>
           {pill}
         </Badge>
       ) : null}

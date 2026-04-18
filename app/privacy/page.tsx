@@ -16,10 +16,10 @@ const lastUpdated = "April 12, 2026";
 
 export default function PrivacyPage() {
   return (
-    <section className="bg-white py-20">
+    <section className="bg-background py-20 transition-colors duration-300">
       <div className="container max-w-[720px]">
-        <h1>Privacy Policy</h1>
-        <p className="mt-3 text-sm text-text-muted">Last updated: {lastUpdated}</p>
+        <h1 className="text-foreground">Privacy Policy</h1>
+        <p className="mt-3 text-sm text-muted-foreground">Last updated: {lastUpdated}</p>
         <div className="mt-10 space-y-10">
           <PolicySection title="1. Introduction">
             Zaprill is an AI-powered career platform operated through zaprill.com

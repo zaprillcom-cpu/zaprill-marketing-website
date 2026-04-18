@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { getArticleBySlug, blogArticles } from "@/lib/blog";
 import { siteConfig } from "@/lib/site";
 import Link from "next/link";
+import Script from "next/script";
 
 type ArticlePageProps = {
   params: Promise<{
@@ -134,9 +135,11 @@ export default async function ArticlePage(props: ArticlePageProps) {
   };
 
   return (
-    <article className="bg-white">
-      <script
+    <article className="bg-background transition-colors duration-300">
+      <Script
+        id="blog-post-schema"
         type="application/ld+json"
+        strategy="afterInteractive"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify([articleSchema, breadcrumbSchema]),
         }}
@@ -145,12 +148,12 @@ export default async function ArticlePage(props: ArticlePageProps) {
       <section className="section-padding">
         <div className="container max-w-4xl">
           {/* Breadcrumb navigation (visible) */}
-          <nav aria-label="Breadcrumb" className="mb-6 text-sm text-text-muted">
+          <nav aria-label="Breadcrumb" className="mb-8 text-sm text-muted-foreground font-medium">
             <ol className="flex items-center gap-1.5">
               <li>
                 <Link
                   href="/"
-                  className="hover:text-text-primary transition-colors"
+                  className="hover:text-foreground transition-colors"
                 >
                   Home
                 </Link>
@@ -161,7 +164,7 @@ export default async function ArticlePage(props: ArticlePageProps) {
               <li>
                 <Link
                   href="/blog"
-                  className="hover:text-text-primary transition-colors"
+                  className="hover:text-foreground transition-colors"
                 >
                   Blog
                 </Link>
@@ -171,7 +174,7 @@ export default async function ArticlePage(props: ArticlePageProps) {
               </li>
               <li
                 aria-current="page"
-                className="text-text-primary font-medium truncate max-w-[300px]"
+                className="text-foreground font-semibold truncate max-w-[300px]"
               >
                 {article.title}
               </li>
@@ -179,9 +182,9 @@ export default async function ArticlePage(props: ArticlePageProps) {
           </nav>
 
           <Badge className={article.badgeClass}>{article.category}</Badge>
-          <h1 className="mt-6">{article.title}</h1>
-          <p className="mt-5 max-w-3xl">{article.description}</p>
-          <div className="mt-4 flex items-center gap-3 text-sm text-text-muted">
+          <h1 className="mt-8 text-4xl md:text-5xl font-bold tracking-tight">{article.title}</h1>
+          <p className="mt-6 text-xl text-muted-foreground/90 max-w-3xl leading-relaxed">{article.description}</p>
+          <div className="mt-8 flex items-center gap-3 text-sm text-muted-foreground font-medium">
             <time dateTime={article.publishedAt}>
               {new Date(article.publishedAt).toLocaleDateString("en-IN", {
                 year: "numeric",
@@ -238,8 +241,8 @@ export default async function ArticlePage(props: ArticlePageProps) {
             <AdSlot slot="article-end" />
           </div> */}
 
-          <div className="mt-12 rounded-[16px] bg-surface p-8 text-center">
-            <h3>See where your profile can go next.</h3>
+          <div className="mt-16 rounded-3xl bg-muted/30 border border-border p-8 md:p-12 text-center">
+            <h3 className="text-2xl font-bold">See where your profile can go next.</h3>
             <p className="mx-auto mt-4 max-w-2xl">
               Upload your resume to Zaprill and get salary insight, job matches,
               and skill gap clarity in minutes.

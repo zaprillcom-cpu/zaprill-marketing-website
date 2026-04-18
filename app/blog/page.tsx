@@ -5,6 +5,8 @@ import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { blogArticles } from "@/lib/blog";
+import { cn } from "@/lib/utils";
+import { Reveal } from "@/components/reveal";
 
 export const metadata: Metadata = {
   title: "Blog",
@@ -31,48 +33,50 @@ export const metadata: Metadata = {
 
 export default function BlogPage() {
   return (
-    <div className="bg-surface">
+    <div className="bg-background transition-colors duration-300">
       <section className="section-padding">
         <div className="container">
-          <div className="mx-auto max-w-3xl text-center">
-            <h1>Career clarity, explained.</h1>
-            <p className="mx-auto mt-5 max-w-2xl">
+          <div className="text-center mb-16">
+            <h1 className="max-w-2xl mx-auto">Career clarity, explained.</h1>
+            <p className="mx-auto mt-6 max-w-xl text-muted-foreground">
               Practical writing on salary, resumes, and career growth for people
               who want better decisions, not generic advice.
             </p>
           </div>
-          <div className="mt-14 grid gap-6 lg:grid-cols-3">
-            {blogArticles.map((article, index) => (
-              <div key={article.slug} className="contents">
-                <Card className="overflow-hidden rounded-[12px] border border-border shadow-none">
-                  <div className={`h-[100px] ${article.tintClass}`} />
-                  <div className="p-5">
-                    <Badge className={article.badgeClass}>{article.category}</Badge>
-                    <h4 className="mt-4">
-                      <Link href={`/blog/${article.slug}`}>{article.title}</Link>
+          <div className="grid gap-8 lg:grid-cols-3 lg:gap-10">
+            {blogArticles.map((article) => (
+              <Reveal key={article.slug}>
+                <Card className="h-full group overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-all hover:shadow-md">
+                  <div className={cn("h-32 transition-transform group-hover:scale-105", article.tintClass)} />
+                  <div className="p-7">
+                    <Badge variant="secondary" className={cn("rounded-full px-3 py-1", article.badgeClass)}>
+                      {article.category}
+                    </Badge>
+                    <h4 className="mt-6 text-xl font-bold tracking-tight">
+                      <Link href={`/blog/${article.slug}`} className="hover:text-primary transition-colors">
+                        {article.title}
+                      </Link>
                     </h4>
-                    <p className="mt-3 text-sm text-text-muted">
+                    <p className="mt-4 text-sm text-muted-foreground font-medium">
                       {new Date(article.publishedAt).toLocaleDateString("en-IN", {
                         year: "numeric",
                         month: "long",
                         day: "numeric"
                       })}
                     </p>
-                    <p className="mt-4">{article.excerpt}</p>
+                    <p className="mt-5 text-[15px] leading-relaxed text-muted-foreground/80 line-clamp-3">
+                      {article.excerpt}
+                    </p>
                     <Link
                       href={`/blog/${article.slug}`}
-                      className="mt-4 inline-flex text-sm font-medium text-primary"
+                      className="mt-8 inline-flex items-center gap-2 text-sm font-bold text-primary group/link"
                     >
-                      Read more →
+                      Read full article 
+                      <span className="transition-transform group-hover/link:translate-x-1">→</span>
                     </Link>
                   </div>
                 </Card>
-                {/* {index === 1 ? (
-                  <div className="lg:col-span-3">
-                    <AdSlot slot="blog-index-mid" />
-                  </div>
-                ) : null} */}
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>

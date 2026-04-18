@@ -7,6 +7,7 @@ import { useState } from "react";
 import { siteConfig } from "@/lib/site";
 import { cn } from "@/lib/utils";
 import { Logo } from "@/components/logo";
+import { ThemeToggle } from "@/components/theme-toggle";
 import { Button } from "@/components/ui/button";
 
 const navItems = [
@@ -20,7 +21,7 @@ export function SiteHeader() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border bg-white/85 dark:bg-black/85 backdrop-blur-[20px]">
+    <header className="sticky top-0 z-50 border-b border-border bg-background/85 backdrop-blur-[20px]">
       <div className="container mx-auto flex h-[68px] max-w-[1200px] items-center justify-between px-6">
         <Logo />
         <nav className="hidden items-center gap-8 md:flex">
@@ -28,7 +29,7 @@ export function SiteHeader() {
             <Link
               key={item.href}
               href={item.href}
-              className="text-[15px] font-medium text-text-secondary transition-colors hover:text-text-primary"
+              className="text-[15px] font-medium text-muted-foreground transition-colors hover:text-foreground"
             >
               {item.label}
             </Link>
@@ -38,6 +39,7 @@ export function SiteHeader() {
               Open App
             </Button>
           </Link>
+          <ThemeToggle />
         </nav>
         <button
           type="button"
@@ -68,9 +70,12 @@ export function SiteHeader() {
               {item.label}
             </Link>
           ))}
-          <Link href={siteConfig.appUrl}>
-            <Button className="mt-2 size-max">Open App</Button>
-          </Link>
+          <div className="mt-2 flex items-center justify-between">
+            <Link href={siteConfig.appUrl}>
+              <Button className="size-max">Open App</Button>
+            </Link>
+            <ThemeToggle />
+          </div>
         </div>
       </div>
     </header>
