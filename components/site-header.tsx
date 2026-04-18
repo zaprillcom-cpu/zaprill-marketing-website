@@ -21,7 +21,7 @@ export function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-white/85 dark:bg-black/85 backdrop-blur-[20px]">
-      <div className="container flex h-[68px] items-center justify-between">
+      <div className="container mx-auto flex h-[68px] items-center justify-between">
         <Logo />
         <nav className="hidden items-center gap-8 md:flex">
           {navItems.map((item) => (
@@ -57,7 +57,7 @@ export function SiteHeader() {
           open ? "max-h-96" : "max-h-0 border-t-0",
         )}
       >
-        <div className="container flex flex-col gap-4 py-6">
+        <div className="container mx-auto flex flex-col gap-4 py-6">
           {navItems.map((item) => (
             <Link
               key={item.href}

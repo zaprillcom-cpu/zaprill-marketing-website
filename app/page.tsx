@@ -218,7 +218,7 @@ export default function HomePage() {
 
       {/* Hero Section */}
       <section className="relative overflow-hidden pt-20 pb-28">
-        <div className="container relative z-10 grid items-center gap-16 lg:grid-cols-[1.1fr,0.9fr] max-w-[1200px]">
+        <div className="container mx-auto relative z-10 grid items-center gap-16 lg:grid-cols-[1.1fr_0.9fr] max-w-[1200px]">
           <Reveal delay={0.1} className="max-w-2xl text-center lg:text-left">
             <h1 className="text-5xl md:text-[68px] leading-[1.05] tracking-tighter text-slate-900 dark:text-white mb-6">
               <Typewriter text="You're probably underpaid." delay={0.1} />
@@ -233,7 +233,7 @@ export default function HomePage() {
             </p>
             
             <div className="mt-12 flex flex-col sm:flex-row sm:justify-center lg:justify-start gap-4 mb-8">
-              <SpringButton href={siteConfig.appUrl} className="bg-slate-900 dark:bg-white text-white dark:text-slate-900 transition-all hover:bg-slate-800 dark:hover:bg-slate-200 border-0 h-14 px-8 text-base font-semibold rounded-full min-w-[200px]">
+              <SpringButton href={siteConfig.appUrl} className="bg-primary text-primary-foreground transition-all hover:opacity-90 border-0 h-14 px-8 text-base font-semibold rounded-full min-w-[200px]">
                 Upload Resume — Free
               </SpringButton>
               <a
@@ -330,7 +330,7 @@ export default function HomePage() {
 
       {/* Social Proof */}
       <section className="bg-white dark:bg-[#0A0A0A] border-y border-slate-200/60 dark:border-white/5 py-24">
-        <Reveal className="container max-w-3xl text-center">
+        <Reveal className="container mx-auto max-w-3xl text-center">
           <MessageSquareQuote className="h-8 w-8 text-slate-200 dark:text-white/10 mx-auto mb-8" />
           <blockquote className="text-[22px] md:text-[28px] font-medium leading-normal tracking-tight text-slate-900 dark:text-white/90">
             "I didn't realize I was underpaid by ₹4L until I mapped out my skill gaps with Zaprill. The report gave me the exact, concrete data I needed to negotiate my next offer confidently."
@@ -346,7 +346,7 @@ export default function HomePage() {
 
       {/* Pain Section */}
       <section className="bg-[#fcfcfc] dark:bg-[#070707] py-32">
-        <div className="container max-w-[1200px]">
+        <div className="container mx-auto max-w-[1200px]">
           <Reveal>
             <SectionHeading
               title="Job hunting is broken."
@@ -374,7 +374,7 @@ export default function HomePage() {
 
       {/* How It Works */}
       <section className="bg-white dark:bg-[#0A0A0A] border-y border-slate-200/60 dark:border-white/5 py-32">
-        <div className="container max-w-[1200px]">
+        <div className="container mx-auto max-w-[1200px]">
           <Reveal>
             <SectionHeading
               pill="Process"
@@ -406,7 +406,7 @@ export default function HomePage() {
 
       {/* Salary Hook */}
       <section className="bg-slate-900 dark:bg-black text-white py-32 relative overflow-hidden">
-        <div className="container max-w-4xl text-center relative z-10">
+        <div className="container mx-auto max-w-4xl text-center relative z-10">
           <Reveal>
             <Badge className="bg-white/10 text-white/50 border-0 mb-10 font-sans tracking-widest px-3 py-1 text-[10px] uppercase font-bold">Your Salary Gap</Badge>
             <h2 className="text-4xl md:text-[56px] font-bold tracking-tighter text-white mb-8 balanced leading-[1.1]">
@@ -449,7 +449,7 @@ export default function HomePage() {
 
       {/* Core Features */}
       <section className="bg-[#fcfcfc] dark:bg-[#070707] py-32">
-        <div className="container max-w-[1200px]">
+        <div className="container mx-auto max-w-[1200px]">
           <Reveal>
             <SectionHeading
               pill="Insights"
@@ -479,7 +479,7 @@ export default function HomePage() {
 
       {/* Speed Proof */}
       <section className="bg-white dark:bg-[#0A0A0A] py-32 border-y border-slate-200/60 dark:border-white/5 relative overflow-hidden">
-        <Reveal className="container max-w-3xl text-center relative z-10">
+        <Reveal className="container mx-auto max-w-3xl text-center relative z-10">
           <div className="text-[100px] md:text-[140px] font-bold text-slate-900 dark:text-white leading-none tracking-tighter mb-4 opacity-90">2 <span className="text-[60px] md:text-[80px]">min</span></div>
           <h2 className="text-3xl md:text-5xl font-bold tracking-tighter text-slate-900 dark:text-white mb-8">Speed matters.</h2>
           <p className="text-[19px] text-slate-500 dark:text-white/50 mb-12 max-w-xl mx-auto font-light leading-relaxed">
@@ -495,7 +495,7 @@ export default function HomePage() {
 
       {/* FAQ Section */}
       <section className="bg-[#fcfcfc] dark:bg-[#070707] py-32">
-        <div className="container max-w-3xl">
+        <div className="container mx-auto max-w-3xl">
           <Reveal className="text-center mb-20">
             <h2 className="text-4xl md:text-[48px] tracking-tighter font-bold text-slate-900 dark:text-white">Frequently Asked Questions</h2>
           </Reveal>
@@ -507,7 +507,7 @@ export default function HomePage() {
 
       {/* Pricing */}
       <section className="bg-white dark:bg-[#0A0A0A] py-32 border-t border-slate-200/60 dark:border-white/5">
-        <div className="container max-w-5xl">
+        <div className="container mx-auto max-w-5xl">
           <Reveal>
             <SectionHeading
               pill="Pricing"
@@ -572,7 +572,7 @@ export default function HomePage() {
 
       {/* Final CTA */}
       <section className="bg-slate-900 dark:bg-black border-t border-slate-800/50 dark:border-white/5 py-32 relative overflow-hidden">
-        <Reveal className="container max-w-3xl text-center relative z-10">
+        <Reveal className="container mx-auto max-w-3xl text-center relative z-10">
           <h2 className="text-5xl md:text-[64px] font-bold tracking-tighter text-white mb-8 balanced">Stop guessing.<br/>Know your worth.</h2>
           <p className="text-[19px] text-slate-400 font-light leading-relaxed max-w-2xl mx-auto mb-12 balanced">
             Built for professionals who are done leaving money on the table. It takes 2 minutes. It's completely free to start.
