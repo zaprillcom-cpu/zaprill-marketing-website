@@ -229,7 +229,7 @@ export default function HomePage() {
             </h1>
             
             <p className="mt-8 text-[19px] text-slate-600 dark:text-white/60 max-w-lg mx-auto lg:mx-0 balanced leading-relaxed font-light">
-              Upload your resume. In 2 minutes you'll know your exact market value, which jobs you actually qualify for, and what's silently blocking your next salary jump.
+              Upload your resume. In 2 minutes you&apos;ll know your exact market value, which jobs you actually qualify for, and what's silently blocking your next salary jump.
             </p>
             
             <div className="mt-12 flex flex-col sm:flex-row sm:justify-center lg:justify-start gap-4 mb-8">
