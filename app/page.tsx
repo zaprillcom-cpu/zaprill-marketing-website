@@ -13,7 +13,7 @@ import {
 
 import { SectionHeading } from "@/components/section-heading";
 import { Badge } from "@/components/ui/badge";
-import { ButtonLink } from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { siteConfig } from "@/lib/site";
 import { Reveal } from "@/components/reveal";
@@ -436,9 +436,11 @@ export default function HomePage() {
                 ))}
               </div>
               <div className="mt-12 flex justify-center">
-                <ButtonLink href={siteConfig.appUrl} className="bg-white hover:bg-slate-200 text-slate-900 border-0 px-8 py-3.5 rounded-full text-[15px] font-bold">
-                  Calculate My Gap
-                </ButtonLink>
+                <Link href={siteConfig.appUrl}>
+                  <Button className="bg-white hover:bg-slate-200 text-slate-900 border-0 px-8 py-3.5 rounded-full text-[15px] font-bold">
+                    Calculate My Gap
+                  </Button>
+                </Link>
               </div>
             </Card>
           </Reveal>
@@ -483,9 +485,11 @@ export default function HomePage() {
           <p className="text-[19px] text-slate-500 dark:text-white/50 mb-12 max-w-xl mx-auto font-light leading-relaxed">
             Upload your resume and get immediate insights into your complete market profile.
           </p>
-          <ButtonLink href={siteConfig.appUrl} className="rounded-full px-10 h-14 text-[15px] font-bold bg-slate-900 dark:bg-white text-white dark:text-slate-900 hover:bg-slate-800 dark:hover:bg-slate-200 border-0 shadow-sm transition-all active:scale-[0.97]">
-            Upload Now
-          </ButtonLink>
+          <Link href={siteConfig.appUrl}>
+            <Button className="rounded-full px-10 h-14 text-[15px] font-bold bg-slate-900 dark:bg-white text-white dark:text-slate-900 hover:bg-slate-800 dark:hover:bg-slate-200 border-0 shadow-sm transition-all active:scale-[0.97]">
+              Upload Now
+            </Button>
+          </Link>
         </Reveal>
       </section>
 
@@ -528,9 +532,11 @@ export default function HomePage() {
                     </li>
                   ))}
                 </ul>
-                <ButtonLink href={siteConfig.appUrl} variant="secondary" className="w-full justify-center h-14 rounded-full border-slate-200/80 dark:border-white/10 text-slate-900 dark:text-white bg-white dark:bg-transparent dark:hover:bg-white/5 hover:bg-slate-50 font-bold active:scale-[0.98]">
-                  Get Started
-                </ButtonLink>
+                <Link href={siteConfig.appUrl} className="w-full">
+                  <Button variant="secondary" className="w-full justify-center h-14 rounded-full border-slate-200/80 dark:border-white/10 text-slate-900 dark:text-white bg-white dark:bg-transparent dark:hover:bg-white/5 hover:bg-slate-50 font-bold active:scale-[0.98]">
+                    Get Started
+                  </Button>
+                </Link>
               </Card>
             </Reveal>
 
@@ -553,9 +559,11 @@ export default function HomePage() {
                     </li>
                   ))}
                 </ul>
-                <ButtonLink href={siteConfig.appUrl} className="w-full justify-center h-14 rounded-full bg-white text-slate-900 hover:bg-slate-100 border-0 font-bold active:scale-[0.98]">
-                  Upgrade to Pro
-                </ButtonLink>
+                <Link href={siteConfig.appUrl} className="w-full">
+                  <Button className="w-full justify-center h-14 rounded-full bg-white text-slate-900 hover:bg-slate-100 border-0 font-bold active:scale-[0.98]">
+                    Upgrade to Pro
+                  </Button>
+                </Link>
               </Card>
             </Reveal>
           </div>

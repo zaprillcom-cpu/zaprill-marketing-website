@@ -3,23 +3,25 @@ import { notFound } from "next/navigation";
 
 // import { AdSlot } from "@/components/ad-slot";
 import { Badge } from "@/components/ui/badge";
-import { ButtonLink } from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
 import { getArticleBySlug, blogArticles } from "@/lib/blog";
 import { siteConfig } from "@/lib/site";
+import Link from "next/link";
 
 type ArticlePageProps = {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 };
 
 export async function generateStaticParams() {
   return blogArticles.map((article) => ({ slug: article.slug }));
 }
 
-export async function generateMetadata({
-  params
-}: ArticlePageProps): Promise<Metadata> {
+export async function generateMetadata(
+  props: ArticlePageProps,
+): Promise<Metadata> {
+  const params = await props.params;
   const article = getArticleBySlug(params.slug);
 
   if (!article) {
@@ -30,7 +32,7 @@ export async function generateMetadata({
     title: article.title,
     description: article.description,
     alternates: {
-      canonical: `/blog/${article.slug}`
+      canonical: `/blog/${article.slug}`,
     },
     openGraph: {
       title: article.title,
@@ -41,18 +43,19 @@ export async function generateMetadata({
       modifiedTime: article.updatedAt || article.publishedAt,
       authors: [article.author],
       section: article.category,
-      images: ["/og"]
+      images: ["/og"],
     },
     twitter: {
       card: "summary_large_image",
       title: article.title,
       description: article.description,
-      images: ["/og"]
-    }
+      images: ["/og"],
+    },
   };
 }
 
-export default function ArticlePage({ params }: ArticlePageProps) {
+export default async function ArticlePage(props: ArticlePageProps) {
+  const params = await props.params;
   const article = getArticleBySlug(params.slug);
 
   if (!article) {
@@ -64,8 +67,12 @@ export default function ArticlePage({ params }: ArticlePageProps) {
   // Calculate word count for schema
   const wordCount = article.sections.reduce(
     (total, section) =>
-      total + section.paragraphs.reduce((sTotal, p) => sTotal + p.split(/\s+/).length, 0),
-    0
+      total +
+      section.paragraphs.reduce(
+        (sTotal, p) => sTotal + p.split(/\s+/).length,
+        0,
+      ),
+    0,
   );
 
   // Enhanced Article schema with all recommended fields
@@ -83,7 +90,7 @@ export default function ArticlePage({ params }: ArticlePageProps) {
     author: {
       "@type": "Organization",
       name: article.author,
-      url: siteConfig.url
+      url: siteConfig.url,
     },
     publisher: {
       "@type": "Organization",
@@ -91,13 +98,13 @@ export default function ArticlePage({ params }: ArticlePageProps) {
       url: siteConfig.url,
       logo: {
         "@type": "ImageObject",
-        url: `${siteConfig.url}/og`
-      }
+        url: `${siteConfig.url}/og`,
+      },
     },
     mainEntityOfPage: {
       "@type": "WebPage",
-      "@id": `${siteConfig.url}/blog/${article.slug}`
-    }
+      "@id": `${siteConfig.url}/blog/${article.slug}`,
+    },
   };
 
   // BreadcrumbList schema for navigation hierarchy
@@ -109,21 +116,21 @@ export default function ArticlePage({ params }: ArticlePageProps) {
         "@type": "ListItem",
         position: 1,
         name: "Home",
-        item: siteConfig.url
+        item: siteConfig.url,
       },
       {
         "@type": "ListItem",
         position: 2,
         name: "Blog",
-        item: `${siteConfig.url}/blog`
+        item: `${siteConfig.url}/blog`,
       },
       {
         "@type": "ListItem",
         position: 3,
         name: article.title,
-        item: `${siteConfig.url}/blog/${article.slug}`
-      }
-    ]
+        item: `${siteConfig.url}/blog/${article.slug}`,
+      },
+    ],
   };
 
   return (
@@ -131,7 +138,7 @@ export default function ArticlePage({ params }: ArticlePageProps) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify([articleSchema, breadcrumbSchema])
+          __html: JSON.stringify([articleSchema, breadcrumbSchema]),
         }}
       />
 
@@ -141,22 +148,31 @@ export default function ArticlePage({ params }: ArticlePageProps) {
           <nav aria-label="Breadcrumb" className="mb-6 text-sm text-text-muted">
             <ol className="flex items-center gap-1.5">
               <li>
-                <a href="/" className="hover:text-text-primary transition-colors">
+                <Link
+                  href="/"
+                  className="hover:text-text-primary transition-colors"
+                >
                   Home
-                </a>
+                </Link>
               </li>
               <li aria-hidden="true" className="select-none">
                 /
               </li>
               <li>
-                <a href="/blog" className="hover:text-text-primary transition-colors">
+                <Link
+                  href="/blog"
+                  className="hover:text-text-primary transition-colors"
+                >
                   Blog
-                </a>
+                </Link>
               </li>
               <li aria-hidden="true" className="select-none">
                 /
               </li>
-              <li aria-current="page" className="text-text-primary font-medium truncate max-w-[300px]">
+              <li
+                aria-current="page"
+                className="text-text-primary font-medium truncate max-w-[300px]"
+              >
                 {article.title}
               </li>
             </ol>
@@ -170,7 +186,7 @@ export default function ArticlePage({ params }: ArticlePageProps) {
               {new Date(article.publishedAt).toLocaleDateString("en-IN", {
                 year: "numeric",
                 month: "long",
-                day: "numeric"
+                day: "numeric",
               })}
             </time>
             <span aria-hidden="true">·</span>
@@ -184,7 +200,7 @@ export default function ArticlePage({ params }: ArticlePageProps) {
                     {new Date(article.updatedAt).toLocaleDateString("en-IN", {
                       year: "numeric",
                       month: "long",
-                      day: "numeric"
+                      day: "numeric",
                     })}
                   </time>
                 </span>
@@ -229,7 +245,9 @@ export default function ArticlePage({ params }: ArticlePageProps) {
               and skill gap clarity in minutes.
             </p>
             <div className="mt-6">
-              <ButtonLink href={siteConfig.appUrl}>Open the App</ButtonLink>
+              <Link href={siteConfig.appUrl}>
+                <Button variant={"link"}>Open the App</Button>
+              </Link>
             </div>
           </div>
         </div>

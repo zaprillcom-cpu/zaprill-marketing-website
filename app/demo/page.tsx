@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
-import { ButtonLink } from "@/components/ui/button";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 import { siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -36,7 +37,9 @@ export default function DemoPage() {
           practical skill-gap plan. The live experience runs on app.zaprill.com.
         </p>
         <div className="mt-8">
-          <ButtonLink href={siteConfig.appUrl}>Open App</ButtonLink>
+          <Link href={siteConfig.appUrl}>
+            <Button>Open App</Button>
+          </Link>
         </div>
       </div>
     </section>

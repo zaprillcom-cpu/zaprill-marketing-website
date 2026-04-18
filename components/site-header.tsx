@@ -7,13 +7,13 @@ import { useState } from "react";
 import { siteConfig } from "@/lib/site";
 import { cn } from "@/lib/utils";
 import { Logo } from "@/components/logo";
-import { ButtonLink } from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
 
 const navItems = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About" },
   { href: "/blog", label: "Blog" },
-  { href: "/contact", label: "Contact" }
+  { href: "/contact", label: "Contact" },
 ];
 
 export function SiteHeader() {
@@ -33,13 +33,11 @@ export function SiteHeader() {
               {item.label}
             </Link>
           ))}
-          <ButtonLink
-            href={siteConfig.appUrl}
-            size="sm"
-            className="text-[14px]"
-          >
-            Open App
-          </ButtonLink>
+          <Link href={siteConfig.appUrl}>
+            <Button size="sm" className="text-[14px]">
+              Open App
+            </Button>
+          </Link>
         </nav>
         <button
           type="button"
@@ -56,7 +54,7 @@ export function SiteHeader() {
         id="mobile-menu"
         className={cn(
           "overflow-hidden border-t border-border bg-white transition-all duration-200 md:hidden",
-          open ? "max-h-96" : "max-h-0 border-t-0"
+          open ? "max-h-96" : "max-h-0 border-t-0",
         )}
       >
         <div className="container flex flex-col gap-4 py-6">
@@ -70,9 +68,9 @@ export function SiteHeader() {
               {item.label}
             </Link>
           ))}
-          <ButtonLink href={siteConfig.appUrl} size="full" className="mt-2">
-            Open App
-          </ButtonLink>
+          <Link href={siteConfig.appUrl}>
+            <Button className="mt-2 size-max">Open App</Button>
+          </Link>
         </div>
       </div>
     </header>
