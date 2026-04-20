@@ -144,73 +144,55 @@ export default async function ArticlePage(props: ArticlePageProps) {
         }}
       />
 
-      <section className="section-padding">
+      <section className="section-padding pb-6 md:pb-12">
         <div className="container max-w-4xl">
-          {/* Breadcrumb navigation (visible) */}
+          {/* Breadcrumb navigation */}
           <nav aria-label="Breadcrumb" className="mb-8 text-sm text-muted-foreground font-medium">
-            <ol className="flex items-center gap-1.5">
+            <ol className="flex items-center gap-1.5 flex-wrap">
               <li>
-                <Link
-                  href="/"
-                  className="hover:text-foreground transition-colors"
-                >
+                <Link href="/" className="hover:text-foreground transition-colors">
                   Home
                 </Link>
               </li>
-              <li aria-hidden="true" className="select-none">
-                /
-              </li>
+              <li aria-hidden="true" className="select-none">/</li>
               <li>
-                <Link
-                  href="/blog"
-                  className="hover:text-foreground transition-colors"
-                >
+                <Link href="/blog" className="hover:text-foreground transition-colors">
                   Blog
                 </Link>
               </li>
-              <li aria-hidden="true" className="select-none">
-                /
-              </li>
-              <li
-                aria-current="page"
-                className="text-foreground font-semibold truncate max-w-[300px]"
-              >
+              <li aria-hidden="true" className="select-none">/</li>
+              <li aria-current="page" className="text-foreground font-semibold truncate max-w-[200px] md:max-w-[400px]">
                 {article.title}
               </li>
             </ol>
           </nav>
 
           <Badge className={article.badgeClass}>{article.category}</Badge>
-          <h1 className="mt-8 text-4xl md:text-5xl font-bold tracking-tight">{article.title}</h1>
-          <p className="mt-6 text-xl text-muted-foreground/90 max-w-3xl leading-relaxed">{article.description}</p>
-          <div className="mt-8 flex items-center gap-3 text-sm text-muted-foreground font-medium">
-            <time dateTime={article.publishedAt}>
-              {new Date(article.publishedAt).toLocaleDateString("en-IN", {
-                year: "numeric",
-                month: "long",
-                day: "numeric",
-              })}
-            </time>
-            <span aria-hidden="true">·</span>
-            <span>{article.author}</span>
-            {article.updatedAt && article.updatedAt !== article.publishedAt && (
-              <>
-                <span aria-hidden="true">·</span>
-                <span>
-                  Updated{" "}
-                  <time dateTime={article.updatedAt}>
-                    {new Date(article.updatedAt).toLocaleDateString("en-IN", {
-                      year: "numeric",
-                      month: "long",
-                      day: "numeric",
-                    })}
-                  </time>
-                </span>
-              </>
+          <h1 className="mt-8 text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1]">{article.title}</h1>
+          <p className="mt-6 text-xl md:text-2xl text-muted-foreground/90 max-w-3xl leading-relaxed">{article.description}</p>
+          
+          <div className="mt-10 flex flex-wrap items-center gap-4">
+            {article.authorImage && (
+              <Image src={article.authorImage} alt={article.author} width={48} height={48} className="rounded-full shadow-sm" />
             )}
+            <div>
+              <p className="font-bold text-foreground">{article.author}</p>
+              <div className="flex items-center gap-2 text-sm text-muted-foreground mt-1">
+                <time dateTime={article.publishedAt}>
+                  {new Date(article.publishedAt).toLocaleDateString("en-IN", {
+                    month: "short",
+                    day: "numeric",
+                    year: "numeric",
+                  })}
+                </time>
+                <span aria-hidden="true">·</span>
+                {article.readTime && <span>{article.readTime}</span>}
+              </div>
+            </div>
           </div>
+
           {article.image && (
-            <div className="mt-10 overflow-hidden rounded-2xl border border-border relative aspect-[21/9] bg-muted">
+            <div className="mt-12 md:mt-16 overflow-hidden rounded-3xl border border-border relative aspect-[2/1] md:aspect-[21/9] bg-muted shadow-md">
               <Image
                 src={article.image}
                 alt={article.title}
@@ -224,43 +206,84 @@ export default async function ArticlePage(props: ArticlePageProps) {
       </section>
 
       <section className="pb-24">
-        <div className="container max-w-3xl">
-          <div className="space-y-10">
-            {article.sections.map((section) => (
-              <section key={section.heading} className="space-y-5">
-                <h2 className="text-[30px]">{section.heading}</h2>
-                {section.paragraphs.map((paragraph) => {
-                  paragraphCount += 1;
+        <div className="container max-w-[1100px]">
+          <div className="flex flex-col lg:flex-row gap-12 lg:gap-20">
+            
+            {/* Left Sidebar Table of Contents */}
+            <aside className="hidden lg:block w-[240px] shrink-0">
+              <div className="sticky top-28 pt-2">
+                <p className="text-[13px] font-bold uppercase tracking-widest text-muted-foreground mb-5">
+                  In this article
+                </p>
+                <nav className="flex flex-col gap-3.5">
+                  {article.sections.map((section, idx) => (
+                    <a 
+                      key={idx} 
+                      href={`#section-${idx}`} 
+                      className="text-[15px] font-medium text-muted-foreground hover:text-primary transition-colors leading-snug"
+                    >
+                      {section.heading}
+                    </a>
+                  ))}
+                </nav>
+              </div>
+            </aside>
 
-                  return (
-                    <div key={`${section.heading}-${paragraph.slice(0, 24)}`}>
-                      <p>{paragraph}</p>
-                      {/* {paragraphCount === 3 ? (
-                        <div className="mt-8">
-                          <AdSlot slot="article-mid" />
-                        </div>
-                      ) : null} */}
+            {/* Main Content Body */}
+            <div className="min-w-0 flex-1">
+              <div className="space-y-12 max-w-3xl">
+                {article.sections.map((section, idx) => (
+                  <section key={section.heading} id={`section-${idx}`} className="scroll-mt-28 space-y-6">
+                    <h2 className="text-3xl font-bold tracking-tight text-foreground">{section.heading}</h2>
+                    <div className="space-y-6 text-[18px] leading-[1.8] text-foreground/90 font-medium">
+                      {section.paragraphs.map((paragraph) => {
+                        paragraphCount += 1;
+                        return (
+                          <div key={`${section.heading}-${paragraph.slice(0, 24)}`}>
+                            <p>{paragraph}</p>
+                          </div>
+                        );
+                      })}
                     </div>
-                  );
-                })}
-              </section>
-            ))}
-          </div>
+                  </section>
+                ))}
+              </div>
 
-          {/* <div className="mt-12">
-            <AdSlot slot="article-end" />
-          </div> */}
+              {/* Author Footer */}
+              <div className="mt-20 border-t border-border pt-12 max-w-3xl">
+                <div className="flex flex-col sm:flex-row gap-6 items-center sm:items-start bg-muted/40 p-8 rounded-3xl border border-border/50">
+                  {article.authorImage && (
+                    <Image src={article.authorImage} alt={article.author} width={72} height={72} className="rounded-full shadow-sm shrink-0" />
+                  )}
+                  <div className="text-center sm:text-left">
+                    <p className="text-xl font-bold text-foreground">{article.author}</p>
+                    {article.authorRole && (
+                      <p className="text-sm font-semibold text-primary mt-1">{article.authorRole}</p>
+                    )}
+                    <p className="text-muted-foreground mt-3 text-[15px] leading-relaxed max-w-md">
+                      Providing market-leading insights on career strategy, technical compensation, and negotiation.
+                    </p>
+                  </div>
+                </div>
+              </div>
 
-          <div className="mt-16 rounded-3xl bg-muted/30 border border-border p-8 md:p-12 text-center">
-            <h3 className="text-2xl font-bold">See where your profile can go next.</h3>
-            <p className="mx-auto mt-4 max-w-2xl">
-              Upload your resume to Zaprill and get salary insight, job matches,
-              and skill gap clarity in minutes.
-            </p>
-            <div className="mt-6">
-              <Link href={siteConfig.appUrl}>
-                <Button variant={"link"}>Open the App</Button>
-              </Link>
+              {/* CTA Box */}
+              <div className="mt-12 rounded-[2rem] bg-card border border-border shadow-md p-8 md:p-12 text-center relative overflow-hidden max-w-3xl group">
+                <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="relative z-10">
+                  <h3 className="text-2xl md:text-3xl font-bold tracking-tight">See where your profile can go next.</h3>
+                  <p className="mx-auto mt-4 max-w-lg text-lg text-muted-foreground">
+                    Upload your resume to Zaprill and get salary insight, job matches, and skill gap clarity in minutes.
+                  </p>
+                  <div className="mt-8">
+                    <Link href={siteConfig.appUrl}>
+                      <Button size="lg" className="rounded-full px-8 text-base shadow-sm">
+                        Open the App
+                      </Button>
+                    </Link>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

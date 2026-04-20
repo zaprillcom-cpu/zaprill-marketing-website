@@ -44,53 +44,117 @@ export default function BlogPage() {
               who want better decisions, not generic advice.
             </p>
           </div>
-          <div className="grid gap-8 lg:grid-cols-3 lg:gap-10">
-            {blogArticles.map((article) => (
-              <Reveal key={article.slug}>
-                <Card className="h-full group overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-all hover:shadow-md flex flex-col">
-                  <div className={cn("relative w-full aspect-[16/9] bg-muted overflow-hidden", article.tintClass)}>
-                    {article.image && (
-                      <Image
-                        src={article.image}
-                        alt={article.title}
-                        fill
-                        className="object-cover transition-transform duration-500 group-hover:scale-105"
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                      />
-                    )}
-                  </div>
-                  <div className="p-7 flex-1 flex flex-col">
-                    <Badge variant="secondary" className={cn("rounded-full px-3 py-1 w-fit", article.badgeClass)}>
-                      {article.category}
-                    </Badge>
-                    <h4 className="mt-6 text-xl font-bold tracking-tight">
-                      <Link href={`/blog/${article.slug}`} className="hover:text-primary transition-colors">
-                        {article.title}
-                      </Link>
-                    </h4>
-                    <p className="mt-4 text-sm text-muted-foreground font-medium">
-                      {new Date(article.publishedAt).toLocaleDateString("en-IN", {
-                        year: "numeric",
-                        month: "long",
-                        day: "numeric"
-                      })}
-                    </p>
-                    <p className="mt-5 text-[15px] leading-relaxed text-muted-foreground/80 line-clamp-3">
-                      {article.excerpt}
-                    </p>
-                    <div className="mt-auto pt-8">
-                      <Link
-                        href={`/blog/${article.slug}`}
-                        className="inline-flex items-center gap-2 text-sm font-bold text-primary group/link"
-                      >
-                        Read full article 
-                        <span className="transition-transform group-hover/link:translate-x-1">→</span>
-                      </Link>
+          <div className="flex flex-col gap-12">
+            {/* Featured Post */}
+            {blogArticles.length > 0 && (() => {
+              const article = blogArticles[0];
+              return (
+                <Reveal>
+                  <Card className="group p-0 gap-0 overflow-hidden rounded-3xl border border-border bg-card shadow-sm transition-all hover:shadow-md flex flex-col md:flex-row lg:h-[500px]">
+                    <div className={cn("relative w-full md:w-3/5 bg-muted overflow-hidden flex-shrink-0 aspect-[16/9] md:aspect-auto", article.tintClass)}>
+                      {article.image && (
+                        <Image
+                          src={article.image}
+                          alt={article.title}
+                          fill
+                          className="object-cover transition-transform duration-500 group-hover:scale-105"
+                          sizes="(max-width: 768px) 100vw, 60vw"
+                          priority
+                        />
+                      )}
                     </div>
-                  </div>
-                </Card>
-              </Reveal>
-            ))}
+                    <div className="p-8 lg:p-12 flex-1 flex flex-col justify-center">
+                      <div className="flex items-center gap-4">
+                        <Badge variant="secondary" className={cn("rounded-full px-3 py-1 w-fit", article.badgeClass)}>
+                          {article.category}
+                        </Badge>
+                        {article.readTime && (
+                          <span className="text-sm font-semibold tracking-tight text-muted-foreground">{article.readTime}</span>
+                        )}
+                      </div>
+                      <h3 className="mt-6 text-3xl font-bold tracking-tight leading-tight">
+                        <Link href={`/blog/${article.slug}`} className="hover:text-primary transition-colors">
+                          {article.title}
+                        </Link>
+                      </h3>
+                      <p className="mt-5 text-lg leading-relaxed text-muted-foreground/80 line-clamp-4">
+                        {article.excerpt}
+                      </p>
+                      
+                      <div className="mt-8 flex items-center justify-between border-t border-border pt-6">
+                        <div className="flex items-center gap-3">
+                          {article.authorImage && (
+                            <Image src={article.authorImage} alt={article.author} width={44} height={44} className="rounded-full shadow-sm" />
+                          )}
+                          <div className="flex justify-center flex-col">
+                            <p className="text-sm font-bold leading-none">{article.author}</p>
+                            <p className="text-[13px] font-medium text-muted-foreground mt-1.5">
+                              {new Date(article.publishedAt).toLocaleDateString("en-IN", {
+                                month: "short",
+                                day: "numeric",
+                                year: "numeric",
+                              })}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </Card>
+                </Reveal>
+              );
+            })()}
+
+            {/* Sub-grid Posts */}
+            <div className="grid gap-8 lg:grid-cols-3 lg:gap-10">
+              {blogArticles.slice(1).map((article) => (
+                <Reveal key={article.slug}>
+                  <Card className="h-full group p-0 gap-0 overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-all hover:shadow-md flex flex-col">
+                    <div className={cn("relative w-full aspect-[2/1] bg-muted overflow-hidden", article.tintClass)}>
+                      {article.image && (
+                        <Image
+                          src={article.image}
+                          alt={article.title}
+                          fill
+                          className="object-cover transition-transform duration-500 group-hover:scale-105"
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        />
+                      )}
+                    </div>
+                    <div className="p-5 md:p-6 flex-1 flex flex-col">
+                      <div className="flex items-center justify-between">
+                        <Badge variant="secondary" className={cn("rounded-full px-3 py-1 w-fit", article.badgeClass)}>
+                          {article.category}
+                        </Badge>
+                        {article.readTime && (
+                           <span className="text-xs font-bold text-muted-foreground">{article.readTime}</span>
+                        )}
+                      </div>
+                      <h4 className="mt-5 text-xl font-bold tracking-tight leading-[1.35]">
+                        <Link href={`/blog/${article.slug}`} className="hover:text-primary transition-colors">
+                          {article.title}
+                        </Link>
+                      </h4>
+                      <p className="mt-4 text-[15px] leading-relaxed text-muted-foreground/80 line-clamp-3">
+                        {article.excerpt}
+                      </p>
+                      <div className="mt-auto pt-6 flex flex-col gap-4">
+                        <div className="flex items-center gap-3">
+                          {article.authorImage && (
+                            <Image src={article.authorImage} alt={article.author} width={34} height={34} className="rounded-full shadow-sm" />
+                          )}
+                          <div className="flex justify-center flex-col">
+                            <p className="text-[13px] font-bold leading-none">{article.author}</p>
+                            <p className="text-xs font-medium text-muted-foreground mt-1">
+                              {new Date(article.publishedAt).toLocaleDateString("en-IN", { month: "short", day: "numeric", year: "numeric" })}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </Card>
+                </Reveal>
+              ))}
+            </div>
           </div>
         </div>
       </section>

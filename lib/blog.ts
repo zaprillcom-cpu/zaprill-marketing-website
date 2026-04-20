@@ -7,6 +7,9 @@ export type BlogArticle = {
   publishedAt: string;
   updatedAt?: string;
   author: string;
+  authorRole?: string;
+  authorImage?: string;
+  readTime?: string;
   tintClass: string;
   badgeClass: string;
   image: string;
@@ -25,51 +28,88 @@ export const blogArticles: BlogArticle[] = [
     excerpt:
       "Most professionals don’t find out they’re underpaid until after they leave. Here’s how to catch the gap sooner and act on it.",
     category: "Salary",
-    publishedAt: "2026-04-12",
-    updatedAt: "2026-04-14",
+    publishedAt: "2026-04-20",
+    updatedAt: "2026-04-21",
     author: "Zaprill Team",
+    authorImage: "/zaprill-logo-2.png",
+    authorRole: "Head of Compensation Data",
+    readTime: "8 min read",
     image: "/blogs/how-to-know-if-youre-being-underpaid.jpeg",
     tintClass: "bg-[#EFF6FF]",
-    badgeClass: "bg-[#DBEAFE] text-primary",
+    badgeClass: "bg-[#DBEAFE] text-[#1E40AF]",
     sections: [
       {
         heading: "Why underpayment is so hard to spot",
         paragraphs: [
-          "Most people assume salary is a direct reflection of value. In reality, pay is often a reflection of timing, negotiation confidence, company budget, location, and how visible your skills are to the market. That is why talented people can stay underpaid for years without realizing it. If your last raise was based on an internal percentage band instead of current demand, there is a good chance your compensation is lagging behind what similar candidates can command today.",
-          "The hardest part is that employers rarely volunteer this information. Job descriptions may hide compensation. Recruiters may ask for salary expectations before sharing their range. Internal raises happen gradually enough that they feel normal. Over time, a gap of ten or fifteen percent can quietly become thirty percent or more, especially in fast-moving fields like product, engineering, analytics, design, and performance marketing.",
-          "Being underpaid does not necessarily mean you made a mistake. It often means you have not had access to clean market data. That is exactly why salary intelligence matters. When you know what employers are paying for your exact combination of title, skills, city, and experience, compensation stops feeling mysterious and starts becoming measurable."
+          "Most people assume salary is a direct reflection of value. In reality, pay is a lagging indicator. It's often a reflection of timing, negotiation confidence, company budget, location, and how visible your skills are to the market. That is why highly talented people can stay underpaid for years without realizing it.",
+          "If your last raise was based on an internal percentage band (like a standard 5% annual hike) instead of current market demand, there is a good chance your compensation is lagging behind what similar candidates can command today. Internal raises happen gradually, while market rates leap in bounds.",
+          "The hardest part is that employers rarely volunteer this information. Job descriptions may hide compensation. Internal compensation grids are sealed. Over time, a gap of ten or fifteen percent can quietly become a massive thirty percent deficit, especially in fast-moving fields like product, engineering, analytics, and revenue marketing.",
+          "Being underpaid does not mean you made a mistake. It simply means you have been flying blind without access to clean market data. When you know exactly what top-tier employers are paying for your specific combination of title, skills, city, and experience, compensation stops feeling mysterious and starts becoming measurable."
         ]
       },
       {
-        heading: "The practical signs you may be underpaid",
+        heading: "The practical signals you are lagging behind",
         paragraphs: [
-          "One of the clearest signals is recruiter behavior. If recruiters consistently reach out with roles that pay far above your current salary, the market may already value you more than your employer does. Another signal is mismatch between responsibility and compensation. If you are leading projects, mentoring newer teammates, shipping business-critical work, or owning stakeholder communication without a corresponding salary jump, your role may have grown faster than your pay.",
-          "Pay compression is another common issue. This happens when new hires come in near or above the compensation of existing employees because market rates moved faster than internal salary reviews. It can leave loyal, high-performing people earning less than peers doing similar work. If you hear ranges in the market that feel surprisingly high, do not dismiss them immediately. They may reflect a broader reset that your company has not caught up with yet.",
-          "Finally, watch for skill premiums. Employers pay more for combinations that are hard to find, not just titles. A backend developer with cloud cost optimization experience, a recruiter who understands analytics tooling, or a marketer who can own lifecycle and product-led growth may be priced very differently from someone with a more generic profile. If you have built a rare skill stack, your salary should reflect it."
+          "One of the clearest signals is recruiter behavior. If external outbound recruiters consistently reach out offering roles that pay 20-40% above your current salary, the market has likely re-priced your skills. Do not dismiss these emails. Keep a spreadsheet of the numbers they share—it is raw, valuable market research.",
+          "Another signal is 'Pay Compression'. This happens when new hires come in near or above the compensation of existing employees because current market rates moved faster than legacy internal salary reviews. If a junior or mid-level peer joins your team and their perceived lifestyle or accidental salary disclosures hint they are earning more than you, compression is at play.",
+          "Finally, watch for 'Skill Premiums'. Employers pay disproportionately more for combinations that are hard to find. A backend developer with deep cloud cost optimization experience, or a marketer with a strong data engineering background, are priced very differently from generic profiles. If you have built a rare skill stack, but your salary is based on an older, generic title, you are almost certainly underpaid."
         ]
       },
       {
-        heading: "How to benchmark yourself without guessing",
+        heading: "How to benchmark yourself correctly",
         paragraphs: [
-          "Start by collecting multiple reference points. Public job listings can reveal compensation bands, especially when remote-friendly or global employers publish ranges transparently. Salary communities, offer-sharing posts, and trusted compensation reports can add more context. But the most useful benchmark compares like with like: similar title, similar experience, similar skills, similar city, and similar company stage.",
-          "Do not rely on one headline number. Average salary can be misleading because the market is wide. Instead, look for a range and place yourself within it. Ask: what would a conservative employer pay for my profile today, what would the average market pay, and what would a top-paying company pay? Those three numbers give you a more realistic picture than any single figure.",
-          "This is also where your resume matters. Market value is partly determined by how clearly your experience translates into keywords employers recognize. If you have done strong work but your resume undersells the outcomes, tools, scope, or domain complexity, you may appear cheaper than you should. Benchmarking is not only about the work you have done. It is also about how legible that work is."
+          "Start by collecting multiple reference points. Public job listings can reveal compensation bands, but they often list overly broad ranges (e.g., $100k-$200k). Salary communities, offer-sharing posts like Blind or Reddit, and reports from Zaprill can add critical context.",
+          "The most useful benchmark compares like with like. You must index based on similar title, exact years of experience, primary skills, city tier, and company stage (Seed vs Series C vs Public Enterprise).",
+          "Do not rely on a single 'Average Salary' headline. Average salaries include poor negotiators, legacy hires, and struggling companies. Instead, look for a percentile range. Ask yourself: what would the 50th percentile (average) pay for my profile, and what would the 90th percentile (top-paying) pay? Aim for the 75th to 90th percentile if your performance reviews regularly rate you as 'Exceeds Expectations'."
         ]
       },
       {
-        heading: "What to do if the numbers confirm a gap",
+        heading: "Framing the conversation",
         paragraphs: [
-          "Once you know there is a salary gap, resist the urge to rush into a confrontation. The goal is not to prove your employer wrong. The goal is to build options. Update your resume, sharpen your evidence, and clarify the story of your impact. Gather examples of measurable wins: revenue influenced, systems improved, costs reduced, cycles shortened, quality increased, or teams unblocked. Specific proof turns compensation conversations from emotional to business-focused.",
-          "Next, decide whether to pursue an internal raise, an external offer, or both. Internal conversations work best when your manager values retention and has a real budget path. External interviews are useful because they reveal what the market will actually pay you now, not in theory. Even if you prefer to stay, outside demand creates leverage and confidence.",
-          "When you negotiate, anchor on value and range, not desperation. A strong framing might be: based on current market data, the scope of my work, and the outcomes I have delivered, I believe a package in this range would better reflect the role. This keeps the discussion grounded in evidence rather than emotion. If the answer is no, ask what concrete milestones or timing would make a yes possible."
+          "Once you know there is a salary gap, resist the urge to rush into a confrontation. The goal is not to prove your employer wrong or express anger. The goal is a mutual realignment of value. Update your Zaprill profile, sharpen your 'Win Document' (a list of measurable outcomes you've delivered), and prepare for a business conversation.",
+          "When you negotiate, anchor on external data, not individual frustration. A highly effective framing is: 'I’ve been mapping my current scope and outcomes against the broader market for 2026. Based on reliable benchmarking, the market rate for my level of impact is sitting between X and Y. I want to build a long-term trajectory here. How can we work together over the next review cycle to align my compensation with this market reality?'",
+          "If the answer is a hard no, ask what concrete business milestones would make a yes possible. If they cannot provide milestones, you now have the ultimate clarity: your fastest path to market rate requires an external move. Use the gap as strategy."
+        ]
+      }
+    ]
+  },
+  {
+    slug: "tech-salary-negotiation-india-2026",
+    title: "The complete guide to tech salary negotiation in India (2026)",
+    description: "A deep dive into the current state of tech compensation in India and how to negotiate your worth in a changing market.",
+    excerpt: "Negotiating in India is different. Understanding the local nuances of CTC, variable flow, and stock options is key.",
+    category: "Salary",
+    publishedAt: "2026-04-18",
+    updatedAt: "2026-04-18",
+    author: "Zaprill Team",
+    authorImage: "/zaprill-logo-2.png",
+    authorRole: "Compensation Strategy Team",
+    readTime: "7 min read",
+    image: "/blogs/tech-salary-negotiation-india-2026.jpeg",
+    tintClass: "bg-[#F0FDF4]",
+    badgeClass: "bg-[#DCFCE7] text-[#166534]",
+    sections: [
+      {
+        heading: "The Great Indian Salary Reset of 2026",
+        paragraphs: [
+          "The landscape of tech compensation in India has undergone a massive shift over the last two years. The era of 'hiring at any cost' driven by zero-interest policy has completely been replaced by 'pay for performance.' While total compensation packages remain high for top-tier talent, the structural payout of these offers has mutated.",
+          "Understanding your 'Cost to Company' (CTC) is more critical than ever. In 2026, many Indian firms are padding their offers with 'phantom' benefits—wellness allowances, aggressive variable tranches, and heavily delayed retention bonuses that show up in your headline CTC but never hit your bank account predictably.",
+          "Market data from Zaprill suggests that for Senior Engineering roles in Tier-1 cities like Bangalore, Pune, and Hyderabad, base salaries have stabilized, but the gap between 'average' and 'top-tier' pay has widened significantly, often by reaching a 40-50% differential based entirely on niche skill possession and negotiation leverage."
         ]
       },
       {
-        heading: "Use the gap as a strategy signal",
+        heading: "Mastering the Fixed vs. Variable Ratio",
         paragraphs: [
-          "Sometimes the most valuable outcome is not an immediate raise. It is clarity. If you discover that one missing skill could move your profile into a much better pay band, that is actionable. If you learn that a different title or industry values your background more highly, that is actionable too. Salary intelligence is not just a negotiation tool. It is a career planning tool.",
-          "The strongest professionals treat compensation as feedback from the market. Not feedback on their worth as people, but feedback on how their skills are being priced right now. That mindset creates calm. Instead of wondering whether you are lucky to have your current salary, you start asking better questions: what is my profile worth today, what is keeping me below that number, and what change would move me fastest?",
-          "If you suspect you are underpaid, do not wait for annual review season to explore it. A clear benchmark, a stronger resume, and a better understanding of your skill premiums can change how you approach every next step. That is how you stop drifting into compensation decisions and start navigating them intentionally."
+          "One of the most common pitfalls in Indian tech negotiation is blinding yourself to the fixed-to-variable ratio. A shockingly high CTC can be deeply deceptive if 30% of it is tied to performance metrics that depend on overall company performance, which you cannot control.",
+          "In the current market, a safe fixed-to-variable ratio is 85:15 or 90:10 for most non-sales engineering and product roles. If a company offers a 70:30 split, you should heavily discount that 30% in your financial planning. Treat it as a moonshot bonus, not guaranteed income.",
+          "When negotiating, execute a 'Floor Check'. Use market benchmarks to show that your fixed component must reflect your unquestionable baseline market value. If HR pushes for a highly variable setup, negotiate the 'performance criteria' explicitly into your offer letter. Ensure targets are objective, measurable, and tied only to your direct output."
+        ]
+      },
+      {
+        heading: "The Gratuity and EPF Illusion",
+        paragraphs: [
+          "Don't overlook the 'invisible' deductions. Gratuity and Employer EPF contributions are practically always baked into the headline Indian CTC, but these are statutory requirements, not cash you can invest today.",
+          "Always calculate your 'Net Take Home' (NTH) after all taxes, retirals, and variable contingencies before you accept an offer. A 35 Lakh CTC with heavy stock options and high variable might actually yield less monthly liquidity than a 28 Lakh pure-fixed offer from a stable enterprise."
         ]
       }
     ]
@@ -82,9 +122,12 @@ export const blogArticles: BlogArticle[] = [
     excerpt:
       "When a resume disappears into silence, the problem is often format, clarity, or relevance before it is quality. Here’s what really happens.",
     category: "Resume",
-    publishedAt: "2026-04-12",
-    updatedAt: "2026-04-14",
+    publishedAt: "2026-04-15",
+    updatedAt: "2026-04-15",
     author: "Zaprill Team",
+    authorImage: "/zaprill-logo-2.png",
+    authorRole: "Lead Technical Recruiter",
+    readTime: "6 min read",
     image: "/blogs/why-your-resume-gets-rejected-before-a-human-reads-it.jpeg",
     tintClass: "bg-[#FEF3C7]",
     badgeClass: "bg-[#FEF3C7] text-[#B45309]",
@@ -92,144 +135,71 @@ export const blogArticles: BlogArticle[] = [
       {
         heading: "The first rejection is usually mechanical",
         paragraphs: [
-          "When candidates imagine resume review, they picture a recruiter reading line by line and deciding who looks promising. In many cases, that is not the first step at all. The first pass is often performed by an applicant tracking system, or ATS, whose job is to parse, categorize, and filter incoming applications. If your resume is hard to read structurally, missing the right signals, or misaligned with the role, a human may never see your best work.",
-          "This is where frustration grows. Candidates assume silence means they are not qualified. Often it means their resume is not machine-readable enough, not role-specific enough, or not communicating relevance quickly enough. That distinction matters because the fix is usually tactical. You do not need to become a different person. You need a document that maps your experience into language hiring systems and recruiters can understand instantly.",
-          "ATS filters are not magical intelligence. They look for patterns: titles, dates, core skills, locations, degrees, certifications, and keywords connected to the job description. If your resume uses unusual layouts, hides important keywords in graphics, or describes your work in vague language, the software has less to work with. The result can feel arbitrary, but the underlying problem is usually legibility."
+          "When candidates imagine resume review, they picture a thoughtful recruiter sitting with a cup of coffee, reading line by line. Fast forward to 2026: this almost never happens. The first pass is often performed by an Applicant Tracking System (ATS), whose job is to parse, categorize, and relentlessly filter incoming applications.",
+          "If your resume is hard to read structurally, missing the right semantic signals, or misaligned with the job's core requirements, a human will literally never lay eyes on it.",
+          "ATS filters are not artificial superintelligence. They are pattern matchers. They look for titles, bounding dates, core skills, and overlapping keywords connected to the job description. If you use bizarre layouts or describe your work using hyper-creative terminology, the parser fails. Legibility beats creativity every single time."
         ]
       },
       {
-        heading: "Formatting mistakes that quietly kill strong resumes",
+        heading: "Formatting mistakes that quietly kill strong profiles",
         paragraphs: [
-          "Highly designed resumes are a common trap. Multi-column layouts, text embedded inside images, decorative progress bars, icons replacing words, and fancy charts may look polished to a human, but they often confuse parsers. If the ATS reads your job title in the wrong order or misses your skills because they are placed in a graphic, your application starts with incomplete data.",
-          "File choice matters too. PDFs are usually safe when exported cleanly, but not all PDFs are equal. A PDF created from an image scan or design tool can flatten text into something the system cannot interpret. Word documents are also commonly accepted, but they must still be straightforward. The safest structure is a simple, single-column layout with clear headings, consistent dates, and plain text for critical information.",
-          "Another formatting issue is density. Some resumes hide value by packing too much into too little space. Recruiters spend seconds, not minutes, on the first review. If every bullet looks equally important, nothing stands out. Good formatting is not just about surviving software. It also helps humans identify outcomes, scope, and relevance in a short scan."
+          "Highly designed Canva resumes are a notorious trap. Multi-column layouts, text embedded inside images, graphic skill bars (e.g. 'JavaScript: 4/5 dots'), and icons replacing text may look polished, but they completely confuse legacy and modern parsers alike.",
+          "The safest structure is a brutalist, single-column layout with standard headings (Experience, Education, Skills) and plain text. Complex tables and headers often result in your previous job title being merged with your university degree in the ATS backend.",
+          "Another major issue is keyword stuffing vs translation. Candidates think they should paste the job description text invisibly in white font. Don't do this. Modern ATS systems flag this instantly. Instead, 'Translate' your impact. If you ran 'Customer Lifecycle', and they ask for 'CRM Engagement', change your bullet points to naturally flow with the phrasing 'CRM Engagement'."
         ]
       },
       {
-        heading: "Keyword mismatch is usually a translation problem",
+        heading: "Vague bullets make exceptional people look average",
         paragraphs: [
-          "Candidates often hear that they need more keywords and conclude they should stuff their resume with repeated phrases. That usually backfires. The real issue is translation. Employers describe roles using the language they need to search and filter by. If your resume describes similar work using entirely different terms, the system may not make the connection.",
-          "For example, one company may search for customer lifecycle marketing while another uses CRM, retention, and engagement. One engineering role may mention distributed systems while another emphasizes high-scale backend architecture. If your resume only uses internal company jargon, your experience can seem narrower than it is. The goal is not to game the system with nonsense repetition. The goal is to represent your work in market-recognizable language.",
-          "The job description is your clearest clue. Read it closely and identify the recurring themes in tools, responsibilities, and outcomes. Then compare that to your current resume. Are the important overlaps visible? If you have the experience, make the wording easier to connect. Tailoring is not dishonesty. It is translation."
-        ]
-      },
-      {
-        heading: "Vague bullets make good experience look average",
-        paragraphs: [
-          "A resume fails when it lists tasks instead of proving contribution. Phrases like responsible for, worked on, helped with, and involved in are weak because they do not show scope, ownership, or effect. Recruiters are trying to understand whether you can create value in a similar environment. They need evidence, not placeholders.",
-          "A stronger bullet usually includes three things: what you did, where or how you did it, and what changed because of it. Built a reporting workflow is better than helped with reporting. Built an automated reporting workflow in SQL and Looker that cut weekly manual effort by six hours is much stronger. Specificity creates credibility.",
-          "This matters for ATS too. Detailed bullets naturally include technologies, responsibilities, and outcomes that align with search criteria. When your bullets are specific, you improve both machine matching and human trust at the same time. That is why resume optimization is not about tricks. It is about clarity."
-        ]
-      },
-      {
-        heading: "How to make your resume pass the first screen",
-        paragraphs: [
-          "Use a clean one-column layout with standard headings like Summary, Experience, Skills, Education, and Projects if relevant. Put critical information in plain text. Match your recent title and responsibilities to the roles you are targeting, without exaggeration. Rework bullets so they emphasize measurable outcomes, tools, domains, and decision-making scope.",
-          "Tailor the top third of the resume first. That section shapes both parsing and quick human review. A concise summary can help if it is specific, but generic statements about being passionate, motivated, or results-driven do little. Instead, use that space to define your profile clearly: years of experience, core function, strongest domains, and a few high-signal tools or capabilities.",
-          "Finally, test relevance role by role. A good general resume is useful, but a strong targeted resume performs better. If you are applying across multiple job families, create separate versions. The resume that lands interviews is the one that makes the match obvious. Your job is not to make recruiters infer your fit. Your job is to show it fast."
+          "A resume fails when it lists tasks instead of proving economic impact. Sentences starting with 'Responsible for...', 'Worked on...', or 'Helped with...' are incredibly weak because they show zero ownership.",
+          "A robust bullet point uses the XYZ formula: 'Accomplished [X] as measured by [Y], by doing [Z].' For example: Instead of 'Helped with reporting', write 'Built an automated Looker pipeline in SQL that cut weekly manual effort by six hours and improved executive visibility.'",
+          "Specificity creates credibility. When you optimize for exact numbers and explicit tooling, you naturally embed the keywords the ATS is hunting for, solving both the robot problem and the human problem simultaneously."
         ]
       }
     ]
   },
   {
     slug: "the-5-skills-indian-tech-employers-are-paying-a-premium-for-in-2025",
-    title: "The 5 skills Indian tech employers are paying a premium for in 2025",
+    title: "The 5 skills Indian tech employers are paying a premium for in 2026",
     description:
       "The skills showing up in higher-paying Indian tech roles, why employers value them, and how to position them on your resume.",
     excerpt:
       "Premium pay doesn’t always follow job title. It often follows capability combinations that are rare, current, and commercially useful.",
     category: "Career",
     publishedAt: "2026-04-12",
-    updatedAt: "2026-04-14",
+    updatedAt: "2026-04-12",
     author: "Zaprill Team",
+    authorImage: "/zaprill-logo-2.png",
+    authorRole: "Market Research",
+    readTime: "5 min read",
     image: "/blogs/the-5-skills-indian-tech-employers-are-paying-a-premium-for-in-2025.jpeg",
     tintClass: "bg-[#DCFCE7]",
-    badgeClass: "bg-[#DCFCE7] text-accent-greenDark",
+    badgeClass: "bg-[#DCFCE7] text-[#166534]",
     sections: [
       {
         heading: "Why specific skills command outsized salary jumps",
         paragraphs: [
-          "Indian tech hiring has become more selective, but selectivity does not mean employers have stopped paying. It means they are paying more carefully. Companies are willing to spend when a candidate brings capabilities that reduce ramp-up time, improve decision quality, or unlock revenue faster. In other words, premium pay is flowing toward skill combinations that create leverage, not just seniority on paper.",
-          "This is good news for professionals who want to increase earning power without waiting years for a title change. The right skill can widen your opportunity set, strengthen your resume, and make you more attractive across multiple categories of company at once. Startups, growth-stage firms, and enterprise teams may look different on the surface, but they often overpay for the same high-leverage abilities.",
-          "The important nuance is that employers rarely pay extra for isolated keywords. They pay for usable combinations. A cloud certification alone is not enough. A data skill alone is not enough. A skill becomes premium when it maps to a business problem companies urgently need solved."
+          "Indian tech hiring has become deeply selective, but companies have absolutely not stopped paying for top-tier leverage. They are willing to spend massive premiums when a candidate brings capabilities that reduce ramp-up time, improve decision quality, or unlock immediate revenue.",
+          "The critical nuance is that employers rarely pay extra for isolated keywords anymore. A generic AWS certification alone is not enough. The premium flows toward applied, cross-functional skill combinations."
         ]
       },
       {
-        heading: "1. Applied AI workflow skills",
+        heading: "1. Applied AI workflow orchestration",
         paragraphs: [
-          "The biggest salary premium is going to people who can apply AI practically inside real workflows. That includes prompt design for production tasks, evaluation thinking, model orchestration, retrieval-augmented patterns, automation design, and the ability to connect AI output to business systems. Employers do not only want experimentation. They want people who can move from prototype to reliable internal use cases.",
-          "This matters across functions, not just engineering. Product managers who can define AI-assisted experiences, marketers who can build repeatable AI content operations with review layers, analysts who can combine LLMs with structured data, and recruiters who can automate screening support all benefit from the same market shift. The premium comes from implementation, not from simply being interested in AI.",
-          "If you have used AI to reduce turnaround time, improve accuracy, increase throughput, or open a new offering, make those results explicit. Premium compensation follows business impact. The technology label gets attention, but the measured outcome gets the offer."
+          "The biggest salary premium today belongs to people who can inject AI practically inside real corporate workflows. That includes prompt evaluation architectures, retrieval-augmented generation (RAG) implementation, and connecting LLM outputs to legacy ERP systems.",
+          "Employers do not want hobbyist experimenters. They want engineers and product managers who understand latency, cost-per-token, and fallback mechanisms for production AI."
         ]
       },
       {
-        heading: "2. Cloud cost and infrastructure efficiency",
+        heading: "2. Cloud cost and infrastructure efficiency (FinOps)",
         paragraphs: [
-          "Companies are under pressure to do more with better unit economics. That is why engineers and platform specialists who understand cloud architecture and cost control are commanding stronger compensation. It is one thing to scale systems. It is another to scale them responsibly, with observability, resilience, and cost awareness built in.",
-          "Skills in AWS, GCP, Kubernetes, infrastructure as code, performance tuning, and cloud spend optimization are especially valuable when paired with ownership. Employers want people who can not only maintain infrastructure, but improve it. If you can prevent waste, increase reliability, or shorten deployment cycles, you are contributing directly to margin and delivery speed.",
-          "On a resume, this should never appear as a shopping list of tools. Show the operational result. Reduced compute cost by twenty percent. Improved deployment frequency from weekly to daily. Increased service uptime. Those are the lines that make infrastructure work legible to non-specialist hiring teams."
+          "Companies are under immense pressure to tighten unit economics. Engineers who understand cloud architecture alongside deep cost-control (FinOps) are commanding massive counter-offers. It is not just about scaling systems; it is about scaling them economically."
         ]
       },
       {
-        heading: "3. Data storytelling tied to decision-making",
+        heading: "3. Revenue-aware technical execution",
         paragraphs: [
-          "Data roles are maturing. Employers are less impressed by dashboards alone and more interested in whether insights influence action. Analysts and data professionals who can connect data work to product decisions, revenue growth, risk reduction, or operational efficiency are seeing stronger salary upside than peers who only report metrics.",
-          "This premium often shows up in hybrid profiles: SQL plus experimentation design, analytics engineering plus stakeholder communication, BI tooling plus product intuition, or machine learning plus business framing. The market rewards people who can move fluidly between technical work and strategic interpretation.",
-          "If you work in data, your resume should answer a simple question: what decisions changed because of your work? When that answer is visible, your value becomes easier to price at the higher end of the market."
-        ]
-      },
-      {
-        heading: "4. Security and compliance readiness",
-        paragraphs: [
-          "As more companies sell into global markets or enterprise buyers, security maturity has become revenue-critical rather than purely technical. Skills in application security, IAM, cloud security posture, compliance workflows, audit readiness, and secure development practices are now linked directly to customer trust and deal velocity.",
-          "This creates salary premiums for engineers, platform teams, and security specialists who can embed protection into the product lifecycle instead of treating it as an afterthought. Employers especially value candidates who can translate risk into practical operating decisions and collaborate well with product and engineering leads.",
-          "Even if your title is not security-focused, relevant experience can still boost your market value. Led SOC 2 readiness, tightened access controls, automated vulnerability checks, or improved secure deployment standards are all meaningful signals. They show you can help the business grow safely."
-        ]
-      },
-      {
-        heading: "5. Revenue-aware product and growth execution",
-        paragraphs: [
-          "Product, marketing, and customer-facing roles are getting paid more when they understand revenue mechanics deeply. Employers want people who can connect acquisition, activation, retention, monetization, and expansion instead of working in isolated silos. That is why growth-minded product managers, lifecycle marketers, RevOps professionals, and customer success leaders with analytical strength are becoming more valuable.",
-          "The premium comes from being able to identify leverage points. If you can improve onboarding completion, reduce drop-off, increase conversion, raise expansion revenue, or create better feedback loops between teams, you are influencing the economics of the company. That is premium work.",
-          "To position this skill, highlight funnels improved, experiments run, conversion lifts achieved, or retention outcomes moved. The more you connect your work to commercial impact, the more clearly employers can justify paying above baseline."
-        ]
-      },
-      {
-        heading: "How to use this information in your own career",
-        paragraphs: [
-          "You do not need all five premium skills to raise your market value. Usually one adjacent upgrade is enough to change the quality of roles you qualify for. Start by identifying the overlap between your current strengths and the market areas above. Then ask which one is most realistic to build into your day-to-day work over the next three to six months.",
-          "The fastest path is often not a course alone. It is a project. Build a portfolio item, lead a small internal initiative, document a measurable win, or collaborate on a stretch assignment that lets you claim real experience. Employers pay for demonstrated capability faster than theoretical interest.",
-          "When you update your resume, frame the new skill through outcomes rather than labels. That is how you turn a trend into an advantage. In a tighter hiring market, clear proof of high-leverage capability is what separates average opportunities from premium ones."
-        ]
-      }
-    ]
-  },
-  {
-    slug: "tech-salary-negotiation-india-2026",
-    title: "The complete guide to tech salary negotiation in India (2026)",
-    description: "A deep dive into the current state of tech compensation in India and how to negotiate your worth in a changing market.",
-    excerpt: "Negotiating in India is different. Understanding the local nuances of CTC, variable pay, and stock options is the key to winning.",
-    category: "Salary",
-    publishedAt: "2026-04-20",
-    author: "Zaprill Editorial",
-    image: "/blogs/tech-salary-negotiation-india-2026.jpeg",
-    tintClass: "bg-[#F0FDF4]",
-    badgeClass: "bg-[#DCFCE7] text-[#166534]",
-    sections: [
-      {
-        heading: "The Great Indian Salary Reset of 2026",
-        paragraphs: [
-          "The landscape of tech compensation in India has undergone a massive shift over the last two years. The era of 'hiring at any cost' has been replaced by 'pay for performance.' While total compensation packages remain high for top-tier talent, the structure of these offers has changed. Fixed components are being scrutinized more heavily, and variable pay is increasingly tied to measurable business outcomes rather than just tenure.",
-          "Understanding your 'Cost to Company' (CTC) is more critical than ever. In 2026, many Indian firms are adjusting their benefits packages to include more wellness and upskilling allowances, which might show up in your CTC but not in your take-home pay. Before you begin any negotiation, you must break down the offer into its core components: Basic, HRA, Special Allowance, Retirals (EPF/Gratuity), and the often-misunderstood Variable Pay.",
-          "Market data suggests that for Senior Engineering roles in Tier-1 cities like Bangalore, Pune, and Hyderabad, the base salary has stabilized, but the gap between 'average' and 'top-tier' pay has widened. Knowing where you fall in this spectrum requires access to fresh, real-time data from recent offers, not just static reports from previous years."
-        ]
-      },
-      {
-        heading: "Mastering the Fixed vs. Variable Ratio",
-        paragraphs: [
-          "One of the most common pitfalls in Indian tech negotiation is overlooking the variable component. A high CTC can be deceptive if 30% of it is tied to performance metrics that are difficult to hit. In the current market, a safe fixed-to-variable ratio is 85:15 or 90:10 for most non-sales engineering roles. If a company offers a 70:30 split, you should treat that 30% as a bonus, not guaranteed income.",
-          "When negotiating, always focus on the 'Guarantee' first. Use market benchmarks to show that your fixed component should reflect your baseline market value. If a company is adamant about a high variable component, negotiate the 'performance criteria.' Ensure the targets are objective, measurable, and within your control. Ask for the historical payout percentage of the team you are joining to gauge how realistic the bonus is.",
-          "Don't forget the 'invisible' deductions. Gratuity and Employer EPF contributions are part of your CTC but are not money in your pocket today. Calculate your 'Net Take Home' (NTH) after all taxes and retirals before you say yes to a number that looks good only on the offer letter."
+          "Whether you are in engineering, data, or product design, if you understand how your code or pixels literally generate revenue or prevent churn, your market value skyrockets. The era of the siloed 'ticket-taker' is dying. 'Business-ready' engineers who ask 'why are we building this?' are the ones reaching staff and principal bands."
         ]
       }
     ]
@@ -238,10 +208,13 @@ export const blogArticles: BlogArticle[] = [
     slug: "equity-vs-base-pay-startups",
     title: "Understanding equity vs base pay in startups",
     description: "How to value ESOPs, RSUs, and strike price when evaluating a startup offer in the current economic climate.",
-    excerpt: "Stock options can be life-changing, but they carry risk. Here is how to balance your cash needs with long-term wealth potential.",
+    excerpt: "Stock options can be life-changing, but they carry massive risk. How to balance your cash needs with long-term wealth potential.",
     category: "Salary",
-    publishedAt: "2026-04-20",
+    publishedAt: "2026-04-10",
     author: "Zaprill Team",
+    authorImage: "/zaprill-logo-2.png",
+    authorRole: "Editorial",
+    readTime: "4 min read",
     image: "/blogs/equity-vs-base-pay-startups.jpeg",
     tintClass: "bg-[#FAF5FF]",
     badgeClass: "bg-[#F3E8FF] text-[#6B21A8]",
@@ -249,17 +222,15 @@ export const blogArticles: BlogArticle[] = [
       {
         heading: "The ESOP Paradox",
         paragraphs: [
-          "For many, the dream of joining a startup is tied to the potential of Employee Stock Option Plans (ESOPs). However, in 2026, candidates are becoming more cautious. Paper wealth is only valuable if there is a path to liquidity. When evaluating an offer, you need to look beyond the number of options and understand the 'Percentage of Ownership' they represent. A million options sounds great, but if there are a billion shares outstanding, your stake is smaller than you think.",
-          "The most important number in your ESOP grant is the 'Strike Price'—the price at which you are allowed to buy the shares. In many cases, if the startup's valuation has stayed flat or decreased, your options could be 'underwater' (where the strike price is higher than the current market value). Always ask about the last preferred round price and how the current strike price compares to it.",
-          "Vesting schedules are the other half of the equation. The standard is a 4-year vest with a 1-year cliff. However, some 2026 startups are experimenting with 'monthly vesting' after the cliff or even 'front-loaded' vesting to attract senior talent. Negotiating a faster vest or a shorter cliff can be just as valuable as a higher base salary if you believe in the company's long-term trajectory."
+          "The dream of joining a startup is heavily tied to the potential of Employee Stock Option Plans (ESOPs). However, candidates are becoming cautious. Paper wealth is only valuable if there is a path to liquidity. Look beyond the number of options and understand the 'Percentage of Ownership'. A million options is worthless if there are a billion shares outstanding.",
+          "The most important number in your ESOP grant is the 'Strike Price'—the price at which you are allowed to buy the shares. Always ask about the last preferred round price and how the current strike price compares to it."
         ]
       },
       {
         heading: "Risk Tolerance and Cash Flow",
         paragraphs: [
-          "The golden rule of startup compensation is: Never take equity in exchange for a base salary that doesn't cover your essential living costs. Equity is a 'bonus' for your future self, while base pay is for your present self. In a high-inflation environment, cash is king. If a startup asks you to take a 20% pay cut for 'extra upside,' evaluate that upside with extreme skepticism.",
-          "Ask for a liquidity roadmap. Does the company have a history of secondary sales? Is an IPO on the horizon, or is an acquisition more likely? In 2026, the secondary market for private shares is more active, but it's usually reserved for early employees or senior leadership. If you are joining as a mid-level hire, your path to cash might be much longer.",
-          "Ultimately, equity is a bet on the founders and the market. If you don't understand the business model or the unit economics of the startup, you shouldn't be gambling your salary on it. Use salary intelligence tools to ensure your cash component is at least within 80% of the market rate for your role, regardless of the equity 'upside'."
+          "The golden rule of startup compensation is: Never take equity in exchange for a base salary that doesn't securely cover your essential living costs and basic savings goals. Equity is a highly volatile 'bonus' for your future self, while base pay is oxygen for your present self.",
+          "Ask for a liquidity roadmap during the interview. Does the company have a history of secondary sales? If not, you could be waiting 10 years to see a dime."
         ]
       }
     ]
@@ -268,10 +239,12 @@ export const blogArticles: BlogArticle[] = [
     slug: "remote-vs-in-office-compensation-trends",
     title: "Remote vs In-office compensation trends (2026)",
     description: "Are companies still paying a premium for in-office talent? How geofencing and cost-of-living adjustments are affecting pay.",
-    excerpt: "The 'remote discount' is becoming a reality. Learn how your location impacts your earning power today.",
+    excerpt: "The 'remote discount' is becoming a reality in some sectors. Learn how your location impacts your earning power today.",
     category: "Salary",
-    publishedAt: "2026-04-20",
-    author: "Zaprill Analytics",
+    publishedAt: "2026-04-08",
+    author: "Zaprill Team",
+    authorImage: "/zaprill-logo-2.png",
+    readTime: "3 min read",
     image: "/blogs/remote-vs-in-office-compensation-trends.jpeg",
     tintClass: "bg-[#FFF7ED]",
     badgeClass: "bg-[#FFEDD5] text-[#9A3412]",
@@ -279,17 +252,8 @@ export const blogArticles: BlogArticle[] = [
       {
         heading: "The Death of 'One Pay Fits All'",
         paragraphs: [
-          "Between 2021 and 2024, many tech companies adopted standardized pay scales regardless of where an employee lived. That trend has officially reversed in 2026. 'Geographic Pay Differentials' are now the norm. A software engineer living in Bangalore or Mumbai can expect to earn 20-30% more than someone with the same title living in a Tier-3 city, even if they are working for the same global firm.",
-          "This shift is driven by both cost-of-living adjustments and the return-to-office (RTO) mandates. Companies are increasingly offering 'Location Premiums' for those willing to be in a physical hub at least three days a week. This isn't just about presence; it's about the perceived value of face-to-face collaboration and the higher overhead of maintaining office space in prime real estate.",
-          "Candidates today are faced with a choice: earn more in the city or save more in the outskirts. When calculating your 'Real Income,' don't just look at the gross pay. Factor in the cost of rent in a hub city vs. your hometown, commuter costs, and the 'time cost' of a 10-hour weekly commute. Often, the remote role with a 15% lower salary results in higher savings at the end of the month."
-        ]
-      },
-      {
-        heading: "Navigating Geofenced Offers",
-        paragraphs: [
-          "If you are applying for a remote role, ask early if the budget is 'anchored' to your current location or the company headquarters. Some firms will offer a 'National Average' which is a middle ground. Others use strict tiers. Transparency is your friend here. Use salary tools to compare the offered remote rate against the local market rate in your city.",
-          "There is also a growing trend of 'Skill Hubs.' Some companies are paying a premium for remote talent in specific regions known for expertise—for example, paying higher rates to remote developers in Eastern Europe or South Asia because of the concentrated talent pool, regardless of local cost of living. Positioning yourself as part of a high-value talent hub can mitigate the remote pay gap.",
-          "Remember that benefits often differ for remote workers. Reimbursed co-working space, high-speed internet stipends, and 'work from anywhere' weeks are common perks in 2026. If the base pay is non-negotiable due to geographic tiers, try to maximize these operational perks to increase your total value realized."
+          "'Geographic Pay Differentials' are cementing as the norm. A software engineer living in Bangalore can often expect to earn 20-30% more than someone with the exact same title living in a remote Tier-3 city, depending completely on the firm's remote philosophy.",
+          "This shift is driven by 'Location Premiums' for those willing to be in a physical hub. It's about preserving culture density. When calculating your 'Real Income,' don't just look at gross pay. Factor in the brutal rent hikes in hub cities against the commute times."
         ]
       }
     ]
@@ -298,10 +262,12 @@ export const blogArticles: BlogArticle[] = [
     slug: "resume-red-flags-rejection",
     title: "Common resume red flags that cause instant rejections",
     description: "Even the best candidates get rejected for avoidable errors. Learn what makes a recruiter hit 'Delete' in 6 seconds.",
-    excerpt: "Your resume is a marketing document, not a biography. Avoid these 10 deal-breakers.",
+    excerpt: "Your resume is a marketing document, not a biography. Avoid these 5 deal-breakers.",
     category: "Resume",
-    publishedAt: "2026-04-20",
+    publishedAt: "2026-04-06",
     author: "Zaprill Team",
+    authorImage: "/zaprill-logo-2.png",
+    readTime: "4 min read",
     image: "/blogs/resume-red-flags-rejection.jpeg",
     tintClass: "bg-[#FEF2F2]",
     badgeClass: "bg-[#FEE2E2] text-[#991B1B]",
@@ -309,17 +275,8 @@ export const blogArticles: BlogArticle[] = [
       {
         heading: "The Invisible Killers: Formatting and Logic",
         paragraphs: [
-          "In 2026, recruiters are processing more applications than ever, often with the help of AI-assisted screening. The first red flag is 'Inconsistent Logic.' If your job titles don't show a clear progression, or if there are unexplained gaps without context, the 'Rejection' button is just a click away. You don't need to hide gaps—you need to frame them as periods of upskilling, sabbaticals, or personal growth.",
-          "Formatting 'Noise' is the second major flag. Elaborate graphics, multi-column layouts, and un-parseable font choices might look pretty to you, but they are a nightmare for Applicant Tracking Systems (ATS). If an AI can't extract your skills into a structured database, you are effectively invisible. Stick to clean, single-column layouts with standard headings that machines and humans can scan in seconds.",
-          "The 'Kitchen Sink' approach is another mistake. Listing every technology you've ever touched, even if you only used it for a week five years ago, dilutes your core expertise. When a recruiter sees 50 skills listed, they assume you are a master of none. Focus on the 'High-Signal' skills that are relevant to the specific role you are applying for today."
-        ]
-      },
-      {
-        heading: "Proof of Impact over Process",
-        paragraphs: [
-          "Vague, task-oriented language is a massive red flag. 'Responsible for managing a team' says nothing about your quality as a leader. 'Led a 12-person cross-functional squad to ship 3 major features, reducing customer churn by 18% in 6 months' provides proof. Every bullet point should answer the question: 'So what?' If you didn't measure the move, you didn't make the move.",
-          "Grammatical errors in 2026 are inexcusable. With the prevalence of AI writing assistants, a typo signals a lack of attention to detail or, worse, a lack of effort. One error might be forgiven; three errors suggest a pattern that employers don't want in their systems or their customer-facing roles.",
-          "Finally, watch out for the 'Stale Summary.' If your objective or summary sounds like it was written in 2018—focusing on what the company can do for you rather than what you can do for the company—it's a red flag. Modern resumes are outcomes-focused. Your summary should be a concise pitch of your 'Market Value Proposition' (MVP)."
+          "Recruiters process more applications than ever. The first red flag is 'Inconsistent Logic.' If your job titles don't show a clear progression, or if there are unexplained 2-year gaps without context, the 'Rejection' button is just a click away.",
+          "Formatting 'Noise' is the second major flag. Elaborate graphics, massive headshots (if not culturally expected), and un-parseable font choices immediately signal a lack of professional calibration to the tech industry standard."
         ]
       }
     ]
@@ -330,8 +287,10 @@ export const blogArticles: BlogArticle[] = [
     description: "Turn your annual review from a 'hope' into a 'negotiation' by using objective salary intelligence.",
     excerpt: "Market data is your best friend when asking for more. Learn how to present it without being confrontational.",
     category: "Salary",
-    publishedAt: "2026-04-20",
-    author: "Zaprill Analytics",
+    publishedAt: "2026-04-04",
+    author: "Zaprill Team",
+    authorImage: "/zaprill-logo-2.png",
+    readTime: "5 min read",
     image: "/blogs/ask-for-a-raise-market-data.jpeg",
     tintClass: "bg-[#ECFDF5]",
     badgeClass: "bg-[#D1FAE5] text-[#065F46]",
@@ -339,17 +298,8 @@ export const blogArticles: BlogArticle[] = [
       {
         heading: "Moving from Emotion to Evidence",
         paragraphs: [
-          "Most people ask for a raise because they 'feel' they deserve one or because they have a personal financial need (like a child's school fees or a new loan). Unfortunately, while these are valid life events, they are not business reasons for an employer to pay you more. A raise is a market correction for the value you provide. To win, you must shift the conversation from your 'needs' to the 'market rate' for your output.",
-          "This is where market data becomes your shield. Instead of saying 'I want 20% more,' you say: 'Based on current benchmarking for my role, scope, and impact in the Bangalore market, the compensation for similar profiles has moved to [Range]. I'd like to discuss how we can align my package with this current market value.' This framing makes it a collaboration against a data point, rather than a confrontation with your manager.",
-          "Access to 'Clean Data' is crucial. Generic salary surveys are often out of date. Use platforms that aggregate real-time data from recent offers and verified listings. When you can show that 3 other companies in your industry have hired for your title at 25% higher rates in the last quarter, your argument becomes very hard to ignore."
-        ]
-      },
-      {
-        heading: "The Documentation of Impact",
-        paragraphs: [
-          "Data on the market is only half the battle; you also need data on yourself. Build a 'Win Document' that tracks your contributions over the last 12 months. Align these wins with company goals—revenue, efficiency, quality, or speed. When you combine 'This is what the market pays' with 'This is the exceptional value I've delivered,' you create a compelling business case for retention.",
-          "Timing is everything. Don't wait for your official review day to bring this up. Start the 'Alignment Conversation' 2-3 months before the budget is finalized. Let your manager know you are looking at market benchmarks and want to ensure you are appropriately positioned. This gives them time to advocate for you and find the budget before it's set in stone.",
-          "Prepare for the 'No.' If the answer is 'market data is one thing, but we have no budget,' pivot to non-cash value. Can you negotiate for more equity? A higher title that justifies a future raise? A bigger learning budget? Or a shift to a 4-day work week? Market data gives you the confidence to know you are worth more, whether that value comes in cash today or leverage tomorrow."
+          "Most people ask for a raise because they 'feel' they deserve one or have a personal financial need. A raise is a market correction for the economic value you provide. You must shift the conversation from your needs to the objective market rate.",
+          "Build a 'Win Document' that aligns your exact contributions with core company goals—revenue, efficiency, quality, or speed. Combine this with third-party compensation benchmarking, and you transform a pleading request into an undeniable business case."
         ]
       }
     ]
@@ -358,10 +308,12 @@ export const blogArticles: BlogArticle[] = [
     slug: "data-science-vs-data-engineering-salary",
     title: "Data Science vs Data Engineering: Salary paths",
     description: "Which path is paying more in 2026? A comparison of compensation, skill requirements, and future-proofing.",
-    excerpt: "The roles are converging, but the pay scales are not. See where you should double down for maximum earnings.",
+    excerpt: "The roles are converging, but the pay scales are migrating toward engineering infrastructure builders.",
     category: "Career",
-    publishedAt: "2026-04-20",
+    publishedAt: "2026-04-03",
     author: "Zaprill Team",
+    authorImage: "/zaprill-logo-2.png",
+    readTime: "4 min read",
     image: "/blogs/data-science-vs-data-engineering-salary.jpeg",
     tintClass: "bg-[#EFF6FF]",
     badgeClass: "bg-[#DBEAFE] text-[#1E40AF]",
@@ -369,29 +321,22 @@ export const blogArticles: BlogArticle[] = [
       {
         heading: "The Shift toward Data Engineering",
         paragraphs: [
-          "Five years ago, Data Science was the 'sexiest job of the 21st century.' In 2026, the market has shifted its premium toward Data Engineering. Companies have realized that even the most advanced AI models are useless if the data pipelines are broken, slow, or unreliable. As a result, the compensation for skilled Data Engineers—especially those who can handle real-time streaming and cost-optimized cloud architecture—has surpassed that of entry-level and mid-level Data Scientists.",
-          "In the Indian market, a Senior Data Engineer with experience in Spark, Snowflake, and dbt often commands a 15-20% higher base salary than a Data Scientist who focuses primarily on modeling. This is because the 'Time to Value' for engineering work is perceived as more immediate. One builds the factory; the other analyzes the product. Right now, the market is overpaying for builders.",
-          "However, Data Science still holds the 'Capped Ceiling' advantage at the very top. Principal Data Scientists at AI-first companies or specialized researchers in LLMs earn some of the highest salaries in the entire tech ecosystem. The path is harder and more academic, but the peak is higher. For most professionals, engineering offers a more reliable path to a 'Premium' salary without needing a PhD or specialized research background."
-        ]
-      },
-      {
-        heading: "The Hybrid Future: Analytics Engineering",
-        paragraphs: [
-          "We are seeing a convergence of these roles into what is being called 'Analytics Engineering.' These are professionals who understand the business needs of a Data Scientist but have the technical rigour of a Data Engineer. This 'Bridge Role' is one of the fastest-growing salary categories in 2026. If you can write clean, production-grade SQL and model data for business consumption, you are in high demand.",
-          "Future-proofing your salary in either path requires AI literacy. A Data Engineer who can build RAG (Retrieval-Augmented Generation) pipelines is worth twice as much as one who only does traditional ETL. A Data Scientist who can deploy their models as scalable APIs is far more valuable than one who only works in notebooks. The market is rewarding 'Full-Stack Data' capability.",
-          "When choosing your path, look at the job listings for companies two steps ahead of yours. Are they hiring more for infrastructure or for insights? In a cautious economy, companies lean toward infrastructure (Engineers). In a growth economy, they lean toward insights (Scientists). Position yourself in the middle to stay valuable regardless of the economic cycle."
+          "The market has aggressively shifted its premium toward Data Engineering. Companies have realized that even the most advanced AI generation models are totally useless if the data pipelines feeding them are hallucinating, slow, or constantly failing.",
+          "A Senior Data Engineer with experience scaling Snowflake, dbt, and Kafka often commands a 15-20% higher base salary than a traditional modeling Data Scientist. The market is brutally rewarding the 'plumbers' over the 'architects'."
         ]
       }
     ]
   },
   {
     slug: "soft-skills-premium-pay-senior-engineering",
-    title: "Soft skills that command premium pay in Senior Engineering roles",
+    title: "Soft skills commanding premium pay in Senior Engineering roles",
     description: "It is not just about the code. Learn how communication, mentorship, and business intuition increase your market value.",
     excerpt: "The 'Brilliant Jerk' era is over. Resilience, empathy, and clarity are the new currency for Senior Engineers.",
     category: "Career",
-    publishedAt: "2026-04-20",
+    publishedAt: "2026-04-01",
     author: "Zaprill Team",
+    authorImage: "/zaprill-logo-2.png",
+    readTime: "5 min read",
     image: "/blogs/soft-skills-premium-pay-senior-engineering.jpeg",
     tintClass: "bg-[#F5F3FF]",
     badgeClass: "bg-[#EDE9FE] text-[#5B21B6]",
@@ -399,17 +344,8 @@ export const blogArticles: BlogArticle[] = [
       {
         heading: "The 'Force Multiplier' Effect",
         paragraphs: [
-          "At the Senior and Staff level, your technical output is a baseline. What companies pay a premium for is your ability to be a 'Force Multiplier'—making everyone around you 20% better. This isn't a vague HR concept; it's a measurable business advantage. An engineer who can lead a team through a crisis with calm, clear communication saves the company hundreds of thousands of dollars in lost productivity and attrition.",
-          "Technical Empathy is the first major skill. It's the ability to explain complex architectural decisions to non-technical stakeholders (Product, Sales, HR) in a way that aligns with business goals. When you can translate 'We need to refactor this service' into 'This change will reduce our feature delivery time by 30%,' you stop being a cost center and start being a strategic partner. Partners get paid more.",
-          "Conflict Resolution without Ego is another premium skill. Engineering is full of trade-offs. The ability to navigate a technical disagreement between two senior peers and find a 'Win-Win' path forward is a rare talent. Companies in 2026 are actively filtering out 'Toxic Talent' in favor of 'Collaborative Catalysts.' The latter are perceived as lower risk and higher long-term value."
-        ]
-      },
-      {
-        heading: "Mentorship and Institutional Knowledge",
-        paragraphs: [
-          "Your value isn't just what YOU know; it's how much of that knowledge you have successfully transferred to others. A Senior Engineer who has mentored three juniors into highly productive mid-level roles has effectively tripled their own value to the organization. On your resume and in your reviews, highlight your 'Mentorship Outcomes' as much as your 'Code Outcomes.'",
-          "Business Intuition—understanding HOW the company makes money—is the ultimate differentiator. When you understand the revenue model, you can make better technical prioritisation decisions. You'll know when 'Perfect' is the enemy of 'Published' and when 'Technical Debt' is actually a strategic loan to capture market share. This 'Business-Ready' mindset is what separates a $100k engineer from a $250k leader.",
-          "Finally, don't underestimate 'Written Clarity.' In a world of remote and asynchronous work, your ability to write clean, concise specs, RFCs, and documentation is a superpower. If your writing is better than your peers', your ideas will travel further and your influence will grow. Influence is the direct precursor to senior compensation."
+          "At the Staff level, technical output is a baseline expectation. What companies pay for is your ability to be a 'Force Multiplier'—making the 5 engineers around you 20% better.",
+          "It requires Technical Empathy: the ability to explain complex architectural decisions to non-technical stakeholders in a way that directly aligns with business goals. Translating 'We need to refactor' into 'This reduces feature delivery time by 30%' is exactly how you unlock a compensation breakthrough."
         ]
       }
     ]
