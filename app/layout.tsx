@@ -1,15 +1,16 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { Inter } from "next/font/google";
+import localFont from 'next/font/local'
+import Script from "next/script";
 
 import { AdsenseScript } from "@/components/adsense-script";
+import { CookieBanner } from "@/components/cookie-banner";
 import { GoogleAnalytics } from "@/components/google-analytics";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { ThemeProvider } from "@/components/theme-provider";
 import { siteConfig } from "@/lib/site";
-import localFont from 'next/font/local'
-import Script from "next/script";
 
 import "./globals.css";
 
@@ -160,6 +161,7 @@ export default function RootLayout({
             <main className="flex-1">{children}</main>
             <SiteFooter />
           </div>
+          <CookieBanner />
         </ThemeProvider>
       </body>
     </html>

@@ -11,6 +11,14 @@ const nextConfig = {
         destination: "/pricing-md"
       }
     ];
+  },
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "i.pravatar.cc"
+      }
+    ]
   }
 };
 

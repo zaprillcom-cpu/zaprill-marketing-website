@@ -24,7 +24,8 @@ const footerGroups = [
     links: [
       { label: "Privacy Policy", href: "/privacy" },
       { label: "Terms & Conditions", href: "/terms" },
-      { label: "Cookie Policy", href: "/cookies" }
+      { label: "Cookie Policy", href: "/cookies" },
+      { label: "Legal Disclaimer", href: "/disclaimer" }
     ]
   }
 ];

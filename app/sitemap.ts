@@ -55,6 +55,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "yearly",
       priority: 0.3
     },
+    {
+      url: `${siteConfig.url}/disclaimer`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.3
+    },
     ...blogArticles.map((article) => ({
       url: `${siteConfig.url}/blog/${article.slug}`,
       lastModified: new Date(article.updatedAt || article.publishedAt),

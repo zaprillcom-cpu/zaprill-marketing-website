@@ -55,6 +55,39 @@ export default function AboutPage() {
         </div>
       </section>
 
+      <section className="pb-20">
+        <div className="container max-w-4xl">
+          <div className="grid gap-12 md:grid-cols-2">
+            <div className="space-y-4">
+              <h2 className="text-2xl font-bold tracking-tight">How we source our data</h2>
+              <p className="text-muted-foreground leading-relaxed">
+                Trust starts with transparency. Zaprill’s salary intelligence is powered by a multi-layered 
+                data aggregation engine. We collect and anonymize information from thousands of verified 
+                public job listings, recruitment disclosures, and real-time market offers.
+              </p>
+              <p className="text-muted-foreground leading-relaxed">
+                Unlike static reports that are updated once a year, our models are continuously refined 
+                to reflect current demand, ensuring that the insights you receive are as close to real-market 
+                utility as possible.
+              </p>
+            </div>
+            <div className="space-y-4">
+              <h2 className="text-2xl font-bold tracking-tight">Expertise & Accuracy</h2>
+              <p className="text-muted-foreground leading-relaxed">
+                Our team consists of recruitment specialists, data engineers, and career consultants 
+                who understand that a job is more than just a title. We factor in city-specific cost 
+                of living, niche skill premiums, and company-stage valuations to provide a 360-degree 
+                view of your professional worth.
+              </p>
+              <p className="text-muted-foreground leading-relaxed">
+                While no tool can predict the future, Zaprill aims to give you the objective data 
+                needed to negotiate with confidence and clarity.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="pb-32">
         <div className="container">
           <div className="max-w-3xl mx-auto rounded-2xl border border-border bg-muted/30 p-10 md:p-14 text-center">
