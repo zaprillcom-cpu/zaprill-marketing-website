@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 
 // import { AdSlot } from "@/components/ad-slot";
@@ -46,10 +47,20 @@ export default function BlogPage() {
           <div className="grid gap-8 lg:grid-cols-3 lg:gap-10">
             {blogArticles.map((article) => (
               <Reveal key={article.slug}>
-                <Card className="h-full group overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-all hover:shadow-md">
-                  <div className={cn("h-32 transition-transform group-hover:scale-105", article.tintClass)} />
-                  <div className="p-7">
-                    <Badge variant="secondary" className={cn("rounded-full px-3 py-1", article.badgeClass)}>
+                <Card className="h-full group overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-all hover:shadow-md flex flex-col">
+                  <div className={cn("relative w-full aspect-[16/9] bg-muted overflow-hidden", article.tintClass)}>
+                    {article.image && (
+                      <Image
+                        src={article.image}
+                        alt={article.title}
+                        fill
+                        className="object-cover transition-transform duration-500 group-hover:scale-105"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      />
+                    )}
+                  </div>
+                  <div className="p-7 flex-1 flex flex-col">
+                    <Badge variant="secondary" className={cn("rounded-full px-3 py-1 w-fit", article.badgeClass)}>
                       {article.category}
                     </Badge>
                     <h4 className="mt-6 text-xl font-bold tracking-tight">
@@ -67,13 +78,15 @@ export default function BlogPage() {
                     <p className="mt-5 text-[15px] leading-relaxed text-muted-foreground/80 line-clamp-3">
                       {article.excerpt}
                     </p>
-                    <Link
-                      href={`/blog/${article.slug}`}
-                      className="mt-8 inline-flex items-center gap-2 text-sm font-bold text-primary group/link"
-                    >
-                      Read full article 
-                      <span className="transition-transform group-hover/link:translate-x-1">→</span>
-                    </Link>
+                    <div className="mt-auto pt-8">
+                      <Link
+                        href={`/blog/${article.slug}`}
+                        className="inline-flex items-center gap-2 text-sm font-bold text-primary group/link"
+                      >
+                        Read full article 
+                        <span className="transition-transform group-hover/link:translate-x-1">→</span>
+                      </Link>
+                    </div>
                   </div>
                 </Card>
               </Reveal>

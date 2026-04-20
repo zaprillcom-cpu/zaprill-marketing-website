@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-
-// import { AdSlot } from "@/components/ad-slot";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { getArticleBySlug, blogArticles } from "@/lib/blog";
 import { siteConfig } from "@/lib/site";
+import Image from "next/image";
 import Link from "next/link";
 import Script from "next/script";
 
@@ -44,13 +43,13 @@ export async function generateMetadata(
       modifiedTime: article.updatedAt || article.publishedAt,
       authors: [article.author],
       section: article.category,
-      images: ["/og"],
+      images: [article.image || "/og"],
     },
     twitter: {
       card: "summary_large_image",
       title: article.title,
       description: article.description,
-      images: ["/og"],
+      images: [article.image || "/og"],
     },
   };
 }
@@ -87,7 +86,7 @@ export default async function ArticlePage(props: ArticlePageProps) {
     wordCount,
     articleSection: article.category,
     inLanguage: "en",
-    image: `${siteConfig.url}/og`,
+    image: article.image ? `${siteConfig.url}${article.image}` : `${siteConfig.url}/og`,
     author: {
       "@type": "Organization",
       name: article.author,
@@ -210,6 +209,17 @@ export default async function ArticlePage(props: ArticlePageProps) {
               </>
             )}
           </div>
+          {article.image && (
+            <div className="mt-10 overflow-hidden rounded-2xl border border-border relative aspect-[21/9] bg-muted">
+              <Image
+                src={article.image}
+                alt={article.title}
+                fill
+                className="object-cover"
+                priority
+              />
+            </div>
+          )}
         </div>
       </section>
 

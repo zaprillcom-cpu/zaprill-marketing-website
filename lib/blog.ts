@@ -9,6 +9,7 @@ export type BlogArticle = {
   author: string;
   tintClass: string;
   badgeClass: string;
+  image: string;
   sections: Array<{
     heading: string;
     paragraphs: string[];
@@ -27,6 +28,7 @@ export const blogArticles: BlogArticle[] = [
     publishedAt: "2026-04-12",
     updatedAt: "2026-04-14",
     author: "Zaprill Team",
+    image: "/blogs/how-to-know-if-youre-being-underpaid.jpeg",
     tintClass: "bg-[#EFF6FF]",
     badgeClass: "bg-[#DBEAFE] text-primary",
     sections: [
@@ -83,6 +85,7 @@ export const blogArticles: BlogArticle[] = [
     publishedAt: "2026-04-12",
     updatedAt: "2026-04-14",
     author: "Zaprill Team",
+    image: "/blogs/why-your-resume-gets-rejected-before-a-human-reads-it.jpeg",
     tintClass: "bg-[#FEF3C7]",
     badgeClass: "bg-[#FEF3C7] text-[#B45309]",
     sections: [
@@ -139,6 +142,7 @@ export const blogArticles: BlogArticle[] = [
     publishedAt: "2026-04-12",
     updatedAt: "2026-04-14",
     author: "Zaprill Team",
+    image: "/blogs/the-5-skills-indian-tech-employers-are-paying-a-premium-for-in-2025.jpeg",
     tintClass: "bg-[#DCFCE7]",
     badgeClass: "bg-[#DCFCE7] text-accent-greenDark",
     sections: [
@@ -208,6 +212,7 @@ export const blogArticles: BlogArticle[] = [
     category: "Salary",
     publishedAt: "2026-04-20",
     author: "Zaprill Editorial",
+    image: "/blogs/tech-salary-negotiation-india-2026.jpeg",
     tintClass: "bg-[#F0FDF4]",
     badgeClass: "bg-[#DCFCE7] text-[#166534]",
     sections: [
@@ -237,6 +242,7 @@ export const blogArticles: BlogArticle[] = [
     category: "Salary",
     publishedAt: "2026-04-20",
     author: "Zaprill Team",
+    image: "/blogs/equity-vs-base-pay-startups.jpeg",
     tintClass: "bg-[#FAF5FF]",
     badgeClass: "bg-[#F3E8FF] text-[#6B21A8]",
     sections: [
@@ -266,6 +272,7 @@ export const blogArticles: BlogArticle[] = [
     category: "Salary",
     publishedAt: "2026-04-20",
     author: "Zaprill Analytics",
+    image: "/blogs/remote-vs-in-office-compensation-trends.jpeg",
     tintClass: "bg-[#FFF7ED]",
     badgeClass: "bg-[#FFEDD5] text-[#9A3412]",
     sections: [
@@ -295,6 +302,7 @@ export const blogArticles: BlogArticle[] = [
     category: "Resume",
     publishedAt: "2026-04-20",
     author: "Zaprill Team",
+    image: "/blogs/resume-red-flags-rejection.jpeg",
     tintClass: "bg-[#FEF2F2]",
     badgeClass: "bg-[#FEE2E2] text-[#991B1B]",
     sections: [
@@ -324,6 +332,7 @@ export const blogArticles: BlogArticle[] = [
     category: "Salary",
     publishedAt: "2026-04-20",
     author: "Zaprill Analytics",
+    image: "/blogs/ask-for-a-raise-market-data.jpeg",
     tintClass: "bg-[#ECFDF5]",
     badgeClass: "bg-[#D1FAE5] text-[#065F46]",
     sections: [
@@ -353,6 +362,7 @@ export const blogArticles: BlogArticle[] = [
     category: "Career",
     publishedAt: "2026-04-20",
     author: "Zaprill Team",
+    image: "/blogs/data-science-vs-data-engineering-salary.jpeg",
     tintClass: "bg-[#EFF6FF]",
     badgeClass: "bg-[#DBEAFE] text-[#1E40AF]",
     sections: [
@@ -382,6 +392,7 @@ export const blogArticles: BlogArticle[] = [
     category: "Career",
     publishedAt: "2026-04-20",
     author: "Zaprill Team",
+    image: "/blogs/soft-skills-premium-pay-senior-engineering.jpeg",
     tintClass: "bg-[#F5F3FF]",
     badgeClass: "bg-[#EDE9FE] text-[#5B21B6]",
     sections: [

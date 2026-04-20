@@ -360,7 +360,7 @@ export default function HomePage() {
       </section>
 
       {/* How It Works */}
-      <section className="bg-card border-y border-border py-32">
+      <section className="bg-muted/30 border-y border-border py-32">
         <div className="container mx-auto max-w-[1200px]">
           <Reveal>
             <SectionHeading
@@ -392,7 +392,7 @@ export default function HomePage() {
       </section>
 
       {/* Salary Hook */}
-      <section className="bg-foreground text-backgroundpy-32 relative overflow-hidden">
+      <section className="bg-foreground text-background py-32 relative overflow-hidden">
         <div className="container mx-auto max-w-4xl text-center relative z-10">
           <Reveal>
             <Badge className="bg-background/10 text-background/50 border-0 mb-10 font-sans tracking-widest px-3 py-1 text-[10px] uppercase font-bold">Your Salary Gap</Badge>
@@ -465,7 +465,7 @@ export default function HomePage() {
       </section>
 
       {/* Speed Proof */}
-      <section className="bg-card py-32 border-y border-border relative overflow-hidden">
+      <section className="bg-muted/30 py-32 border-y border-border relative overflow-hidden">
         <Reveal className="container mx-auto max-w-3xl text-center relative z-10">
           <div className="text-[100px] md:text-[140px] font-bold text-primary leading-none tracking-tighter mb-4 opacity-90">2 <span className="text-[60px] md:text-[80px]">min</span></div>
           <h2 className="text-3xl md:text-5xl font-bold tracking-tighter text-foreground mb-8">Speed matters.</h2>
@@ -494,7 +494,7 @@ export default function HomePage() {
       </section>
 
       {/* Pricing */}
-      <section className="bg-card py-32 border-t border-border">
+      <section className="bg-muted/30 py-32 border-t border-border">
         <div className="container mx-auto max-w-5xl">
           <Reveal>
             <SectionHeading
