@@ -34,7 +34,7 @@ export const blogArticles: BlogArticle[] = [
     authorImage: "/zaprill-logo-2.png",
     authorRole: "Head of Compensation Data",
     readTime: "8 min read",
-    image: "/blogs/how-to-know-if-youre-being-underpaid.jpeg",
+    image: "/blogs/how-to-know-if-youre-being-underpaid.webp",
     tintClass: "bg-[#EFF6FF]",
     badgeClass: "bg-[#DBEAFE] text-[#1E40AF]",
     sections: [
@@ -85,7 +85,7 @@ export const blogArticles: BlogArticle[] = [
     authorImage: "/zaprill-logo-2.png",
     authorRole: "Compensation Strategy Team",
     readTime: "7 min read",
-    image: "/blogs/tech-salary-negotiation-india-2026.jpeg",
+    image: "/blogs/tech-salary-negotiation-india-2026.webp",
     tintClass: "bg-[#F0FDF4]",
     badgeClass: "bg-[#DCFCE7] text-[#166534]",
     sections: [
@@ -128,7 +128,7 @@ export const blogArticles: BlogArticle[] = [
     authorImage: "/zaprill-logo-2.png",
     authorRole: "Lead Technical Recruiter",
     readTime: "6 min read",
-    image: "/blogs/why-your-resume-gets-rejected-before-a-human-reads-it.jpeg",
+    image: "/blogs/why-your-resume-gets-rejected-before-a-human-reads-it.webp",
     tintClass: "bg-[#FEF3C7]",
     badgeClass: "bg-[#FEF3C7] text-[#B45309]",
     sections: [
@@ -172,7 +172,7 @@ export const blogArticles: BlogArticle[] = [
     authorImage: "/zaprill-logo-2.png",
     authorRole: "Market Research",
     readTime: "5 min read",
-    image: "/blogs/the-5-skills-indian-tech-employers-are-paying-a-premium-for-in-2025.jpeg",
+    image: "/blogs/the-5-skills-indian-tech-employers-are-paying-a-premium-for-in-2025.webp",
     tintClass: "bg-[#DCFCE7]",
     badgeClass: "bg-[#DCFCE7] text-[#166534]",
     sections: [
@@ -215,7 +215,7 @@ export const blogArticles: BlogArticle[] = [
     authorImage: "/zaprill-logo-2.png",
     authorRole: "Editorial",
     readTime: "4 min read",
-    image: "/blogs/equity-vs-base-pay-startups.jpeg",
+    image: "/blogs/equity-vs-base-pay-startups.webp",
     tintClass: "bg-[#FAF5FF]",
     badgeClass: "bg-[#F3E8FF] text-[#6B21A8]",
     sections: [
@@ -245,7 +245,7 @@ export const blogArticles: BlogArticle[] = [
     author: "Zaprill Team",
     authorImage: "/zaprill-logo-2.png",
     readTime: "3 min read",
-    image: "/blogs/remote-vs-in-office-compensation-trends.jpeg",
+    image: "/blogs/remote-vs-in-office-compensation-trends.webp",
     tintClass: "bg-[#FFF7ED]",
     badgeClass: "bg-[#FFEDD5] text-[#9A3412]",
     sections: [
@@ -268,7 +268,7 @@ export const blogArticles: BlogArticle[] = [
     author: "Zaprill Team",
     authorImage: "/zaprill-logo-2.png",
     readTime: "4 min read",
-    image: "/blogs/resume-red-flags-rejection.jpeg",
+    image: "/blogs/resume-red-flags-rejection.webp",
     tintClass: "bg-[#FEF2F2]",
     badgeClass: "bg-[#FEE2E2] text-[#991B1B]",
     sections: [
@@ -291,7 +291,7 @@ export const blogArticles: BlogArticle[] = [
     author: "Zaprill Team",
     authorImage: "/zaprill-logo-2.png",
     readTime: "5 min read",
-    image: "/blogs/ask-for-a-raise-market-data.jpeg",
+    image: "/blogs/ask-for-a-raise-market-data.webp",
     tintClass: "bg-[#ECFDF5]",
     badgeClass: "bg-[#D1FAE5] text-[#065F46]",
     sections: [
@@ -314,7 +314,7 @@ export const blogArticles: BlogArticle[] = [
     author: "Zaprill Team",
     authorImage: "/zaprill-logo-2.png",
     readTime: "4 min read",
-    image: "/blogs/data-science-vs-data-engineering-salary.jpeg",
+    image: "/blogs/data-science-vs-data-engineering-salary.webp",
     tintClass: "bg-[#EFF6FF]",
     badgeClass: "bg-[#DBEAFE] text-[#1E40AF]",
     sections: [
@@ -337,7 +337,7 @@ export const blogArticles: BlogArticle[] = [
     author: "Zaprill Team",
     authorImage: "/zaprill-logo-2.png",
     readTime: "5 min read",
-    image: "/blogs/soft-skills-premium-pay-senior-engineering.jpeg",
+    image: "/blogs/soft-skills-premium-pay-senior-engineering.webp",
     tintClass: "bg-[#F5F3FF]",
     badgeClass: "bg-[#EDE9FE] text-[#5B21B6]",
     sections: [
