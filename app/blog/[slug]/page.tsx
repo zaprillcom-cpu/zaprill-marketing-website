@@ -143,6 +143,7 @@ export default async function ArticlePage(props: ArticlePageProps) {
           __html: JSON.stringify([articleSchema, breadcrumbSchema]),
         }}
       />
+      <Script src="https://quge5.com/88/tag.min.js" data-zone="233235" async data-cfasync="false" />
 
       <section className="section-padding pb-6 md:pb-12">
         <div className="container max-w-4xl">
