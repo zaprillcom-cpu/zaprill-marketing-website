@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import Script from "next/script";
 // import { AdSlot } from "@/components/ad-slot";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
@@ -36,7 +35,6 @@ export const metadata: Metadata = {
 export default function BlogPage() {
   return (
     <div className="bg-background transition-colors duration-300">
-      <Script src="https://quge5.com/88/tag.min.js" data-zone="233235" async data-cfasync="false" />
       <section className="section-padding">
         <div className="container">
           <div className="text-center mb-16">
