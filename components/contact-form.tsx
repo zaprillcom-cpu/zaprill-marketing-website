@@ -7,11 +7,19 @@ import { Loader2, CheckCircle2, AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { 
+  Select, 
+  SelectContent, 
+  SelectItem, 
+  SelectTrigger, 
+  SelectValue 
+} from "@/components/ui/select";
 
 type FormState = {
   name: string;
   email: string;
   subject: string;
+  otherSubject: string;
   message: string;
 };
 
@@ -19,6 +27,7 @@ const initialState: FormState = {
   name: "",
   email: "",
   subject: "General Inquiry",
+  otherSubject: "",
   message: ""
 };
 
@@ -53,7 +62,10 @@ export function ContactForm() {
           "Content-Type": "application/json",
           Accept: "application/json"
         },
-        body: JSON.stringify(form)
+        body: JSON.stringify({
+          ...form,
+          subject: form.subject === "Other" ? form.otherSubject : form.subject
+        })
       });
 
       if (!response.ok) throw new Error("Submission failed");
@@ -124,26 +136,33 @@ export function ContactForm() {
         <label htmlFor="subject" className="text-[13px] font-bold uppercase tracking-widest text-muted-foreground ml-1">
           Subject
         </label>
-        <div className="relative">
-          <select
-            id="subject"
-            value={form.subject}
-            onChange={(e) => setForm(f => ({ ...f, subject: e.target.value }))}
-            className="flex h-12 w-full items-center justify-between rounded-xl border border-border/50 bg-muted/30 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all appearance-none"
-            required
-          >
-            <option>General Inquiry</option>
-            <option>Support</option>
-            <option>Partnership</option>
-            <option>Press</option>
-            <option>Other</option>
-          </select>
-          <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-muted-foreground">
-            <svg className="h-4 w-4 fill-current" viewBox="0 0 20 20">
-              <path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" />
-            </svg>
+        <Select 
+          value={form.subject} 
+          onValueChange={(val) => setForm(f => ({ ...f, subject: val }))}
+        >
+          <SelectTrigger className="h-12 w-full rounded-xl bg-muted/30 border-border/50 focus:bg-background transition-all">
+            <SelectValue placeholder="Select a subject" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="General Inquiry">General Inquiry</SelectItem>
+            <SelectItem value="Support">Support</SelectItem>
+            <SelectItem value="Partnership">Partnership</SelectItem>
+            <SelectItem value="Press">Press</SelectItem>
+            <SelectItem value="Other">Other</SelectItem>
+          </SelectContent>
+        </Select>
+
+        {form.subject === "Other" && (
+          <div className="mt-3 animate-in fade-in slide-in-from-top-2 duration-300">
+            <Input
+              placeholder="Please specify your subject..."
+              value={form.otherSubject}
+              onChange={(e) => setForm(f => ({ ...f, otherSubject: e.target.value }))}
+              className="h-12 rounded-xl bg-muted/30 border-border/50 focus:bg-background transition-all"
+              required
+            />
           </div>
-        </div>
+        )}
       </div>
 
       <div className="space-y-2.5">
@@ -156,7 +175,7 @@ export function ContactForm() {
           placeholder="Tell us about what's on your mind..."
           value={form.message}
           onChange={(e) => setForm(f => ({ ...f, message: e.target.value }))}
-          className="rounded-xl bg-muted/30 border-border/50 focus:bg-background transition-all resize-none"
+          className="rounded-xl bg-muted/30 border-border/50 focus:bg-background transition-all resize-none max-h-48 overflow-y-auto [field-sizing:fixed]"
           required
         />
       </div>

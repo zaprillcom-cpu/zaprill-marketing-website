@@ -8,6 +8,7 @@ import { Card } from "@/components/ui/card";
 import { blogArticles } from "@/lib/blog";
 import { cn } from "@/lib/utils";
 import { Reveal } from "@/components/reveal";
+import { NewsletterForm } from "@/components/newsletter-form";
 
 export const metadata: Metadata = {
   title: "Blog",
@@ -81,22 +82,14 @@ export default function BlogPage() {
                         {article.excerpt}
                       </p>
                       
-                      <div className="mt-8 flex items-center justify-between border-t border-border pt-6">
-                        <div className="flex items-center gap-3">
-                          {article.authorImage && (
-                            <Image src={article.authorImage} alt={article.author} width={44} height={44} className="rounded-full shadow-sm" />
-                          )}
-                          <div className="flex justify-center flex-col">
-                            <p className="text-sm font-bold leading-none">{article.author}</p>
-                            <p className="text-[13px] font-medium text-muted-foreground mt-1.5">
-                              {new Date(article.publishedAt).toLocaleDateString("en-IN", {
-                                month: "short",
-                                day: "numeric",
-                                year: "numeric",
-                              })}
-                            </p>
-                          </div>
-                        </div>
+                      <div className="mt-8 border-t border-border pt-6">
+                        <p className="text-[13px] font-medium text-muted-foreground">
+                          {new Date(article.publishedAt).toLocaleDateString("en-IN", {
+                            month: "short",
+                            day: "numeric",
+                            year: "numeric",
+                          })}
+                        </p>
                       </div>
                     </div>
                   </Card>
@@ -137,25 +130,21 @@ export default function BlogPage() {
                       <p className="mt-4 text-[15px] leading-relaxed text-muted-foreground/80 line-clamp-3">
                         {article.excerpt}
                       </p>
-                      <div className="mt-auto pt-6 flex flex-col gap-4">
-                        <div className="flex items-center gap-3">
-                          {article.authorImage && (
-                            <Image src={article.authorImage} alt={article.author} width={34} height={34} className="rounded-full shadow-sm" />
-                          )}
-                          <div className="flex justify-center flex-col">
-                            <p className="text-[13px] font-bold leading-none">{article.author}</p>
-                            <p className="text-xs font-medium text-muted-foreground mt-1">
-                              {new Date(article.publishedAt).toLocaleDateString("en-IN", { month: "short", day: "numeric", year: "numeric" })}
-                            </p>
-                          </div>
-                        </div>
+                      <div className="mt-auto border-t border-border pt-6">
+                        <p className="text-xs font-medium text-muted-foreground">
+                          {new Date(article.publishedAt).toLocaleDateString("en-IN", { month: "short", day: "numeric", year: "numeric" })}
+                        </p>
                       </div>
                     </div>
                   </Card>
                 </Reveal>
               ))}
             </div>
+
           </div>
+          <Reveal className="mt-20">
+            <NewsletterForm className="bg-muted/30" />
+          </Reveal>
         </div>
       </section>
     </div>
