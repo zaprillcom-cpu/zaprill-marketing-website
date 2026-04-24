@@ -157,7 +157,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <TooltipProvider delayDuration={100}>
+          <TooltipProvider delay={100}>
             <GoogleAnalytics />
             <Script
               id="organization-schema"
