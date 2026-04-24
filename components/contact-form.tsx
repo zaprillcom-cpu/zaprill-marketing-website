@@ -138,7 +138,7 @@ export function ContactForm() {
         </label>
         <Select 
           value={form.subject} 
-          onValueChange={(val) => setForm(f => ({ ...f, subject: val }))}
+          onValueChange={(val) => setForm(f => ({ ...f, subject: val || "" }))}
         >
           <SelectTrigger className="h-12 w-full rounded-xl bg-muted/30 border-border/50 focus:bg-background transition-all">
             <SelectValue placeholder="Select a subject" />
