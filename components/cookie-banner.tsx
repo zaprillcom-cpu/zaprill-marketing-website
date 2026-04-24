@@ -49,19 +49,19 @@ export function CookieBanner() {
                 for more details.
               </p>
             </div>
-            <div className="flex w-full shrink-0 items-center gap-3 md:w-auto">
+            <div className="flex w-full shrink-0 gap-3 sm:w-auto sm:items-center">
               <Button
                 variant="outline"
                 size="sm"
                 onClick={() => handleConsent("declined")}
-                className="w-full md:w-auto"
+                className="flex-1 sm:flex-none"
               >
                 Decline
               </Button>
               <Button
                 size="sm"
                 onClick={() => handleConsent("accepted")}
-                className="w-full md:w-auto"
+                className="flex-1 sm:flex-none"
               >
                 Accept
               </Button>
