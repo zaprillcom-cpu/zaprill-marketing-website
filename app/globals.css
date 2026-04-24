@@ -53,41 +53,50 @@
   /* Radius: bento-grid/glassmorphic principles */
   --radius: 0.85rem;
 
-  /* Base - Crisp pearl background, deep slate text */
-  --background: oklch(0.99 0.005 286);
-  --foreground: oklch(0.20 0.02 286);
+  /* Base - soft cool-neutral canvas with balanced contrast */
+  --background: oklch(0.97 0.008 282);
+  --foreground: oklch(0.22 0.02 282);
 
-  /* Cards / Popovers - Pure white for contrast */
+  /* Surface separation: page vs chrome */
+  --nav-bg: oklch(0.995 0.002 282);
+  --footer-bg: oklch(0.99 0.004 282);
+
+  /* Home section progression (light mode) */
+  --home-surface-1: oklch(0.972 0.008 282);
+  --home-surface-2: oklch(0.958 0.011 282);
+  --home-surface-3: oklch(0.944 0.014 282);
+
+  /* Cards / Popovers */
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.20 0.02 286);
+  --card-foreground: oklch(0.22 0.02 282);
 
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.20 0.02 286);
+  --popover-foreground: oklch(0.22 0.02 282);
 
-  /* Brand - Electric Violet */
-  --primary: oklch(0.55 0.25 290);
-  --primary-foreground: oklch(0.99 0.01 286);
+  /* Brand */
+  --primary: oklch(0.61 0.2 292);
+  --primary-foreground: oklch(0.99 0.01 282);
 
   /* Secondary - Soft subtle contrast */
-  --secondary: oklch(0.95 0.01 286);
-  --secondary-foreground: oklch(0.25 0.02 286);
+  --secondary: oklch(0.95 0.012 282);
+  --secondary-foreground: oklch(0.25 0.02 282);
 
   /* Muted - For section distinction */
-  --muted: oklch(0.97 0.01 286);
-  --muted-foreground: oklch(0.48 0.02 286);
+  --muted: oklch(0.95 0.012 282);
+  --muted-foreground: oklch(0.47 0.02 282);
 
   /* Accent */
-  --accent: oklch(0.94 0.02 286);
-  --accent-foreground: oklch(0.25 0.02 286);
+  --accent: oklch(0.93 0.015 282);
+  --accent-foreground: oklch(0.25 0.02 282);
 
   /* Destructive */
   --destructive: oklch(0.60 0.24 25);
   --destructive-foreground: oklch(0.99 0 0);
 
   /* Borders / Inputs / Ring */
-  --border: oklch(0.92 0.01 286);
-  --input: oklch(0.92 0.01 286);
-  --ring: oklch(0.55 0.25 290);
+  --border: oklch(0.89 0.014 282);
+  --input: oklch(0.92 0.012 282);
+  --ring: oklch(0.61 0.2 292);
 
   /* Charts */
   --chart-1: oklch(0.55 0.25 290);
@@ -137,8 +146,15 @@
 
 .dark {
   /* Dark mode: deep slate/noir, very dark for high contrast */
-  --background: oklch(0.14 0.015 286);
+  --background: #100f1e;
   --foreground: oklch(0.98 0.01 286);
+  --nav-bg: #0A0A11;
+  --footer-bg: #0A0A11;
+
+  /* Home section progression (dark mode) */
+  --home-surface-1: #100f1e;
+  --home-surface-2: #161428;
+  --home-surface-3: #1c1930;
 
   --card: oklch(0.17 0.015 286);
   --card-foreground: oklch(0.98 0.01 286);

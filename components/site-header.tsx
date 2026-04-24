@@ -13,6 +13,7 @@ import { Button } from "@/components/ui/button";
 const navItems = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About" },
+  { href: "/pricing", label: "Pricing" },
   { href: "/blog", label: "Blog" },
   { href: "/contact", label: "Contact" },
 ];
@@ -21,7 +22,7 @@ export function SiteHeader() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border bg-background/85 backdrop-blur-[20px]">
+    <header className="sticky top-0 z-50 border-b border-border bg-[var(--nav-bg)] text-foreground backdrop-blur-[20px] dark:border-white/10 dark:text-white">
       <div className="container mx-auto flex h-[68px] max-w-[1200px] items-center justify-between px-6">
         <Logo />
         <nav className="hidden items-center gap-8 md:flex">
@@ -29,7 +30,7 @@ export function SiteHeader() {
             <Link
               key={item.href}
               href={item.href}
-              className="text-[15px] font-medium text-muted-foreground transition-colors hover:text-foreground"
+              className="text-[15px] font-medium text-foreground/70 transition-colors hover:text-foreground dark:text-white/75 dark:hover:text-white"
             >
               {item.label}
             </Link>
@@ -43,7 +44,7 @@ export function SiteHeader() {
         </nav>
         <button
           type="button"
-          className="inline-flex h-10 w-10 items-center justify-center rounded-md border border-border text-text-primary md:hidden"
+          className="inline-flex h-10 w-10 items-center justify-center rounded-md border border-border text-foreground md:hidden dark:border-white/20 dark:text-white"
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
           aria-controls="mobile-menu"
@@ -55,26 +56,32 @@ export function SiteHeader() {
       <div
         id="mobile-menu"
         className={cn(
-          "overflow-hidden border-t border-border bg-white transition-all duration-200 md:hidden",
-          open ? "max-h-96" : "max-h-0 border-t-0",
+          "overflow-hidden border-t border-border bg-[var(--nav-bg)] transition-all duration-200 md:hidden dark:border-white/10",
+          open ? "max-h-[28rem]" : "max-h-0 border-t-0",
         )}
       >
-        <div className="container mx-auto flex flex-col gap-4 px-6 py-6">
-          {navItems.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="text-base font-medium text-text-secondary"
-              onClick={() => setOpen(false)}
-            >
-              {item.label}
+        <div className="container mx-auto flex flex-col items-center gap-5 px-6 py-6 text-center">
+          <div className="grid w-full grid-cols-2 gap-x-4 gap-y-2">
+            {navItems.map((item) => (
+              <div key={item.href} className="flex h-10 items-center justify-center">
+                <Link
+                  href={item.href}
+                  className="inline-flex h-full items-center justify-center text-base font-medium text-foreground/80 transition-colors hover:text-foreground dark:text-white/80 dark:hover:text-white"
+                  onClick={() => setOpen(false)}
+                >
+                  {item.label}
+                </Link>
+              </div>
+            ))}
+            <div className="flex h-10 items-center justify-center">
+              <ThemeToggle />
+            </div>
+            <div className="h-10" aria-hidden="true" />
+          </div>
+          <div className="mt-1 flex w-full max-w-[260px] flex-col items-center gap-3">
+            <Link href={siteConfig.appUrl} className="w-full">
+              <Button className="h-11 w-full justify-center rounded-full">Open App</Button>
             </Link>
-          ))}
-          <div className="mt-2 flex items-center justify-between">
-            <Link href={siteConfig.appUrl}>
-              <Button className="size-max">Open App</Button>
-            </Link>
-            <ThemeToggle />
           </div>
         </div>
       </div>

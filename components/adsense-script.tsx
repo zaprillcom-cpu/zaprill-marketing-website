@@ -1,7 +1,3 @@
-"use client";
-
-import Script from "next/script";
-
 export function AdsenseScript() {
   const adsenseClient = process.env.NEXT_PUBLIC_ADSENSE_CLIENT || "ca-pub-4010004205574660";
 
@@ -10,10 +6,9 @@ export function AdsenseScript() {
   }
 
   return (
-    <Script
+    <script
       id="adsense-script"
       async
-      strategy="afterInteractive"
       crossOrigin="anonymous"
       src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adsenseClient}`}
     />

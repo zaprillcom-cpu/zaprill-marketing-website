@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Script from "next/script";
 import {
   BarChart3,
   CircleDollarSign,
@@ -7,8 +8,7 @@ import {
   SearchX,
   Target,
   TriangleAlert,
-  Fingerprint,
-  MessageSquareQuote
+  Fingerprint
 } from "lucide-react";
 
 import { SectionHeading } from "@/components/section-heading";
@@ -119,17 +119,17 @@ const faqs = [
 
 const pricing = {
   free: [
-    "Resume analysis (once a month)",
-    "3 matched job roles",
-    "Basic salary comparison",
-    "Skill gap overview"
+    "1 job search per month",
+    "Ad-supported interface with low ad density",
+    "Basic matches only",
+    "100% match jobs are Pro-only"
   ],
   pro: [
-    "Unlimited job matching",
-    "Full salary intelligence report",
-    "AI resume builder (3 per month)",
-    "Skill gap map with recommended courses",
-    "Priority support"
+    "Ad-free experience",
+    "Unlimited job searches",
+    "Unlock all matches, including 100% match jobs",
+    "Quarterly Pro: ₹99 (₹49 for first 500 users)",
+    "Yearly Pro: ₹350 (₹175 for first 1000 users)"
   ]
 };
 
@@ -178,8 +178,9 @@ export default function HomePage() {
         "@type": "Offer",
         price: "0",
         priceCurrency: "INR",
-        name: "Basic",
-        description: "Resume analysis once a month, 3 matched jobs, basic salary comparison"
+        name: "Free",
+        description:
+          "1 job search monthly, low ad-supported experience, basic matches only, 100% matches locked."
       },
       {
         "@type": "Offer",
@@ -191,12 +192,31 @@ export default function HomePage() {
           priceCurrency: "INR",
           referenceQuantity: {
             "@type": "QuantitativeValue",
-            value: 1,
+            value: 3,
             unitCode: "MON"
           }
         },
-        name: "Professional",
-        description: "Unlimited job matching, full salary intelligence, AI resume builder, skill gap map with courses"
+        name: "Pro Quarterly",
+        description:
+          "Ad-free, unlimited searches, unlock all matches including 100% scores."
+      },
+      {
+        "@type": "Offer",
+        price: "350",
+        priceCurrency: "INR",
+        priceSpecification: {
+          "@type": "UnitPriceSpecification",
+          price: "350",
+          priceCurrency: "INR",
+          referenceQuantity: {
+            "@type": "QuantitativeValue",
+            value: 12,
+            unitCode: "MON"
+          }
+        },
+        name: "Pro Yearly",
+        description:
+          "All Pro features with priority support and discounted annual billing."
       }
     ],
     aggregateRating: {
@@ -208,8 +228,8 @@ export default function HomePage() {
   };
 
   return (
-    <main className="bg-background text-foreground transition-colors duration-300">
-      <script
+    <main className="bg-[var(--home-surface-1)] text-foreground transition-colors duration-300">
+      <Script id="home-schema" strategy="afterInteractive"
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify([faqSchema, howToSchema, softwareSchema])
@@ -217,7 +237,7 @@ export default function HomePage() {
       />
 
       {/* Hero Section */}
-      <section className="relative overflow-hidden pt-20 pb-28">
+      <section className="relative overflow-hidden bg-[var(--home-surface-1)] pt-20 pb-28">
         <div className="container mx-auto relative z-10 grid items-center gap-16 lg:grid-cols-[1.1fr_0.9fr] max-w-[1200px]">
           <Reveal delay={0.1} className="max-w-2xl text-center lg:text-left">
             <h1 className="text-5xl md:text-[68px] leading-[1.05] tracking-tighter text-foreground mb-6">
@@ -229,7 +249,7 @@ export default function HomePage() {
             </h1>
 
             <p className="mt-8 text-[19px] text-muted-foreground max-w-lg mx-auto lg:mx-0 balanced leading-relaxed font-light">
-              Upload your resume. In 2 minutes you&apos;ll know your exact market value, which jobs you actually qualify for, and what's silently blocking your next salary jump.
+              Upload your resume. In 2 minutes you&apos;ll know your exact market value, which jobs you actually qualify for, and what&apos;s silently blocking your next salary jump.
             </p>
 
             <div className="mt-12 flex flex-col sm:flex-row sm:justify-center lg:justify-start gap-4 mb-8">
@@ -332,7 +352,7 @@ export default function HomePage() {
       </section>
 
       {/* Pain Section */}
-      <section className="bg-background py-32">
+      <section className="bg-[var(--home-surface-2)] py-32">
         <div className="container mx-auto max-w-[1200px]">
           <Reveal>
             <SectionHeading
@@ -360,7 +380,7 @@ export default function HomePage() {
       </section>
 
       {/* How It Works */}
-      <section className="bg-muted/30 border-y border-border py-32">
+      <section className="border-y border-border bg-[var(--home-surface-3)] py-32">
         <div className="container mx-auto max-w-[1200px]">
           <Reveal>
             <SectionHeading
@@ -435,7 +455,7 @@ export default function HomePage() {
       </section>
 
       {/* Core Features */}
-      <section className="bg-background py-32">
+      <section className="bg-[var(--home-surface-2)] py-32">
         <div className="container mx-auto max-w-[1200px]">
           <Reveal>
             <SectionHeading
@@ -465,7 +485,7 @@ export default function HomePage() {
       </section>
 
       {/* Speed Proof */}
-      <section className="bg-muted/30 py-32 border-y border-border relative overflow-hidden">
+      <section className="border-y border-border bg-[var(--home-surface-3)] py-32 relative overflow-hidden">
         <Reveal className="container mx-auto max-w-3xl text-center relative z-10">
           <div className="text-[100px] md:text-[140px] font-bold text-primary leading-none tracking-tighter mb-4 opacity-90">2 <span className="text-[60px] md:text-[80px]">min</span></div>
           <h2 className="text-3xl md:text-5xl font-bold tracking-tighter text-foreground mb-8">Speed matters.</h2>
@@ -481,7 +501,7 @@ export default function HomePage() {
       </section>
 
       {/* FAQ Section */}
-      <section className="bg-background py-32">
+      <section className="bg-[var(--home-surface-1)] py-32">
         <div className="container mx-auto max-w-3xl">
           <Reveal className="text-center mb-20">
             <h2 className="text-4xl md:text-[48px] tracking-tighter font-bold text-foreground">Frequently Asked Questions</h2>
@@ -494,20 +514,21 @@ export default function HomePage() {
       </section>
 
       {/* Pricing */}
-      <section className="bg-muted/30 py-32 border-t border-border">
+      <section className="border-t border-border bg-[var(--home-surface-2)] py-32">
         <div className="container mx-auto max-w-5xl">
           <Reveal>
             <SectionHeading
               pill="Pricing"
               pillClassName="bg-muted text-foreground border-0 uppercase tracking-widest text-[10px] font-bold"
-              title="Start free. Upgrade when you're ready."
+              title="Free gives a taste. Pro unlocks the full picture."
+              description="Compare plans and launch offers in INR (₹)."
               className="mb-20 text-center [&_h2]:tracking-tighter [&_h2]:text-4xl md:[&_h2]:text-[48px]"
             />
           </Reveal>
           <div className="mx-auto grid max-w-4xl gap-8 lg:grid-cols-2">
             <Reveal delay={0.1}>
               <Card className="h-full rounded-[24px] border-border bg-background p-12 flex flex-col">
-                <h3 className="text-[28px] font-bold tracking-tight text-foreground mb-2">Basic</h3>
+                <h3 className="text-[28px] font-bold tracking-tight text-foreground mb-2">Free</h3>
                 <div className="flex items-end gap-2 mb-10">
                   <div className="text-[54px] font-bold tracking-tighter leading-none text-foreground">₹0</div>
                   <div className="text-muted-foreground mb-2 font-medium">/ month</div>
@@ -522,7 +543,7 @@ export default function HomePage() {
                 </ul>
                 <Link href={siteConfig.appUrl} className="w-full">
                   <Button variant="secondary" className="w-full justify-center h-14 rounded-full border-border text-foreground bg-background hover:bg-accent font-bold active:scale-[0.98]">
-                    Get Started
+                    Start Free
                   </Button>
                 </Link>
               </Card>
@@ -533,12 +554,12 @@ export default function HomePage() {
                 <div className="absolute top-8 right-10">
                   <Badge className="bg-background/10 text-background border-0 text-[10px] font-bold tracking-widest hover:bg-background/10 uppercase px-3 py-1">Pro</Badge>
                 </div>
-                <h3 className="text-[28px] font-bold tracking-tight text-background mb-2">Professional</h3>
+                <h3 className="text-[28px] font-bold tracking-tight text-background mb-2">Pro Plans</h3>
                 <div className="flex items-end gap-2 mb-2">
-                  <div className="text-[54px] font-bold tracking-tighter leading-none text-background">₹99</div>
-                  <div className="text-background/60 mb-2 font-medium">/ month</div>
+                  <div className="text-[54px] font-bold tracking-tighter leading-none text-background">₹49</div>
+                  <div className="text-background/60 mb-2 font-medium">/ quarter intro</div>
                 </div>
-                <div className="text-[13px] font-medium text-background/50 mb-10">or ₹899/year — save 25%</div>
+                <div className="text-[13px] font-medium text-background/50 mb-10">Regular: ₹99 quarterly or ₹350 yearly</div>
                 <ul className="space-y-5 mb-12 flex-1">
                   {pricing.pro.map((feature) => (
                     <li key={feature} className="flex gap-4 items-start text-background">
@@ -547,30 +568,37 @@ export default function HomePage() {
                     </li>
                   ))}
                 </ul>
-                <Link href={siteConfig.appUrl} className="w-full">
+                <Link href="/pricing" className="w-full">
                   <Button className="w-full justify-center h-14 rounded-full bg-background text-foreground hover:bg-background/90 border-0 font-bold active:scale-[0.98]">
-                    Upgrade to Pro
+                    Compare Plans
                   </Button>
                 </Link>
               </Card>
             </Reveal>
           </div>
+          <Reveal delay={0.3} className="mt-10 text-center">
+            <Link href="/pricing">
+              <Button variant="outline" className="h-12 rounded-full px-8">
+                View Full Pricing Breakdown
+              </Button>
+            </Link>
+          </Reveal>
         </div>
       </section>
 
       {/* Final CTA */}
-      <section className="bg-foreground text-background dark:bg-black border-t border-border/20 py-32 relative overflow-hidden">
+      <section className="bg-foreground text-white dark:bg-[#100f1e] border-t border-border/20 py-32 relative overflow-hidden">
         <Reveal className="container mx-auto max-w-3xl text-center relative z-10">
-          <h2 className="text-5xl md:text-[64px] font-bold tracking-tighter text-background mb-8 balanced">Stop guessing.<br />Know your worth.</h2>
-          <p className="text-[19px] text-muted-foreground font-light leading-relaxed max-w-2xl mx-auto mb-12 balanced">
-            Built for professionals who are done leaving money on the table. It takes 2 minutes. It's completely free to start.
+          <h2 className="text-5xl md:text-[64px] font-bold tracking-tighter text-white mb-8 balanced">Stop guessing.<br />Know your worth.</h2>
+          <p className="text-[19px] text-white/70 font-light leading-relaxed max-w-2xl mx-auto mb-12 balanced">
+            Built for professionals who are done leaving money on the table. It takes 2 minutes. It&apos;s completely free to start.
           </p>
           <div className="mb-8">
             <SpringButton href={siteConfig.appUrl} className="bg-primary text-primary-foreground hover:bg-primary/90 border-0 h-14 px-10 text-[15px] font-bold rounded-full">
               Upload Your Resume
             </SpringButton>
           </div>
-          <div className="text-[13px] text-muted-foreground font-medium tracking-wide">
+          <div className="text-[13px] text-white/60 font-medium tracking-wide">
             Cancel Pro anytime <span className="opacity-40 mx-3">·</span> Data deleted on request
           </div>
         </Reveal>

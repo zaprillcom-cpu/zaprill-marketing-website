@@ -38,6 +38,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.5
     },
     {
+      url: `${siteConfig.url}/pricing`,
+      lastModified: now,
+      changeFrequency: "weekly",
+      priority: 0.8
+    },
+    {
       url: `${siteConfig.url}/demo`,
       lastModified: now,
       changeFrequency: "monthly",
