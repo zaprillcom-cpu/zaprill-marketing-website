@@ -48,11 +48,6 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "Bingbot",
         allow: "/"
-      },
-      // Block training-only crawlers (not search/citation bots)
-      {
-        userAgent: "CCBot",
-        disallow: "/"
       }
     ],
     sitemap: `${siteConfig.url}/sitemap.xml`

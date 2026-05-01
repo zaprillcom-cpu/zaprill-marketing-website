@@ -147,7 +147,7 @@ const globalSchema = {
       }
     },
     {
-      "@type": "ProfessionalService",
+      "@type": "LocalBusiness",
       "@id": `${siteConfig.url}/#localbusiness`,
       name: siteConfig.name,
       url: siteConfig.url,
@@ -205,8 +205,7 @@ export default function RootLayout({
           <TooltipProvider delay={100}>
             <GoogleAnalytics />
             <AdsenseScript />
-            <Script
-              id="organization-schema"
+            <script
               type="application/ld+json"
               dangerouslySetInnerHTML={{
                 __html: JSON.stringify(globalSchema)

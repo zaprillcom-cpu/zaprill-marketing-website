@@ -21,7 +21,6 @@ import { SpringButton } from "@/components/spring-button";
 const Float = dynamic(() => import("@/components/float").then(m => ({ default: m.Float })));
 const FaqAccordion = dynamic(() => import("@/components/faq-accordion").then(m => ({ default: m.FaqAccordion })));
 const NumberTicker = dynamic(() => import("@/components/number-ticker").then(m => ({ default: m.NumberTicker })));
-const Typewriter = dynamic(() => import("@/components/typewriter").then(m => ({ default: m.Typewriter })));
 
 export const metadata: Metadata = {
   alternates: {
@@ -216,7 +215,7 @@ export default function HomePage() {
 
   return (
     <main className="bg-[var(--home-surface-1)] text-foreground transition-colors duration-300">
-      <Script id="home-schema" strategy="afterInteractive"
+      <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(homeSchema)
@@ -232,12 +231,12 @@ export default function HomePage() {
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-[var(--home-surface-1)] pt-20 pb-28">
         <div className="container mx-auto relative z-10 grid items-center gap-16 lg:grid-cols-[1.1fr_0.9fr] max-w-[1200px]">
-          <Reveal delay={0.1} className="max-w-2xl text-center lg:text-left">
+          <div className="max-w-2xl text-center lg:text-left animate-in fade-in slide-in-from-bottom-4 duration-700 ease-out fill-mode-both">
             <h1 className="text-5xl md:text-[68px] leading-[1.05] tracking-tighter text-foreground mb-6">
-              <Typewriter text="You're probably underpaid." delay={0.1} />
+              You're probably underpaid.
               <br />
               <span className="text-primary/60 dark:text-primary/40">
-                <Typewriter text="We can prove it." delay={1.4} />
+                We can prove it.
               </span>
             </h1>
 
@@ -246,9 +245,9 @@ export default function HomePage() {
             </p>
 
             <div className="mt-12 flex flex-col sm:flex-row sm:justify-center lg:justify-start gap-4 mb-8">
-              <SpringButton href={siteConfig.appUrl} className="bg-primary text-primary-foreground transition-all hover:opacity-90 border-0 h-14 px-8 text-base font-semibold rounded-full min-w-[200px]">
+              <a href={siteConfig.appUrl} className="inline-flex items-center justify-center bg-primary text-primary-foreground transition-all hover:opacity-90 border-0 h-14 px-8 text-base font-semibold rounded-full min-w-[200px] hover:scale-105 duration-200">
                 Upload Resume — Free
-              </SpringButton>
+              </a>
               <a
                 href="#report"
                 className="inline-flex items-center justify-center rounded-full border border-border bg-background/50 backdrop-blur-md h-14 px-8 text-base font-medium text-muted-foreground transition-all hover:bg-accent hover:text-accent-foreground active:scale-[0.97]"
@@ -260,7 +259,7 @@ export default function HomePage() {
             <div className="text-[13px] text-muted-foreground font-medium tracking-wide">
               Works with PDF and Word <span className="opacity-40 mx-2">·</span> 2 min to results
             </div>
-          </Reveal>
+          </div>
 
           <Reveal delay={0.2} className="relative w-full max-w-md mx-auto lg:ml-auto">
             <Float>
