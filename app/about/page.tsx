@@ -28,6 +28,14 @@ export const metadata: Metadata = {
     description:
       "Learn why Zaprill was built and the mission behind making salary and career intelligence accessible to every professional.",
     type: "website",
+    url: "https://www.zaprill.com/about",
+    images: ["/og"]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "About — Zaprill",
+    description:
+      "Learn why Zaprill was built and the mission behind making salary and career intelligence accessible to every professional.",
     images: ["/og"]
   }
 };

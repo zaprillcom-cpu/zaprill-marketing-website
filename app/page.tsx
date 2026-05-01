@@ -2,12 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Script from "next/script";
 import {
-  BarChart3,
   CircleDollarSign,
-  FileText,
   SearchX,
   Target,
-  TriangleAlert,
   Fingerprint
 } from "lucide-react";
 
@@ -32,30 +29,38 @@ export const metadata: Metadata = {
     description:
       "Upload your resume and instantly discover your real market salary, best-fit job matches, and the exact skills blocking your next raise. Free to start.",
     url: siteConfig.url,
-    type: "website"
+    type: "website",
+    images: ["/og"]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Zaprill — Know Your Worth. Get the Job.",
+    description:
+      "Upload your resume and instantly discover your real market salary, best-fit job matches, and the exact skills blocking your next raise. Free to start.",
+    images: ["/og"]
   }
 };
 
-const painPoints = [
+const valueProps = [
   {
     icon: SearchX,
-    title: "You're applying blind",
-    body: "No data on which companies are actually hiring for your exact profile."
+    title: "Market Blindness",
+    body: "Most professionals apply without knowing which companies are actually paying top-tier for their exact profile."
   },
   {
     icon: CircleDollarSign,
-    title: "You don't know your real worth",
-    body: "Most people accept the first offer without knowing the market is paying 30–40% more."
+    title: "Salary Intelligence",
+    body: "Real-time compensation data matched against your technical stack. Know your number before you walk into any negotiation."
   },
   {
-    icon: FileText,
-    title: "Your resume gets filtered out",
-    body: "ATS systems reject 75% of resumes before a human ever reads them."
+    icon: Fingerprint,
+    title: "ATS Failure Detection",
+    body: "We simulate employer ATS filters on your resume to flag exactly what's causing silent rejections before you apply."
   },
   {
-    icon: TriangleAlert,
-    title: "You don't know what's missing",
-    body: "No one tells you which two skills would double your interview rate."
+    icon: Target,
+    title: "Skill Gap Mapping",
+    body: "We identify the exact two or three skills blocking your next salary band and provide a path to close them."
   }
 ];
 
@@ -74,27 +79,6 @@ const processSteps = [
     step: "03",
     title: "You get a clear, honest report",
     body: "Matched roles with fit scores. Your exact salary gap. The two or three skills that would move you into a higher pay band. No guessing. No vague advice."
-  }
-];
-
-const features = [
-  {
-    icon: BarChart3,
-    iconColor: "text-primary",
-    title: "Salary Intelligence",
-    body: "See what your skills are actually worth today — not last year's data, not industry averages. Real compensation from real job listings, updated daily. Know your number before you walk into any negotiation."
-  },
-  {
-    icon: TriangleAlert,
-    iconColor: "text-primary",
-    title: "ATS Failure Detection",
-    body: "Most resumes are rejected before a human reads them. We simulate employer ATS filters on your resume and flag exactly what's causing silent rejections — so you fix it before it costs you an interview."
-  },
-  {
-    icon: Target,
-    iconColor: "text-primary",
-    title: "Skill Gap Mapping",
-    body: "We don't just tell you what you're missing. We tell you which specific skills are blocking your next salary band, and the fastest path to close each gap."
   }
 ];
 
@@ -134,97 +118,97 @@ const pricing = {
 };
 
 export default function HomePage() {
-  // FAQPage structured data
-  const faqSchema = {
+  // Structured data (@graph pattern)
+  const homeSchema = {
     "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: faqs.map((faq) => ({
-      "@type": "Question",
-      name: faq.q,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: faq.a
-      }
-    }))
-  };
-
-  // HowTo structured data
-  const howToSchema = {
-    "@context": "https://schema.org",
-    "@type": "HowTo",
-    name: "How to Find Your Real Market Salary with Zaprill",
-    description:
-      "Upload your resume to Zaprill and get your exact market value, job matches, and skill gap analysis in 2 minutes.",
-    totalTime: "PT2M",
-    step: processSteps.map((step, idx) => ({
-      "@type": "HowToStep",
-      position: idx + 1,
-      name: step.title,
-      text: step.body
-    }))
-  };
-
-  // SoftwareApplication structured data
-  const softwareSchema = {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    name: siteConfig.name,
-    description: siteConfig.description,
-    url: siteConfig.appUrl,
-    applicationCategory: "BusinessApplication",
-    operatingSystem: "Web",
-    offers: [
+    "@graph": [
       {
-        "@type": "Offer",
-        price: "0",
-        priceCurrency: "INR",
-        name: "Free",
-        description:
-          "1 job search monthly, low ad-supported experience, basic matches only, 100% matches locked."
-      },
-      {
-        "@type": "Offer",
-        price: "99",
-        priceCurrency: "INR",
-        priceSpecification: {
-          "@type": "UnitPriceSpecification",
-          price: "99",
-          priceCurrency: "INR",
-          referenceQuantity: {
-            "@type": "QuantitativeValue",
-            value: 3,
-            unitCode: "MON"
+        "@type": "FAQPage",
+        mainEntity: faqs.map((faq) => ({
+          "@type": "Question",
+          name: faq.q,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: faq.a
           }
-        },
-        name: "Pro Quarterly",
-        description:
-          "Ad-free, unlimited searches, unlock all matches including 100% scores."
+        }))
       },
+
       {
-        "@type": "Offer",
-        price: "350",
-        priceCurrency: "INR",
-        priceSpecification: {
-          "@type": "UnitPriceSpecification",
-          price: "350",
-          priceCurrency: "INR",
-          referenceQuantity: {
-            "@type": "QuantitativeValue",
-            value: 12,
-            unitCode: "MON"
-          }
-        },
-        name: "Pro Yearly",
+        "@type": "HowTo",
+        name: "How to Find Your Real Market Salary with Zaprill",
         description:
-          "All Pro features with priority support and discounted annual billing."
+          "Upload your resume to Zaprill and get your exact market value, job matches, and skill gap analysis in 2 minutes.",
+        totalTime: "PT2M",
+        step: processSteps.map((step, idx) => ({
+          "@type": "HowToStep",
+          position: idx + 1,
+          name: step.title,
+          text: step.body
+        }))
+      },
+
+      {
+        "@type": "SoftwareApplication",
+        name: siteConfig.name,
+        description: siteConfig.description,
+        url: siteConfig.appUrl,
+        applicationCategory: "BusinessApplication",
+        operatingSystem: "Web",
+        offers: [
+          {
+            "@type": "Offer",
+            price: "0",
+            priceCurrency: "INR",
+            name: "Free",
+            description:
+              "1 job search monthly, low ad-supported experience, basic matches only, 100% matches locked."
+          },
+          {
+            "@type": "Offer",
+            price: "99",
+            priceCurrency: "INR",
+            priceSpecification: {
+              "@type": "UnitPriceSpecification",
+              price: "99",
+              priceCurrency: "INR",
+              referenceQuantity: {
+                "@type": "QuantitativeValue",
+                value: 3,
+                unitCode: "MON"
+              }
+            },
+            name: "Pro Quarterly",
+            description:
+              "Ad-free, unlimited searches, unlock all matches including 100% scores."
+          },
+          {
+            "@type": "Offer",
+            price: "350",
+            priceCurrency: "INR",
+            priceSpecification: {
+              "@type": "UnitPriceSpecification",
+              price: "350",
+              priceCurrency: "INR",
+              referenceQuantity: {
+                "@type": "QuantitativeValue",
+                value: 12,
+                unitCode: "MON"
+              }
+            },
+            name: "Pro Yearly",
+            description:
+              "All Pro features with priority support and discounted annual billing."
+          }
+        ],
+        aggregateRating: {
+          "@type": "AggregateRating",
+          ratingValue: "4.8",
+          ratingCount: "150",
+          bestRating: "5"
+        }
       }
-    ],
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: "4.8",
-      ratingCount: "150",
-      bestRating: "5"
-    }
+    ]
   };
 
   return (
@@ -232,9 +216,15 @@ export default function HomePage() {
       <Script id="home-schema" strategy="afterInteractive"
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify([faqSchema, howToSchema, softwareSchema])
+          __html: JSON.stringify(homeSchema)
         }}
       />
+
+      {/* Background Blobs */}
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
+        <div className="absolute -top-[10%] -left-[10%] w-[40%] h-[40%] bg-primary/10 rounded-full blur-[120px] animate-pulse"></div>
+        <div className="absolute top-[20%] -right-[5%] w-[30%] h-[30%] bg-blue-500/5 rounded-full blur-[100px] animate-pulse delay-700"></div>
+      </div>
 
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-[var(--home-surface-1)] pt-20 pb-28">
@@ -249,7 +239,7 @@ export default function HomePage() {
             </h1>
 
             <p className="mt-8 text-[19px] text-muted-foreground max-w-lg mx-auto lg:mx-0 balanced leading-relaxed font-light">
-              Upload your resume. In 2 minutes you&apos;ll know your exact market value, which jobs you actually qualify for, and what&apos;s silently blocking your next salary jump.
+              Stop applying blind. Upload your resume and instantly discover your market value, hidden ATS filters, and the skills blocking your next 30% raise.
             </p>
 
             <div className="mt-12 flex flex-col sm:flex-row sm:justify-center lg:justify-start gap-4 mb-8">
@@ -350,18 +340,36 @@ export default function HomePage() {
           </Reveal>
         </div>
       </section>
+      {/* Trust Bar */}
+      <section className="border-y border-border/50 bg-background/50 py-10 backdrop-blur-sm">
+        <div className="container mx-auto max-w-[1200px] px-6">
+          <div className="flex flex-col items-center justify-between gap-8 md:flex-row">
+            <span className="text-xs font-bold uppercase tracking-[0.2em] text-muted-foreground/60">
+              Trusted by professionals at
+            </span>
+            <div className="flex flex-wrap justify-center gap-12 opacity-40 grayscale transition-all hover:grayscale-0">
+              {["Google", "Microsoft", "Meta", "Amazon", "Netflix"].map((brand) => (
+                <span key={brand} className="text-xl font-bold tracking-tighter text-foreground">
+                  {brand}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
 
-      {/* Pain Section */}
+      {/* Platform Capabilities */}
       <section className="bg-[var(--home-surface-2)] py-32">
         <div className="container mx-auto max-w-[1200px]">
           <Reveal>
             <SectionHeading
-              title="Job hunting is broken."
+              title="Career intelligence that actually works."
+              description="Stop leaving money on the table. Zaprill gives you the data employers use, finally in your hands."
               className="mb-20 text-center md:text-left [&_h2]:text-foreground [&_h2]:text-4xl md:[&_h2]:text-[48px]"
             />
           </Reveal>
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-            {painPoints.map((item, idx) => {
+            {valueProps.map((item, idx) => {
               const Icon = item.icon;
               return (
                 <Reveal key={item.title} delay={idx * 0.1}>
@@ -378,7 +386,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
       {/* How It Works */}
       <section className="border-y border-border bg-[var(--home-surface-3)] py-32">
         <div className="container mx-auto max-w-[1200px]">
@@ -411,93 +418,48 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Salary Hook */}
+      {/* Salary Intelligence Hook */}
       <section className="bg-foreground text-background py-32 relative overflow-hidden">
+        <div className="absolute inset-0 bg-grid-white/5 [mask-image:radial-gradient(white,transparent_85%)]"></div>
         <div className="container mx-auto max-w-4xl text-center relative z-10">
           <Reveal>
-            <Badge className="bg-background/10 text-background/50 border-0 mb-10 font-sans tracking-widest px-3 py-1 text-[10px] uppercase font-bold">Your Salary Gap</Badge>
+            <Badge className="bg-background/10 text-background/50 border-0 mb-10 font-sans tracking-widest px-3 py-1 text-[10px] uppercase font-bold">Live Market Data</Badge>
             <h2 className="text-4xl md:text-[56px] font-bold tracking-tighter text-background mb-8 balanced leading-[1.1]">
-              You could be earning more. Right now.
+              The market is moving faster than your HR.
             </h2>
             <p className="text-[19px] text-background/60 mb-16 balanced max-w-2xl mx-auto font-light leading-relaxed">
-              The average Zaprill user discovers a ₹2–4 LPA salary gap within 2 minutes of uploading their resume.
+              Zaprill scans 10,000+ daily job listings to find the real ceiling for your technical profile. Most users find a ₹3L+ gap in minutes.
             </p>
           </Reveal>
 
           <Reveal delay={0.2} className="mx-auto max-w-[500px]">
-            <Card className="rounded-[20px] border border-background/10 bg-background/[0.02] p-10 text-left relative overflow-hidden shadow-2xl">
-              <h3 className="text-center text-background/90 mb-10 text-[15px] tracking-wide uppercase font-semibold">Compensation Analysis</h3>
+            <Card className="rounded-[24px] border border-background/10 bg-background/[0.03] backdrop-blur-xl p-10 text-left relative overflow-hidden shadow-2xl">
+              <div className="absolute -top-24 -right-24 w-48 h-48 bg-primary/20 rounded-full blur-[60px]"></div>
+              <h3 className="text-center text-background/90 mb-10 text-[13px] tracking-[0.2em] uppercase font-bold">Compensation Benchmarking</h3>
               <div className="space-y-8">
                 {[
-                  ["Your Current", "₹6,00,000", "text-background/40 max-w-[32%] border-b-2 border-background/20 bg-background/10"],
-                  ["Market Average", "₹9,20,000", "text-background/70 max-w-[60%] border-b-2 border-background/40 bg-background/10"],
-                  ["Your Potential", "₹11,50,000", "text-background max-w-full border-b-2 border-background font-bold bg-background/20"]
+                  ["Current Market Value", "₹18,40,000", "text-background/40 max-w-[50%] border-b-2 border-background/20 bg-background/5"],
+                  ["Top 10% Potential", "₹26,50,000", "text-background max-w-full border-b-2 border-primary/60 font-bold bg-primary/10"]
                 ].map(([label, value, classes]) => (
                   <div key={label} className="w-full">
                     <div className="flex justify-between text-[13px] mb-2 font-medium">
-                      <span className="text-background/60">{label}</span>
-                      <span className={`tracking-wide ${classes.includes("text-background ") ? "text-background font-bold" : "text-background/60"}`}>{value}</span>
+                      <span className="text-background/50">{label}</span>
+                      <span className={`tracking-wide ${classes.includes("text-background ") ? "text-background font-bold" : "text-background/50"}`}>{value}</span>
                     </div>
-                    <div className={`h-2 text-transparent rounded-r-md ${classes}`}></div>
+                    <div className={`h-2.5 text-transparent rounded-full ${classes}`}></div>
                   </div>
                 ))}
               </div>
               <div className="mt-12 flex justify-center">
-                <Link href={siteConfig.appUrl}>
-                  <Button className="bg-background hover:bg-background/90 text-foreground border-0 px-8 py-3.5 rounded-full text-[15px] font-bold">
-                    Calculate My Gap
+                <Link href={siteConfig.appUrl} className="w-full">
+                  <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground border-0 h-14 rounded-full text-[15px] font-bold shadow-lg shadow-primary/20 transition-all active:scale-[0.98]">
+                    Verify My Market Value
                   </Button>
                 </Link>
               </div>
             </Card>
           </Reveal>
         </div>
-      </section>
-
-      {/* Core Features */}
-      <section className="bg-[var(--home-surface-2)] py-32">
-        <div className="container mx-auto max-w-[1200px]">
-          <Reveal>
-            <SectionHeading
-              pill="Insights"
-              pillClassName="bg-muted text-foreground border-0 uppercase tracking-widest text-[10px] font-bold"
-              title="Intelligence the other platforms skipped."
-              className="mb-20 text-center [&_h2]:tracking-tighter [&_h2]:text-4xl md:[&_h2]:text-[48px]"
-            />
-          </Reveal>
-          <div className="grid gap-6 lg:grid-cols-3">
-            {features.map((feature, idx) => {
-              const Icon = feature.icon;
-              return (
-                <Reveal key={feature.title} delay={idx * 0.1}>
-                  <Card className="h-full rounded-[20px] border border-border bg-card p-10 transition-all hover:-translate-y-[2px] shadow-sm hover:shadow-md">
-                    <div className="mb-8">
-                      <Icon className={`h-6 w-6 ${feature.iconColor}`} strokeWidth={1.5} />
-                    </div>
-                    <h3 className="text-[22px] font-bold tracking-tight text-foreground mb-4">{feature.title}</h3>
-                    <p className="text-muted-foreground leading-relaxed text-[15px] font-light">{feature.body}</p>
-                  </Card>
-                </Reveal>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* Speed Proof */}
-      <section className="border-y border-border bg-[var(--home-surface-3)] py-32 relative overflow-hidden">
-        <Reveal className="container mx-auto max-w-3xl text-center relative z-10">
-          <div className="text-[100px] md:text-[140px] font-bold text-primary leading-none tracking-tighter mb-4 opacity-90">2 <span className="text-[60px] md:text-[80px]">min</span></div>
-          <h2 className="text-3xl md:text-5xl font-bold tracking-tighter text-foreground mb-8">Speed matters.</h2>
-          <p className="text-[19px] text-muted-foreground mb-12 max-w-xl mx-auto font-light leading-relaxed">
-            Upload your resume and get immediate insights into your complete market profile.
-          </p>
-          <Link href={siteConfig.appUrl}>
-            <Button className="rounded-full px-10 h-14 text-[15px] font-bold bg-foreground text-background hover:bg-foreground/90 border-0 shadow-sm transition-all active:scale-[0.97]">
-              Upload Now
-            </Button>
-          </Link>
-        </Reveal>
       </section>
 
       {/* FAQ Section */}
@@ -584,24 +546,6 @@ export default function HomePage() {
             </Link>
           </Reveal>
         </div>
-      </section>
-
-      {/* Final CTA */}
-      <section className="bg-foreground text-white dark:bg-[#100f1e] border-t border-border/20 py-32 relative overflow-hidden">
-        <Reveal className="container mx-auto max-w-3xl text-center relative z-10">
-          <h2 className="text-5xl md:text-[64px] font-bold tracking-tighter text-white mb-8 balanced">Stop guessing.<br />Know your worth.</h2>
-          <p className="text-[19px] text-white/70 font-light leading-relaxed max-w-2xl mx-auto mb-12 balanced">
-            Built for professionals who are done leaving money on the table. It takes 2 minutes. It&apos;s completely free to start.
-          </p>
-          <div className="mb-8">
-            <SpringButton href={siteConfig.appUrl} className="bg-primary text-primary-foreground hover:bg-primary/90 border-0 h-14 px-10 text-[15px] font-bold rounded-full">
-              Upload Your Resume
-            </SpringButton>
-          </div>
-          <div className="text-[13px] text-white/60 font-medium tracking-wide">
-            Cancel Pro anytime <span className="opacity-40 mx-3">·</span> Data deleted on request
-          </div>
-        </Reveal>
       </section>
 
     </main>

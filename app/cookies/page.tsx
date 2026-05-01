@@ -6,6 +6,17 @@ export const metadata: Metadata = {
     "Understand how Zaprill uses cookies for essential functionality, analytics, and advertising.",
   alternates: {
     canonical: "/cookies"
+  },
+  openGraph: {
+    title: "Cookie Policy — Zaprill",
+    description: "Understand how Zaprill uses cookies for essential functionality, analytics, and advertising.",
+    type: "website",
+    images: ["/og"]
+  },
+  twitter: {
+    card: "summary",
+    title: "Cookie Policy — Zaprill",
+    description: "Understand how Zaprill uses cookies for essential functionality, analytics, and advertising."
   }
 };
 

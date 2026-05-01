@@ -9,6 +9,17 @@ export const metadata: Metadata = {
     "Read how Zaprill collects, uses, stores, and protects personal data on the marketing site and app.",
   alternates: {
     canonical: "/privacy"
+  },
+  openGraph: {
+    title: "Privacy Policy — Zaprill",
+    description: "Read how Zaprill collects, uses, stores, and protects your personal data.",
+    type: "website",
+    images: ["/og"]
+  },
+  twitter: {
+    card: "summary",
+    title: "Privacy Policy — Zaprill",
+    description: "Read how Zaprill collects, uses, stores, and protects your personal data."
   }
 };
 

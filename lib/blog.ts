@@ -21,7 +21,9 @@ export type BlogArticle = {
   }>;
 };
 
-export const blogArticles = blogArticlesData as BlogArticle[];
+export const blogArticles = (blogArticlesData as BlogArticle[]).sort(
+  (a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime(),
+);
 
 export function getArticleBySlug(slug: string) {
   return blogArticles.find((article) => article.slug === slug);

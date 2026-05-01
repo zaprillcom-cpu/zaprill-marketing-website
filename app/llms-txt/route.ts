@@ -1,8 +1,16 @@
 import { NextResponse } from "next/server";
 
+import { blogArticles } from "@/lib/blog";
 import { siteConfig } from "@/lib/site";
 
 export function GET() {
+  const blogLinks = blogArticles
+    .map(
+      (article) =>
+        `- [${article.title}](${siteConfig.url}/blog/${article.slug}): ${article.description}`
+    )
+    .join("\n");
+
   const content = `# ${siteConfig.name}
 
 > ${siteConfig.description}
@@ -25,7 +33,9 @@ Zaprill is designed for working professionals in India — engineers, product ma
 - Resume analysis takes under 2 minutes
 - Works with PDF and Word document formats
 - No account required for first analysis
-- Free tier available; Pro tier at ₹99/month or ₹899/year
+- Free tier available with limited searches
+- Pro Quarterly: ₹99 (₹49 launch offer for first 500 users)
+- Pro Yearly: ₹350 (₹175 launch offer for first 1000 users)
 - Data can be deleted on request at any time
 - Based in Mumbai, India
 
@@ -35,16 +45,16 @@ Zaprill is designed for working professionals in India — engineers, product ma
 - App: ${siteConfig.appUrl}
 - About: ${siteConfig.url}/about
 - Blog: ${siteConfig.url}/blog
-- Pricing: ${siteConfig.url}/pricing.md
+- Pricing: ${siteConfig.url}/pricing
 - Contact: ${siteConfig.url}/contact
 - Privacy Policy: ${siteConfig.url}/privacy
 - Terms: ${siteConfig.url}/terms
+- Cookie Policy: ${siteConfig.url}/cookies
+- Disclaimer: ${siteConfig.url}/disclaimer
 
 ## Blog / Resources
 
-- [How to Know If You're Being Underpaid](${siteConfig.url}/blog/how-to-know-if-youre-being-underpaid): Signals of underpayment, benchmarking methods, and negotiation strategies.
-- [Why Your Resume Gets Rejected Before a Human Reads It](${siteConfig.url}/blog/why-your-resume-gets-rejected-before-a-human-reads-it): ATS filters, formatting mistakes, and keyword translation guidance.
-- [The 5 Skills Indian Tech Employers Are Paying a Premium for in 2025](${siteConfig.url}/blog/the-5-skills-indian-tech-employers-are-paying-a-premium-for-in-2025): High-demand skills commanding salary premiums in the Indian tech market.
+${blogLinks}
 `;
 
   return new NextResponse(content, {

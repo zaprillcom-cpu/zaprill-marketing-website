@@ -75,62 +75,64 @@ export default async function ArticlePage(props: ArticlePageProps) {
     0,
   );
 
-  // Enhanced Article schema with all recommended fields
-  const articleSchema = {
+  // Structured data (@graph pattern)
+  const pageSchema = {
     "@context": "https://schema.org",
-    "@type": "Article",
-    headline: article.title,
-    description: article.description,
-    datePublished: article.publishedAt,
-    dateModified: article.updatedAt || article.publishedAt,
-    wordCount,
-    articleSection: article.category,
-    inLanguage: "en",
-    image: article.image ? `${siteConfig.url}${article.image}` : `${siteConfig.url}/og`,
-    author: {
-      "@type": "Organization",
-      name: article.author,
-      url: siteConfig.url,
-    },
-    publisher: {
-      "@type": "Organization",
-      name: siteConfig.name,
-      url: siteConfig.url,
-      logo: {
-        "@type": "ImageObject",
-        url: `${siteConfig.url}/og`,
+    "@graph": [
+      {
+        "@type": "Article",
+        headline: article.title,
+        description: article.description,
+        datePublished: article.publishedAt,
+        dateModified: article.updatedAt || article.publishedAt,
+        wordCount,
+        articleSection: article.category,
+        inLanguage: "en",
+        image: article.image ? `${siteConfig.url}${article.image}` : `${siteConfig.url}/og`,
+        author: {
+          "@type": "Organization",
+          name: article.author,
+          url: siteConfig.url,
+        },
+        publisher: {
+          "@type": "Organization",
+          name: siteConfig.name,
+          url: siteConfig.url,
+          logo: {
+            "@type": "ImageObject",
+            url: `${siteConfig.url}/og`,
+          },
+        },
+        mainEntityOfPage: {
+          "@type": "WebPage",
+          "@id": `${siteConfig.url}/blog/${article.slug}`,
+        },
       },
-    },
-    mainEntityOfPage: {
-      "@type": "WebPage",
-      "@id": `${siteConfig.url}/blog/${article.slug}`,
-    },
-  };
 
-  // BreadcrumbList schema for navigation hierarchy
-  const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
       {
-        "@type": "ListItem",
-        position: 1,
-        name: "Home",
-        item: siteConfig.url,
-      },
-      {
-        "@type": "ListItem",
-        position: 2,
-        name: "Blog",
-        item: `${siteConfig.url}/blog`,
-      },
-      {
-        "@type": "ListItem",
-        position: 3,
-        name: article.title,
-        item: `${siteConfig.url}/blog/${article.slug}`,
-      },
-    ],
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "Home",
+            item: siteConfig.url,
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: "Blog",
+            item: `${siteConfig.url}/blog`,
+          },
+          {
+            "@type": "ListItem",
+            position: 3,
+            name: article.title,
+            item: `${siteConfig.url}/blog/${article.slug}`,
+          },
+        ],
+      }
+    ]
   };
 
   return (
@@ -140,7 +142,7 @@ export default async function ArticlePage(props: ArticlePageProps) {
         type="application/ld+json"
         strategy="afterInteractive"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify([articleSchema, breadcrumbSchema]),
+          __html: JSON.stringify(pageSchema),
         }}
       />
 

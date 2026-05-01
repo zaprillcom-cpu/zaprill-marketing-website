@@ -4,7 +4,7 @@ import { blogArticles } from "@/lib/blog";
 import { siteConfig } from "@/lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const now = new Date("2026-04-14");
+  const now = new Date();
 
   return [
     {
@@ -72,6 +72,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: now,
       changeFrequency: "monthly",
       priority: 0.3
+    },
+    {
+      url: `${siteConfig.url}/llms-txt`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.4
     },
     ...blogArticles.map((article) => ({
       url: `${siteConfig.url}/blog/${article.slug}`,
