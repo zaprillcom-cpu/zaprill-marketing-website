@@ -8,7 +8,20 @@ import { Reveal } from "@/components/reveal";
 export const metadata: Metadata = {
   title: "Contact",
   description: "Contact Zaprill for support, partnerships, press, or general inquiries.",
-  alternates: { canonical: "/contact" }
+  alternates: { canonical: "/contact" },
+  openGraph: {
+    title: "Contact — Zaprill",
+    description: "Get in touch with Zaprill for support, partnerships, press, or general inquiries.",
+    type: "website",
+    url: `${siteConfig.url}/contact`,
+    images: ["/og"]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Contact — Zaprill",
+    description: "Get in touch with Zaprill for support, partnerships, press, or general inquiries.",
+    images: ["/og"]
+  }
 };
 
 export default function ContactPage() {

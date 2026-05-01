@@ -9,6 +9,8 @@ import { cn } from "@/lib/utils";
 import { Reveal } from "@/components/reveal";
 import { NewsletterForm } from "@/components/newsletter-form";
 
+import Script from "next/script";
+
 export const metadata: Metadata = {
   title: "Blog",
   description:
@@ -32,9 +34,37 @@ export const metadata: Metadata = {
   }
 };
 
+const blogFaqs = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How does Zaprill calculate market value?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Zaprill uses a multi-layered data aggregation engine that scans thousands of daily job listings, verified recruiter disclosures, and anonymized market offers to provide real-time compensation benchmarking."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What topics does the Zaprill blog cover?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Our blog focuses on salary negotiation strategy, tech market trends in India, resume optimization for ATS systems, and data-driven career planning."
+      }
+    }
+  ]
+};
+
 export default function BlogPage() {
   return (
     <div className="bg-background transition-colors duration-300">
+      <Script
+        id="blog-faq-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogFaqs) }}
+      />
       <section className="section-padding">
         <div className="container">
           <div className="text-center mb-16">

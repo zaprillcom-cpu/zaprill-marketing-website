@@ -5,6 +5,17 @@ export const metadata: Metadata = {
   description: "Important legal disclaimers regarding salary estimates, data accuracy, and career outcome guarantees on Zaprill.",
   alternates: {
     canonical: "/disclaimer"
+  },
+  openGraph: {
+    title: "Legal Disclaimer — Zaprill",
+    description: "Important legal disclaimers regarding salary estimates, data accuracy, and career outcome guarantees.",
+    type: "website",
+    images: ["/og"]
+  },
+  twitter: {
+    card: "summary",
+    title: "Legal Disclaimer — Zaprill",
+    description: "Important legal disclaimers regarding salary estimates, data accuracy, and career outcome guarantees."
   }
 };
 

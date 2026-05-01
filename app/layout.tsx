@@ -102,43 +102,45 @@ export const metadata: Metadata = {
   }
 };
 
-// Organization + WebSite structured data (global)
-const organizationSchema = {
+// Organization + WebSite structured data (global, @graph pattern)
+const globalSchema = {
   "@context": "https://schema.org",
-  "@type": "Organization",
-  name: siteConfig.name,
-  url: siteConfig.url,
-  logo: `${siteConfig.url}/og`,
-  description: siteConfig.description,
-  email: siteConfig.email,
-  foundingDate: "2025",
-  address: {
-    "@type": "PostalAddress",
-    addressLocality: "Mumbai",
-    addressCountry: "IN"
-  },
-  sameAs: []
-};
-
-const websiteSchema = {
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  name: siteConfig.name,
-  url: siteConfig.url,
-  description: siteConfig.description,
-  publisher: {
-    "@type": "Organization",
-    name: siteConfig.name,
-    url: siteConfig.url
-  },
-  potentialAction: {
-    "@type": "SearchAction",
-    target: {
-      "@type": "EntryPoint",
-      urlTemplate: `${siteConfig.appUrl}?q={search_term_string}`
+  "@graph": [
+    {
+      "@type": "Organization",
+      name: siteConfig.name,
+      url: siteConfig.url,
+      logo: `${siteConfig.url}/og`,
+      description: siteConfig.description,
+      email: siteConfig.email,
+      foundingDate: "2025",
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Mumbai",
+        addressCountry: "IN"
+      },
+      sameAs: []
     },
-    "query-input": "required name=search_term_string"
-  }
+    {
+      "@type": "WebSite",
+      name: siteConfig.name,
+      url: siteConfig.url,
+      description: siteConfig.description,
+      publisher: {
+        "@type": "Organization",
+        name: siteConfig.name,
+        url: siteConfig.url
+      },
+      potentialAction: {
+        "@type": "SearchAction",
+        target: {
+          "@type": "EntryPoint",
+          urlTemplate: `${siteConfig.appUrl}?q={search_term_string}`
+        },
+        "query-input": "required name=search_term_string"
+      }
+    }
+  ]
 };
 
 export default function RootLayout({
@@ -164,7 +166,7 @@ export default function RootLayout({
               type="application/ld+json"
               strategy="afterInteractive"
               dangerouslySetInnerHTML={{
-                __html: JSON.stringify([organizationSchema, websiteSchema])
+                __html: JSON.stringify(globalSchema)
               }}
             />
             <div className="relative flex min-h-screen flex-col">

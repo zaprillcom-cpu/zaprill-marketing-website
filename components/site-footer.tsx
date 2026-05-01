@@ -50,7 +50,7 @@ export function SiteFooter() {
             title=""
             description="Sign up for newsletter and blog updates."
             compact
-            className="w-full lg:ml-auto"
+            className="w-full lg:ml-auto bg-transparent border-none shadow-none p-0"
           />
         </div>
 

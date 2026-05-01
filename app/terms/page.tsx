@@ -9,6 +9,17 @@ export const metadata: Metadata = {
     "Review the terms governing your use of Zaprill, including payments, AI outputs, and acceptable use.",
   alternates: {
     canonical: "/terms"
+  },
+  openGraph: {
+    title: "Terms & Conditions — Zaprill",
+    description: "Review the terms governing your use of Zaprill, including payments, AI outputs, and acceptable use.",
+    type: "website",
+    images: ["/og"]
+  },
+  twitter: {
+    card: "summary",
+    title: "Terms & Conditions — Zaprill",
+    description: "Review the terms governing your use of Zaprill, including payments, AI outputs, and acceptable use."
   }
 };
 
