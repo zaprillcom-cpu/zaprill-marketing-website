@@ -119,7 +119,13 @@ const globalSchema = {
         addressLocality: "Mumbai",
         addressCountry: "IN"
       },
-      sameAs: []
+      sameAs: Object.values(siteConfig.socials),
+      contactPoint: {
+        "@type": "ContactPoint",
+        email: siteConfig.email,
+        contactType: "customer support",
+        availableLanguage: ["English", "Hindi"]
+      }
     },
     {
       "@type": "WebSite",
@@ -139,6 +145,40 @@ const globalSchema = {
         },
         "query-input": "required name=search_term_string"
       }
+    },
+    {
+      "@type": "ProfessionalService",
+      "@id": `${siteConfig.url}/#localbusiness`,
+      name: siteConfig.name,
+      url: siteConfig.url,
+      image: `${siteConfig.url}/og`,
+      description: siteConfig.description,
+      email: siteConfig.email,
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "Mumbai",
+        addressLocality: "Mumbai",
+        addressRegion: "Maharashtra",
+        postalCode: "400001",
+        addressCountry: "IN"
+      },
+      geo: {
+        "@type": "GeoCoordinates",
+        latitude: 19.076,
+        longitude: 72.8777
+      },
+      openingHoursSpecification: {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        opens: "09:00",
+        closes: "18:00"
+      },
+      priceRange: "₹0 - ₹350",
+      sameAs: Object.values(siteConfig.socials),
+      areaServed: {
+        "@type": "Country",
+        name: "India"
+      }
     }
   ]
 };
@@ -149,7 +189,10 @@ export default function RootLayout({
   return (
     <html lang="en" className={satoshi.variable} suppressHydrationWarning>
       <head>
-        <AdsenseScript />
+        {/* DNS prefetch for third-party domains to reduce connection latency */}
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+        <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
+        <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="anonymous" />
       </head>
       <body className="font-sans min-h-screen bg-background text-foreground antialiased">
         <GoogleTagManager />
@@ -161,10 +204,10 @@ export default function RootLayout({
         >
           <TooltipProvider delay={100}>
             <GoogleAnalytics />
+            <AdsenseScript />
             <Script
               id="organization-schema"
               type="application/ld+json"
-              strategy="afterInteractive"
               dangerouslySetInnerHTML={{
                 __html: JSON.stringify(globalSchema)
               }}

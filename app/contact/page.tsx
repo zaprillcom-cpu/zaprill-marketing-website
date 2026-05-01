@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
-import { Mail, Clock, MapPin, ArrowRight } from "lucide-react";
+import { Mail, Clock, MapPin, ArrowRight, ExternalLink } from "lucide-react";
 
 import { ContactForm } from "@/components/contact-form";
 import { siteConfig } from "@/lib/site";
 import { Reveal } from "@/components/reveal";
+import { Map } from "@/components/ui/map";
 
 export const metadata: Metadata = {
   title: "Contact",
-  description: "Contact Zaprill for support, partnerships, press, or general inquiries.",
+  description: "Contact Zaprill for support, partnerships, press, or general inquiries. Email, call, or visit us in Mumbai.",
   alternates: { canonical: "/contact" },
   openGraph: {
     title: "Contact — Zaprill",
@@ -58,13 +59,13 @@ export default function ContactPage() {
                     <div>
                       <h3 className="text-sm font-bold uppercase tracking-widest text-muted-foreground mb-1">Email Us</h3>
                       <p className="text-lg font-bold text-foreground hover:text-primary transition-colors">
-                        <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>
+                        <a href={`mailto:${siteConfig.email}`} aria-label="Send email to Zaprill">{siteConfig.email}</a>
                       </p>
                     </div>
                   </div>
                 </Reveal>
 
-                <Reveal delay={0.2}>
+                <Reveal delay={0.15}>
                   <div className="group flex items-start gap-5 p-2 rounded-2xl transition-all">
                     <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-muted/50 border border-border/50 text-foreground transition-all group-hover:bg-primary group-hover:text-primary-foreground">
                       <Clock className="h-5 w-5" />
@@ -84,6 +85,15 @@ export default function ContactPage() {
                     <div>
                       <h3 className="text-sm font-bold uppercase tracking-widest text-muted-foreground mb-1">Location</h3>
                       <p className="text-lg font-bold text-foreground">Mumbai, India</p>
+                      <a
+                        href="https://maps.google.com/?q=Mumbai,India"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 text-sm text-primary hover:underline underline-offset-4 mt-1 font-medium"
+                        aria-label="View Zaprill on Google Maps"
+                      >
+                        View on Google Maps <ExternalLink className="h-3 w-3" />
+                      </a>
                     </div>
                   </div>
                 </Reveal>
@@ -99,14 +109,26 @@ export default function ContactPage() {
               </Reveal>
             </div>
 
-            {/* Right Column: Form */}
-            <div className="relative">
+            {/* Right Column: Form + Map */}
+            <div className="relative space-y-8">
               <Reveal delay={0.2}>
                 <div className="absolute -inset-1 bg-gradient-to-tr from-primary/20 via-primary/5 to-transparent rounded-[40px] blur-3xl opacity-30"></div>
                 <div className="relative rounded-[32px] border border-border bg-card/50 backdrop-blur-sm p-2 shadow-2xl">
                   <div className="rounded-[24px] bg-background p-8 md:p-12 border border-border/50">
                     <ContactForm />
                   </div>
+                </div>
+              </Reveal>
+
+              {/* Map component */}
+              <Reveal delay={0.3}>
+                <div className="rounded-2xl border border-border overflow-hidden bg-card h-[280px]">
+                  <Map 
+                    latitude={19.0760} 
+                    longitude={72.8777} 
+                    zoom={11} 
+                    markerTitle="Zaprill Office"
+                  />
                 </div>
               </Reveal>
             </div>
