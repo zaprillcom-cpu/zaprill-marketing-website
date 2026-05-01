@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Script from "next/script";
+import dynamic from "next/dynamic";
 import {
   CircleDollarSign,
   SearchX,
@@ -14,11 +15,13 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { siteConfig } from "@/lib/site";
 import { Reveal } from "@/components/reveal";
-import { Float } from "@/components/float";
-import { FaqAccordion } from "@/components/faq-accordion";
-import { NumberTicker } from "@/components/number-ticker";
-import { Typewriter } from "@/components/typewriter";
 import { SpringButton } from "@/components/spring-button";
+
+// Lazy-load framer-motion heavy components to reduce initial JS and TBT
+const Float = dynamic(() => import("@/components/float").then(m => ({ default: m.Float })));
+const FaqAccordion = dynamic(() => import("@/components/faq-accordion").then(m => ({ default: m.FaqAccordion })));
+const NumberTicker = dynamic(() => import("@/components/number-ticker").then(m => ({ default: m.NumberTicker })));
+const Typewriter = dynamic(() => import("@/components/typewriter").then(m => ({ default: m.Typewriter })));
 
 export const metadata: Metadata = {
   alternates: {

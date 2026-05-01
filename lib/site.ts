@@ -1,9 +1,12 @@
 export const siteConfig = {
   name: "Zaprill",
   description:
-    "AI-powered career platform that helps professionals understand salary potential, job matches, and skill gaps in minutes.",
+    "Career intelligence platform that analyzes resumes to reveal salary potential, identify skill gaps, and detect ATS filtering issues.",
   url: "https://www.zaprill.com",
   appUrl: "https://app.zaprill.com",
-  email: "hello@zaprill.com",
-  location: "Mumbai, India"
+  email: "contact@zaprill.com",
+  location: "Mumbai, India",
+  socials: {
+    youtube: "https://www.youtube.com/@Zaprill-jobs"
+  }
 };
