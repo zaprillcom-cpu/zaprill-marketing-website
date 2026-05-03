@@ -12,7 +12,6 @@ import Image from "next/image";
 import { Reveal } from "@/components/reveal";
 import { SectionHeading } from "@/components/section-heading";
 import { Card } from "@/components/ui/card";
-import { NumberTicker } from "@/components/number-ticker";
 import { Float } from "@/components/float";
 import { Badge } from "@/components/ui/badge";
 
@@ -40,12 +39,7 @@ export const metadata: Metadata = {
   }
 };
 
-const stats = [
-  { label: "Active Listings", value: 12000, suffix: "+", icon: Database },
-  { label: "Daily Updates", value: 24, suffix: "h", icon: Rocket },
-  { label: "Career Paths", value: 150, suffix: "+", icon: Target },
-  { label: "Global Reach", value: 45, suffix: "%", icon: Globe2 },
-];
+
 
 const values = [
   {
@@ -67,9 +61,9 @@ const values = [
 
 export default function AboutPage() {
   return (
-    <main className="bg-background transition-colors duration-300">
+    <main className="bg-[var(--home-surface-1)] transition-colors duration-300">
       {/* Hero Section */}
-      <section className="relative pt-24 pb-32 overflow-hidden border-b border-border/10">
+      <section className="relative pt-24 pb-32 overflow-hidden border-b border-border/10 bg-[var(--home-surface-1)]">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[500px] bg-primary/5 blur-[120px] rounded-full pointer-events-none" />
         
         <div className="container relative z-10">
@@ -137,27 +131,10 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section className="py-24 bg-muted/20 border-b border-border/10">
-        <div className="container">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {stats.map((stat, idx) => (
-              <Reveal key={stat.label} delay={idx * 0.1} className="text-center">
-                <div className="mb-4 flex justify-center">
-                  <stat.icon className="h-6 w-6 text-primary/60" />
-                </div>
-                <div className="text-4xl md:text-5xl font-bold tracking-tighter text-foreground mb-2">
-                  <NumberTicker value={stat.value} suffix={stat.suffix} />
-                </div>
-                <div className="text-xs uppercase tracking-widest font-bold text-muted-foreground">{stat.label}</div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
+
 
       {/* Values Section */}
-      <section className="py-32">
+      <section className="py-32 bg-[var(--home-surface-2)]">
         <div className="container">
           <Reveal>
             <SectionHeading
