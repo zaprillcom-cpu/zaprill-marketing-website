@@ -9,16 +9,7 @@ const footerGroups = [
     title: "Product",
     links: [
       { label: "Open App", href: siteConfig.appUrl },
-      { label: "Pricing", href: "/pricing" },
-      { label: "Demo", href: "/demo" }
-    ]
-  },
-  {
-    title: "Company",
-    links: [
-      { label: "About", href: "/about" },
-      { label: "Blog", href: "/blog" },
-      { label: "Contact", href: "/contact" }
+      { label: "Pricing", href: "/pricing" }
     ]
   },
   {
@@ -28,6 +19,14 @@ const footerGroups = [
       { label: "Terms & Conditions", href: "/terms" },
       { label: "Cookie Policy", href: "/cookies" },
       { label: "Legal Disclaimer", href: "/disclaimer" }
+    ]
+  },
+  {
+    title: "Company",
+    links: [
+      { label: "About", href: "/about" },
+      { label: "Blog", href: "/blog" },
+      { label: "Contact", href: "/contact" }
     ]
   }
 ];
@@ -47,16 +46,16 @@ export function SiteFooter() {
     <footer className="border-t border-border/20 bg-[var(--footer-bg)] text-foreground dark:border-white/10 dark:text-white">
       <div className="container py-10">
         <div className="mb-8 grid items-center gap-6 lg:grid-cols-[1fr_minmax(560px,640px)]">
-          <div className="text-center md:text-left space-y-4">
-            <div className="flex justify-center md:justify-start">
+          <div className="text-left space-y-4">
+            <div className="flex justify-start">
               <Logo />
             </div>
-            <p className="max-w-xs mx-auto md:mx-0 text-[15px] leading-relaxed text-muted-foreground/85 font-light dark:text-white/65">
+            <p className="max-w-xs text-[15px] leading-relaxed text-muted-foreground/85 font-light dark:text-white/65">
               Know Your Worth. Get the Job.
             </p>
 
             {/* Social Media Links */}
-            <div className="flex justify-center md:justify-start gap-3 pt-2">
+            <div className="flex justify-start gap-3 pt-2">
               {socialLinks.map((social) => (
                 <a
                   key={social.label}
@@ -81,29 +80,28 @@ export function SiteFooter() {
         </div>
 
         {/* Link groups — 2-col on mobile, 4-col on md+ */}
-        <div className="grid grid-cols-2 gap-6 md:grid-cols-4">
-          {footerGroups.map((group, idx) => (
-            <div key={group.title} className={`space-y-3 text-center md:text-left ${idx === footerGroups.length - 1 ? "col-span-2 md:col-span-1" : ""}`}>
-              <h2 className="text-base font-semibold text-foreground dark:text-white">{group.title}</h2>
-              <ul className="space-y-2.5">
-                {group.links.map((link) => (
-                  <li key={link.href}>
-                    <Link
-                      href={link.href}
-                      className="text-[15px] text-muted-foreground/80 font-light transition-colors hover:text-foreground dark:text-white/65 dark:hover:text-white"
-                    >
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+        <div className="grid grid-cols-2 gap-x-8 gap-y-12 md:grid-cols-4">
+          {/* 1. Product */}
+          <div className="space-y-4 text-center md:text-left">
+            <h2 className="text-base font-bold text-foreground dark:text-white tracking-tight">{footerGroups[0].title}</h2>
+            <ul className="space-y-3">
+              {footerGroups[0].links.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="text-[15px] text-muted-foreground/80 font-light transition-colors hover:text-foreground dark:text-white/65 dark:hover:text-white"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-          {/* Contact column */}
-          <div className="space-y-3 text-center md:text-left">
-            <h2 className="text-base font-semibold text-foreground dark:text-white">Contact</h2>
-            <ul className="space-y-2.5">
+          {/* 2. Contact (Swapped with Company) */}
+          <div className="space-y-4 text-center md:text-left">
+            <h2 className="text-base font-bold text-foreground dark:text-white tracking-tight">Contact</h2>
+            <ul className="space-y-3">
               <li>
                 <a
                   href={`mailto:${siteConfig.email}`}
@@ -118,6 +116,40 @@ export function SiteFooter() {
                   {siteConfig.location}
                 </span>
               </li>
+            </ul>
+          </div>
+
+          {/* 3. Legal */}
+          <div className="space-y-4 text-center md:text-left">
+            <h2 className="text-base font-bold text-foreground dark:text-white tracking-tight">{footerGroups[1].title}</h2>
+            <ul className="space-y-3">
+              {footerGroups[1].links.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="text-[15px] text-muted-foreground/80 font-light transition-colors hover:text-foreground dark:text-white/65 dark:hover:text-white"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* 4. Company (Swapped with Contact) */}
+          <div className="space-y-4 text-center md:text-left">
+            <h2 className="text-base font-bold text-foreground dark:text-white tracking-tight">{footerGroups[2].title}</h2>
+            <ul className="space-y-3">
+              {footerGroups[2].links.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="text-[15px] text-muted-foreground/80 font-light transition-colors hover:text-foreground dark:text-white/65 dark:hover:text-white"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
         </div>

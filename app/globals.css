@@ -62,9 +62,9 @@
   --footer-bg: oklch(0.99 0.004 282);
 
   /* Home section progression (light mode) */
-  --home-surface-1: oklch(0.972 0.008 282);
-  --home-surface-2: oklch(0.958 0.011 282);
-  --home-surface-3: oklch(0.944 0.014 282);
+  --home-surface-1: #ffffff;
+  --home-surface-2: oklch(0.985 0.005 282);
+  --home-surface-3: oklch(0.975 0.008 282);
 
   /* Cards / Popovers */
   --card: oklch(1 0 0);
@@ -151,10 +151,10 @@
   --nav-bg: #0A0A11;
   --footer-bg: #0A0A11;
 
-  /* Home section progression (dark mode) */
+  /* Home section progression (dark mode) - Alternating pattern */
   --home-surface-1: #100f1e;
-  --home-surface-2: #161428;
-  --home-surface-3: #1c1930;
+  --home-surface-2: #1c1b36;
+  --home-surface-3: #100f1e;
 
   --card: oklch(0.17 0.015 286);
   --card-foreground: oklch(0.98 0.01 286);

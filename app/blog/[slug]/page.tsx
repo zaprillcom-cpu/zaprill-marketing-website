@@ -2,11 +2,16 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { getArticleBySlug, blogArticles } from "@/lib/blog";
+import { getArticleBySlug, blogArticles, getRecommendedArticles } from "@/lib/blog";
 import { siteConfig } from "@/lib/site";
 import Image from "next/image";
 import Link from "next/link";
 import Script from "next/script";
+import { BlogShareButtons } from "@/components/blog-share-buttons";
+import { Reveal } from "@/components/reveal";
+import { SectionHeading } from "@/components/section-heading";
+import { cn } from "@/lib/utils";
+import { Card } from "@/components/ui/card";
 
 type ArticlePageProps = {
   params: Promise<{
@@ -61,6 +66,8 @@ export default async function ArticlePage(props: ArticlePageProps) {
   if (!article) {
     notFound();
   }
+
+  const recommendations = getRecommendedArticles(params.slug);
 
   let paragraphCount = 0;
 
@@ -173,33 +180,42 @@ export default async function ArticlePage(props: ArticlePageProps) {
           <h1 className="mt-8 text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1]">{article.title}</h1>
           <p className="mt-6 text-xl md:text-2xl text-muted-foreground/90 max-w-3xl leading-relaxed">{article.description}</p>
           
-          <div className="mt-10 flex flex-wrap items-center gap-4">
-            {article.authorImage && (
-              <Image src={article.authorImage} alt={article.author} width={48} height={48} className="rounded-full shadow-sm" />
-            )}
-            <div>
-              <p className="font-bold text-foreground">{article.author}</p>
-              <div className="flex items-center gap-2 text-sm text-muted-foreground mt-1">
-                <time dateTime={article.publishedAt}>
-                  {new Date(article.publishedAt).toLocaleDateString("en-IN", {
-                    month: "short",
-                    day: "numeric",
-                    year: "numeric",
-                  })}
-                </time>
-                <span aria-hidden="true">·</span>
-                {article.readTime && <span>{article.readTime}</span>}
+          <div className="mt-10 flex flex-wrap items-center justify-between gap-6 border-y border-border/50 py-8">
+            <div className="flex items-center gap-4">
+              {article.authorImage && (
+                <Image src={article.authorImage} alt={article.author} width={48} height={48} className="rounded-full shadow-sm" />
+              )}
+              <div>
+                <p className="font-bold text-foreground">{article.author}</p>
+                <div className="flex items-center gap-2 text-sm text-muted-foreground mt-1">
+                  <time dateTime={article.publishedAt}>
+                    {new Date(article.publishedAt).toLocaleDateString("en-IN", {
+                      month: "short",
+                      day: "numeric",
+                      year: "numeric",
+                    })}
+                  </time>
+                  <span aria-hidden="true">·</span>
+                  {article.readTime && <span>{article.readTime}</span>}
+                </div>
               </div>
             </div>
+            <BlogShareButtons 
+              url={`/blog/${article.slug}`} 
+              title={article.title} 
+              variant="outline" 
+              size="default" 
+            />
           </div>
 
           {article.image && (
-            <div className="mt-12 md:mt-16 overflow-hidden rounded-3xl border border-border relative aspect-[2/1] md:aspect-[21/9] bg-muted shadow-md">
+            <div className="mt-12 md:mt-16">
               <Image
                 src={article.image}
                 alt={article.title}
-                fill
-                className="object-cover"
+                width={1200}
+                height={630}
+                className="w-full h-auto rounded-[2rem] border border-border shadow-md"
                 priority
               />
             </div>
@@ -228,21 +244,44 @@ export default async function ArticlePage(props: ArticlePageProps) {
                     </a>
                   ))}
                 </nav>
+                
+                <div className="mt-12 pt-8 border-t border-border/50">
+                  <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-muted-foreground/60 mb-5">
+                    Share this article
+                  </p>
+                  <BlogShareButtons 
+                    url={`/blog/${article.slug}`} 
+                    title={article.title} 
+                    className="flex-col items-start gap-3" 
+                    variant="ghost"
+                    showLabel={true}
+                  />
+                </div>
               </div>
             </aside>
 
             {/* Main Content Body */}
             <div className="min-w-0 flex-1">
-              <div className="space-y-12 max-w-3xl">
+              <div className="space-y-16 max-w-3xl">
                 {article.sections.map((section, idx) => (
-                  <section key={section.heading} id={`section-${idx}`} className="scroll-mt-28 space-y-6">
-                    <h2 className="text-3xl font-bold tracking-tight text-foreground">{section.heading}</h2>
+                  <section key={section.heading} id={`section-${idx}`} className="scroll-mt-28 group/section">
+                    <div className="flex items-center justify-between gap-4 mb-6">
+                      <h2 className="text-3xl font-bold tracking-tight text-foreground">{section.heading}</h2>
+                      <BlogShareButtons 
+                        url={`/blog/${article.slug}#section-${idx}`} 
+                        title={`${article.title} - ${section.heading}`} 
+                        variant="ghost" 
+                        size="icon" 
+                        showLabel={false}
+                        className="opacity-0 group-hover/section:opacity-100 transition-opacity"
+                      />
+                    </div>
                     <div className="space-y-6 text-[18px] leading-[1.8] text-foreground/90 font-medium">
                       {section.paragraphs.map((paragraph) => {
                         paragraphCount += 1;
                         return (
                           <div key={`${section.heading}-${paragraph.slice(0, 24)}`}>
-                            <p>{paragraph}</p>
+                            <p dangerouslySetInnerHTML={{ __html: paragraph }} />
                           </div>
                         );
                       })}
@@ -290,6 +329,66 @@ export default async function ArticlePage(props: ArticlePageProps) {
           </div>
         </div>
       </section>
+
+      {/* Recommendations Section */}
+      {recommendations.length > 0 && (
+        <section className="py-24 bg-muted/30 border-t border-border/50">
+          <div className="container">
+            <Reveal>
+              <SectionHeading
+                pill="Keep Reading"
+                title="Recommended for you"
+                description="More insights to help you navigate your career and market value."
+              />
+            </Reveal>
+
+            <div className="grid gap-8 md:grid-cols-3 mt-16">
+              {recommendations.map((item) => (
+                <Reveal key={item.slug}>
+                  <Card className="h-full group p-0 overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-all hover:shadow-md flex flex-col">
+                    <div className={cn("relative w-full aspect-[16/9] bg-muted overflow-hidden", item.tintClass)}>
+                      {item.image && (
+                        <Image
+                          src={item.image}
+                          alt={item.title}
+                          fill
+                          className="object-cover transition-transform duration-500 group-hover:scale-105"
+                          sizes="(max-width: 768px) 100vw, 33vw"
+                        />
+                      )}
+                    </div>
+                    <div className="p-6 flex-1 flex flex-col">
+                      <Badge variant="secondary" className={cn("rounded-full px-3 py-1 w-fit mb-4", item.badgeClass)}>
+                        {item.category}
+                      </Badge>
+                      <h4 className="text-xl font-bold tracking-tight leading-[1.35] mb-3">
+                        <Link href={`/blog/${item.slug}`} className="hover:text-primary transition-colors">
+                          {item.title}
+                        </Link>
+                      </h4>
+                      <p className="text-sm leading-relaxed text-muted-foreground/80 line-clamp-2 mb-6">
+                        {item.description}
+                      </p>
+                      <div className="mt-auto pt-4 border-t border-border flex items-center justify-between">
+                         <span className="text-xs font-medium text-muted-foreground">
+                           {new Date(item.publishedAt).toLocaleDateString("en-IN", { month: "short", day: "numeric", year: "numeric" })}
+                         </span>
+                         <BlogShareButtons 
+                           url={`/blog/${item.slug}`} 
+                           title={item.title} 
+                           variant="ghost" 
+                           size="sm" 
+                           showLabel={false}
+                         />
+                      </div>
+                    </div>
+                  </Card>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
     </article>
   );
 }

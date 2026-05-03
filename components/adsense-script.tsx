@@ -8,12 +8,10 @@ export function AdsenseScript() {
   }
 
   return (
-    <Script
-      id="adsense-script"
+    <script
       async
       crossOrigin="anonymous"
       src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adsenseClient}`}
-      strategy="lazyOnload"
     />
   );
 }

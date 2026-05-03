@@ -15,12 +15,10 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { siteConfig } from "@/lib/site";
 import { Reveal } from "@/components/reveal";
-import { SpringButton } from "@/components/spring-button";
+
 
 // Lazy-load framer-motion heavy components to reduce initial JS and TBT
-const Float = dynamic(() => import("@/components/float").then(m => ({ default: m.Float })));
 const FaqAccordion = dynamic(() => import("@/components/faq-accordion").then(m => ({ default: m.FaqAccordion })));
-const NumberTicker = dynamic(() => import("@/components/number-ticker").then(m => ({ default: m.NumberTicker })));
 
 export const metadata: Metadata = {
   alternates: {
@@ -46,23 +44,27 @@ export const metadata: Metadata = {
 const valueProps = [
   {
     icon: SearchX,
-    title: "Market Blindness",
-    body: "Most professionals apply without knowing which companies are actually paying top-tier for their exact profile."
+    title: "Stop Flying Blind.",
+    body: "Find out which companies are actually paying top-tier for your exact profile, based on live market data. We track thousands of real-time data points across global tech hubs to ensure you never settle for less than your true worth in today's shifting economy.",
+    className: "lg:col-span-2 lg:row-span-1"
   },
   {
     icon: CircleDollarSign,
-    title: "Salary Intelligence",
-    body: "Real-time compensation data matched against your technical stack. Know your number before you walk into any negotiation."
+    title: "Know Your Number.",
+    body: "Negotiate with total confidence using real-time compensation data matched to your stack.",
+    className: "lg:col-span-1 lg:row-span-1"
   },
   {
     icon: Fingerprint,
-    title: "ATS Failure Detection",
-    body: "We simulate employer ATS filters on your resume to flag exactly what's causing silent rejections before you apply."
+    title: "Beat the Bots.",
+    body: "Simulate employer ATS filters to flag exactly what's causing silent rejections before you apply.",
+    className: "lg:col-span-1 lg:row-span-1"
   },
   {
     icon: Target,
-    title: "Skill Gap Mapping",
-    body: "We identify the exact two or three skills blocking your next salary band and provide a path to close them."
+    title: "Map the Gap.",
+    body: "Identify the exact skills blocking your next salary band and get a clear path to close them. From high-level architectural patterns to niche cloud technologies, we show you exactly which credentials will trigger a raise and how to acquire them efficiently.",
+    className: "lg:col-span-2 lg:row-span-1"
   }
 ];
 
@@ -229,7 +231,7 @@ export default function HomePage() {
       </div>
 
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-[var(--home-surface-1)] pt-20 pb-28">
+      <section className="relative overflow-hidden bg-[var(--home-surface-1)] pt-10 pb-14">
         <div className="container mx-auto relative z-10 grid items-center gap-16 lg:grid-cols-[1.1fr_0.9fr] max-w-[1200px]">
           <div className="max-w-2xl text-center lg:text-left animate-in fade-in slide-in-from-bottom-4 duration-700 ease-out fill-mode-both">
             <h1 className="text-5xl md:text-[68px] leading-[1.05] tracking-tighter text-foreground mb-6">
@@ -248,12 +250,6 @@ export default function HomePage() {
               <a href={siteConfig.appUrl} className="inline-flex items-center justify-center bg-primary text-primary-foreground transition-all hover:opacity-90 border-0 h-14 px-8 text-base font-semibold rounded-full min-w-[200px] hover:scale-105 duration-200">
                 Upload Resume — Free
               </a>
-              <a
-                href="#report"
-                className="inline-flex items-center justify-center rounded-full border border-border bg-background/50 backdrop-blur-md h-14 px-8 text-base font-medium text-muted-foreground transition-all hover:bg-accent hover:text-accent-foreground active:scale-[0.97]"
-              >
-                See a Sample Report
-              </a>
             </div>
 
             <div className="text-[13px] text-muted-foreground font-medium tracking-wide">
@@ -261,126 +257,121 @@ export default function HomePage() {
             </div>
           </div>
 
-          <Reveal delay={0.2} className="relative w-full max-w-md mx-auto lg:ml-auto">
-            <Float>
-              <div className="rounded-2xl border border-border bg-card/80 p-1.5 backdrop-blur-[30px] shadow-2xl">
-                <div className="rounded-[14px] bg-card overflow-hidden border border-border relative">
-                  {/* Structural highlight */}
-                  <div className="absolute inset-0 ring-1 ring-inset ring-foreground/5 rounded-[14px]"></div>
+          <Reveal delay={0.2} className="relative w-full max-w-[380px] mx-auto lg:ml-auto">
+            <div className="rounded-2xl border border-border bg-card/80 p-1 backdrop-blur-[30px] shadow-2xl">
+              <div className="rounded-[14px] bg-card overflow-hidden border border-border relative">
+                {/* Structural highlight */}
+                <div className="absolute inset-0 ring-1 ring-inset ring-foreground/5 rounded-[14px]"></div>
 
-                  <div className="relative flex items-center justify-between border-b border-border px-5 py-3.5 bg-muted/30">
-                    <div className="text-xs font-semibold text-muted-foreground tracking-wide uppercase">System Output</div>
-                    <div className="flex gap-2 items-center">
-                      <span className="relative flex h-2 w-2 mr-1">
-                        <span className="animate-pulse absolute inline-flex h-full w-full rounded-full bg-foreground opacity-80"></span>
-                      </span>
-                      <span className="text-[10px] uppercase font-mono tracking-widest text-primary font-bold ml-1">Live</span>
+                <div className="relative flex items-center justify-between border-b border-border px-5 py-3.5 bg-muted/30">
+                  <div className="text-xs font-semibold text-muted-foreground tracking-wide uppercase">System Output</div>
+                  <div className="flex gap-2 items-center">
+                    <span className="relative flex h-2 w-2 mr-1">
+                      <span className="animate-pulse absolute inline-flex h-full w-full rounded-full bg-foreground opacity-80"></span>
+                    </span>
+                    <span className="text-[10px] uppercase font-mono tracking-widest text-primary font-bold ml-1">Live</span>
+                  </div>
+                </div>
+
+                <div className="relative p-5 px-6">
+                  <div className="mb-6">
+                    <div className="text-lg font-bold tracking-tight text-foreground">Full-Stack Engineer</div>
+                    <div className="text-xs text-muted-foreground font-medium mt-1">Based in Mumbai</div>
+                  </div>
+
+                  <div className="space-y-4 text-[13px] mb-8 tracking-wide font-medium">
+                    <div className="flex justify-between border-b border-border pb-3">
+                      <span className="text-muted-foreground">Current salary</span>
+                      <span className="text-foreground">₹14,00,000</span>
+                    </div>
+
+                    <div className="flex justify-between border-b border-border pb-3">
+                      <span className="text-muted-foreground">Market average</span>
+                      <span className="text-foreground">₹19,80,000</span>
+                    </div>
+
+                    <div className="flex justify-between border-b border-border pb-3">
+                      <span className="text-muted-foreground">Your potential</span>
+                      <span className="text-foreground font-bold">₹24,50,000</span>
+                    </div>
+
+                    <div className="flex justify-between pb-1 pt-1">
+                      <span className="text-foreground font-bold">Gap identified</span>
+                      <span className="text-primary font-bold">+₹10,50,000 / yr</span>
                     </div>
                   </div>
 
-                  <div className="relative p-6 px-7">
-                    <div className="mb-8">
-                      <div className="text-[22px] font-bold tracking-tight text-foreground">Full-Stack Engineer</div>
-                      <div className="text-sm text-muted-foreground font-medium mt-1">Based in Mumbai</div>
+                  <div className="bg-muted/50 rounded-xl p-4 text-[11px] text-foreground mt-2">
+                    <div className="flex items-center gap-2 mb-5">
+                      <Fingerprint className="h-4 w-4 text-muted-foreground" />
+                      <span className="text-muted-foreground font-bold tracking-widest uppercase text-[10px]">Skill Check</span>
                     </div>
-
-                    <div className="space-y-4 text-[13px] mb-8 tracking-wide font-medium">
-                      <div className="flex justify-between border-b border-border pb-3">
-                        <span className="text-muted-foreground">Current salary</span>
-                        <span className="text-foreground"><NumberTicker value={1400000} prefix="₹" delay={0.3} /></span>
-                      </div>
-
-                      <div className="flex justify-between border-b border-border pb-3">
-                        <span className="text-muted-foreground">Market average</span>
-                        <span className="text-foreground"><NumberTicker value={1980000} prefix="₹" delay={0.6} /></span>
-                      </div>
-
-                      <div className="flex justify-between border-b border-border pb-3">
-                        <span className="text-muted-foreground">Your potential</span>
-                        <span className="text-foreground font-bold"><NumberTicker value={2450000} prefix="₹" delay={0.9} /></span>
-                      </div>
-
-                      <div className="flex justify-between pb-1 pt-1">
-                        <span className="text-foreground font-bold">Gap identified</span>
-                        <span className="text-primary font-bold"><NumberTicker value={1050000} prefix="+₹" suffix=" / yr" delay={1.4} /></span>
-                      </div>
-                    </div>
-
-                    <div className="bg-muted/50 rounded-xl p-5 text-xs text-foreground mt-2">
-                      <div className="flex items-center gap-2 mb-5">
-                        <Fingerprint className="h-4 w-4 text-muted-foreground" />
-                        <span className="text-muted-foreground font-bold tracking-widest uppercase text-[10px]">Skill Check</span>
-                      </div>
-                      <div className="space-y-3.5">
-                        <div className="flex gap-4 items-center">
-                          <span className="text-foreground text-sm font-bold opacity-70">✓</span>
-                          <div className="flex flex-col">
-                            <span className="text-foreground font-semibold">React.js</span>
-                            <span className="text-muted-foreground">Strong</span>
-                          </div>
+                    <div className="space-y-3.5">
+                      <div className="flex gap-4 items-center">
+                        <span className="text-foreground text-sm font-bold opacity-70">✓</span>
+                        <div className="flex flex-col">
+                          <span className="text-foreground font-semibold">React.js</span>
+                          <span className="text-muted-foreground">Strong</span>
                         </div>
-                        <div className="flex gap-4 items-center">
-                          <span className="text-foreground text-sm font-bold opacity-70">✓</span>
-                          <div className="flex flex-col">
-                            <span className="text-foreground font-semibold">Node OS</span>
-                            <span className="text-muted-foreground">Strong</span>
-                          </div>
+                      </div>
+                      <div className="flex gap-4 items-center">
+                        <span className="text-foreground text-sm font-bold opacity-70">✓</span>
+                        <div className="flex flex-col">
+                          <span className="text-foreground font-semibold">Node OS</span>
+                          <span className="text-muted-foreground">Strong</span>
                         </div>
-                        <div className="flex gap-4 items-start">
-                          <span className="text-muted-foreground text-sm font-bold">−</span>
-                          <div className="flex flex-col">
-                            <span className="text-foreground font-semibold">System Design</span>
-                            <p className="text-muted-foreground mt-1.5 leading-relaxed">Missing structural experience. Blocking ₹4L+ mid-level roles.</p>
-                          </div>
+                      </div>
+                      <div className="flex gap-4 items-start">
+                        <span className="text-muted-foreground text-sm font-bold">−</span>
+                        <div className="flex flex-col">
+                          <span className="text-foreground font-semibold">System Design</span>
+                          <p className="text-muted-foreground mt-1.5 leading-relaxed">Missing structural experience. Blocking ₹4L+ mid-level roles.</p>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </Float>
-          </Reveal>
-        </div>
-      </section>
-      {/* Trust Bar */}
-      <section className="border-y border-border/50 bg-background/50 py-10 backdrop-blur-sm">
-        <div className="container mx-auto max-w-[1200px] px-6">
-          <div className="flex flex-col items-center justify-between gap-8 md:flex-row">
-            <span className="text-xs font-bold uppercase tracking-[0.2em] text-muted-foreground/60">
-              Trusted by professionals at
-            </span>
-            <div className="flex flex-wrap justify-center gap-12 opacity-40 grayscale transition-all hover:grayscale-0">
-              {["Google", "Microsoft", "Meta", "Amazon", "Netflix"].map((brand) => (
-                <span key={brand} className="text-xl font-bold tracking-tighter text-foreground">
-                  {brand}
-                </span>
-              ))}
             </div>
-          </div>
+          </Reveal>
         </div>
       </section>
 
+
       {/* Platform Capabilities */}
-      <section className="bg-[var(--home-surface-2)] py-32">
+      <section className="bg-[var(--home-surface-2)] py-16 relative overflow-hidden">
+        <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px] -z-10" />
         <div className="container mx-auto max-w-[1200px]">
           <Reveal>
             <SectionHeading
+              pill="Intelligence"
+              pillClassName="bg-muted text-foreground border-0 uppercase tracking-widest text-[10px] font-bold"
               title="Career intelligence that actually works."
               description="Stop leaving money on the table. Zaprill gives you the data employers use, finally in your hands."
-              className="mb-20 text-center md:text-left [&_h2]:text-foreground [&_h2]:text-4xl md:[&_h2]:text-[48px]"
+              className="mb-32 text-center [&_h2]:tracking-tighter [&_h2]:text-4xl md:[&_h2]:text-[48px] [&_p]:text-[18px] [&_p]:font-light [&_p]:mt-6"
+              align="center"
             />
           </Reveal>
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {valueProps.map((item, idx) => {
               const Icon = item.icon;
               return (
-                <Reveal key={item.title} delay={idx * 0.1}>
-                  <Card className="h-full p-8 rounded-2xl border-border bg-card hover:bg-accent transition-all duration-300">
-                    <div className="h-10 w-10 flex items-center justify-center mb-8">
-                      <Icon className="h-6 w-6 text-primary" strokeWidth={1.5} />
+                <Reveal key={item.title} delay={idx * 0.1} className={item.className}>
+                  <Card className="group h-full p-6 md:p-8 rounded-3xl border-border bg-card/50 backdrop-blur-sm hover:bg-card hover:shadow-2xl hover:shadow-primary/5 transition-all duration-500 relative overflow-hidden">
+                    {/* Background Blob */}
+                    <div className="absolute -right-8 -top-8 h-32 w-32 rounded-full bg-primary/5 blur-3xl group-hover:bg-primary/10 transition-colors z-0" />
+                    
+                    <div className="flex flex-col h-full justify-between gap-8 relative z-10">
+                      <div>
+                        <div className="h-10 w-10 flex items-center justify-center rounded-xl bg-primary/10 text-primary mb-6 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500">
+                          <Icon className="h-5 w-5" strokeWidth={1.5} />
+                        </div>
+                        <h3 className="text-xl font-bold tracking-tight text-foreground mb-3 leading-tight">{item.title}</h3>
+                        <p className="text-muted-foreground text-sm leading-relaxed font-light balanced">{item.body}</p>
+                      </div>
+                      
+                      <div className="w-8 h-1 rounded-full bg-primary/10 group-hover:w-16 group-hover:bg-primary/30 transition-all duration-500" />
                     </div>
-                    <h3 className="text-lg font-bold tracking-tight text-foreground mb-3">{item.title}</h3>
-                    <p className="text-muted-foreground text-[15px] leading-relaxed font-light">{item.body}</p>
                   </Card>
                 </Reveal>
               );
@@ -389,7 +380,8 @@ export default function HomePage() {
         </div>
       </section>
       {/* How It Works */}
-      <section className="border-y border-border bg-[var(--home-surface-3)] py-32">
+      <section className="border-y border-border bg-[var(--home-surface-1)] py-16 relative overflow-hidden">
+        <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-primary/5 rounded-full blur-[100px]" />
         <div className="container mx-auto max-w-[1200px]">
           <Reveal>
             <SectionHeading
@@ -397,22 +389,23 @@ export default function HomePage() {
               pillClassName="bg-muted text-foreground border-0 uppercase tracking-widest text-[10px] font-bold"
               title="Three steps. One honest answer."
               description="No forms. No profile to fill. Just your resume."
-              className="mb-24 text-center [&_h2]:tracking-tighter [&_h2]:text-4xl md:[&_h2]:text-[48px] [&_p]:text-[19px] [&_p]:font-light [&_p]:mt-6"
+              className="mb-32 text-center [&_h2]:tracking-tighter [&_h2]:text-4xl md:[&_h2]:text-[48px] [&_p]:text-[18px] [&_p]:font-light [&_p]:mt-6"
             />
           </Reveal>
-          <div className="relative mt-20 grid gap-0 lg:gap-16 lg:grid-cols-3">
-            <div className="absolute left-[16.66%] right-[16.66%] top-6 hidden border-t border-border lg:block" />
+          <div className="relative mt-20 grid gap-12 lg:gap-16 lg:grid-cols-3">
+            <div className="absolute left-[16.66%] right-[16.66%] top-7 hidden border-t border-dashed border-primary/50 lg:block" />
             {processSteps.map((item, idx) => (
-              <Reveal key={item.step} delay={idx * 0.15} className="relative flex max-lg:flex-row max-lg:gap-6 max-lg:pb-10 lg:flex-col lg:items-center lg:text-center">
+              <Reveal key={item.step} delay={idx * 0.15} className="relative flex max-lg:flex-row max-lg:gap-8 max-lg:pb-12 lg:flex-col lg:items-center lg:text-center">
                 {item.step !== "03" ? (
-                  <div className="absolute left-[27px] top-14 bottom-0 w-px bg-border lg:hidden" />
+                  <div className="absolute left-[27px] top-14 bottom-0 w-px border-l border-dashed border-primary/50 lg:hidden" />
                 ) : null}
-                <div className="relative z-10 flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-primary text-[15px] font-bold text-primary-foreground shadow-[0_0_0_12px_var(--card)]">
+                <div className="relative z-10 flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-card border border-border shadow-xl text-lg font-bold text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-500 ring-8 ring-[var(--home-surface-1)]">
                   {item.step}
+                  <div className="absolute inset-0 bg-primary/5 rounded-2xl -z-10 blur-xl opacity-0 group-hover:opacity-100 transition-opacity" />
                 </div>
-                <div className="max-lg:pt-1">
-                  <h3 className="text-[22px] lg:mt-10 font-bold tracking-tight text-foreground">{item.title}</h3>
-                  <p className="mt-3 lg:mt-5 max-w-sm text-muted-foreground text-[15px] leading-relaxed font-light">{item.body}</p>
+                <div className="max-lg:pt-2">
+                  <h3 className="text-xl lg:mt-10 font-bold tracking-tight text-foreground leading-tight">{item.title}</h3>
+                  <p className="mt-4 lg:mt-6 max-w-sm text-muted-foreground text-sm leading-relaxed font-light balanced">{item.body}</p>
                 </div>
               </Reveal>
             ))}
@@ -421,40 +414,57 @@ export default function HomePage() {
       </section>
 
       {/* Salary Intelligence Hook */}
-      <section className="bg-foreground text-background py-32 relative overflow-hidden">
-        <div className="absolute inset-0 bg-grid-white/5 [mask-image:radial-gradient(white,transparent_85%)]"></div>
+      <section className="bg-[var(--home-surface-2)] text-foreground py-20 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,var(--primary)_0%,transparent_100%)] opacity-[0.03] -z-10" />
         <div className="container mx-auto max-w-4xl text-center relative z-10">
           <Reveal>
-            <Badge className="bg-background/10 text-background/50 border-0 mb-10 font-sans tracking-widest px-3 py-1 text-[10px] uppercase font-bold">Live Market Data</Badge>
-            <h2 className="text-4xl md:text-[56px] font-bold tracking-tighter text-background mb-8 balanced leading-[1.1]">
+            <Badge className="bg-primary/10 text-primary border-0 mb-10 font-sans tracking-widest px-4 py-1.5 text-[11px] uppercase font-bold rounded-full">Live Market Data</Badge>
+            <h2 className="text-4xl md:text-[48px] font-bold tracking-tighter text-foreground mb-10 balanced leading-[1.05]">
               The market is moving faster than your HR.
             </h2>
-            <p className="text-[19px] text-background/60 mb-16 balanced max-w-2xl mx-auto font-light leading-relaxed">
-              Zaprill scans 10,000+ daily job listings to find the real ceiling for your technical profile. Most users find a ₹3L+ gap in minutes.
+            <p className="text-[18px] text-muted-foreground mb-20 balanced max-w-2xl mx-auto font-light leading-relaxed">
+              Zaprill scans 10,000+ daily job listings to find the real ceiling for your technical profile. Most users find a <span className="text-foreground font-medium">₹3L+ gap</span> in minutes.
             </p>
           </Reveal>
 
-          <Reveal delay={0.2} className="mx-auto max-w-[500px]">
-            <Card className="rounded-[24px] border border-background/10 bg-background/[0.03] backdrop-blur-xl p-10 text-left relative overflow-hidden shadow-2xl">
-              <div className="absolute -top-24 -right-24 w-48 h-48 bg-primary/20 rounded-full blur-[60px]"></div>
-              <h3 className="text-center text-background/90 mb-10 text-[13px] tracking-[0.2em] uppercase font-bold">Compensation Benchmarking</h3>
-              <div className="space-y-8">
-                {[
-                  ["Current Market Value", "₹18,40,000", "text-background/40 max-w-[50%] border-b-2 border-background/20 bg-background/5"],
-                  ["Top 10% Potential", "₹26,50,000", "text-background max-w-full border-b-2 border-primary/60 font-bold bg-primary/10"]
-                ].map(([label, value, classes]) => (
-                  <div key={label} className="w-full">
-                    <div className="flex justify-between text-[13px] mb-2 font-medium">
-                      <span className="text-background/50">{label}</span>
-                      <span className={`tracking-wide ${classes.includes("text-background ") ? "text-background font-bold" : "text-background/50"}`}>{value}</span>
+          <Reveal delay={0.2} className="mx-auto max-w-[540px]">
+            <Card className="rounded-[32px] border border-border bg-card/40 backdrop-blur-2xl p-8 md:p-11 text-left relative overflow-hidden shadow-[0_32px_64px_-16px_rgba(0,0,0,0.1)] dark:shadow-primary/5">
+              <div className="absolute -top-24 -right-24 w-64 h-64 bg-primary/10 rounded-full blur-[80px]" />
+              <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-primary/5 rounded-full blur-[80px]" />
+              
+              <h3 className="text-center text-muted-foreground mb-12 text-[11px] tracking-[0.25em] uppercase font-bold">Compensation Benchmark</h3>
+              
+              <div className="space-y-10 relative z-10">
+                <div className="group/bar">
+                  <div className="flex justify-between items-end mb-4">
+                    <div className="flex flex-col">
+                      <span className="text-[12px] text-muted-foreground font-medium mb-1">Current Market Value</span>
+                      <span className="text-xl font-bold tracking-tight text-foreground/40">₹18,40,000</span>
                     </div>
-                    <div className={`h-2.5 text-transparent rounded-full ${classes}`}></div>
+                    <span className="text-[12px] font-bold text-muted-foreground/40">50th Percentile</span>
                   </div>
-                ))}
+                  <div className="h-3 w-full bg-muted/30 rounded-full overflow-hidden">
+                    <div className="h-full w-1/2 bg-muted transition-all duration-1000 ease-out" />
+                  </div>
+                </div>
+
+                <div className="group/bar">
+                  <div className="flex justify-between items-end mb-4">
+                    <div className="flex flex-col">
+                      <span className="text-[12px] text-primary font-bold mb-1">Top 10% Potential</span>
+                      <span className="text-2xl font-black tracking-tighter text-primary">₹26,50,000</span>
+                    </div>
+                    <span className="text-[12px] font-bold text-primary">Target</span>
+                  </div>
+                  <div className="h-4 w-full bg-primary/10 rounded-full overflow-hidden p-1">
+                    <div className="h-full w-full bg-primary rounded-full shadow-[0_0_20px_rgba(var(--primary),0.4)] transition-all duration-1000 delay-300 ease-out" />
+                  </div>
+                </div>
               </div>
-              <div className="mt-12 flex justify-center">
+
+              <div className="mt-16 flex justify-center">
                 <Link href={siteConfig.appUrl} className="w-full">
-                  <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground border-0 h-14 rounded-full text-[15px] font-bold shadow-lg shadow-primary/20 transition-all active:scale-[0.98]">
+                  <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground border-0 h-14 rounded-xl text-sm font-bold shadow-2xl shadow-primary/20 transition-all active:scale-[0.97]">
                     Verify My Market Value
                   </Button>
                 </Link>
@@ -465,7 +475,7 @@ export default function HomePage() {
       </section>
 
       {/* FAQ Section */}
-      <section className="bg-[var(--home-surface-1)] py-32">
+      <section className="bg-[var(--home-surface-1)] py-16">
         <div className="container mx-auto max-w-3xl">
           <Reveal className="text-center mb-20">
             <h2 className="text-4xl md:text-[48px] tracking-tighter font-bold text-foreground">Frequently Asked Questions</h2>
@@ -478,7 +488,7 @@ export default function HomePage() {
       </section>
 
       {/* Pricing */}
-      <section className="border-t border-border bg-[var(--home-surface-2)] py-32">
+      <section className="border-t border-border bg-[var(--home-surface-2)] py-16">
         <div className="container mx-auto max-w-5xl">
           <Reveal>
             <SectionHeading
@@ -491,11 +501,11 @@ export default function HomePage() {
           </Reveal>
           <div className="mx-auto grid max-w-4xl gap-8 lg:grid-cols-2">
             <Reveal delay={0.1}>
-              <Card className="h-full rounded-[24px] border-border bg-background p-12 flex flex-col">
-                <h3 className="text-[28px] font-bold tracking-tight text-foreground mb-2">Free</h3>
-                <div className="flex items-end gap-2 mb-10">
-                  <div className="text-[54px] font-bold tracking-tighter leading-none text-foreground">₹0</div>
-                  <div className="text-muted-foreground mb-2 font-medium">/ month</div>
+              <Card className="h-full rounded-[20px] border-border bg-background p-10 flex flex-col">
+                <h3 className="text-2xl font-bold tracking-tight text-foreground mb-2">Free</h3>
+                <div className="flex items-end gap-2 mb-8">
+                  <div className="text-[44px] font-bold tracking-tighter leading-none text-foreground">₹0</div>
+                  <div className="text-muted-foreground mb-1.5 font-medium text-sm">/ month</div>
                 </div>
                 <ul className="space-y-5 mb-12 flex-1">
                   {pricing.free.map((feature) => (
@@ -506,7 +516,7 @@ export default function HomePage() {
                   ))}
                 </ul>
                 <Link href={siteConfig.appUrl} className="w-full">
-                  <Button variant="secondary" className="w-full justify-center h-14 rounded-full border-border text-foreground bg-background hover:bg-accent font-bold active:scale-[0.98]">
+                  <Button variant="secondary" className="w-full justify-center h-12 rounded-full border-border text-foreground bg-background hover:bg-accent font-bold active:scale-[0.98] text-sm">
                     Start Free
                   </Button>
                 </Link>
@@ -514,16 +524,16 @@ export default function HomePage() {
             </Reveal>
 
             <Reveal delay={0.2}>
-              <Card className="h-full relative rounded-[24px] border-border bg-foreground text-background p-12 flex flex-col shadow-xl">
-                <div className="absolute top-8 right-10">
+              <Card className="h-full relative rounded-[20px] border-border bg-foreground text-background p-10 flex flex-col shadow-xl">
+                <div className="absolute top-6 right-8">
                   <Badge className="bg-background/10 text-background border-0 text-[10px] font-bold tracking-widest hover:bg-background/10 uppercase px-3 py-1">Pro</Badge>
                 </div>
-                <h3 className="text-[28px] font-bold tracking-tight text-background mb-2">Pro Plans</h3>
-                <div className="flex items-end gap-2 mb-2">
-                  <div className="text-[54px] font-bold tracking-tighter leading-none text-background">₹49</div>
-                  <div className="text-background/60 mb-2 font-medium">/ quarter intro</div>
+                <h3 className="text-2xl font-bold tracking-tight text-background mb-2">Pro Plans</h3>
+                <div className="flex items-end gap-2 mb-1.5">
+                  <div className="text-[44px] font-bold tracking-tighter leading-none text-background">₹49</div>
+                  <div className="text-background/60 mb-1.5 font-medium text-sm">/ quarter intro</div>
                 </div>
-                <div className="text-[13px] font-medium text-background/50 mb-10">Regular: ₹99 quarterly or ₹350 yearly</div>
+                <div className="text-[12px] font-medium text-background/50 mb-8">Regular: ₹99 quarterly or ₹350 yearly</div>
                 <ul className="space-y-5 mb-12 flex-1">
                   {pricing.pro.map((feature) => (
                     <li key={feature} className="flex gap-4 items-start text-background">
@@ -533,7 +543,7 @@ export default function HomePage() {
                   ))}
                 </ul>
                 <Link href="/pricing" className="w-full">
-                  <Button className="w-full justify-center h-14 rounded-full bg-background text-foreground hover:bg-background/90 border-0 font-bold active:scale-[0.98]">
+                  <Button className="w-full justify-center h-12 rounded-full bg-background text-foreground hover:bg-background/90 border-0 font-bold active:scale-[0.98] text-sm">
                     Compare Plans
                   </Button>
                 </Link>

@@ -8,6 +8,7 @@ import { blogArticles } from "@/lib/blog";
 import { cn } from "@/lib/utils";
 import { Reveal } from "@/components/reveal";
 import { NewsletterForm } from "@/components/newsletter-form";
+import { BlogShareButtons } from "@/components/blog-share-buttons";
 
 import Script from "next/script";
 
@@ -111,7 +112,7 @@ export default function BlogPage() {
                         {article.excerpt}
                       </p>
                       
-                      <div className="mt-8 border-t border-border pt-6">
+                      <div className="mt-8 border-t border-border pt-6 flex items-center justify-between">
                         <p className="text-[13px] font-medium text-muted-foreground">
                           {new Date(article.publishedAt).toLocaleDateString("en-IN", {
                             month: "short",
@@ -119,6 +120,12 @@ export default function BlogPage() {
                             year: "numeric",
                           })}
                         </p>
+                        <BlogShareButtons 
+                          url={`/blog/${article.slug}`} 
+                          title={article.title} 
+                          variant="ghost" 
+                          size="sm" 
+                        />
                       </div>
                     </div>
                   </Card>
@@ -159,10 +166,17 @@ export default function BlogPage() {
                       <p className="mt-4 text-[15px] leading-relaxed text-muted-foreground/80 line-clamp-3">
                         {article.excerpt}
                       </p>
-                      <div className="mt-auto border-t border-border pt-6">
+                      <div className="mt-auto border-t border-border pt-6 flex items-center justify-between">
                         <p className="text-xs font-medium text-muted-foreground">
                           {new Date(article.publishedAt).toLocaleDateString("en-IN", { month: "short", day: "numeric", year: "numeric" })}
                         </p>
+                        <BlogShareButtons 
+                          url={`/blog/${article.slug}`} 
+                          title={article.title} 
+                          variant="ghost" 
+                          size="sm" 
+                          showLabel={false}
+                        />
                       </div>
                     </div>
                   </Card>

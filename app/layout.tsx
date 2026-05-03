@@ -13,6 +13,7 @@ import { SiteHeader } from "@/components/site-header";
 import { ThemeProvider } from "@/components/theme-provider";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { siteConfig } from "@/lib/site";
+import { Toaster } from "sonner";
 
 import "./globals.css";
 
@@ -193,6 +194,7 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
         <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="anonymous" />
+        <AdsenseScript />
       </head>
       <body className="font-sans min-h-screen bg-background text-foreground antialiased">
         <GoogleTagManager />
@@ -204,7 +206,6 @@ export default function RootLayout({
         >
           <TooltipProvider delay={100}>
             <GoogleAnalytics />
-            <AdsenseScript />
             <script
               type="application/ld+json"
               dangerouslySetInnerHTML={{
@@ -217,6 +218,7 @@ export default function RootLayout({
               <SiteFooter />
             </div>
             <CookieBanner />
+            <Toaster position="top-center" richColors />
           </TooltipProvider>
         </ThemeProvider>
       </body>

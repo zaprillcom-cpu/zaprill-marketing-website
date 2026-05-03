@@ -41,13 +41,13 @@ export function NewsletterForm({
           {title}
         </h2>
       ) : null}
-      <p className={cn("max-w-2xl text-muted-foreground", compact ? "mt-2 pl-5 text-sm" : "mt-4")}>{description}</p>
+      <p className={cn("max-w-2xl text-muted-foreground mx-auto text-center", compact ? "mt-2 text-sm" : "mt-4")}>{description}</p>
 
       <form
         onSubmit={handleSubmit}
         className={cn(
-          "flex flex-col gap-3 sm:flex-row sm:items-center",
-          compact ? "mt-3 gap-2" : "mt-7"
+          "flex items-center mx-auto max-w-sm",
+          compact ? "mt-4 gap-2" : "mt-7 gap-3"
         )}
       >
         <label htmlFor="newsletter-email" className="sr-only">
@@ -61,14 +61,14 @@ export function NewsletterForm({
           placeholder="you@company.com"
           autoComplete="email"
           className={cn(
-            "rounded-full bg-background px-5",
-            compact ? "h-9 text-sm" : "h-12 text-base"
+            "rounded-full bg-background px-4",
+            compact ? "h-9 text-xs" : "h-12 text-sm"
           )}
         />
         <Button
           type="submit"
           className={cn(
-            "rounded-full px-6 text-xs font-bold uppercase tracking-wide",
+            "rounded-full px-4 text-[10px] font-bold uppercase tracking-widest shrink-0",
             compact ? "h-9" : "h-12"
           )}
         >
@@ -76,7 +76,7 @@ export function NewsletterForm({
         </Button>
       </form>
 
-      <p className={cn("text-muted-foreground", compact ? "mt-1.5 pl-5 text-xs" : "mt-3 text-sm")} aria-live="polite">
+      <p className={cn("text-muted-foreground mx-auto text-center", compact ? "mt-3 text-xs" : "mt-4 text-sm")} aria-live="polite">
         {isSubscribed
           ? "Thanks for subscribing. You'll receive the next issue in your inbox."
           : `We will only send career intelligence updates. Questions? ${siteConfig.email}`}
