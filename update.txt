@@ -1,0 +1,8 @@
+2026-05-03 - feat: major content and UI update
+- Added new career intelligence articles: 'Tech Layoffs & Salary Impact' and 'How to Answer Expected Salary'
+- Implemented custom 404 error page (not-found.tsx)
+- Added DropdownMenu UI component and improved site-wide navigation
+- Updated homepage and footer with refined layouts and branding
+- Enhanced blog logic and article data structure
+- Integrated script for automated article/link management
+- Fixed TypeScript build error in blog-share-buttons.tsx
