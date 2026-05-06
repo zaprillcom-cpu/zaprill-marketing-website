@@ -13,11 +13,11 @@ Last updated: 2026-04-14
 - Job matches: 3 matched roles
 - Salary comparison: Basic market comparison
 - Skill gap: Overview only
-- Account required: No
+- Account required: Yes (Free account)
 - Sign up: ${siteConfig.appUrl}
 
 ## Professional (Pro)
-- Price: ₹99/month (billed monthly) | ₹899/year (billed annually — save 25%)
+- Price: ₹199/quarter (billed every 3 months) | ₹555/year (billed annually at ₹46.25/month)
 - Resume analysis: Unlimited
 - Job matches: Unlimited
 - Salary intelligence: Full detailed report with percentile rankings

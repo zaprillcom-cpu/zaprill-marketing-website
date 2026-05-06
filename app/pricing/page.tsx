@@ -45,8 +45,8 @@ const freeFeatures = [
 const quarterlyPlan = {
   title: "Quarterly Pro",
   cadence: "billed every 3 months",
-  regularPriceINR: 99,
-  offerPriceINR: 49,
+  regularPriceINR: 299,
+  offerPriceINR: 199,
   regularPriceUSD: 6,
   offerPriceUSD: 3,
   offerLimit: 500,
@@ -62,8 +62,8 @@ const quarterlyPlan = {
 const yearlyPlan = {
   title: "Yearly Pro",
   cadence: "billed every 12 months",
-  regularPriceINR: 350,
-  offerPriceINR: 175,
+  regularPriceINR: 999,
+  offerPriceINR: 555,
   regularPriceUSD: 20,
   offerPriceUSD: 10,
   offerLimit: 1000,

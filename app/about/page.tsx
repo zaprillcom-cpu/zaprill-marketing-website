@@ -204,6 +204,36 @@ export default function AboutPage() {
         </div>
       </section>
 
+      {/* Brand & Nomenclature Section for Searchability */}
+      <section className="py-20 bg-[var(--home-surface-2)] border-t border-border/10">
+        <div className="container max-w-4xl">
+          <Reveal>
+            <Card className="p-8 md:p-12 rounded-[40px] border border-primary/10 bg-gradient-to-br from-primary/5 via-transparent to-transparent backdrop-blur-xl relative overflow-hidden">
+              <div className="absolute -top-12 -right-12 w-48 h-48 bg-primary/10 blur-[80px] rounded-full pointer-events-none" />
+              <div className="relative z-10 max-w-2xl">
+                <Badge variant="outline" className="mb-6 border-primary/20 text-primary uppercase tracking-widest text-[10px] font-bold px-3 py-1">
+                  Brand Identity
+                </Badge>
+                <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-6">
+                  What&apos;s in a name?
+                </h2>
+                <div className="space-y-6 text-[15px] text-muted-foreground font-light leading-relaxed">
+                  <p>
+                    We often get asked how to spell or pronounce our name. Is it <strong className="text-foreground font-medium">Zaprill</strong>, <strong className="text-foreground font-medium">Zapril</strong>, or <strong className="text-foreground font-medium">Zaprll</strong>? 
+                  </p>
+                  <p>
+                    The official spelling is <span className="text-primary font-bold">Zaprill</span> (with double &apos;l&apos;). However, whether you search for us as <em className="italic">Zapril Tech</em>, <em className="italic">Zaprll</em>, <em className="italic">Zarpril</em>, or simply <em className="italic">Zapril</em>, you are in the right place. 
+                  </p>
+                  <p>
+                    Inspired by the freshness of April (representing new beginnings and career growth) coupled with a dynamic &quot;Z&quot; prefix for energy and momentum, <strong className="text-foreground font-medium">Zaprill</strong> represents the modern standard for career transparency and salary intelligence.
+                  </p>
+                </div>
+              </div>
+            </Card>
+          </Reveal>
+        </div>
+      </section>
+
       {/* Final Mission Quote */}
       <section className="py-40 relative overflow-hidden">
         <div className="absolute inset-0 bg-primary/5 [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]" />

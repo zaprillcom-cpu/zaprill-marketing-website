@@ -4,7 +4,7 @@ import { Mail, Clock, MapPin, ArrowRight, ExternalLink } from "lucide-react";
 import { ContactForm } from "@/components/contact-form";
 import { siteConfig } from "@/lib/site";
 import { Reveal } from "@/components/reveal";
-import { Map } from "@/components/ui/map";
+import { DynamicMap as Map } from "@/components/dynamic-map";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -122,7 +122,7 @@ export default function ContactPage() {
 
               {/* Map component */}
               <Reveal delay={0.3}>
-                <div className="rounded-2xl border border-border overflow-hidden bg-card h-[280px]">
+                <div className="rounded-2xl border border-primary/20 hover:border-primary/40 transition-colors duration-300 overflow-hidden bg-card h-[280px]">
                   <Map 
                     latitude={19.0760} 
                     longitude={72.8777} 

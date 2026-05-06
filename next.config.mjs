@@ -1,5 +1,19 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  compress: true,
+  poweredByHeader: false,
+  experimental: {
+    optimizeCss: true,
+  },
+  images: {
+    formats: ['image/avif', 'image/webp'],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "i.pravatar.cc"
+      }
+    ]
+  },
   async rewrites() {
     return [
       {
@@ -12,13 +26,14 @@ const nextConfig = {
       }
     ];
   },
-  images: {
-    remotePatterns: [
+  async redirects() {
+    return [
       {
-        protocol: "https",
-        hostname: "i.pravatar.cc"
+        source: "/app",
+        destination: "https://app.zaprill.com/",
+        permanent: false
       }
-    ]
+    ];
   }
 };
 

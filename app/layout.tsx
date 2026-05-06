@@ -4,10 +4,7 @@ import { Inter } from "next/font/google";
 import localFont from 'next/font/local'
 import Script from "next/script";
 
-import { AdsenseScript } from "@/components/adsense-script";
-import { CookieBanner } from "@/components/cookie-banner";
-import { GoogleAnalytics } from "@/components/google-analytics";
-import { GoogleTagManager } from "@/components/google-tag-manager";
+import { DynamicCookieBanner as CookieBanner } from "@/components/dynamic-cookie-banner";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { ThemeProvider } from "@/components/theme-provider";
@@ -41,6 +38,14 @@ export const metadata: Metadata = {
   description:
     "Upload your resume and instantly see salary potential, best-fit job matches, and the skills holding you back.",
   keywords: [
+    "Zaprill",
+    "Zapril",
+    "Zaprll",
+    "Zarpril",
+    "Zaprill Tech",
+    "Zapril Tech",
+    "Zapril salary",
+    "Zaprill career",
     "salary calculator India",
     "resume analysis",
     "ATS checker",
@@ -110,6 +115,7 @@ const globalSchema = {
     {
       "@type": "Organization",
       name: siteConfig.name,
+      alternateName: ["Zapril", "Zaprll", "Zarpril", "Zaprill Tech", "Zapril Tech", "Zaprill.com", "Zapril.com"],
       url: siteConfig.url,
       logo: `${siteConfig.url}/og`,
       description: siteConfig.description,
@@ -131,6 +137,7 @@ const globalSchema = {
     {
       "@type": "WebSite",
       name: siteConfig.name,
+      alternateName: ["Zapril", "Zaprll", "Zarpril", "Zaprill Tech", "Zapril Tech", "Zaprill.com", "Zapril.com"],
       url: siteConfig.url,
       description: siteConfig.description,
       publisher: {
@@ -151,6 +158,7 @@ const globalSchema = {
       "@type": "LocalBusiness",
       "@id": `${siteConfig.url}/#localbusiness`,
       name: siteConfig.name,
+      alternateName: ["Zapril", "Zaprll", "Zarpril", "Zaprill Tech", "Zapril Tech", "Zaprill.com", "Zapril.com"],
       url: siteConfig.url,
       image: `${siteConfig.url}/og`,
       description: siteConfig.description,
@@ -190,14 +198,25 @@ export default function RootLayout({
   return (
     <html lang="en" className={satoshi.variable} suppressHydrationWarning>
       <head>
-        {/* DNS prefetch for third-party domains to reduce connection latency */}
-        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
-        <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
+        <link rel="preconnect" href="https://googleads.g.doubleclick.net" />
+        <link rel="preconnect" href="https://pagead2.googlesyndication.com" />
         <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="anonymous" />
-        <AdsenseScript />
+        <link rel="dns-prefetch" href="https://googleads.g.doubleclick.net" />
       </head>
       <body className="font-sans min-h-screen bg-background text-foreground antialiased">
-        <GoogleTagManager />
+        <Script
+          src="https://www.googletagmanager.com/gtm.js?id=GTM-5QS3N5ZL"
+          strategy="lazyOnload"
+        />
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-6NL8LQDZBV"
+          strategy="lazyOnload"
+        />
+        <Script
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4010004205574660"
+          strategy="lazyOnload"
+          crossOrigin="anonymous"
+        />
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
@@ -205,7 +224,6 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <TooltipProvider delay={100}>
-            <GoogleAnalytics />
             <script
               type="application/ld+json"
               dangerouslySetInnerHTML={{

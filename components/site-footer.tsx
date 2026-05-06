@@ -8,7 +8,7 @@ const footerGroups = [
   {
     title: "Product",
     links: [
-      { label: "Open App", href: siteConfig.appUrl },
+      { label: "Open App", href: "/app" },
       { label: "Pricing", href: "/pricing" }
     ]
   },
@@ -46,16 +46,16 @@ export function SiteFooter() {
     <footer className="border-t border-border/20 bg-[var(--footer-bg)] text-foreground dark:border-white/10 dark:text-white">
       <div className="container py-10">
         <div className="mb-8 grid items-center gap-6 lg:grid-cols-[1fr_minmax(560px,640px)]">
-          <div className="text-left space-y-4">
-            <div className="flex justify-start">
+          <div className="text-center lg:text-left space-y-4">
+            <div className="flex justify-center lg:justify-start">
               <Logo />
             </div>
-            <p className="max-w-xs text-[15px] leading-relaxed text-muted-foreground/85 font-light dark:text-white/65">
+            <p className="max-w-xs mx-auto lg:mx-0 text-[15px] leading-relaxed text-muted-foreground/85 font-light dark:text-white/65">
               Know Your Worth. Get the Job.
             </p>
 
             {/* Social Media Links */}
-            <div className="flex justify-start gap-3 pt-2">
+            <div className="flex justify-center lg:justify-start gap-3 pt-2">
               {socialLinks.map((social) => (
                 <a
                   key={social.label}
