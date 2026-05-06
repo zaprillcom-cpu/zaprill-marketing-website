@@ -35,7 +35,7 @@ export function SiteHeader() {
               {item.label}
             </Link>
           ))}
-          <Link href={siteConfig.appUrl}>
+          <Link href="/app">
             <Button size="sm" className="text-[14px]">
               Open App
             </Button>
@@ -79,7 +79,7 @@ export function SiteHeader() {
             <div className="h-10" aria-hidden="true" />
           </div>
           <div className="mt-1 flex w-full max-w-[260px] flex-col items-center gap-3">
-            <Link href={siteConfig.appUrl} className="w-full">
+            <Link href="/app" className="w-full">
               <Button className="h-11 w-full justify-center rounded-full">Open App</Button>
             </Link>
           </div>

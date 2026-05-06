@@ -32,10 +32,10 @@ Zaprill is designed for working professionals in India — engineers, product ma
 
 - Resume analysis takes under 2 minutes
 - Works with PDF and Word document formats
-- No account required for first analysis
+- Free account required to start
 - Free tier available with limited searches
-- Pro Quarterly: ₹99 (₹49 launch offer for first 500 users)
-- Pro Yearly: ₹350 (₹175 launch offer for first 1000 users)
+- Pro Quarterly: ₹299 (₹199 launch offer for first 500 users)
+- Pro Yearly: ₹999 (₹555 launch offer for first 1000 users)
 - Data can be deleted on request at any time
 - Based in Mumbai, India
 

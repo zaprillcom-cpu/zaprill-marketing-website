@@ -74,7 +74,7 @@ export function Map({
   }, [resolvedTheme, isLoaded]);
 
   return (
-    <div className={cn("relative w-full h-full rounded-xl overflow-hidden border border-border shadow-md", className)}>
+    <div className={cn("relative w-full h-full rounded-xl overflow-hidden border border-primary/20 hover:border-primary/40 shadow-md hover:shadow-primary/5 transition-all duration-300", className)}>
       <div ref={mapContainer} className="w-full h-full" />
       {!isLoaded && (
         <div className="absolute inset-0 flex items-center justify-center bg-muted/20 backdrop-blur-[2px]">

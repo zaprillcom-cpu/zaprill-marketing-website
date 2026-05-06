@@ -97,7 +97,7 @@ const faqs = [
   },
   {
     q: "Do I need to create an account?",
-    a: "No. You can upload your resume and view your first initial analysis completely free and without creating an account. We only require an account if you wish to save your history or utilize our deeper Pro tier features."
+    a: "Yes. To upload your resume and receive your free custom salary and skill gap analysis, you need to create a free account. This ensures your resume data is securely stored and allows you to return to your dashboard to track your career matches and progress over time."
   },
   {
     q: "How accurate is the salary gap calculation?",
@@ -247,9 +247,9 @@ export default function HomePage() {
             </p>
 
             <div className="mt-12 flex flex-col sm:flex-row sm:justify-center lg:justify-start gap-4 mb-8">
-              <a href={siteConfig.appUrl} className="inline-flex items-center justify-center bg-primary text-primary-foreground transition-all hover:opacity-90 border-0 h-14 px-8 text-base font-semibold rounded-full min-w-[200px] hover:scale-105 duration-200">
+              <Link href="/app" className="inline-flex items-center justify-center bg-primary text-primary-foreground transition-all hover:opacity-90 border-0 h-14 px-8 text-base font-semibold rounded-full min-w-[200px] hover:scale-105 duration-200">
                 Upload Resume — Free
-              </a>
+              </Link>
             </div>
 
             <div className="text-[13px] text-muted-foreground font-medium tracking-wide">
@@ -463,7 +463,7 @@ export default function HomePage() {
               </div>
 
               <div className="mt-16 flex justify-center">
-                <Link href={siteConfig.appUrl} className="w-full">
+                <Link href="/app" className="w-full">
                   <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground border-0 h-14 rounded-xl text-sm font-bold shadow-2xl shadow-primary/20 transition-all active:scale-[0.97]">
                     Verify My Market Value
                   </Button>
@@ -515,7 +515,7 @@ export default function HomePage() {
                     </li>
                   ))}
                 </ul>
-                <Link href={siteConfig.appUrl} className="w-full">
+                <Link href="/app" className="w-full">
                   <Button variant="secondary" className="w-full justify-center h-12 rounded-full border-border text-foreground bg-background hover:bg-accent font-bold active:scale-[0.98] text-sm">
                     Start Free
                   </Button>
@@ -530,10 +530,10 @@ export default function HomePage() {
                 </div>
                 <h3 className="text-2xl font-bold tracking-tight text-background mb-2">Pro Plans</h3>
                 <div className="flex items-end gap-2 mb-1.5">
-                  <div className="text-[44px] font-bold tracking-tighter leading-none text-background">₹49</div>
-                  <div className="text-background/60 mb-1.5 font-medium text-sm">/ quarter intro</div>
+                  <div className="text-[44px] font-bold tracking-tighter leading-none text-background">₹46.25</div>
+                  <div className="text-background/60 mb-1.5 font-medium text-sm">/ month</div>
                 </div>
-                <div className="text-[12px] font-medium text-background/50 mb-8">Regular: ₹99 quarterly or ₹350 yearly</div>
+                <div className="text-[12px] font-medium text-background/50 mb-8">46.25/month, if taken yearly (₹555/yr) or ₹199 quarterly</div>
                 <ul className="space-y-5 mb-12 flex-1">
                   {pricing.pro.map((feature) => (
                     <li key={feature} className="flex gap-4 items-start text-background">
