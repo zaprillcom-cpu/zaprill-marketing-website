@@ -50,7 +50,7 @@ export function Map({
       
       // Add a marker
       if (map.current) {
-        new maplibregl.Marker({ color: "hsl(var(--primary))" })
+        new maplibregl.Marker({ color: "#a855f7" })
           .setLngLat([longitude, latitude])
           .setPopup(new maplibregl.Popup({ offset: 25 }).setHTML(`<h3>${markerTitle}</h3>`))
           .addTo(map.current);
