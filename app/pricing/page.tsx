@@ -77,33 +77,6 @@ const yearlyPlan = {
   ]
 };
 
-function OfferProgress({
-  claimed,
-  offerLimit
-}: {
-  claimed: number;
-  offerLimit: number;
-}) {
-  const progress = Math.min(100, Math.round((claimed / offerLimit) * 100));
-
-  return (
-    <div className="mt-7 rounded-2xl border border-border/60 bg-muted/40 p-4">
-      <div className="mb-2 flex items-center justify-between text-[12px] font-semibold tracking-wide text-muted-foreground">
-        <span>Limited Offer Progress</span>
-        <span>
-          {claimed}/{offerLimit} claimed
-        </span>
-      </div>
-      <div className="h-2 overflow-hidden rounded-full bg-border/70">
-        <div className="h-full rounded-full bg-primary transition-all" style={{ width: `${progress}%` }} />
-      </div>
-      <p className="mt-2 text-[12px] text-muted-foreground">
-        Offer closes once the first {offerLimit} upgrades are completed.
-      </p>
-    </div>
-  );
-}
-
 export default async function PricingPage() {
   const requestHeaders = await headers();
   const countryCode = requestHeaders.get("x-vercel-ip-country")?.toUpperCase();
@@ -190,8 +163,6 @@ export default async function PricingPage() {
                   <div className="mt-3 inline-flex w-fit items-center rounded-full bg-amber-500/15 px-3 py-1 text-xs font-semibold text-amber-700 dark:text-amber-300">
                     Original {currencySymbol}{plan.regularPrice}
                   </div>
-
-                  <OfferProgress claimed={plan.claimed} offerLimit={plan.offerLimit} />
 
                   <ul className="mt-8 flex-1 space-y-4">
                     {plan.features.map((feature) => (

@@ -58,7 +58,28 @@ const blogFaqs = {
   ]
 };
 
-export default function BlogPage() {
+type PageProps = {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+};
+
+export default async function BlogPage({ searchParams }: PageProps) {
+  const resolvedParams = await searchParams;
+  const pageStr = typeof resolvedParams.page === "string" ? resolvedParams.page : "1";
+  
+  const totalPosts = blogArticles.length;
+  const postsPerPage = 10;
+  const totalPages = Math.ceil(totalPosts / postsPerPage);
+  
+  const currentPage = Math.min(Math.max(1, parseInt(pageStr, 10) || 1), totalPages);
+
+  // Layout Rules:
+  // - Page 1: Displays the Featured Post (blogArticles[0]) and a 9-item grid (blogArticles.slice(1, 10)).
+  // - Pages 2+: Displays a 10-item grid without a featured banner (blogArticles.slice((page-1)*10, page*10)).
+  const featuredPost = currentPage === 1 ? blogArticles[0] : null;
+  const gridPosts = currentPage === 1
+    ? blogArticles.slice(1, 10)
+    : blogArticles.slice((currentPage - 1) * postsPerPage, currentPage * postsPerPage);
+
   return (
     <div className="bg-background transition-colors duration-300">
       <Script
@@ -77,8 +98,8 @@ export default function BlogPage() {
           </div>
           <div className="flex flex-col gap-12">
             {/* Featured Post */}
-            {blogArticles.length > 0 && (() => {
-              const article = blogArticles[0];
+            {featuredPost && (() => {
+              const article = featuredPost;
               return (
                 <Reveal>
                   <Card className="group p-0 gap-0 overflow-hidden rounded-3xl border border-border bg-card shadow-sm transition-all hover:shadow-md flex flex-col md:flex-row lg:h-[500px]">
@@ -135,7 +156,7 @@ export default function BlogPage() {
 
             {/* Sub-grid Posts */}
             <div className="grid gap-8 lg:grid-cols-3 lg:gap-10">
-              {blogArticles.slice(1).map((article) => (
+              {gridPosts.map((article) => (
                 <Reveal key={article.slug}>
                   <Card className="h-full group p-0 gap-0 overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-all hover:shadow-md flex flex-col">
                     <div className={cn("relative w-full aspect-[2/1] bg-muted overflow-hidden", article.tintClass)}>
@@ -183,6 +204,80 @@ export default function BlogPage() {
                 </Reveal>
               ))}
             </div>
+
+            {/* Pagination Controls */}
+            {totalPages > 1 && (
+              <div className="flex justify-center items-center gap-2.5 mt-12">
+                {/* Previous Button */}
+                {currentPage > 1 ? (
+                  <Link
+                    href={`/blog?page=${currentPage - 1}`}
+                    className="flex items-center justify-center h-10 w-10 rounded-full border border-border bg-card text-foreground hover:bg-muted/80 hover:scale-105 active:scale-95 transition-all duration-200"
+                    aria-label="Previous page"
+                  >
+                    <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+                    </svg>
+                  </Link>
+                ) : (
+                  <button
+                    disabled
+                    className="flex items-center justify-center h-10 w-10 rounded-full border border-border/40 bg-card/50 text-muted-foreground/30 cursor-not-allowed"
+                    aria-label="Previous page (disabled)"
+                  >
+                    <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+                    </svg>
+                  </button>
+                )}
+
+                {/* Page Numbers */}
+                <div className="flex gap-2">
+                  {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => {
+                    const isActive = page === currentPage;
+                    return isActive ? (
+                      <span
+                        key={page}
+                        className="flex items-center justify-center h-10 w-10 rounded-full bg-primary text-primary-foreground font-bold shadow-md shadow-primary/20 select-none cursor-default text-sm"
+                      >
+                        {page}
+                      </span>
+                    ) : (
+                      <Link
+                        key={page}
+                        href={`/blog?page=${page}`}
+                        className="flex items-center justify-center h-10 w-10 rounded-full border border-border bg-card text-muted-foreground hover:text-foreground hover:bg-muted/80 hover:scale-105 active:scale-95 transition-all duration-200 font-semibold text-sm"
+                      >
+                        {page}
+                      </Link>
+                    );
+                  })}
+                </div>
+
+                {/* Next Button */}
+                {currentPage < totalPages ? (
+                  <Link
+                    href={`/blog?page=${currentPage + 1}`}
+                    className="flex items-center justify-center h-10 w-10 rounded-full border border-border bg-card text-foreground hover:bg-muted/80 hover:scale-105 active:scale-95 transition-all duration-200"
+                    aria-label="Next page"
+                  >
+                    <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                    </svg>
+                  </Link>
+                ) : (
+                  <button
+                    disabled
+                    className="flex items-center justify-center h-10 w-10 rounded-full border border-border/40 bg-card/50 text-muted-foreground/30 cursor-not-allowed"
+                    aria-label="Next page (disabled)"
+                  >
+                    <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                    </svg>
+                  </button>
+                )}
+              </div>
+            )}
 
           </div>
           <Reveal className="mt-20">

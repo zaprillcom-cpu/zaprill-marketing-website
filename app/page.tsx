@@ -317,7 +317,7 @@ export default function HomePage() {
                       <div className="flex gap-4 items-center">
                         <span className="text-foreground text-sm font-bold opacity-70">✓</span>
                         <div className="flex flex-col">
-                          <span className="text-foreground font-semibold">Node OS</span>
+                          <span className="text-foreground font-semibold">Node.js</span>
                           <span className="text-muted-foreground">Strong</span>
                         </div>
                       </div>
