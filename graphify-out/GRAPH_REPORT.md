@@ -1,7 +1,7 @@
-# Graph Report - .  (2026-05-23)
+# Graph Report - zaprill-marketing-website  (2026-05-23)
 
 ## Corpus Check
-- 97 files · ~209,741 words
+- 65 files · ~209,741 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
@@ -9,26 +9,31 @@
 - Extraction: 87% EXTRACTED · 13% INFERRED · 1% AMBIGUOUS · INFERRED: 67 edges (avg confidence: 0.8)
 - Token cost: 0 input · 0 output
 
+## Graph Freshness
+- Built from commit: `8f9da3e5`
+- Run `git rev-parse HEAD` and compare to check if the graph is stale.
+- Run `graphify update .` after code changes (no API cost).
+
 ## Community Hubs (Navigation)
-- [[_COMMUNITY_UI Primitives (Input, Select, Card)|UI Primitives (Input, Select, Card)]]
-- [[_COMMUNITY_Page Components & Layouts|Page Components & Layouts]]
-- [[_COMMUNITY_Docs, Design & Product Strategy|Docs, Design & Product Strategy]]
-- [[_COMMUNITY_Blog & Content Infrastructure|Blog & Content Infrastructure]]
-- [[_COMMUNITY_Root Layout & Site Shell|Root Layout & Site Shell]]
-- [[_COMMUNITY_Blog Career Content Topics|Blog Career Content Topics]]
-- [[_COMMUNITY_Dropdown Menu Components|Dropdown Menu Components]]
-- [[_COMMUNITY_Navigation & Core UI|Navigation & Core UI]]
-- [[_COMMUNITY_Blog Header Images (Compensation)|Blog Header Images (Compensation)]]
-- [[_COMMUNITY_Add Articles Script|Add Articles Script]]
-- [[_COMMUNITY_Brand Assets & Logos|Brand Assets & Logos]]
-- [[_COMMUNITY_Cookies Policy Page|Cookies Policy Page]]
-- [[_COMMUNITY_Disclaimer Page|Disclaimer Page]]
-- [[_COMMUNITY_OG Image Route|OG Image Route]]
-- [[_COMMUNITY_Graphify  AGENTS.md Config|Graphify / AGENTS.md Config]]
-- [[_COMMUNITY_ESLint Configuration|ESLint Configuration]]
-- [[_COMMUNITY_Next.js Configuration|Next.js Configuration]]
-- [[_COMMUNITY_IndexNow Submission Script|IndexNow Submission Script]]
-- [[_COMMUNITY_Tailwind Configuration|Tailwind Configuration]]
+- [[_COMMUNITY_Community 0|Community 0]]
+- [[_COMMUNITY_Community 1|Community 1]]
+- [[_COMMUNITY_Community 2|Community 2]]
+- [[_COMMUNITY_Community 3|Community 3]]
+- [[_COMMUNITY_Community 4|Community 4]]
+- [[_COMMUNITY_Community 5|Community 5]]
+- [[_COMMUNITY_Community 6|Community 6]]
+- [[_COMMUNITY_Community 7|Community 7]]
+- [[_COMMUNITY_Community 8|Community 8]]
+- [[_COMMUNITY_Community 9|Community 9]]
+- [[_COMMUNITY_Community 10|Community 10]]
+- [[_COMMUNITY_Community 11|Community 11]]
+- [[_COMMUNITY_Community 12|Community 12]]
+- [[_COMMUNITY_Community 13|Community 13]]
+- [[_COMMUNITY_Community 14|Community 14]]
+- [[_COMMUNITY_Community 15|Community 15]]
+- [[_COMMUNITY_Community 16|Community 16]]
+- [[_COMMUNITY_Community 17|Community 17]]
+- [[_COMMUNITY_Community 18|Community 18]]
 
 ## God Nodes (most connected - your core abstractions)
 1. `cn()` - 61 edges
@@ -69,51 +74,51 @@
 
 ## Communities (27 total, 7 thin omitted)
 
-### Community 0 - "UI Primitives (Input, Select, Card)"
+### Community 0 - "Community 0"
 Cohesion: 0.1
 Nodes (29): AdSlot(), AdSlotProps, Window, FormState, initialState, Logo(), NewsletterForm(), NewsletterFormProps (+21 more)
 
-### Community 1 - "Page Components & Layouts"
+### Community 1 - "Community 1"
 Cohesion: 0.09
 Nodes (22): metadata, values, FaqAccordion, faqs, metadata, pricing, processSteps, valueProps (+14 more)
 
-### Community 2 - "Docs, Design & Product Strategy"
+### Community 2 - "Community 2"
 Cohesion: 0.08
 Nodes (30): Google AdSense Publisher ID, About Us Page, Google AdSense Integration, Career Intelligence / Tech Salary Niche, Contact Us Page, Content Standards, Cookie Consent Integration, Google Search Console Setup (+22 more)
 
-### Community 3 - "Blog & Content Infrastructure"
+### Community 3 - "Community 3"
 Cohesion: 0.11
 Nodes (11): blockedPaths, BlogArticle, blogArticles, getArticleBySlug(), getRecommendedArticles(), siteConfig, metadata, ArticlePage() (+3 more)
 
-### Community 4 - "Root Layout & Site Shell"
+### Community 4 - "Community 4"
 Cohesion: 0.11
 Nodes (16): globalSchema, metadata, satoshi, DynamicCookieBanner, footerGroups, SiteFooter(), socialLinks, ThemeProvider() (+8 more)
 
-### Community 5 - "Blog Career Content Topics"
+### Community 5 - "Community 5"
 Cohesion: 0.32
 Nodes (20): Career Growth & Role Transitions, 5 Skills Indian Tech Employers Pay Premium for in 2025 - Blog Header, How to Negotiate a Job Offer - Blog Header, How to Switch Careers into Tech in India - Blog Header, How to Write a Resume with No Experience - Blog Header, India Tech Job Market Dynamics, Navigating Career Progression IC vs EM in India - Blog Header, Negotiating Tech Offers in a Buyers Market 2026 - Blog Header (+12 more)
 
-### Community 6 - "Dropdown Menu Components"
+### Community 6 - "Community 6"
 Cohesion: 0.14
 Nodes (12): BlogShareButtonsProps, DropdownMenu(), DropdownMenuCheckboxItem(), DropdownMenuContent(), DropdownMenuItem(), DropdownMenuLabel(), DropdownMenuRadioItem(), DropdownMenuSeparator() (+4 more)
 
-### Community 7 - "Navigation & Core UI"
+### Community 7 - "Community 7"
 Cohesion: 0.2
 Nodes (8): NotFound(), navItems, SiteHeader(), ThemeToggle(), metadata, Button(), buttonVariants, Card()
 
-### Community 8 - "Blog Header Images (Compensation)"
+### Community 8 - "Community 8"
 Cohesion: 0.28
 Nodes (15): Header image depicting salary growth chart with market data dashboard, upward trend arrows, and professional negotiating imagery for blog about using compensation market data to negotiate a raise, Header image depicting off-sync calendar juxtaposed with tech office/code backdrop and salary review document for blog about requesting off-cycle salary reviews in the technology sector, Header image depicting resume document with red strike-through marks over common formatting elements and ATS parsing interface for blog debunking ATS formatting myths, Header image depicting resume with highlighted keywords and magnifying glass over optimized text with ATS scoring dashboard for blog about keyword-driven resume optimization for applicant tracking systems, Header image depicting digital portfolio website mockup transforming from or replacing traditional paper resume for blog about building a portfolio that substitutes a conventional CV, Header image depicting side-by-side comparison of data science and data engineering roles with salary bar charts for blog comparing compensation between DS and DE career paths, Header image depicting balance scale weighing stock certificates and equity grants against cash salary in startup office setting for blog about evaluating equity versus base pay in startup compensation, Header image depicting Indian rupees currency notes with graduation caps and young professionals against 2026 calendar backdrop for blog about entry-level salary expectations for Indian graduates (+7 more)
 
-### Community 9 - "Add Articles Script"
+### Community 9 - "Community 9"
 Cohesion: 0.22
 Nodes (7): articles, FILE_PATH, fs, linkTargets, newArticle1, newArticle2, path
 
-### Community 10 - "Brand Assets & Logos"
+### Community 10 - "Community 10"
 Cohesion: 0.8
 Nodes (5): Zap / Lightning Motif, Primary Zaprill Logo (logo.png), Zaprill Brand, Zaprill Circular Logo Icon (zaprill-logo-circle.webp), Secondary Zaprill Logo Variant (zaprill-logo-2.png)
 
-### Community 14 - "Graphify / AGENTS.md Config"
+### Community 14 - "Community 14"
 Cohesion: 0.67
 Nodes (3): GRAPH_REPORT.md, graphify CLI Tool, Graphify Knowledge Graph
 
@@ -143,9 +148,9 @@ _Questions this graph is uniquely positioned to answer:_
   _Edge tagged AMBIGUOUS (relation: conceptually_related_to) - confidence is low._
 - **What is the exact relationship between `Optimize LinkedIn Profile for Recruiters - Blog Header` and `Career Growth & Role Transitions`?**
   _Edge tagged AMBIGUOUS (relation: conceptually_related_to) - confidence is low._
-- **Why does `cn()` connect `UI Primitives (Input, Select, Card)` to `Page Components & Layouts`, `Blog & Content Infrastructure`, `Root Layout & Site Shell`, `Dropdown Menu Components`, `Navigation & Core UI`?**
+- **Why does `cn()` connect `Community 0` to `Community 1`, `Community 3`, `Community 4`, `Community 6`, `Community 7`?**
   _High betweenness centrality (0.143) - this node is a cross-community bridge._
-- **Why does `siteConfig` connect `Blog & Content Infrastructure` to `UI Primitives (Input, Select, Card)`, `Page Components & Layouts`, `Root Layout & Site Shell`, `Navigation & Core UI`?**
+- **Why does `siteConfig` connect `Community 3` to `Community 0`, `Community 1`, `Community 4`, `Community 7`?**
   _High betweenness centrality (0.045) - this node is a cross-community bridge._
-- **Why does `Button()` connect `Navigation & Core UI` to `UI Primitives (Input, Select, Card)`, `Page Components & Layouts`, `Blog & Content Infrastructure`, `Root Layout & Site Shell`, `Dropdown Menu Components`?**
+- **Why does `Button()` connect `Community 7` to `Community 0`, `Community 1`, `Community 3`, `Community 4`, `Community 6`?**
   _High betweenness centrality (0.016) - this node is a cross-community bridge._
