@@ -37,4 +37,4 @@ pnpm-debug.log*
 next-env.d.ts
 
 # graphify
-graphify-out/
+graphify-out/cache

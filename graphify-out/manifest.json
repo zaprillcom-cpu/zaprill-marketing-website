@@ -1,0 +1,390 @@
+{
+  "C:\\Users\\sahil\\OneDrive\\Documents\\Web Development\\AI Job analyzer\\zaprill-marketing-website\\add-articles-and-links.js": {
+    "mtime": 1779537508.652165,
+    "hash": "e77a397c631f683e3597bbfb9a171263"
+  },
+  "C:\\Users\\sahil\\OneDrive\\Documents\\Web Development\\AI Job analyzer\\zaprill-marketing-website\\eslint.config.mjs": {
+    "mtime": 1777204103.615601,
+    "hash": "8a1cc381018f28f1436a9dc1d104ae43"
+  },
+  "C:\\Users\\sahil\\OneDrive\\Documents\\Web Development\\AI Job analyzer\\zaprill-marketing-website\\next-env.d.ts": {
+    "mtime": 1776500039.0512464,
+    "hash": "29f60a376e12bf72b67d4994fcc84214"
+  },
+  "C:\\Users\\sahil\\OneDrive\\Documents\\Web Development\\AI Job analyzer\\zaprill-marketing-website\\next.config.mjs": {
+    "mtime": 1779537508.7182353,
+    "hash": "1ec1afd0d4ed25bddf018d83b6a3c9ca"
+  },
+  "C:\\Users\\sahil\\OneDrive\\Documents\\Web Development\\AI Job analyzer\\zaprill-marketing-website\\postcss.config.js": {
+    "mtime": 1777204103.6323526,
+    "hash": "77ca9034ce51357df236d7b254ddb4a2"
+  },
+  "C:\\Users\\sahil\\OneDrive\\Documents\\Web Development\\AI Job analyzer\\zaprill-marketing-website\\submit-indexnow.js": {
+    "mtime": 1779537508.7642348,
+    "hash": "dd3ff1ae8fb693e7e8c6fb46079a4055"
+  },
+  "C:\\Users\\sahil\\OneDrive\\Documents\\Web Development\\AI Job analyzer\\zaprill-marketing-website\\tailwind.config.ts": {
+    "mtime": 1779537508.765236,
+    "hash": "e91fbac7836869ef50b22859c24c8102"
+  },
+  "C:\\Users\\sahil\\OneDrive\\Documents\\Web Development\\AI Job analyzer\\zaprill-marketing-website\\app\\layout.tsx": {
+    "mtime": 1779537508.6661844,
+    "hash": "9b39842f6169a9ff0b3e54c52b28cdff"
+  },
+  "C:\\Users\\sahil\\OneDrive\\Documents\\Web Development\\AI Job analyzer\\zaprill-marketing-website\\app\\not-found.tsx": {
+    "mtime": 1779537508.6721938,
+    "hash": "12d0e705ede0152d6a8a0a52a00f6cc7"
+  },
+  "C:\\Users\\sahil\\OneDrive\\Documents\\Web Development\\AI Job analyzer\\zaprill-marketing-website\\app\\page.tsx": {
+    "mtime": 1779537508.6751873,
+    "hash": "84af0201ca1b5c774d0a3ce7580bdf8a"
+  },
+  "C:\\Users\\sahil\\OneDrive\\Documents\\Web Development\\AI Job analyzer\\zaprill-marketing-website\\app\\robots.ts": {
+    "mtime": 1779537508.6837072,
+    "hash": "81652cddc5724ce30436716f0bcb020e"
+  },
+  "C:\\Users\\sahil\\OneDrive\\Documents\\Web Development\\AI Job analyzer\\zaprill-marketing-website\\app\\sitemap.ts": {
+    "mtime": 1779537508.685706,
+    "hash": "cc4379b016d4a2134f20ceea6e5102a1"
+  },
+  "C:\\Users\\sahil\\OneDrive\\Documents\\Web Development\\AI Job analyzer\\zaprill-marketing-website\\app\\about\\page.tsx": {
+    "mtime": 1779537508.6541653,
+    "hash": "888c24a83f7ed88f736a2255da728a85"
+  },
+  "C:\\Users\\sahil\\OneDrive\\Documents\\Web Development\\AI Job analyzer\\zaprill-marketing-website\\app\\blog\\page.tsx": {
+    "mtime": 1779537508.6581643,
+    "hash": "a638c1c6dd5940ffa36e2d390da0bd4f"
+  },
+  "C:\\Users\\sahil\\OneDrive\\Documents\\Web Development\\AI Job analyzer\\zaprill-marketing-website\\app\\blog\\[slug]\\page.tsx": {
+    "mtime": 1779537508.6561646,
+    "hash": "0a9dfa892c0dbf8f0233029d1de979f6"
+  },
+  "C:\\Users\\sahil\\OneDrive\\Documents\\Web Development\\AI Job analyzer\\zaprill-marketing-website\\app\\contact\\page.tsx": {
+    "mtime": 1779537508.6591659,
+    "hash": "db24dfb1a8db4fdfa6d188702406b459"
+  },
+  "C:\\Users\\sahil\\OneDrive\\Documents\\Web Development\\AI Job analyzer\\zaprill-marketing-website\\app\\cookies\\page.tsx": {
+    "mtime": 1779537508.6611743,
+    "hash": "e56ac7e92af7138c1c6655315ae892ee"
+  },
+  "C:\\Users\\sahil\\OneDrive\\Documents\\Web Development\\AI Job analyzer\\zaprill-marketing-website\\app\\demo\\page.tsx": {
+    "mtime": 1777204103.5604527,
+    "hash": "e799346a9290e5cce8336751739c2678"
+  },
+  "C:\\Users\\sahil\\OneDrive\\Documents\\Web Development\\AI Job analyzer\\zaprill-marketing-website\\app\\disclaimer\\page.tsx": {
+    "mtime": 1779537508.6631837,
+    "hash": "b8e469d382667918f7313b6561e494c5"
+  },
+  "C:\\Users\\sahil\\OneDrive\\Documents\\Web Development\\AI Job analyzer\\zaprill-marketing-website\\app\\llms-txt\\route.ts": {
+    "mtime": 1779537508.6681843,
+    "hash": "6efff0d80439aaaffa9d2ee8fde86b95"
+  },
+  "C:\\Users\\sahil\\OneDrive\\Documents\\Web Development\\AI Job analyzer\\zaprill-marketing-website\\app\\og\\route.tsx": {
+    "mtime": 1776499408.7688277,
+    "hash": "3b71716cede8a5d0bc82a99a3c9e587c"
+  },
+  "C:\\Users\\sahil\\OneDrive\\Documents\\Web Development\\AI Job analyzer\\zaprill-marketing-website\\app\\pricing\\page.tsx": {
+    "mtime": 1779537508.679706,
+    "hash": "4ec457286e4c3f12eb05a4e5ab853a1d"
+  },
+  "C:\\Users\\sahil\\OneDrive\\Documents\\Web Development\\AI Job analyzer\\zaprill-marketing-website\\app\\pricing-md\\route.ts": {
+    "mtime": 1779537508.677706,
+    "hash": "d492c846dcb7066435447ef20fddadbc"
+  },
+  "C:\\Users\\sahil\\OneDrive\\Documents\\Web Development\\AI Job analyzer\\zaprill-marketing-website\\app\\privacy\\page.tsx": {
+    "mtime": 1779537508.6817043,
+    "hash": "ab75df7f26a7047dbe83a488c6270342"
+  },
+  "C:\\Users\\sahil\\OneDrive\\Documents\\Web Development\\AI Job analyzer\\zaprill-marketing-website\\app\\terms\\page.tsx": {
+    "mtime": 1779537508.687225,
+    "hash": "ecaef075c31db4a13304bca5dcf96bfd"
+  },
+  "C:\\Users\\sahil\\OneDrive\\Documents\\Web Development\\AI Job analyzer\\zaprill-marketing-website\\components\\ad-slot.tsx": {
+    "mtime": 1776499408.7750156,
+    "hash": "cc4726cbed1600843f23d73e326e6165"
+  },
+  "C:\\Users\\sahil\\OneDrive\\Documents\\Web Development\\AI Job analyzer\\zaprill-marketing-website\\components\\adsense-script.tsx": {
+    "mtime": 1779537508.6902344,
+    "hash": "2179005be3f0ae35fd66dd8cc65f32da"
+  },
+  "C:\\Users\\sahil\\OneDrive\\Documents\\Web Development\\AI Job analyzer\\zaprill-marketing-website\\components\\blog-share-buttons.tsx": {
+    "mtime": 1779537508.6912353,
+    "hash": "b49ca84223ec5fb4199994461fcf9d41"
+  },
+  "C:\\Users\\sahil\\OneDrive\\Documents\\Web Development\\AI Job analyzer\\zaprill-marketing-website\\components\\contact-form.tsx": {
+    "mtime": 1777204103.5858245,
+    "hash": "7c73aa3702183e7e34d90656d8e31e4e"
+  },
+  "C:\\Users\\sahil\\OneDrive\\Documents\\Web Development\\AI Job analyzer\\zaprill-marketing-website\\components\\cookie-banner.tsx": {
+    "mtime": 1777204103.5864868,
+    "hash": "1c72343bdf80e7427b1bf7fee2c6a798"
+  },
+  "C:\\Users\\sahil\\OneDrive\\Documents\\Web Development\\AI Job analyzer\\zaprill-marketing-website\\components\\dynamic-cookie-banner.tsx": {
+    "mtime": 1779537508.6922343,
+    "hash": "51f517bea047ef4e67bd78c1bb5132ad"
+  },
+  "C:\\Users\\sahil\\OneDrive\\Documents\\Web Development\\AI Job analyzer\\zaprill-marketing-website\\components\\dynamic-map.tsx": {
+    "mtime": 1779537508.694235,
+    "hash": "404d07de669d15fdc328a96e94f556ad"
+  },
+  "C:\\Users\\sahil\\OneDrive\\Documents\\Web Development\\AI Job analyzer\\zaprill-marketing-website\\components\\faq-accordion.tsx": {
+    "mtime": 1777204103.5886886,
+    "hash": "20aad0c306e8bc6fdcd7e1e79ae5fec7"
+  },
+  "C:\\Users\\sahil\\OneDrive\\Documents\\Web Development\\AI Job analyzer\\zaprill-marketing-website\\components\\float.tsx": {
+    "mtime": 1776499408.7778592,
+    "hash": "30d08bc616a554444e3e88f11cddb68c"
+  },
+  "C:\\Users\\sahil\\OneDrive\\Documents\\Web Development\\AI Job analyzer\\zaprill-marketing-website\\components\\google-analytics.tsx": {
+    "mtime": 1779537508.6962352,
+    "hash": "8dc0f08d5978bf839f38526513d18bb7"
+  },
+  "C:\\Users\\sahil\\OneDrive\\Documents\\Web Development\\AI Job analyzer\\zaprill-marketing-website\\components\\google-tag-manager.tsx": {
+    "mtime": 1779537508.6982355,
+    "hash": "7f2d96777867ecd79e3a5c1dba45719e"
+  },
+  "C:\\Users\\sahil\\OneDrive\\Documents\\Web Development\\AI Job analyzer\\zaprill-marketing-website\\components\\lazy-ad.tsx": {
+    "mtime": 1779537508.6992347,
+    "hash": "00cf210e969938abe26cf120b792464a"
+  },
+  "C:\\Users\\sahil\\OneDrive\\Documents\\Web Development\\AI Job analyzer\\zaprill-marketing-website\\components\\logo.tsx": {
+    "mtime": 1777204103.5939336,
+    "hash": "cae1096bc2139d32f51c1c7ff4eab5c7"
+  },
+  "C:\\Users\\sahil\\OneDrive\\Documents\\Web Development\\AI Job analyzer\\zaprill-marketing-website\\components\\newsletter-form.tsx": {
+    "mtime": 1779537508.702234,
+    "hash": "240f78d2b9982dc582ac8a7c1e7b1c7a"
+  },
+  "C:\\Users\\sahil\\OneDrive\\Documents\\Web Development\\AI Job analyzer\\zaprill-marketing-website\\components\\number-ticker.tsx": {
+    "mtime": 1776499408.7793915,
+    "hash": "1ebb748b52e18c9df2a174358dac929b"
+  },
+  "C:\\Users\\sahil\\OneDrive\\Documents\\Web Development\\AI Job analyzer\\zaprill-marketing-website\\components\\reveal.tsx": {
+    "mtime": 1776499408.7793915,
+    "hash": "2bcea16d013742bf61fcca08704ca4e4"
+  },
+  "C:\\Users\\sahil\\OneDrive\\Documents\\Web Development\\AI Job analyzer\\zaprill-marketing-website\\components\\section-heading.tsx": {
+    "mtime": 1777204103.5959551,
+    "hash": "c03f8d801a592088174a954ac166d5b4"
+  },
+  "C:\\Users\\sahil\\OneDrive\\Documents\\Web Development\\AI Job analyzer\\zaprill-marketing-website\\components\\site-footer.tsx": {
+    "mtime": 1779537508.7032456,
+    "hash": "28c9157bf5326b3b5151782b2332e208"
+  },
+  "C:\\Users\\sahil\\OneDrive\\Documents\\Web Development\\AI Job analyzer\\zaprill-marketing-website\\components\\site-header.tsx": {
+    "mtime": 1779537508.7082348,
+    "hash": "a72634c525197d4796c127558ddf3b2e"
+  },
+  "C:\\Users\\sahil\\OneDrive\\Documents\\Web Development\\AI Job analyzer\\zaprill-marketing-website\\components\\spring-button.tsx": {
+    "mtime": 1776499408.7814164,
+    "hash": "2fc457a2aa09741251cb89bedb43379f"
+  },
+  "C:\\Users\\sahil\\OneDrive\\Documents\\Web Development\\AI Job analyzer\\zaprill-marketing-website\\components\\theme-provider.tsx": {
+    "mtime": 1777204103.6003366,
+    "hash": "437cab10ba17757fcec8fb9912dac878"
+  },
+  "C:\\Users\\sahil\\OneDrive\\Documents\\Web Development\\AI Job analyzer\\zaprill-marketing-website\\components\\theme-toggle.tsx": {
+    "mtime": 1777204103.6010902,
+    "hash": "37b5f73fae7c12a7e0de9deaca104ee8"
+  },
+  "C:\\Users\\sahil\\OneDrive\\Documents\\Web Development\\AI Job analyzer\\zaprill-marketing-website\\components\\typewriter.tsx": {
+    "mtime": 1776499408.782447,
+    "hash": "1f47e14d3b6e34574a566bf6c125e77e"
+  },
+  "C:\\Users\\sahil\\OneDrive\\Documents\\Web Development\\AI Job analyzer\\zaprill-marketing-website\\components\\ui\\badge.tsx": {
+    "mtime": 1777204103.6026204,
+    "hash": "4ac0ae1a83f6ab0ec0f175ba60282207"
+  },
+  "C:\\Users\\sahil\\OneDrive\\Documents\\Web Development\\AI Job analyzer\\zaprill-marketing-website\\components\\ui\\button.tsx": {
+    "mtime": 1777204103.6026204,
+    "hash": "a3fdbcccfe13e2943454927eabc6e15d"
+  },
+  "C:\\Users\\sahil\\OneDrive\\Documents\\Web Development\\AI Job analyzer\\zaprill-marketing-website\\components\\ui\\card.tsx": {
+    "mtime": 1777204103.6026204,
+    "hash": "c7e91c594d7da35bd4a1ef7c1408d39c"
+  },
+  "C:\\Users\\sahil\\OneDrive\\Documents\\Web Development\\AI Job analyzer\\zaprill-marketing-website\\components\\ui\\dropdown-menu.tsx": {
+    "mtime": 1779537508.7092345,
+    "hash": "85a02a0c8f6ff57d6082761415df154c"
+  },
+  "C:\\Users\\sahil\\OneDrive\\Documents\\Web Development\\AI Job analyzer\\zaprill-marketing-website\\components\\ui\\input.tsx": {
+    "mtime": 1777204103.6067638,
+    "hash": "d3593de1e1dcf37c9375e7116f753a53"
+  },
+  "C:\\Users\\sahil\\OneDrive\\Documents\\Web Development\\AI Job analyzer\\zaprill-marketing-website\\components\\ui\\map.tsx": {
+    "mtime": 1779537508.7102358,
+    "hash": "acc85a6fb90774fb53da76c4eebf5582"
+  },
+  "C:\\Users\\sahil\\OneDrive\\Documents\\Web Development\\AI Job analyzer\\zaprill-marketing-website\\components\\ui\\select.tsx": {
+    "mtime": 1777204103.6090255,
+    "hash": "592cce733d3a479dad032ea415774bf5"
+  },
+  "C:\\Users\\sahil\\OneDrive\\Documents\\Web Development\\AI Job analyzer\\zaprill-marketing-website\\components\\ui\\textarea.tsx": {
+    "mtime": 1777204103.610541,
+    "hash": "270aa2674b30d895a464d9c2e646df1e"
+  },
+  "C:\\Users\\sahil\\OneDrive\\Documents\\Web Development\\AI Job analyzer\\zaprill-marketing-website\\components\\ui\\tooltip.tsx": {
+    "mtime": 1777204103.6110473,
+    "hash": "35108d19cbcddfcb69ae4c118555ae3b"
+  },
+  "C:\\Users\\sahil\\OneDrive\\Documents\\Web Development\\AI Job analyzer\\zaprill-marketing-website\\lib\\blog.ts": {
+    "mtime": 1779537508.7162344,
+    "hash": "edefcb86c8b083f37c19a4e6324f0565"
+  },
+  "C:\\Users\\sahil\\OneDrive\\Documents\\Web Development\\AI Job analyzer\\zaprill-marketing-website\\lib\\site.ts": {
+    "mtime": 1779537508.7172356,
+    "hash": "aaad2f10cede06fc371518155d0f6c7f"
+  },
+  "C:\\Users\\sahil\\OneDrive\\Documents\\Web Development\\AI Job analyzer\\zaprill-marketing-website\\lib\\utils.ts": {
+    "mtime": 1777204103.6191897,
+    "hash": "1d8011eb18769078bf77502b220daa5e"
+  },
+  "C:\\Users\\sahil\\OneDrive\\Documents\\Web Development\\AI Job analyzer\\zaprill-marketing-website\\AGENTS.md": {
+    "mtime": 1779537797.2775884,
+    "hash": "747e73a5e1af4b72c0d65c9169c23199"
+  },
+  "C:\\Users\\sahil\\OneDrive\\Documents\\Web Development\\AI Job analyzer\\zaprill-marketing-website\\checklist.md": {
+    "mtime": 1779537508.6882346,
+    "hash": "40e4da79b20272e8b616ef899feae3d1"
+  },
+  "C:\\Users\\sahil\\OneDrive\\Documents\\Web Development\\AI Job analyzer\\zaprill-marketing-website\\DESIGN.md": {
+    "mtime": 1779537508.6491652,
+    "hash": "792c62993dada890b5f10df5eeae0bc0"
+  },
+  "C:\\Users\\sahil\\OneDrive\\Documents\\Web Development\\AI Job analyzer\\zaprill-marketing-website\\PRODUCT.md": {
+    "mtime": 1779537508.6491652,
+    "hash": "705e3beaf799d4415b481c65e7f0e54d"
+  },
+  "C:\\Users\\sahil\\OneDrive\\Documents\\Web Development\\AI Job analyzer\\zaprill-marketing-website\\README.md": {
+    "mtime": 1776499408.7562485,
+    "hash": "59885138a4ef01ec5f13421a43db923b"
+  },
+  "C:\\Users\\sahil\\OneDrive\\Documents\\Web Development\\AI Job analyzer\\zaprill-marketing-website\\update.txt": {
+    "mtime": 1779537508.7662354,
+    "hash": "8703430f7a9c3a27136848e83e1550e9"
+  },
+  "C:\\Users\\sahil\\OneDrive\\Documents\\Web Development\\AI Job analyzer\\zaprill-marketing-website\\public\\ads.txt": {
+    "mtime": 1777204103.6339722,
+    "hash": "d9d668bb2f51d9cf30f825945dd8fd6c"
+  },
+  "C:\\Users\\sahil\\OneDrive\\Documents\\Web Development\\AI Job analyzer\\zaprill-marketing-website\\public\\d666ce7a6df54f08b8a7ebbbaf8d5955.txt": {
+    "mtime": 1779537508.7632358,
+    "hash": "f187815198299f4a2183ae6c4b16e9cd"
+  },
+  "C:\\Users\\sahil\\OneDrive\\Documents\\Web Development\\AI Job analyzer\\zaprill-marketing-website\\public\\logo.png": {
+    "mtime": 1777204103.6499567,
+    "hash": "5e1bf54a50eff662296ab57ee420f413"
+  },
+  "C:\\Users\\sahil\\OneDrive\\Documents\\Web Development\\AI Job analyzer\\zaprill-marketing-website\\public\\zaprill-logo-2.png": {
+    "mtime": 1777204103.6739047,
+    "hash": "92b39293bb96f6ae33a5ea3ec9111e4d"
+  },
+  "C:\\Users\\sahil\\OneDrive\\Documents\\Web Development\\AI Job analyzer\\zaprill-marketing-website\\public\\zaprill-logo-circle.webp": {
+    "mtime": 1777204103.6766334,
+    "hash": "0386550f41071388a1845896a4b80ece"
+  },
+  "C:\\Users\\sahil\\OneDrive\\Documents\\Web Development\\AI Job analyzer\\zaprill-marketing-website\\public\\blogs\\ask-for-a-raise-market-data.webp": {
+    "mtime": 1777204103.6361203,
+    "hash": "0f97b098f9466dcf175e706040d92735"
+  },
+  "C:\\Users\\sahil\\OneDrive\\Documents\\Web Development\\AI Job analyzer\\zaprill-marketing-website\\public\\blogs\\ask-for-salary-review-off-cycle-tech.webp": {
+    "mtime": 1779537508.7262342,
+    "hash": "8466ec2e7ff3d70e3b5a41d93bcfc6c9"
+  },
+  "C:\\Users\\sahil\\OneDrive\\Documents\\Web Development\\AI Job analyzer\\zaprill-marketing-website\\public\\blogs\\ats-formatting-rules-ignore.webp": {
+    "mtime": 1779537508.728235,
+    "hash": "183f20068d397f6f38a8a55b6d6adcbe"
+  },
+  "C:\\Users\\sahil\\OneDrive\\Documents\\Web Development\\AI Job analyzer\\zaprill-marketing-website\\public\\blogs\\ats-keywords-resume-optimization.webp": {
+    "mtime": 1779537508.7302337,
+    "hash": "e780c214b48d4c370efd5bef573c74d3"
+  },
+  "C:\\Users\\sahil\\OneDrive\\Documents\\Web Development\\AI Job analyzer\\zaprill-marketing-website\\public\\blogs\\build-portfolio-replaces-resume.webp": {
+    "mtime": 1779537508.7322352,
+    "hash": "7250e218f9f701ab7b2ecbbd5a8988e4"
+  },
+  "C:\\Users\\sahil\\OneDrive\\Documents\\Web Development\\AI Job analyzer\\zaprill-marketing-website\\public\\blogs\\data-science-vs-data-engineering-salary.webp": {
+    "mtime": 1777204103.6366286,
+    "hash": "11cbc208c770dde686e8dfb85ad7b2f9"
+  },
+  "C:\\Users\\sahil\\OneDrive\\Documents\\Web Development\\AI Job analyzer\\zaprill-marketing-website\\public\\blogs\\equity-vs-base-pay-startups.webp": {
+    "mtime": 1777204103.6376393,
+    "hash": "b28321566f27f3c7c1b932dcbb749cca"
+  },
+  "C:\\Users\\sahil\\OneDrive\\Documents\\Web Development\\AI Job analyzer\\zaprill-marketing-website\\public\\blogs\\fresher-salary-expectations-india-2026.webp": {
+    "mtime": 1779537508.7352355,
+    "hash": "7679ce6a64722df80dd7fcd4d3ecfcc0"
+  },
+  "C:\\Users\\sahil\\OneDrive\\Documents\\Web Development\\AI Job analyzer\\zaprill-marketing-website\\public\\blogs\\hidden-cost-signing-bonuses.webp": {
+    "mtime": 1779537508.7372355,
+    "hash": "13e68cf5c898cfde20b29ad4db089039"
+  },
+  "C:\\Users\\sahil\\OneDrive\\Documents\\Web Development\\AI Job analyzer\\zaprill-marketing-website\\public\\blogs\\how-to-answer-expected-salary.webp": {
+    "mtime": 1779537508.7392354,
+    "hash": "4df0aa743e0ed756396b914ba34640b2"
+  },
+  "C:\\Users\\sahil\\OneDrive\\Documents\\Web Development\\AI Job analyzer\\zaprill-marketing-website\\public\\blogs\\how-to-know-if-youre-being-underpaid.webp": {
+    "mtime": 1777204103.6391478,
+    "hash": "f4bcf2d9b632089e2b91ab0cb7d7636f"
+  },
+  "C:\\Users\\sahil\\OneDrive\\Documents\\Web Development\\AI Job analyzer\\zaprill-marketing-website\\public\\blogs\\how-to-negotiate-job-offer.webp": {
+    "mtime": 1779537508.741233,
+    "hash": "f067c3b64826abb05b37c26855b46c5f"
+  },
+  "C:\\Users\\sahil\\OneDrive\\Documents\\Web Development\\AI Job analyzer\\zaprill-marketing-website\\public\\blogs\\how-to-switch-careers-into-tech-india.webp": {
+    "mtime": 1779537508.7452352,
+    "hash": "7c6a04f8f10dc05a19e85cb2bf5800a6"
+  },
+  "C:\\Users\\sahil\\OneDrive\\Documents\\Web Development\\AI Job analyzer\\zaprill-marketing-website\\public\\blogs\\how-to-write-resume-no-experience.webp": {
+    "mtime": 1779537508.7482338,
+    "hash": "fda887f9e4928a70bb43ef52d659549d"
+  },
+  "C:\\Users\\sahil\\OneDrive\\Documents\\Web Development\\AI Job analyzer\\zaprill-marketing-website\\public\\blogs\\navigating-career-progression-ic-vs-em-india.webp": {
+    "mtime": 1779537508.750235,
+    "hash": "c26f5a362e273d1d0b306544ca303d1e"
+  },
+  "C:\\Users\\sahil\\OneDrive\\Documents\\Web Development\\AI Job analyzer\\zaprill-marketing-website\\public\\blogs\\negotiating-tech-offers-buyers-market-2026.webp": {
+    "mtime": 1779537508.7522347,
+    "hash": "2deeab61de4828e5e951880c173e7aaf"
+  },
+  "C:\\Users\\sahil\\OneDrive\\Documents\\Web Development\\AI Job analyzer\\zaprill-marketing-website\\public\\blogs\\optimize-linkedin-profile-for-recruiters.webp": {
+    "mtime": 1779537508.7542462,
+    "hash": "01f2f16a277c8074233e29bbde5c075f"
+  },
+  "C:\\Users\\sahil\\OneDrive\\Documents\\Web Development\\AI Job analyzer\\zaprill-marketing-website\\public\\blogs\\product-manager-vs-software-engineer-salary.webp": {
+    "mtime": 1779537508.7572339,
+    "hash": "82b92fed67233bc49b4b367fa30fb5d6"
+  },
+  "C:\\Users\\sahil\\OneDrive\\Documents\\Web Development\\AI Job analyzer\\zaprill-marketing-website\\public\\blogs\\remote-vs-in-office-compensation-trends.webp": {
+    "mtime": 1777204103.6408992,
+    "hash": "846273fa0bd76d1d83ba45ba962d8065"
+  },
+  "C:\\Users\\sahil\\OneDrive\\Documents\\Web Development\\AI Job analyzer\\zaprill-marketing-website\\public\\blogs\\resume-red-flags-rejection.webp": {
+    "mtime": 1777204103.642069,
+    "hash": "a45ec725197ec8e3f4380b32f9135b6d"
+  },
+  "C:\\Users\\sahil\\OneDrive\\Documents\\Web Development\\AI Job analyzer\\zaprill-marketing-website\\public\\blogs\\salary-india-city-comparison.webp": {
+    "mtime": 1779537508.7602334,
+    "hash": "e2a60795d5b340394010a3781b93745d"
+  },
+  "C:\\Users\\sahil\\OneDrive\\Documents\\Web Development\\AI Job analyzer\\zaprill-marketing-website\\public\\blogs\\soft-skills-premium-pay-senior-engineering.webp": {
+    "mtime": 1777204103.6436138,
+    "hash": "7ed15caae9738d3dc8464e84711f58be"
+  },
+  "C:\\Users\\sahil\\OneDrive\\Documents\\Web Development\\AI Job analyzer\\zaprill-marketing-website\\public\\blogs\\tech-layoffs-salary-impact.webp": {
+    "mtime": 1779537508.7622347,
+    "hash": "f8984f681dfddb51d0d49d0efbf281e0"
+  },
+  "C:\\Users\\sahil\\OneDrive\\Documents\\Web Development\\AI Job analyzer\\zaprill-marketing-website\\public\\blogs\\tech-salary-negotiation-india-2026.webp": {
+    "mtime": 1777204103.6436138,
+    "hash": "4aef4b7496d9782fe67edb39cab09400"
+  },
+  "C:\\Users\\sahil\\OneDrive\\Documents\\Web Development\\AI Job analyzer\\zaprill-marketing-website\\public\\blogs\\the-5-skills-indian-tech-employers-are-paying-a-premium-for-in-2025.webp": {
+    "mtime": 1777204103.6436138,
+    "hash": "3e60020b969d2a616e6a82bbfd57c44d"
+  },
+  "C:\\Users\\sahil\\OneDrive\\Documents\\Web Development\\AI Job analyzer\\zaprill-marketing-website\\public\\blogs\\why-your-resume-gets-rejected-before-a-human-reads-it.webp": {
+    "mtime": 1777204103.6467042,
+    "hash": "f1ccef60cb7dc9019c2ff7d99c339776"
+  }
+}
