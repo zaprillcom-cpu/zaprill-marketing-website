@@ -38,6 +38,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.5
     },
     {
+      url: `${siteConfig.url}/links/vishnuraj`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.4
+    },
+    {
       url: `${siteConfig.url}/pricing`,
       lastModified: now,
       changeFrequency: "weekly",
