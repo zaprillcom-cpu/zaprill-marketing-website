@@ -14,7 +14,7 @@ const personSchema = {
   "@type": "Person",
   name: "Vishnuraj Vishwakarma",
   jobTitle: "AI Systems Representative",
-  image: `${siteConfig.url}/founder/visnhuraj.png`,
+  image: `${siteConfig.url}/founder/visnhuraj.webp`,
   url: `${siteConfig.url}/links/vishnuraj`,
   sameAs: ["https://www.linkedin.com/in/vishnuraj-vishwakarma/"],
   email: "vishnurajvishwakarma@gmail.com",
@@ -108,7 +108,7 @@ export default function VishnurajCardPage() {
               <div className="w-full max-w-[240px] sm:max-w-[260px] md:max-w-[280px]">
                 <div className="relative aspect-square overflow-hidden rounded-full border-[10px] border-white bg-[#A17DFF] shadow-[0_20px_60px_rgba(161,125,255,0.28)] dark:border-white/10">
                   <Image
-                    src="/founder/visnhuraj.png"
+                    src="/founder/visnhuraj.webp"
                     alt="Vishnuraj Vishwakarma portrait"
                     fill
                     priority
