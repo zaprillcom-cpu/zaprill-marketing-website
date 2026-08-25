@@ -26,7 +26,7 @@ type FormState = {
 const initialState: FormState = {
   name: "",
   email: "",
-  subject: "General Inquiry",
+  subject: "General question",
   otherSubject: "",
   message: ""
 };
@@ -81,17 +81,18 @@ export function ContactForm() {
 
   if (status === "success") {
     return (
-      <div className="flex flex-col items-center justify-center py-12 text-center animate-in fade-in zoom-in duration-500">
-        <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10 text-primary">
-          <CheckCircle2 className="h-8 w-8" />
+      <div className="border-l-2 border-signal py-2 pl-5" role="status">
+        <div className="mb-4 flex size-10 items-center justify-center rounded-md bg-accent text-signal">
+          <CheckCircle2 className="size-5" aria-hidden="true" />
         </div>
-        <h3 className="text-2xl font-bold text-foreground">Message Received</h3>
-        <p className="mt-2 max-w-[280px] text-muted-foreground">
-          Thanks for reaching out! One of our team members will be in touch within 24 hours.
+        <h3 className="text-2xl">Message received</h3>
+        <p className="mt-2 max-w-md">
+          Thanks for reaching out. A member of the team will reply within one
+          business day.
         </p>
         <Button 
           variant="outline" 
-          className="mt-8 rounded-full px-8" 
+          className="mt-6"
           onClick={() => setStatus("idle")}
         >
           Send another message
@@ -101,104 +102,115 @@ export function ContactForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
-      <div className="grid gap-6 sm:grid-cols-2">
-        <div className="space-y-2.5">
-          <label htmlFor="name" className="text-[13px] font-bold uppercase tracking-widest text-muted-foreground ml-1">
-            Full Name
+    <form onSubmit={handleSubmit} className="space-y-5" aria-busy={status === "loading"}>
+      <div className="grid gap-5 sm:grid-cols-2">
+        <div className="space-y-2">
+          <label htmlFor="name" className="text-sm font-semibold text-foreground">
+            Full name
           </label>
           <Input
             id="name"
-            placeholder="John Doe"
+            name="name"
+            autoComplete="name"
+            placeholder="Your name"
             value={form.name}
             onChange={(e) => setForm(f => ({ ...f, name: e.target.value }))}
-            className="h-12 rounded-xl bg-muted/30 border-border/50 focus:bg-background transition-all"
+            className="h-11"
             required
           />
         </div>
-        <div className="space-y-2.5">
-          <label htmlFor="email" className="text-[13px] font-bold uppercase tracking-widest text-muted-foreground ml-1">
-            Email Address
+        <div className="space-y-2">
+          <label htmlFor="email" className="text-sm font-semibold text-foreground">
+            Email address
           </label>
           <Input
             id="email"
+            name="email"
             type="email"
-            placeholder="john@example.com"
+            autoComplete="email"
+            inputMode="email"
+            placeholder="you@example.com"
             value={form.email}
             onChange={(e) => setForm(f => ({ ...f, email: e.target.value }))}
-            className="h-12 rounded-xl bg-muted/30 border-border/50 focus:bg-background transition-all"
+            className="h-11"
             required
           />
         </div>
       </div>
 
-      <div className="space-y-2.5">
-        <label htmlFor="subject" className="text-[13px] font-bold uppercase tracking-widest text-muted-foreground ml-1">
+      <div className="space-y-2">
+        <label htmlFor="subject" className="text-sm font-semibold text-foreground">
           Subject
         </label>
         <Select 
           value={form.subject} 
           onValueChange={(val) => setForm(f => ({ ...f, subject: val || "" }))}
         >
-          <SelectTrigger className="h-12 w-full rounded-xl bg-muted/30 border-border/50 focus:bg-background transition-all">
+          <SelectTrigger id="subject" className="h-11 w-full">
             <SelectValue placeholder="Select a subject" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="General Inquiry">General Inquiry</SelectItem>
-            <SelectItem value="Support">Support</SelectItem>
+            <SelectItem value="General question">General question</SelectItem>
+            <SelectItem value="Account support">Account support</SelectItem>
             <SelectItem value="Partnership">Partnership</SelectItem>
-            <SelectItem value="Press">Press</SelectItem>
+            <SelectItem value="Press request">Press request</SelectItem>
             <SelectItem value="Other">Other</SelectItem>
           </SelectContent>
         </Select>
 
         {form.subject === "Other" && (
-          <div className="mt-3 animate-in fade-in slide-in-from-top-2 duration-300">
+          <div className="mt-3">
+            <label htmlFor="other-subject" className="sr-only">
+              Specify the subject
+            </label>
             <Input
-              placeholder="Please specify your subject..."
+              id="other-subject"
+              name="otherSubject"
+              placeholder="Specify the subject"
               value={form.otherSubject}
               onChange={(e) => setForm(f => ({ ...f, otherSubject: e.target.value }))}
-              className="h-12 rounded-xl bg-muted/30 border-border/50 focus:bg-background transition-all"
+              className="h-11"
               required
             />
           </div>
         )}
       </div>
 
-      <div className="space-y-2.5">
-        <label htmlFor="message" className="text-[13px] font-bold uppercase tracking-widest text-muted-foreground ml-1">
-          How can we help?
+      <div className="space-y-2">
+        <label htmlFor="message" className="text-sm font-semibold text-foreground">
+          Message
         </label>
         <Textarea
           id="message"
+          name="message"
           rows={5}
-          placeholder="Tell us about what's on your mind..."
+          placeholder="Describe your question and include any useful context."
           value={form.message}
           onChange={(e) => setForm(f => ({ ...f, message: e.target.value }))}
-          className="rounded-xl bg-muted/30 border-border/50 focus:bg-background transition-all resize-none max-h-48 overflow-y-auto [field-sizing:fixed]"
+          className="min-h-36 resize-y"
           required
         />
       </div>
 
       {status === "error" && (
-        <div className="flex items-center gap-3 rounded-xl border border-destructive/20 bg-destructive/5 p-4 text-sm text-destructive animate-in fade-in slide-in-from-top-2">
-          <AlertCircle className="h-4 w-4 shrink-0" />
-          <p>{feedbackMessage}</p>
+        <div className="flex items-start gap-3 rounded-md border border-destructive/30 bg-destructive/5 p-4 text-sm text-destructive" role="alert">
+          <AlertCircle className="mt-0.5 size-4 shrink-0" aria-hidden="true" />
+          <p className="text-destructive">{feedbackMessage}</p>
         </div>
       )}
 
       <Button 
         type="submit" 
-        className="h-14 w-full rounded-xl text-base font-bold transition-all hover:translate-y-[-2px] active:translate-y-0" 
+        className="h-11 w-full"
         disabled={status === "loading"}
       >
         {status === "loading" ? (
           <>
-            <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-            Sending...
+            <Loader2 className="size-4 animate-spin" aria-hidden="true" />
+            Sending…
           </>
         ) : (
-          "Send Message"
+          "Send message"
         )}
       </Button>
     </form>

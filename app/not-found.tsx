@@ -1,39 +1,13 @@
 "use client";
 
+import { ArrowLeft, Home } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useEffect, useMemo, useState } from "react";
-import { ArrowLeft, Home, Sparkles } from "lucide-react";
 
 import { buttonVariants } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { cn } from "@/lib/utils";
-
-const REDIRECT_SECONDS = 5;
 
 export default function NotFound() {
   const router = useRouter();
-  const [secondsLeft, setSecondsLeft] = useState(REDIRECT_SECONDS);
-
-  useEffect(() => {
-    const redirectTimer = window.setTimeout(() => {
-      router.replace("/");
-    }, REDIRECT_SECONDS * 1000);
-
-    const countdownTimer = window.setInterval(() => {
-      setSecondsLeft((previous) => (previous <= 1 ? 0 : previous - 1));
-    }, 1000);
-
-    return () => {
-      window.clearTimeout(redirectTimer);
-      window.clearInterval(countdownTimer);
-    };
-  }, [router]);
-
-  const progress = useMemo(
-    () => ((REDIRECT_SECONDS - secondsLeft) / REDIRECT_SECONDS) * 100,
-    [secondsLeft]
-  );
 
   const handleBack = () => {
     if (window.history.length > 1) {
@@ -45,73 +19,37 @@ export default function NotFound() {
   };
 
   return (
-    <section className="relative isolate overflow-hidden bg-[var(--home-surface-1)]">
-      <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
-        <div className="absolute -left-32 top-10 h-72 w-72 rounded-full bg-primary/15 blur-[100px]" />
-        <div className="absolute -right-24 bottom-0 h-80 w-80 rounded-full bg-blue-500/10 blur-[120px]" />
-        <div className="absolute left-1/2 top-1/3 h-60 w-60 -translate-x-1/2 rounded-full bg-purple-500/10 blur-[110px]" />
+    <div className="container flex min-h-[64vh] items-center py-14 md:py-20">
+      <div className="grid w-full border-y border-border py-10 lg:grid-cols-[0.35fr_0.65fr] lg:gap-16 lg:py-14">
+        <div>
+          <div className="font-mono text-6xl font-semibold tracking-[-0.06em] text-signal md:text-8xl">
+            404
+          </div>
+          <div className="data-label mt-3">Page not found</div>
+        </div>
+
+        <div className="mt-8 max-w-2xl lg:mt-0">
+          <h1 className="text-4xl md:text-5xl">This page took a wrong turn.</h1>
+          <p className="mt-5 text-lg leading-8">
+            The address may be incorrect, or the page may have moved. Choose
+            where you want to go next—we will not redirect you automatically.
+          </p>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <Link href="/" className={buttonVariants({ size: "lg" })}>
+              <Home aria-hidden="true" />
+              Go home
+            </Link>
+            <button
+              type="button"
+              onClick={handleBack}
+              className={buttonVariants({ variant: "outline", size: "lg" })}
+            >
+              <ArrowLeft aria-hidden="true" />
+              Go back
+            </button>
+          </div>
+        </div>
       </div>
-
-      <div className="container flex min-h-[70vh] items-center justify-center py-16 md:py-24">
-        <Card className="w-full max-w-2xl border border-border/70 bg-card/85 py-0 backdrop-blur-xl">
-          <CardContent className="p-8 md:p-12">
-            <div className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-background/80 px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-muted-foreground">
-              <Sparkles className="size-3.5 text-primary" />
-              Error 404
-            </div>
-
-            <h1 className="mt-5 text-4xl font-bold tracking-tight text-foreground md:text-5xl">
-              This page took a wrong turn.
-            </h1>
-
-            <p className="mt-4 max-w-xl text-base text-muted-foreground md:text-lg">
-              The link may be outdated or the page may have moved. We will
-              automatically take you back home.
-            </p>
-
-            <div className="mt-7 rounded-3xl border border-border/60 bg-background/70 p-5">
-              <p className="text-sm font-medium text-foreground">
-                Redirecting in{" "}
-                <span className="font-bold text-primary">{secondsLeft}s</span>
-              </p>
-              <div
-                aria-hidden="true"
-                className="mt-3 h-2 w-full overflow-hidden rounded-full bg-muted"
-              >
-                <div
-                  className="h-full rounded-full bg-primary transition-[width] duration-500"
-                  style={{ width: `${progress}%` }}
-                />
-              </div>
-            </div>
-
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Link
-                href="/"
-                className={cn(
-                  buttonVariants({ variant: "default", size: "lg" }),
-                  "rounded-full px-5"
-                )}
-              >
-                <Home className="mr-1 size-4" />
-                Go home now
-              </Link>
-
-              <button
-                type="button"
-                onClick={handleBack}
-                className={cn(
-                  buttonVariants({ variant: "outline", size: "lg" }),
-                  "rounded-full px-5"
-                )}
-              >
-                <ArrowLeft className="mr-1 size-4" />
-                Go back
-              </button>
-            </div>
-          </CardContent>
-        </Card>
-      </div>
-    </section>
+    </div>
   );
 }

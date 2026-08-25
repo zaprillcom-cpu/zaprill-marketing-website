@@ -1,5 +1,3 @@
-import Script from "next/script";
-
 export function AdsenseScript() {
   const adsenseClient = process.env.NEXT_PUBLIC_ADSENSE_CLIENT || "ca-pub-4010004205574660";
 

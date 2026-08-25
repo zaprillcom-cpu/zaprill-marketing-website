@@ -9,7 +9,6 @@ export function LazyAd({ slot }: { slot?: string }) {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          // @ts-ignore
           (window.adsbygoogle = window.adsbygoogle || []).push({});
           observer.disconnect();
         }

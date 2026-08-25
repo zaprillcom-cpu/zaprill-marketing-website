@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import maplibregl from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 import { cn } from "@/lib/utils";
@@ -14,6 +14,11 @@ interface MapProps {
   markerTitle?: string;
 }
 
+const MAP_STYLES = {
+  light: "https://tiles.basemaps.cartocdn.com/gl/positron-gl-style/style.json",
+  dark: "https://tiles.basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json",
+} as const;
+
 export function Map({
   latitude,
   longitude,
@@ -23,14 +28,8 @@ export function Map({
 }: MapProps) {
   const mapContainer = useRef<HTMLDivElement>(null);
   const map = useRef<maplibregl.Map | null>(null);
-  const { theme, resolvedTheme } = useTheme();
+  const { resolvedTheme } = useTheme();
   const [isLoaded, setIsLoaded] = useState(false);
-
-  // Style URLs for MapLibre (CartoDB Positron for light, Dark Matter for dark)
-  const styles = {
-    light: "https://tiles.basemaps.cartocdn.com/gl/positron-gl-style/style.json",
-    dark: "https://tiles.basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json"
-  };
 
   useEffect(() => {
     if (!mapContainer.current || map.current) return;
@@ -39,7 +38,7 @@ export function Map({
 
     map.current = new maplibregl.Map({
       container: mapContainer.current,
-      style: styles[currentTheme],
+      style: MAP_STYLES[currentTheme],
       center: [longitude, latitude],
       zoom: zoom,
       attributionControl: false
@@ -50,9 +49,14 @@ export function Map({
       
       // Add a marker
       if (map.current) {
-        new maplibregl.Marker({ color: "#a855f7" })
+        const popupLabel = document.createElement("h3");
+        popupLabel.textContent = markerTitle;
+
+        new maplibregl.Marker({ color: "#b9442d" })
           .setLngLat([longitude, latitude])
-          .setPopup(new maplibregl.Popup({ offset: 25 }).setHTML(`<h3>${markerTitle}</h3>`))
+          .setPopup(
+            new maplibregl.Popup({ offset: 25 }).setDOMContent(popupLabel),
+          )
           .addTo(map.current);
       }
     });
@@ -70,17 +74,25 @@ export function Map({
   useEffect(() => {
     if (!map.current || !isLoaded) return;
     const currentTheme = resolvedTheme === "dark" ? "dark" : "light";
-    map.current.setStyle(styles[currentTheme]);
+    map.current.setStyle(MAP_STYLES[currentTheme]);
   }, [resolvedTheme, isLoaded]);
 
   return (
-    <div className={cn("relative w-full h-full rounded-xl overflow-hidden border border-primary/20 hover:border-primary/40 shadow-md hover:shadow-primary/5 transition-all duration-300", className)}>
-      <div ref={mapContainer} className="w-full h-full" />
-      {!isLoaded && (
-        <div className="absolute inset-0 flex items-center justify-center bg-muted/20 backdrop-blur-[2px]">
-          <div className="h-8 w-8 animate-spin rounded-full border-2 border-primary border-t-transparent" />
+    <div className={cn("relative h-full w-full overflow-hidden bg-muted", className)}>
+      <div
+        ref={mapContainer}
+        className="h-full w-full"
+        aria-label={`Map showing ${markerTitle}`}
+      />
+      {!isLoaded ? (
+        <div
+          className="absolute inset-0 flex items-center justify-center bg-muted"
+          role="status"
+          aria-label="Loading map"
+        >
+          <div className="size-7 animate-spin rounded-full border-2 border-signal border-t-transparent" />
         </div>
-      )}
+      ) : null}
     </div>
   );
 }

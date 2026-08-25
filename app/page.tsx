@@ -1,128 +1,103 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Script from "next/script";
-import dynamic from "next/dynamic";
 import {
-  CircleDollarSign,
-  SearchX,
+  ArrowRight,
+  BriefcaseBusiness,
+  Check,
+  Gauge,
+  ScanSearch,
   Target,
-  Fingerprint
 } from "lucide-react";
 
-import { SectionHeading } from "@/components/section-heading";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
+import { FaqAccordion } from "@/components/faq-accordion";
+import { buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 import { siteConfig } from "@/lib/site";
-import { Reveal } from "@/components/reveal";
-
-
-// Lazy-load framer-motion heavy components to reduce initial JS and TBT
-const FaqAccordion = dynamic(() => import("@/components/faq-accordion").then(m => ({ default: m.FaqAccordion })));
 
 export const metadata: Metadata = {
-  alternates: {
-    canonical: "/"
-  },
+  alternates: { canonical: "/" },
   openGraph: {
-    title: "Zaprill — Know Your Worth. Get the Job.",
+    title: "Zaprill — Know what your experience is worth",
     description:
-      "Upload your resume and instantly discover your real market salary, best-fit job matches, and the exact skills blocking your next raise. Free to start.",
+      "Turn one resume into a clear salary benchmark, explainable job matches, skill gaps, and ATS feedback.",
     url: siteConfig.url,
     type: "website",
-    images: ["/og"]
+    images: ["/og"],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Zaprill — Know Your Worth. Get the Job.",
+    title: "Zaprill — Know what your experience is worth",
     description:
-      "Upload your resume and instantly discover your real market salary, best-fit job matches, and the exact skills blocking your next raise. Free to start.",
-    images: ["/og"]
-  }
+      "Turn one resume into a clear salary benchmark, explainable job matches, skill gaps, and ATS feedback.",
+    images: ["/og"],
+  },
 };
 
-const valueProps = [
+const outputs = [
   {
-    icon: SearchX,
-    title: "Stop Flying Blind.",
-    body: "Find out which companies are actually paying top-tier for your exact profile, based on live market data. We track thousands of real-time data points across global tech hubs to ensure you never settle for less than your true worth in today's shifting economy.",
-    className: "lg:col-span-2 lg:row-span-1"
+    icon: Gauge,
+    label: "Salary benchmark",
+    title: "See a realistic market range",
+    body: "Compare your experience, location, and stack with roles hiring now—not a broad industry average.",
   },
   {
-    icon: CircleDollarSign,
-    title: "Know Your Number.",
-    body: "Negotiate with total confidence using real-time compensation data matched to your stack.",
-    className: "lg:col-span-1 lg:row-span-1"
-  },
-  {
-    icon: Fingerprint,
-    title: "Beat the Bots.",
-    body: "Simulate employer ATS filters to flag exactly what's causing silent rejections before you apply.",
-    className: "lg:col-span-1 lg:row-span-1"
+    icon: BriefcaseBusiness,
+    label: "Job matches",
+    title: "Know why a role fits",
+    body: "Each match shows the skills you already have, what is missing, and how the score was calculated.",
   },
   {
     icon: Target,
-    title: "Map the Gap.",
-    body: "Identify the exact skills blocking your next salary band and get a clear path to close them. From high-level architectural patterns to niche cloud technologies, we show you exactly which credentials will trigger a raise and how to acquire them efficiently.",
-    className: "lg:col-span-2 lg:row-span-1"
-  }
+    label: "Skill gaps",
+    title: "Focus on the gap that matters",
+    body: "Find the few skills that repeatedly appear in higher-paying roles for your profile.",
+  },
+  {
+    icon: ScanSearch,
+    label: "ATS review",
+    title: "Catch avoidable resume issues",
+    body: "Flag missing role keywords, unclear experience, and formatting that can reduce your chances.",
+  },
 ];
 
 const processSteps = [
   {
     step: "01",
-    title: "We read your resume deeply",
-    body: "Not just job titles. We extract your actual skills, years of experience per technology, career progression, and compensation history to build a precise profile of where you stand."
+    title: "Upload your resume",
+    body: "Use a PDF or Word document. There is no long profile form to complete first.",
   },
   {
     step: "02",
-    title: "We compare you against the live market",
-    body: "Your profile is matched against 10,000+ active job listings updated daily. We calculate exactly where you rank — not compared to averages, but against real roles hiring right now."
+    title: "Zaprill reads the evidence",
+    body: "Your skills, experience, role progression, and location are compared with active job listings.",
   },
   {
     step: "03",
-    title: "You get a clear, honest report",
-    body: "Matched roles with fit scores. Your exact salary gap. The two or three skills that would move you into a higher pay band. No guessing. No vague advice."
-  }
+    title: "Review your career brief",
+    body: "Get a salary range, explainable matches, ATS feedback, and the next skills worth learning.",
+  },
 ];
 
 const faqs = [
   {
-    q: "Is my resume data safe?",
-    a: "Yes. Your resume is processed through our engine and never shared with third-party employers without your explicit consent. You can request full data deletion from our servers at any time with a single click."
+    q: "What do I get after uploading my resume?",
+    a: "You receive a career brief with an estimated market salary range, matching roles, skill gaps, and ATS feedback. Each section explains the evidence behind the result.",
   },
   {
-    q: "What happens after I upload my resume?",
-    a: "Within 2 minutes, our AI extracts your skills and cross-references them against our live, proprietary database of job listings. You are immediately redirected to a dashboard displaying your calculated market value, exact skill gaps, and roles you match with today."
+    q: "Is my resume data private?",
+    a: "Your resume is used to generate your analysis and is not shared with employers without your permission. You can request deletion of your stored data.",
   },
   {
-    q: "Do I need to create an account?",
-    a: "Yes. To upload your resume and receive your free custom salary and skill gap analysis, you need to create a free account. This ensures your resume data is securely stored and allows you to return to your dashboard to track your career matches and progress over time."
+    q: "How is the salary range calculated?",
+    a: "Zaprill compares your location, experience, and skill profile with current job listings and disclosed compensation data. It is an estimate, not a guaranteed offer.",
   },
   {
-    q: "How accurate is the salary gap calculation?",
-    a: "Highly accurate. We don't rely on self-reported averages. Our system parses real-time job listings that mandate salary disclosures, cross-referencing your exact technical stack and years of experience to calculate your true 90th percentile earning potential."
-  }
+    q: "Do I need an account?",
+    a: "Yes. A free account keeps your report available so you can return to it and compare future searches.",
+  },
 ];
 
-const pricing = {
-  free: [
-    "1 job search per month",
-    "Ad-supported interface with low ad density",
-    "Basic matches only",
-    "100% match jobs are Pro-only"
-  ],
-  pro: [
-    "Ad-free experience",
-    "Unlimited job searches",
-    "Unlock all matches, including 100% match jobs",
-    "Quarterly Pro: ₹99 (₹49 for first 500 users)",
-    "Yearly Pro: ₹350 (₹175 for first 1000 users)"
-  ]
-};
-
 export default function HomePage() {
-  // Structured data (@graph pattern)
   const homeSchema = {
     "@context": "https://schema.org",
     "@graph": [
@@ -131,27 +106,22 @@ export default function HomePage() {
         mainEntity: faqs.map((faq) => ({
           "@type": "Question",
           name: faq.q,
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: faq.a
-          }
-        }))
+          acceptedAnswer: { "@type": "Answer", text: faq.a },
+        })),
       },
-
       {
         "@type": "HowTo",
-        name: "How to Find Your Real Market Salary with Zaprill",
+        name: "How to create a Zaprill career brief",
         description:
-          "Upload your resume to Zaprill and get your exact market value, job matches, and skill gap analysis in 2 minutes.",
+          "Upload a resume and receive a salary benchmark, job matches, skill gaps, and ATS feedback.",
         totalTime: "PT2M",
-        step: processSteps.map((step, idx) => ({
+        step: processSteps.map((step, index) => ({
           "@type": "HowToStep",
-          position: idx + 1,
+          position: index + 1,
           name: step.title,
-          text: step.body
-        }))
+          text: step.body,
+        })),
       },
-
       {
         "@type": "SoftwareApplication",
         name: siteConfig.name,
@@ -160,406 +130,273 @@ export default function HomePage() {
         applicationCategory: "BusinessApplication",
         operatingSystem: "Web",
         offers: [
-          {
-            "@type": "Offer",
-            price: "0",
-            priceCurrency: "INR",
-            name: "Free",
-            description:
-              "1 job search monthly, low ad-supported experience, basic matches only, 100% matches locked."
-          },
-          {
-            "@type": "Offer",
-            price: "99",
-            priceCurrency: "INR",
-            priceSpecification: {
-              "@type": "UnitPriceSpecification",
-              price: "99",
-              priceCurrency: "INR",
-              referenceQuantity: {
-                "@type": "QuantitativeValue",
-                value: 3,
-                unitCode: "MON"
-              }
-            },
-            name: "Pro Quarterly",
-            description:
-              "Ad-free, unlimited searches, unlock all matches including 100% scores."
-          },
-          {
-            "@type": "Offer",
-            price: "350",
-            priceCurrency: "INR",
-            priceSpecification: {
-              "@type": "UnitPriceSpecification",
-              price: "350",
-              priceCurrency: "INR",
-              referenceQuantity: {
-                "@type": "QuantitativeValue",
-                value: 12,
-                unitCode: "MON"
-              }
-            },
-            name: "Pro Yearly",
-            description:
-              "All Pro features with priority support and discounted annual billing."
-          }
+          { "@type": "Offer", price: "0", priceCurrency: "INR", name: "Free" },
+          { "@type": "Offer", price: "199", priceCurrency: "INR", name: "Quarterly Pro" },
+          { "@type": "Offer", price: "555", priceCurrency: "INR", name: "Yearly Pro" },
         ],
-        aggregateRating: {
-          "@type": "AggregateRating",
-          ratingValue: "4.8",
-          ratingCount: "150",
-          bestRating: "5"
-        }
-      }
-    ]
+      },
+    ],
   };
 
   return (
-    <main className="bg-[var(--home-surface-1)] text-foreground transition-colors duration-300">
+    <div className="bg-[var(--home-surface-1)]">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(homeSchema)
-        }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(homeSchema) }}
       />
 
-      {/* Background Blobs */}
-      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
-        <div className="absolute -top-[10%] -left-[10%] w-[40%] h-[40%] bg-primary/10 rounded-full blur-[120px] animate-pulse"></div>
-        <div className="absolute top-[20%] -right-[5%] w-[30%] h-[30%] bg-blue-500/5 rounded-full blur-[100px] animate-pulse delay-700"></div>
-      </div>
-
-      {/* Hero Section */}
-      <section className="relative overflow-hidden bg-[var(--home-surface-1)] pt-10 pb-14">
-        <div className="container mx-auto relative z-10 grid items-center gap-16 lg:grid-cols-[1.1fr_0.9fr] max-w-[1200px]">
-          <div className="max-w-2xl text-center lg:text-left animate-in fade-in slide-in-from-bottom-4 duration-700 ease-out fill-mode-both">
-            <h1 className="text-5xl md:text-[68px] leading-[1.05] tracking-tighter text-foreground mb-6">
-              You're probably underpaid.
-              <br />
-              <span className="text-primary/60 dark:text-primary/40">
-                We can prove it.
-              </span>
+      <section className="border-b border-border py-14 md:py-20">
+        <div className="container grid items-center gap-12 lg:grid-cols-[minmax(0,1fr)_480px] lg:gap-16">
+          <div className="max-w-2xl">
+            <div className="eyebrow">Career intelligence from one resume</div>
+            <h1 className="text-[44px] sm:text-[52px] lg:text-[60px]">
+              Know what your experience is worth.
             </h1>
-
-            <p className="mt-8 text-[19px] text-muted-foreground max-w-lg mx-auto lg:mx-0 balanced leading-relaxed font-light">
-              Stop applying blind. Upload your resume and instantly discover your market value, hidden ATS filters, and the skills blocking your next 30% raise.
+            <p className="mt-6 max-w-xl text-lg leading-8">
+              Zaprill turns your resume into a clear market salary range, explainable job matches, ATS feedback, and the skills most likely to improve your next move.
             </p>
 
-            <div className="mt-12 flex flex-col sm:flex-row sm:justify-center lg:justify-start gap-4 mb-8">
-              <Link href="/app" className="inline-flex items-center justify-center bg-primary text-primary-foreground transition-all hover:opacity-90 border-0 h-14 px-8 text-base font-semibold rounded-full min-w-[200px] hover:scale-105 duration-200">
-                Upload Resume — Free
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <a
+                href={siteConfig.appUrl}
+                className={cn(buttonVariants({ size: "lg" }), "h-11 px-5")}
+              >
+                Analyze my resume
+                <ArrowRight aria-hidden="true" />
+              </a>
+              <Link
+                href="#how-it-works"
+                className={cn(buttonVariants({ variant: "outline", size: "lg" }), "h-11 px-5")}
+              >
+                See how it works
               </Link>
             </div>
 
-            <div className="text-[13px] text-muted-foreground font-medium tracking-wide">
-              Works with PDF and Word <span className="opacity-40 mx-2">·</span> 2 min to results
+            <div className="mt-6 flex flex-wrap gap-x-5 gap-y-2 text-sm text-muted-foreground">
+              {["PDF or DOCX", "About 2 minutes", "Free to start"].map((item) => (
+                <span key={item} className="inline-flex items-center gap-2">
+                  <Check className="h-3.5 w-3.5 text-signal" aria-hidden="true" />
+                  {item}
+                </span>
+              ))}
             </div>
           </div>
 
-          <Reveal delay={0.2} className="relative w-full max-w-[380px] mx-auto lg:ml-auto">
-            <div className="rounded-2xl border border-border bg-card/80 p-1 backdrop-blur-[30px] shadow-2xl">
-              <div className="rounded-[14px] bg-card overflow-hidden border border-border relative">
-                {/* Structural highlight */}
-                <div className="absolute inset-0 ring-1 ring-inset ring-foreground/5 rounded-[14px]"></div>
+          <div className="border border-border bg-card shadow-[0_20px_45px_rgb(20_28_24/0.08)]" aria-label="Example Zaprill career brief">
+            <div className="flex items-center justify-between border-b border-border px-5 py-4">
+              <div>
+                <div className="data-label">Career brief</div>
+                <div className="mt-1 font-heading text-lg font-semibold">Full-stack engineer · Mumbai</div>
+              </div>
+              <span className="border border-border bg-muted px-2 py-1 font-mono text-[10px] uppercase tracking-[0.1em] text-muted-foreground">
+                Example
+              </span>
+            </div>
 
-                <div className="relative flex items-center justify-between border-b border-border px-5 py-3.5 bg-muted/30">
-                  <div className="text-xs font-semibold text-muted-foreground tracking-wide uppercase">System Output</div>
-                  <div className="flex gap-2 items-center">
-                    <span className="relative flex h-2 w-2 mr-1">
-                      <span className="animate-pulse absolute inline-flex h-full w-full rounded-full bg-foreground opacity-80"></span>
-                    </span>
-                    <span className="text-[10px] uppercase font-mono tracking-widest text-primary font-bold ml-1">Live</span>
-                  </div>
+            <div className="p-5 sm:p-6">
+              <div className="flex items-end justify-between gap-4">
+                <div>
+                  <div className="data-label">Estimated market range</div>
+                  <div className="mt-2 font-heading text-3xl font-semibold tracking-tight">₹18.4L–₹24.5L</div>
                 </div>
-
-                <div className="relative p-5 px-6">
-                  <div className="mb-6">
-                    <div className="text-lg font-bold tracking-tight text-foreground">Full-Stack Engineer</div>
-                    <div className="text-xs text-muted-foreground font-medium mt-1">Based in Mumbai</div>
-                  </div>
-
-                  <div className="space-y-4 text-[13px] mb-8 tracking-wide font-medium">
-                    <div className="flex justify-between border-b border-border pb-3">
-                      <span className="text-muted-foreground">Current salary</span>
-                      <span className="text-foreground">₹14,00,000</span>
-                    </div>
-
-                    <div className="flex justify-between border-b border-border pb-3">
-                      <span className="text-muted-foreground">Market average</span>
-                      <span className="text-foreground">₹19,80,000</span>
-                    </div>
-
-                    <div className="flex justify-between border-b border-border pb-3">
-                      <span className="text-muted-foreground">Your potential</span>
-                      <span className="text-foreground font-bold">₹24,50,000</span>
-                    </div>
-
-                    <div className="flex justify-between pb-1 pt-1">
-                      <span className="text-foreground font-bold">Gap identified</span>
-                      <span className="text-primary font-bold">+₹10,50,000 / yr</span>
-                    </div>
-                  </div>
-
-                  <div className="bg-muted/50 rounded-xl p-4 text-[11px] text-foreground mt-2">
-                    <div className="flex items-center gap-2 mb-5">
-                      <Fingerprint className="h-4 w-4 text-muted-foreground" />
-                      <span className="text-muted-foreground font-bold tracking-widest uppercase text-[10px]">Skill Check</span>
-                    </div>
-                    <div className="space-y-3.5">
-                      <div className="flex gap-4 items-center">
-                        <span className="text-foreground text-sm font-bold opacity-70">✓</span>
-                        <div className="flex flex-col">
-                          <span className="text-foreground font-semibold">React.js</span>
-                          <span className="text-muted-foreground">Strong</span>
-                        </div>
-                      </div>
-                      <div className="flex gap-4 items-center">
-                        <span className="text-foreground text-sm font-bold opacity-70">✓</span>
-                        <div className="flex flex-col">
-                          <span className="text-foreground font-semibold">Node.js</span>
-                          <span className="text-muted-foreground">Strong</span>
-                        </div>
-                      </div>
-                      <div className="flex gap-4 items-start">
-                        <span className="text-muted-foreground text-sm font-bold">−</span>
-                        <div className="flex flex-col">
-                          <span className="text-foreground font-semibold">System Design</span>
-                          <p className="text-muted-foreground mt-1.5 leading-relaxed">Missing structural experience. Blocking ₹4L+ mid-level roles.</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                <div className="text-right">
+                  <div className="data-label">Market position</div>
+                  <div className="mt-2 font-mono text-sm font-semibold text-signal">Above median</div>
                 </div>
               </div>
+
+              <div className="mt-8" aria-label="Salary market range visualization">
+                <div className="relative h-2 bg-muted">
+                  <div className="absolute inset-y-0 left-[22%] right-[9%] bg-foreground" />
+                  <div className="absolute -top-1.5 left-[22%] h-5 w-px bg-foreground" />
+                  <div className="absolute -top-2 right-[9%] h-6 w-0.5 bg-signal" />
+                </div>
+                <div className="mt-3 flex justify-between font-mono text-[10px] uppercase tracking-[0.08em] text-muted-foreground">
+                  <span>₹14L</span>
+                  <span>₹18.4L market</span>
+                  <span className="text-signal">₹24.5L potential</span>
+                </div>
+              </div>
+
+              <dl className="mt-7 grid grid-cols-2 border-y border-border sm:grid-cols-3">
+                <div className="border-r border-border py-4 pr-4">
+                  <dt className="data-label">Role matches</dt>
+                  <dd className="mt-2 font-mono text-xl font-semibold">38</dd>
+                </div>
+                <div className="border-r border-border px-4 py-4">
+                  <dt className="data-label">Best fit</dt>
+                  <dd className="mt-2 font-mono text-xl font-semibold">92%</dd>
+                </div>
+                <div className="col-span-2 border-t border-border py-4 sm:col-span-1 sm:border-t-0 sm:pl-4">
+                  <dt className="data-label">ATS flags</dt>
+                  <dd className="mt-2 font-mono text-xl font-semibold">03</dd>
+                </div>
+              </dl>
+
+              <div className="mt-6 border-l-2 border-signal bg-accent px-4 py-3">
+                <div className="data-label text-accent-foreground">Priority skill gap</div>
+                <p className="mt-1 text-sm leading-6 text-foreground">
+                  System design appears in 7 of your 10 highest-paying matches.
+                </p>
+              </div>
             </div>
-          </Reveal>
+          </div>
         </div>
       </section>
 
+      <section className="py-16 md:py-20" aria-labelledby="outputs-title">
+        <div className="container grid gap-10 lg:grid-cols-[0.72fr_1.28fr] lg:gap-16">
+          <div className="max-w-sm">
+            <div className="eyebrow">What you get</div>
+            <h2 id="outputs-title">Answers you can use, not another score.</h2>
+            <p className="mt-4">
+              Every result tells you what it means and what to do next.
+            </p>
+          </div>
 
-      {/* Platform Capabilities */}
-      <section className="bg-[var(--home-surface-2)] py-16 relative overflow-hidden">
-        <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px] -z-10" />
-        <div className="container mx-auto max-w-[1200px]">
-          <Reveal>
-            <SectionHeading
-              pill="Intelligence"
-              pillClassName="bg-muted text-foreground border-0 uppercase tracking-widest text-[10px] font-bold"
-              title="Career intelligence that actually works."
-              description="Stop leaving money on the table. Zaprill gives you the data employers use, finally in your hands."
-              className="mb-32 text-center [&_h2]:tracking-tighter [&_h2]:text-4xl md:[&_h2]:text-[48px] [&_p]:text-[18px] [&_p]:font-light [&_p]:mt-6"
-              align="center"
-            />
-          </Reveal>
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {valueProps.map((item, idx) => {
-              const Icon = item.icon;
+          <div className="grid border-t border-border sm:grid-cols-2">
+            {outputs.map((output, index) => {
+              const Icon = output.icon;
               return (
-                <Reveal key={item.title} delay={idx * 0.1} className={item.className}>
-                  <Card className="group h-full p-6 md:p-8 rounded-3xl border-border bg-card/50 backdrop-blur-sm hover:bg-card hover:shadow-2xl hover:shadow-primary/5 transition-all duration-500 relative overflow-hidden">
-                    {/* Background Blob */}
-                    <div className="absolute -right-8 -top-8 h-32 w-32 rounded-full bg-primary/5 blur-3xl group-hover:bg-primary/10 transition-colors z-0" />
-                    
-                    <div className="flex flex-col h-full justify-between gap-8 relative z-10">
-                      <div>
-                        <div className="h-10 w-10 flex items-center justify-center rounded-xl bg-primary/10 text-primary mb-6 group-hover:scale-110 group-hover:rotate-3 transition-transform duration-500">
-                          <Icon className="h-5 w-5" strokeWidth={1.5} />
-                        </div>
-                        <h3 className="text-xl font-bold tracking-tight text-foreground mb-3 leading-tight">{item.title}</h3>
-                        <p className="text-muted-foreground text-sm leading-relaxed font-light balanced">{item.body}</p>
-                      </div>
-                      
-                      <div className="w-8 h-1 rounded-full bg-primary/10 group-hover:w-16 group-hover:bg-primary/30 transition-all duration-500" />
-                    </div>
-                  </Card>
-                </Reveal>
+                <article
+                  key={output.title}
+                  className={cn(
+                    "border-b border-border py-7 sm:px-7",
+                    index % 2 === 0 && "sm:border-r sm:pl-0",
+                  )}
+                >
+                  <div className="flex items-center gap-3">
+                    <Icon className="h-4 w-4 text-signal" strokeWidth={1.8} aria-hidden="true" />
+                    <span className="data-label">{output.label}</span>
+                  </div>
+                  <h3 className="mt-5">{output.title}</h3>
+                  <p className="mt-3 text-[15px] leading-7">{output.body}</p>
+                </article>
               );
             })}
           </div>
         </div>
       </section>
-      {/* How It Works */}
-      <section className="border-y border-border bg-[var(--home-surface-1)] py-16 relative overflow-hidden">
-        <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-primary/5 rounded-full blur-[100px]" />
-        <div className="container mx-auto max-w-[1200px]">
-          <Reveal>
-            <SectionHeading
-              pill="Process"
-              pillClassName="bg-muted text-foreground border-0 uppercase tracking-widest text-[10px] font-bold"
-              title="Three steps. One honest answer."
-              description="No forms. No profile to fill. Just your resume."
-              className="mb-32 text-center [&_h2]:tracking-tighter [&_h2]:text-4xl md:[&_h2]:text-[48px] [&_p]:text-[18px] [&_p]:font-light [&_p]:mt-6"
-            />
-          </Reveal>
-          <div className="relative mt-20 grid gap-12 lg:gap-16 lg:grid-cols-3">
-            <div className="absolute left-[16.66%] right-[16.66%] top-7 hidden border-t border-dashed border-primary/50 lg:block" />
-            {processSteps.map((item, idx) => (
-              <Reveal key={item.step} delay={idx * 0.15} className="relative flex max-lg:flex-row max-lg:gap-8 max-lg:pb-12 lg:flex-col lg:items-center lg:text-center">
-                {item.step !== "03" ? (
-                  <div className="absolute left-[27px] top-14 bottom-0 w-px border-l border-dashed border-primary/50 lg:hidden" />
-                ) : null}
-                <div className="relative z-10 flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-card border border-border shadow-xl text-lg font-bold text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-500 ring-8 ring-[var(--home-surface-1)]">
-                  {item.step}
-                  <div className="absolute inset-0 bg-primary/5 rounded-2xl -z-10 blur-xl opacity-0 group-hover:opacity-100 transition-opacity" />
+
+      <section id="how-it-works" className="border-y border-border bg-[var(--home-surface-2)] py-16 md:py-20" aria-labelledby="process-title">
+        <div className="container grid gap-10 lg:grid-cols-[0.75fr_1.25fr] lg:gap-16">
+          <div className="max-w-sm">
+            <div className="eyebrow">How it works</div>
+            <h2 id="process-title">From resume to a useful decision.</h2>
+            <p className="mt-4">No long questionnaire. No unexplained black-box result.</p>
+          </div>
+
+          <ol className="border-t border-border">
+            {processSteps.map((item) => (
+              <li key={item.step} className="grid gap-3 border-b border-border py-6 sm:grid-cols-[52px_1fr] sm:gap-5">
+                <span className="font-mono text-sm font-semibold text-signal">{item.step}</span>
+                <div>
+                  <h3>{item.title}</h3>
+                  <p className="mt-2 max-w-xl text-[15px] leading-7">{item.body}</p>
                 </div>
-                <div className="max-lg:pt-2">
-                  <h3 className="text-xl lg:mt-10 font-bold tracking-tight text-foreground leading-tight">{item.title}</h3>
-                  <p className="mt-4 lg:mt-6 max-w-sm text-muted-foreground text-sm leading-relaxed font-light balanced">{item.body}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      <section className="py-16 md:py-20" aria-labelledby="matches-title">
+        <div className="container grid items-center gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:gap-16">
+          <div className="max-w-md">
+            <div className="eyebrow">Explainable matches</div>
+            <h2 id="matches-title">A match score should show its work.</h2>
+            <p className="mt-4">
+              Zaprill separates strong evidence from missing requirements so you can decide whether to apply, prepare, or skip the role.
+            </p>
+            <a
+              href={siteConfig.appUrl}
+              className={cn(buttonVariants({ variant: "outline", size: "lg" }), "mt-7")}
+            >
+              Find my matches
+              <ArrowRight aria-hidden="true" />
+            </a>
+          </div>
+
+          <div className="border border-border bg-card">
+            <div className="grid grid-cols-[1fr_auto] border-b border-border px-5 py-3">
+              <span className="data-label">Roles hiring now</span>
+              <span className="data-label">Fit</span>
+            </div>
+            {[
+              ["Backend engineer", "Node.js · PostgreSQL · APIs", "92%", "Strong match"],
+              ["Full-stack engineer", "React · Node.js · TypeScript", "88%", "Strong match"],
+              ["Platform engineer", "Cloud · CI/CD · Kubernetes", "74%", "1 key gap"],
+            ].map(([role, skills, score, note], index) => (
+              <div key={role} className={cn("grid grid-cols-[1fr_auto] items-center gap-6 px-5 py-5", index < 2 && "border-b border-border")}>
+                <div>
+                  <h3 className="text-base">{role}</h3>
+                  <p className="mt-1 text-sm leading-5">{skills}</p>
+                  <span className={cn("mt-2 inline-block font-mono text-[10px] uppercase tracking-[0.08em]", note === "1 key gap" ? "text-signal" : "text-muted-foreground")}>
+                    {note}
+                  </span>
                 </div>
-              </Reveal>
+                <span className="font-mono text-xl font-semibold">{score}</span>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Salary Intelligence Hook */}
-      <section className="bg-[var(--home-surface-2)] text-foreground py-20 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,var(--primary)_0%,transparent_100%)] opacity-[0.03] -z-10" />
-        <div className="container mx-auto max-w-4xl text-center relative z-10">
-          <Reveal>
-            <Badge className="bg-primary/10 text-primary border-0 mb-10 font-sans tracking-widest px-4 py-1.5 text-[11px] uppercase font-bold rounded-full">Live Market Data</Badge>
-            <h2 className="text-4xl md:text-[48px] font-bold tracking-tighter text-foreground mb-10 balanced leading-[1.05]">
-              The market is moving faster than your HR.
-            </h2>
-            <p className="text-[18px] text-muted-foreground mb-20 balanced max-w-2xl mx-auto font-light leading-relaxed">
-              Zaprill scans 10,000+ daily job listings to find the real ceiling for your technical profile. Most users find a <span className="text-foreground font-medium">₹3L+ gap</span> in minutes.
-            </p>
-          </Reveal>
-
-          <Reveal delay={0.2} className="mx-auto max-w-[540px]">
-            <Card className="rounded-[32px] border border-border bg-card/40 backdrop-blur-2xl p-8 md:p-11 text-left relative overflow-hidden shadow-[0_32px_64px_-16px_rgba(0,0,0,0.1)] dark:shadow-primary/5">
-              <div className="absolute -top-24 -right-24 w-64 h-64 bg-primary/10 rounded-full blur-[80px]" />
-              <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-primary/5 rounded-full blur-[80px]" />
-              
-              <h3 className="text-center text-muted-foreground mb-12 text-[11px] tracking-[0.25em] uppercase font-bold">Compensation Benchmark</h3>
-              
-              <div className="space-y-10 relative z-10">
-                <div className="group/bar">
-                  <div className="flex justify-between items-end mb-4">
-                    <div className="flex flex-col">
-                      <span className="text-[12px] text-muted-foreground font-medium mb-1">Current Market Value</span>
-                      <span className="text-xl font-bold tracking-tight text-foreground/40">₹18,40,000</span>
-                    </div>
-                    <span className="text-[12px] font-bold text-muted-foreground/40">50th Percentile</span>
-                  </div>
-                  <div className="h-3 w-full bg-muted/30 rounded-full overflow-hidden">
-                    <div className="h-full w-1/2 bg-muted transition-all duration-1000 ease-out" />
-                  </div>
-                </div>
-
-                <div className="group/bar">
-                  <div className="flex justify-between items-end mb-4">
-                    <div className="flex flex-col">
-                      <span className="text-[12px] text-primary font-bold mb-1">Top 10% Potential</span>
-                      <span className="text-2xl font-black tracking-tighter text-primary">₹26,50,000</span>
-                    </div>
-                    <span className="text-[12px] font-bold text-primary">Target</span>
-                  </div>
-                  <div className="h-4 w-full bg-primary/10 rounded-full overflow-hidden p-1">
-                    <div className="h-full w-full bg-primary rounded-full shadow-[0_0_20px_rgba(var(--primary),0.4)] transition-all duration-1000 delay-300 ease-out" />
-                  </div>
-                </div>
-              </div>
-
-              <div className="mt-16 flex justify-center">
-                <Link href="/app" className="w-full">
-                  <Button className="w-full bg-primary hover:bg-primary/90 text-primary-foreground border-0 h-14 rounded-xl text-sm font-bold shadow-2xl shadow-primary/20 transition-all active:scale-[0.97]">
-                    Verify My Market Value
-                  </Button>
-                </Link>
-              </div>
-            </Card>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* FAQ Section */}
-      <section className="bg-[var(--home-surface-1)] py-16">
-        <div className="container mx-auto max-w-3xl">
-          <Reveal className="text-center mb-20">
-            <h2 className="text-4xl md:text-[48px] tracking-tighter font-bold text-foreground">Frequently Asked Questions</h2>
-            <p className="mt-4 text-[19px] text-muted-foreground font-light leading-relaxed">Everything you need to know about Zaprill.</p>
-          </Reveal>
-          <Reveal delay={0.2}>
-            <FaqAccordion faqs={faqs} />
-          </Reveal>
-        </div>
-      </section>
-
-      {/* Pricing */}
-      <section className="border-t border-border bg-[var(--home-surface-2)] py-16">
-        <div className="container mx-auto max-w-5xl">
-          <Reveal>
-            <SectionHeading
-              pill="Pricing"
-              pillClassName="bg-muted text-foreground border-0 uppercase tracking-widest text-[10px] font-bold"
-              title="Free gives a taste. Pro unlocks the full picture."
-              description="Compare plans and launch offers in INR (₹)."
-              className="mb-20 text-center [&_h2]:tracking-tighter [&_h2]:text-4xl md:[&_h2]:text-[48px]"
-            />
-          </Reveal>
-          <div className="mx-auto grid max-w-4xl gap-8 lg:grid-cols-2">
-            <Reveal delay={0.1}>
-              <Card className="h-full rounded-[20px] border-border bg-background p-10 flex flex-col">
-                <h3 className="text-2xl font-bold tracking-tight text-foreground mb-2">Free</h3>
-                <div className="flex items-end gap-2 mb-8">
-                  <div className="text-[44px] font-bold tracking-tighter leading-none text-foreground">₹0</div>
-                  <div className="text-muted-foreground mb-1.5 font-medium text-sm">/ month</div>
-                </div>
-                <ul className="space-y-5 mb-12 flex-1">
-                  {pricing.free.map((feature) => (
-                    <li key={feature} className="flex gap-4 items-start text-muted-foreground">
-                      <span className="text-muted/30 mt-1 font-bold">—</span>
-                      <span className="text-[15px]">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-                <Link href="/app" className="w-full">
-                  <Button variant="secondary" className="w-full justify-center h-12 rounded-full border-border text-foreground bg-background hover:bg-accent font-bold active:scale-[0.98] text-sm">
-                    Start Free
-                  </Button>
-                </Link>
-              </Card>
-            </Reveal>
-
-            <Reveal delay={0.2}>
-              <Card className="h-full relative rounded-[20px] border-border bg-foreground text-background p-10 flex flex-col shadow-xl">
-                <div className="absolute top-6 right-8">
-                  <Badge className="bg-background/10 text-background border-0 text-[10px] font-bold tracking-widest hover:bg-background/10 uppercase px-3 py-1">Pro</Badge>
-                </div>
-                <h3 className="text-2xl font-bold tracking-tight text-background mb-2">Pro Plans</h3>
-                <div className="flex items-end gap-2 mb-1.5">
-                  <div className="text-[44px] font-bold tracking-tighter leading-none text-background">₹46.25</div>
-                  <div className="text-background/60 mb-1.5 font-medium text-sm">/ month</div>
-                </div>
-                <div className="text-[12px] font-medium text-background/50 mb-8">46.25/month, if taken yearly (₹555/yr) or ₹199 quarterly</div>
-                <ul className="space-y-5 mb-12 flex-1">
-                  {pricing.pro.map((feature) => (
-                    <li key={feature} className="flex gap-4 items-start text-background">
-                      <span className="text-background/20 mt-1 font-bold">—</span>
-                      <span className="font-medium text-background text-[15px]">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-                <Link href="/pricing" className="w-full">
-                  <Button className="w-full justify-center h-12 rounded-full bg-background text-foreground hover:bg-background/90 border-0 font-bold active:scale-[0.98] text-sm">
-                    Compare Plans
-                  </Button>
-                </Link>
-              </Card>
-            </Reveal>
-          </div>
-          <Reveal delay={0.3} className="mt-10 text-center">
-            <Link href="/pricing">
-              <Button variant="outline" className="h-12 rounded-full px-8">
-                View Full Pricing Breakdown
-              </Button>
+      <section className="border-y border-border bg-[var(--home-surface-2)] py-16 md:py-20" aria-labelledby="pricing-title">
+        <div className="container">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+            <div className="max-w-xl">
+              <div className="eyebrow">Simple pricing</div>
+              <h2 id="pricing-title">Start free. Pay when you need more depth.</h2>
+            </div>
+            <Link href="/pricing" className="inline-flex items-center gap-2 text-sm font-semibold underline decoration-border underline-offset-4 hover:decoration-foreground">
+              Compare every plan <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </Link>
-          </Reveal>
+          </div>
+
+          <div className="mt-10 grid border border-border bg-card lg:grid-cols-2">
+            <div className="p-6 md:p-8 lg:border-r lg:border-border">
+              <div className="data-label">Free</div>
+              <div className="mt-3 font-heading text-3xl font-semibold">₹0</div>
+              <p className="mt-3 max-w-md text-sm leading-6">Try the core experience with one monthly search and basic matches.</p>
+              <a href={siteConfig.appUrl} className={cn(buttonVariants({ variant: "outline" }), "mt-6")}>Start free</a>
+            </div>
+            <div className="border-t border-border p-6 md:p-8 lg:border-t-0">
+              <div className="data-label text-signal">Pro</div>
+              <div className="mt-3 font-heading text-3xl font-semibold">From ₹199 / quarter</div>
+              <p className="mt-3 max-w-md text-sm leading-6">Get more searches, every match score, full salary insights, and fewer ads.</p>
+              <Link href="/pricing" className={cn(buttonVariants(), "mt-6")}>See Pro plans</Link>
+            </div>
+          </div>
         </div>
       </section>
 
-    </main>
+      <section className="py-16 md:py-20" aria-labelledby="faq-title">
+        <div className="container grid gap-10 lg:grid-cols-[0.72fr_1.28fr] lg:gap-16">
+          <div className="max-w-sm">
+            <div className="eyebrow">Common questions</div>
+            <h2 id="faq-title">Before you upload.</h2>
+            <p className="mt-4">The essentials about results, privacy, and accuracy.</p>
+          </div>
+          <FaqAccordion faqs={faqs} />
+        </div>
+      </section>
+
+      <section className="border-t border-border bg-foreground py-14 text-background">
+        <div className="container flex flex-col gap-7 sm:flex-row sm:items-center sm:justify-between">
+          <div className="max-w-2xl">
+            <div className="font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-background/60">Your next move, with evidence</div>
+            <h2 className="mt-3 max-w-xl text-background">Turn your resume into a clear career brief.</h2>
+          </div>
+          <a
+            href={siteConfig.appUrl}
+            className={cn(buttonVariants({ size: "lg" }), "shrink-0 bg-background text-foreground hover:bg-background/90")}
+          >
+            Analyze my resume
+            <ArrowRight aria-hidden="true" />
+          </a>
+        </div>
+      </section>
+    </div>
   );
 }

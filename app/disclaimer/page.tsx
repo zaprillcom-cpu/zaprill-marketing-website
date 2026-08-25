@@ -76,7 +76,7 @@ export default function DisclaimerPage() {
           </section>
 
           <section className="space-y-4">
-            <h2 className="text-xl font-semibold text-foreground">5. Limitiation of Liability</h2>
+            <h2 className="text-xl font-semibold text-foreground">5. Limitation of Liability</h2>
             <p>
               To the maximum extent permitted by law, Zaprill and its founders shall not be liable 
               for any indirect, incidental, special, consequential, or punitive damages, or any loss 

@@ -1,50 +1,65 @@
 "use client";
 
+import { ArrowUpRight, Menu, X } from "lucide-react";
 import Link from "next/link";
-import { Menu, X } from "lucide-react";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 
-import { siteConfig } from "@/lib/site";
-import { cn } from "@/lib/utils";
 import { Logo } from "@/components/logo";
 import { ThemeToggle } from "@/components/theme-toggle";
-import { Button } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+import { siteConfig } from "@/lib/site";
 
 const navItems = [
-  { href: "/", label: "Home" },
   { href: "/about", label: "About" },
   { href: "/pricing", label: "Pricing" },
-  { href: "/blog", label: "Blog" },
+  { href: "/blog", label: "Career guides" },
   { href: "/contact", label: "Contact" },
 ];
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border bg-[var(--nav-bg)] text-foreground backdrop-blur-[20px] dark:border-white/10 dark:text-white">
-      <div className="container mx-auto flex h-[68px] max-w-[1200px] items-center justify-between px-6">
+    <header className="sticky top-0 z-50 border-b border-border bg-[var(--nav-bg)]">
+      <div className="container flex h-16 items-center justify-between">
         <Logo />
-        <nav className="hidden items-center gap-8 md:flex">
-          {navItems.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="text-[15px] font-medium text-foreground/70 transition-colors hover:text-foreground dark:text-white/75 dark:hover:text-white"
-            >
-              {item.label}
-            </Link>
-          ))}
-          <Link href="/app">
-            <Button size="sm" className="text-[14px]">
-              Open App
-            </Button>
-          </Link>
-          <ThemeToggle />
+
+        <nav className="hidden items-center gap-1 md:flex" aria-label="Main navigation">
+          {navItems.map((item) => {
+            const active = pathname === item.href || pathname.startsWith(`${item.href}/`);
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                aria-current={active ? "page" : undefined}
+                className={cn(
+                  "rounded-md px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground",
+                  active && "text-foreground",
+                )}
+              >
+                {item.label}
+              </Link>
+            );
+          })}
         </nav>
+
+        <div className="hidden items-center gap-2 md:flex">
+          <ThemeToggle />
+          <a
+            href={siteConfig.appUrl}
+            className={buttonVariants({ size: "lg" })}
+          >
+            Analyze resume
+            <ArrowUpRight aria-hidden="true" />
+          </a>
+        </div>
+
         <button
           type="button"
-          className="inline-flex h-10 w-10 items-center justify-center rounded-md border border-border text-foreground md:hidden dark:border-white/20 dark:text-white"
+          className="inline-flex h-10 w-10 items-center justify-center rounded-md border border-border text-foreground md:hidden"
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
           aria-controls="mobile-menu"
@@ -53,37 +68,42 @@ export function SiteHeader() {
           {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
         </button>
       </div>
+
       <div
         id="mobile-menu"
         className={cn(
-          "overflow-hidden border-t border-border bg-[var(--nav-bg)] transition-all duration-200 md:hidden dark:border-white/10",
-          open ? "max-h-[28rem]" : "max-h-0 border-t-0",
+          "border-t border-border bg-background md:hidden",
+          open ? "block" : "hidden",
         )}
       >
-        <div className="container mx-auto flex flex-col items-center gap-5 px-6 py-6 text-center">
-          <div className="grid w-full grid-cols-2 gap-x-4 gap-y-2">
-            {navItems.map((item) => (
-              <div key={item.href} className="flex h-10 items-center justify-center">
-                <Link
-                  href={item.href}
-                  className="inline-flex h-full items-center justify-center text-base font-medium text-foreground/80 transition-colors hover:text-foreground dark:text-white/80 dark:hover:text-white"
-                  onClick={() => setOpen(false)}
-                >
-                  {item.label}
-                </Link>
-              </div>
-            ))}
-            <div className="flex h-10 items-center justify-center">
-              <ThemeToggle />
-            </div>
-            <div className="h-10" aria-hidden="true" />
-          </div>
-          <div className="mt-1 flex w-full max-w-[260px] flex-col items-center gap-3">
-            <Link href="/app" className="w-full">
-              <Button className="h-11 w-full justify-center rounded-full">Open App</Button>
+        <nav className="container flex flex-col py-4" aria-label="Mobile navigation">
+          <Link
+            href="/"
+            onClick={() => setOpen(false)}
+            className="border-b border-border py-3 text-base font-medium"
+          >
+            Home
+          </Link>
+          {navItems.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              onClick={() => setOpen(false)}
+              className="border-b border-border py-3 text-base font-medium"
+            >
+              {item.label}
             </Link>
+          ))}
+          <div className="mt-4 flex items-center gap-2">
+            <ThemeToggle />
+            <a
+              href={siteConfig.appUrl}
+              className={cn(buttonVariants({ size: "lg" }), "flex-1")}
+            >
+              Analyze resume
+            </a>
           </div>
-        </div>
+        </nav>
       </div>
     </header>
   );

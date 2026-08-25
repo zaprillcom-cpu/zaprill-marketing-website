@@ -1,23 +1,33 @@
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { getArticleBySlug, blogArticles, getRecommendedArticles } from "@/lib/blog";
-import { siteConfig } from "@/lib/site";
 import Image from "next/image";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 import Script from "next/script";
+import { ArrowRight } from "lucide-react";
+
 import { BlogShareButtons } from "@/components/blog-share-buttons";
-import { Reveal } from "@/components/reveal";
-import { SectionHeading } from "@/components/section-heading";
+import { buttonVariants } from "@/components/ui/button";
+import {
+  blogArticles,
+  getArticleBySlug,
+  getRecommendedArticles,
+} from "@/lib/blog";
 import { cn } from "@/lib/utils";
-import { Card } from "@/components/ui/card";
+import { siteConfig } from "@/lib/site";
 
 type ArticlePageProps = {
   params: Promise<{
     slug: string;
   }>;
 };
+
+function formatDate(date: string) {
+  return new Date(date).toLocaleDateString("en-IN", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+  });
+}
 
 export async function generateStaticParams() {
   return blogArticles.map((article) => ({ slug: article.slug }));
@@ -68,21 +78,17 @@ export default async function ArticlePage(props: ArticlePageProps) {
   }
 
   const recommendations = getRecommendedArticles(params.slug);
-
-  let paragraphCount = 0;
-
-  // Calculate word count for schema
   const wordCount = article.sections.reduce(
     (total, section) =>
       total +
       section.paragraphs.reduce(
-        (sTotal, p) => sTotal + p.split(/\s+/).length,
+        (sectionTotal, paragraph) =>
+          sectionTotal + paragraph.split(/\s+/).length,
         0,
       ),
     0,
   );
 
-  // Structured data (@graph pattern)
   const pageSchema = {
     "@context": "https://schema.org",
     "@graph": [
@@ -95,7 +101,9 @@ export default async function ArticlePage(props: ArticlePageProps) {
         wordCount,
         articleSection: article.category,
         inLanguage: "en",
-        image: article.image ? `${siteConfig.url}${article.image}` : `${siteConfig.url}/og`,
+        image: article.image
+          ? `${siteConfig.url}${article.image}`
+          : `${siteConfig.url}/og`,
         author: {
           "@type": "Organization",
           name: article.author,
@@ -115,7 +123,6 @@ export default async function ArticlePage(props: ArticlePageProps) {
           "@id": `${siteConfig.url}/blog/${article.slug}`,
         },
       },
-
       {
         "@type": "BreadcrumbList",
         itemListElement: [
@@ -128,7 +135,7 @@ export default async function ArticlePage(props: ArticlePageProps) {
           {
             "@type": "ListItem",
             position: 2,
-            name: "Blog",
+            name: "Career guides",
             item: `${siteConfig.url}/blog`,
           },
           {
@@ -138,257 +145,254 @@ export default async function ArticlePage(props: ArticlePageProps) {
             item: `${siteConfig.url}/blog/${article.slug}`,
           },
         ],
-      }
-    ]
+      },
+    ],
   };
 
   return (
-    <article className="bg-background transition-colors duration-300">
+    <div>
       <Script
         id="blog-post-schema"
         type="application/ld+json"
-        strategy="afterInteractive"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(pageSchema),
-        }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(pageSchema) }}
       />
 
-      <section className="section-padding pb-6 md:pb-12">
-        <div className="container max-w-4xl">
-          {/* Breadcrumb navigation */}
-          <nav aria-label="Breadcrumb" className="mb-8 text-sm text-muted-foreground font-medium">
-            <ol className="flex items-center gap-1.5 flex-wrap">
-              <li>
-                <Link href="/" className="hover:text-foreground transition-colors">
-                  Home
-                </Link>
-              </li>
-              <li aria-hidden="true" className="select-none">/</li>
-              <li>
-                <Link href="/blog" className="hover:text-foreground transition-colors">
-                  Blog
-                </Link>
-              </li>
-              <li aria-hidden="true" className="select-none">/</li>
-              <li aria-current="page" className="text-foreground font-semibold truncate max-w-[200px] md:max-w-[400px]">
-                {article.title}
-              </li>
-            </ol>
-          </nav>
+      <article>
+        <header className="border-b border-border py-12 md:py-16">
+          <div className="container max-w-[980px]">
+            <nav aria-label="Breadcrumb" className="mb-8">
+              <ol className="flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
+                <li>
+                  <Link href="/" className="hover:text-foreground hover:underline">
+                    Home
+                  </Link>
+                </li>
+                <li aria-hidden="true">/</li>
+                <li>
+                  <Link
+                    href="/blog"
+                    className="hover:text-foreground hover:underline"
+                  >
+                    Career guides
+                  </Link>
+                </li>
+              </ol>
+            </nav>
 
-          <Badge className={article.badgeClass}>{article.category}</Badge>
-          <h1 className="mt-8 text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1]">{article.title}</h1>
-          <p className="mt-6 text-xl md:text-2xl text-muted-foreground/90 max-w-3xl leading-relaxed">{article.description}</p>
-          
-          <div className="mt-10 flex flex-wrap items-center justify-between gap-6 border-y border-border/50 py-8">
-            <div className="flex items-center gap-4">
-              {article.authorImage && (
-                <Image src={article.authorImage} alt={article.author} width={48} height={48} className="rounded-full shadow-sm" />
-              )}
-              <div>
-                <p className="font-bold text-foreground">{article.author}</p>
-                <div className="flex items-center gap-2 text-sm text-muted-foreground mt-1">
-                  <time dateTime={article.publishedAt}>
-                    {new Date(article.publishedAt).toLocaleDateString("en-IN", {
-                      month: "short",
-                      day: "numeric",
-                      year: "numeric",
-                    })}
-                  </time>
-                  <span aria-hidden="true">·</span>
-                  {article.readTime && <span>{article.readTime}</span>}
+            <div className="data-label text-signal">{article.category}</div>
+            <h1 className="mt-5 max-w-[18ch] text-[40px] sm:text-[48px] lg:text-[54px]">
+              {article.title}
+            </h1>
+            <p className="mt-6 max-w-3xl text-lg leading-8 md:text-xl">
+              {article.description}
+            </p>
+
+            <div className="mt-8 flex flex-wrap items-center justify-between gap-5 border-y border-border py-5">
+              <div className="flex items-center gap-3">
+                {article.authorImage ? (
+                  <Image
+                    src={article.authorImage}
+                    alt=""
+                    width={40}
+                    height={40}
+                    className="size-10 rounded-full border border-border object-cover"
+                  />
+                ) : null}
+                <div>
+                  <div className="text-sm font-semibold text-foreground">
+                    {article.author}
+                  </div>
+                  <div className="mt-0.5 flex items-center gap-2 text-xs text-muted-foreground">
+                    <time dateTime={article.publishedAt}>
+                      {formatDate(article.publishedAt)}
+                    </time>
+                    {article.readTime ? (
+                      <>
+                        <span aria-hidden="true">·</span>
+                        <span>{article.readTime}</span>
+                      </>
+                    ) : null}
+                  </div>
                 </div>
               </div>
+              <BlogShareButtons
+                url={`/blog/${article.slug}`}
+                title={article.title}
+                variant="outline"
+                size="sm"
+              />
             </div>
-            <BlogShareButtons 
-              url={`/blog/${article.slug}`} 
-              title={article.title} 
-              variant="outline" 
-              size="default" 
-            />
-          </div>
 
-          {article.image && (
-            <div className="mt-12 md:mt-16">
+            {article.image ? (
               <Image
                 src={article.image}
                 alt={article.title}
                 width={1200}
                 height={630}
-                className="w-full h-auto rounded-[2rem] border border-border shadow-md"
+                className="mt-10 h-auto w-full border border-border object-cover"
                 priority
               />
-            </div>
-          )}
-        </div>
-      </section>
+            ) : null}
+          </div>
+        </header>
 
-      <section className="pb-24">
-        <div className="container max-w-[1100px]">
-          <div className="flex flex-col lg:flex-row gap-12 lg:gap-20">
-            
-            {/* Left Sidebar Table of Contents */}
-            <aside className="hidden lg:block w-[240px] shrink-0">
-              <div className="sticky top-28 pt-2">
-                <p className="text-[13px] font-bold uppercase tracking-widest text-muted-foreground mb-5">
-                  In this article
-                </p>
-                <nav className="flex flex-col gap-3.5">
-                  {article.sections.map((section, idx) => (
-                    <a 
-                      key={idx} 
-                      href={`#section-${idx}`} 
-                      className="text-[15px] font-medium text-muted-foreground hover:text-primary transition-colors leading-snug"
-                    >
-                      {section.heading}
-                    </a>
-                  ))}
-                </nav>
-                
-                <div className="mt-12 pt-8 border-t border-border/50">
-                  <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-muted-foreground/60 mb-5">
-                    Share this article
-                  </p>
-                  <BlogShareButtons 
-                    url={`/blog/${article.slug}`} 
-                    title={article.title} 
-                    className="flex-col items-start gap-3" 
-                    variant="ghost"
-                    showLabel={true}
-                  />
-                </div>
-              </div>
-            </aside>
-
-            {/* Main Content Body */}
-            <div className="min-w-0 flex-1">
-              <div className="space-y-16 max-w-3xl">
-                {article.sections.map((section, idx) => (
-                  <section key={section.heading} id={`section-${idx}`} className="scroll-mt-28 group/section">
-                    <div className="flex items-center justify-between gap-4 mb-6">
-                      <h2 className="text-3xl font-bold tracking-tight text-foreground">{section.heading}</h2>
-                      <BlogShareButtons 
-                        url={`/blog/${article.slug}#section-${idx}`} 
-                        title={`${article.title} - ${section.heading}`} 
-                        variant="ghost" 
-                        size="icon" 
-                        showLabel={false}
-                        className="opacity-0 group-hover/section:opacity-100 transition-opacity"
-                      />
-                    </div>
-                    <div className="space-y-6 text-[18px] leading-[1.8] text-foreground/90 font-medium">
-                      {section.paragraphs.map((paragraph) => {
-                        paragraphCount += 1;
-                        return (
-                          <div key={`${section.heading}-${paragraph.slice(0, 24)}`}>
-                            <p dangerouslySetInnerHTML={{ __html: paragraph }} />
-                          </div>
-                        );
-                      })}
-                    </div>
-                  </section>
+        <div className="container grid max-w-[1080px] gap-12 py-14 lg:grid-cols-[220px_minmax(0,1fr)] lg:gap-16 lg:py-16">
+          <aside className="hidden lg:block" aria-label="Article contents">
+            <div className="sticky top-24 border-t border-border pt-5">
+              <div className="data-label">In this guide</div>
+              <nav className="mt-4 flex flex-col">
+                {article.sections.map((section, index) => (
+                  <a
+                    key={section.heading}
+                    href={`#section-${index}`}
+                    className="border-l border-border py-2 pl-3 text-sm leading-5 text-muted-foreground hover:border-signal hover:text-foreground"
+                  >
+                    {section.heading}
+                  </a>
                 ))}
-              </div>
-
-              {/* Author Footer */}
-              <div className="mt-20 border-t border-border pt-12 max-w-3xl">
-                <div className="flex flex-col sm:flex-row gap-6 items-center sm:items-start bg-muted/40 p-8 rounded-3xl border border-border/50">
-                  {article.authorImage && (
-                    <Image src={article.authorImage} alt={article.author} width={72} height={72} className="rounded-full shadow-sm shrink-0" />
-                  )}
-                  <div className="text-center sm:text-left">
-                    <p className="text-xl font-bold text-foreground">{article.author}</p>
-                    {article.authorRole && (
-                      <p className="text-sm font-semibold text-primary mt-1">{article.authorRole}</p>
-                    )}
-                    <p className="text-muted-foreground mt-3 text-[15px] leading-relaxed max-w-md">
-                      Providing market-leading insights on career strategy, technical compensation, and negotiation.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* CTA Box */}
-              <div className="mt-12 rounded-[2rem] bg-card border border-border shadow-md p-8 md:p-12 text-center relative overflow-hidden max-w-3xl group">
-                <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                <div className="relative z-10">
-                  <h3 className="text-2xl md:text-3xl font-bold tracking-tight">See where your profile can go next.</h3>
-                  <p className="mx-auto mt-4 max-w-lg text-lg text-muted-foreground">
-                    Upload your resume to Zaprill and get salary insight, job matches, and skill gap clarity in minutes.
-                  </p>
-                  <div className="mt-8">
-                    <Link href={siteConfig.appUrl}>
-                      <Button size="lg" className="rounded-full px-8 text-base shadow-sm">
-                        Open the App
-                      </Button>
-                    </Link>
-                  </div>
-                </div>
+              </nav>
+              <div className="mt-8 border-t border-border pt-5">
+                <div className="data-label mb-3">Share</div>
+                <BlogShareButtons
+                  url={`/blog/${article.slug}`}
+                  title={article.title}
+                  className="flex-col items-start"
+                  variant="ghost"
+                  size="sm"
+                />
               </div>
             </div>
+          </aside>
+
+          <div className="min-w-0 max-w-[720px]">
+            <div className="space-y-12">
+              {article.sections.map((section, index) => (
+                <section
+                  key={section.heading}
+                  id={`section-${index}`}
+                  className="scroll-mt-24"
+                >
+                  <h2 className="border-t border-border pt-6 text-2xl md:text-3xl">
+                    {section.heading}
+                  </h2>
+                  <div className="mt-5 space-y-5 text-[17px] leading-8 text-foreground/90 [&_a]:text-signal [&_a]:underline [&_a]:underline-offset-4 [&_strong]:font-semibold [&_strong]:text-foreground">
+                    {section.paragraphs.map((paragraph) => (
+                      <p
+                        key={`${section.heading}-${paragraph.slice(0, 32)}`}
+                        className="text-[17px] leading-8 text-foreground/90"
+                        dangerouslySetInnerHTML={{ __html: paragraph }}
+                      />
+                    ))}
+                  </div>
+                </section>
+              ))}
+            </div>
+
+            <footer className="mt-14 border-y border-border py-7">
+              <div className="flex gap-4">
+                {article.authorImage ? (
+                  <Image
+                    src={article.authorImage}
+                    alt=""
+                    width={56}
+                    height={56}
+                    className="size-14 shrink-0 rounded-full border border-border object-cover"
+                  />
+                ) : null}
+                <div>
+                  <div className="data-label">Written by</div>
+                  <div className="mt-1 font-heading text-xl font-semibold">
+                    {article.author}
+                  </div>
+                  {article.authorRole ? (
+                    <div className="mt-1 text-sm text-signal">
+                      {article.authorRole}
+                    </div>
+                  ) : null}
+                  <p className="mt-2 text-sm leading-6">
+                    Reporting on career strategy, compensation, and better job
+                    decisions.
+                  </p>
+                </div>
+              </div>
+            </footer>
+
+            <aside className="mt-10 border border-border bg-card p-6 sm:p-8">
+              <div className="data-label text-signal">Use your own evidence</div>
+              <h2 className="mt-2 text-2xl">Turn your resume into a career brief.</h2>
+              <p className="mt-3 max-w-xl">
+                See a salary range, explainable job matches, skill gaps, and ATS
+                feedback based on your profile.
+              </p>
+              <a
+                href={siteConfig.appUrl}
+                className={cn(buttonVariants({ size: "lg" }), "mt-6")}
+              >
+                Analyze my resume
+                <ArrowRight aria-hidden="true" />
+              </a>
+            </aside>
           </div>
         </div>
-      </section>
+      </article>
 
-      {/* Recommendations Section */}
-      {recommendations.length > 0 && (
-        <section className="py-24 bg-muted/30 border-t border-border/50">
+      {recommendations.length > 0 ? (
+        <section className="border-t border-border bg-muted/40 py-14 md:py-16">
           <div className="container">
-            <Reveal>
-              <SectionHeading
-                pill="Keep Reading"
-                title="Recommended for you"
-                description="More insights to help you navigate your career and market value."
-              />
-            </Reveal>
+            <div className="flex items-end justify-between gap-6">
+              <div>
+                <div className="eyebrow">Continue reading</div>
+                <h2>Related career guides</h2>
+              </div>
+              <Link
+                href="/blog"
+                className="hidden text-sm font-semibold text-foreground underline decoration-signal decoration-2 underline-offset-4 sm:block"
+              >
+                View all guides
+              </Link>
+            </div>
 
-            <div className="grid gap-8 md:grid-cols-3 mt-16">
+            <div className="mt-9 grid gap-8 md:grid-cols-3">
               {recommendations.map((item) => (
-                <Reveal key={item.slug}>
-                  <Card className="h-full group p-0 overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-all hover:shadow-md flex flex-col">
-                    <div className={cn("relative w-full aspect-[16/9] bg-muted overflow-hidden", item.tintClass)}>
-                      {item.image && (
-                        <Image
-                          src={item.image}
-                          alt={item.title}
-                          fill
-                          className="object-cover transition-transform duration-500 group-hover:scale-105"
-                          sizes="(max-width: 768px) 100vw, 33vw"
-                        />
-                      )}
-                    </div>
-                    <div className="p-6 flex-1 flex flex-col">
-                      <Badge variant="secondary" className={cn("rounded-full px-3 py-1 w-fit mb-4", item.badgeClass)}>
-                        {item.category}
-                      </Badge>
-                      <h4 className="text-xl font-bold tracking-tight leading-[1.35] mb-3">
-                        <Link href={`/blog/${item.slug}`} className="hover:text-primary transition-colors">
-                          {item.title}
-                        </Link>
-                      </h4>
-                      <p className="text-sm leading-relaxed text-muted-foreground/80 line-clamp-2 mb-6">
-                        {item.description}
-                      </p>
-                      <div className="mt-auto pt-4 border-t border-border flex items-center justify-between">
-                         <span className="text-xs font-medium text-muted-foreground">
-                           {new Date(item.publishedAt).toLocaleDateString("en-IN", { month: "short", day: "numeric", year: "numeric" })}
-                         </span>
-                         <BlogShareButtons 
-                           url={`/blog/${item.slug}`} 
-                           title={item.title} 
-                           variant="ghost" 
-                           size="sm" 
-                           showLabel={false}
-                         />
-                      </div>
-                    </div>
-                  </Card>
-                </Reveal>
+                <article key={item.slug} className="flex flex-col">
+                  <Link
+                    href={`/blog/${item.slug}`}
+                    className="relative aspect-[16/10] overflow-hidden border border-border bg-muted"
+                    aria-label={`Read ${item.title}`}
+                  >
+                    {item.image ? (
+                      <Image
+                        src={item.image}
+                        alt=""
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 768px) 100vw, 33vw"
+                      />
+                    ) : null}
+                  </Link>
+                  <div className="flex flex-1 flex-col border-b border-border py-5">
+                    <div className="data-label text-signal">{item.category}</div>
+                    <h3 className="mt-3 text-xl">
+                      <Link
+                        href={`/blog/${item.slug}`}
+                        className="decoration-signal decoration-2 underline-offset-4 hover:underline"
+                      >
+                        {item.title}
+                      </Link>
+                    </h3>
+                    <time
+                      dateTime={item.publishedAt}
+                      className="mt-auto pt-4 text-xs text-muted-foreground"
+                    >
+                      {formatDate(item.publishedAt)}
+                    </time>
+                  </div>
+                </article>
               ))}
             </div>
           </div>
         </section>
-      )}
-    </article>
+      ) : null}
+    </div>
   );
 }
