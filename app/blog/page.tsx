@@ -1,288 +1,313 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-// import { AdSlot } from "@/components/ad-slot";
-import { Badge } from "@/components/ui/badge";
-import { Card } from "@/components/ui/card";
+import Script from "next/script";
+import { ArrowLeft, ArrowRight } from "lucide-react";
+
+import { BlogShareButtons } from "@/components/blog-share-buttons";
+import { NewsletterForm } from "@/components/newsletter-form";
 import { blogArticles } from "@/lib/blog";
 import { cn } from "@/lib/utils";
-import { Reveal } from "@/components/reveal";
-import { NewsletterForm } from "@/components/newsletter-form";
-import { BlogShareButtons } from "@/components/blog-share-buttons";
-
-import Script from "next/script";
 
 export const metadata: Metadata = {
-  title: "Blog",
+  title: "Career Guides",
   description:
     "Career, salary, and resume advice from Zaprill to help professionals make smarter job decisions.",
   alternates: {
-    canonical: "/blog"
+    canonical: "/blog",
   },
   openGraph: {
-    title: "Blog — Zaprill",
+    title: "Career Guides — Zaprill",
     description:
       "Career, salary, and resume advice from Zaprill to help professionals make smarter job decisions.",
     type: "website",
-    images: ["/og"]
+    images: ["/og"],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Blog — Zaprill",
+    title: "Career Guides — Zaprill",
     description:
       "Career, salary, and resume advice from Zaprill to help professionals make smarter job decisions.",
-    images: ["/og"]
-  }
+    images: ["/og"],
+  },
 };
 
 const blogFaqs = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  "mainEntity": [
+  mainEntity: [
     {
       "@type": "Question",
-      "name": "How does Zaprill calculate market value?",
-      "acceptedAnswer": {
+      name: "How does Zaprill calculate market value?",
+      acceptedAnswer: {
         "@type": "Answer",
-        "text": "Zaprill uses a multi-layered data aggregation engine that scans thousands of daily job listings, verified recruiter disclosures, and anonymized market offers to provide real-time compensation benchmarking."
-      }
+        text: "Zaprill compares a profile's experience, location, and skills with current job listings and disclosed compensation data to produce an estimated market range.",
+      },
     },
     {
       "@type": "Question",
-      "name": "What topics does the Zaprill blog cover?",
-      "acceptedAnswer": {
+      name: "What topics does the Zaprill blog cover?",
+      acceptedAnswer: {
         "@type": "Answer",
-        "text": "Our blog focuses on salary negotiation strategy, tech market trends in India, resume optimization for ATS systems, and data-driven career planning."
-      }
-    }
-  ]
+        text: "The Zaprill career guides cover salary negotiation, the Indian technology job market, ATS-ready resumes, and practical career planning.",
+      },
+    },
+  ],
 };
 
 type PageProps = {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 };
 
+function formatDate(date: string) {
+  return new Date(date).toLocaleDateString("en-IN", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+  });
+}
+
 export default async function BlogPage({ searchParams }: PageProps) {
   const resolvedParams = await searchParams;
-  const pageStr = typeof resolvedParams.page === "string" ? resolvedParams.page : "1";
-  
-  const totalPosts = blogArticles.length;
+  const pageStr =
+    typeof resolvedParams.page === "string" ? resolvedParams.page : "1";
   const postsPerPage = 10;
-  const totalPages = Math.ceil(totalPosts / postsPerPage);
-  
-  const currentPage = Math.min(Math.max(1, parseInt(pageStr, 10) || 1), totalPages);
+  const totalPages = Math.max(1, Math.ceil(blogArticles.length / postsPerPage));
+  const currentPage = Math.min(
+    Math.max(1, Number.parseInt(pageStr, 10) || 1),
+    totalPages,
+  );
 
-  // Layout Rules:
-  // - Page 1: Displays the Featured Post (blogArticles[0]) and a 9-item grid (blogArticles.slice(1, 10)).
-  // - Pages 2+: Displays a 10-item grid without a featured banner (blogArticles.slice((page-1)*10, page*10)).
   const featuredPost = currentPage === 1 ? blogArticles[0] : null;
-  const gridPosts = currentPage === 1
-    ? blogArticles.slice(1, 10)
-    : blogArticles.slice((currentPage - 1) * postsPerPage, currentPage * postsPerPage);
+  const gridPosts =
+    currentPage === 1
+      ? blogArticles.slice(1, 10)
+      : blogArticles.slice(
+          (currentPage - 1) * postsPerPage,
+          currentPage * postsPerPage,
+        );
 
   return (
-    <div className="bg-background transition-colors duration-300">
+    <div>
       <Script
         id="blog-faq-schema"
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(blogFaqs) }}
       />
-      <section className="section-padding">
+
+      <section className="border-b border-border py-14 md:py-16">
+        <div className="container grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
+          <div>
+            <div className="eyebrow">Career guides</div>
+            <h1>Clear advice for your next move.</h1>
+          </div>
+          <p className="max-w-2xl text-lg leading-8 lg:justify-self-end">
+            Practical reporting on salary, resumes, and career growth for
+            professionals who want evidence before making a decision.
+          </p>
+        </div>
+      </section>
+
+      <section className="py-14 md:py-16">
         <div className="container">
-          <div className="text-center mb-16">
-            <h1 className="max-w-2xl mx-auto">Career clarity, explained.</h1>
-            <p className="mx-auto mt-6 max-w-xl text-muted-foreground">
-              Practical writing on salary, resumes, and career growth for people
-              who want better decisions, not generic advice.
-            </p>
-          </div>
-          <div className="flex flex-col gap-12">
-            {/* Featured Post */}
-            {featuredPost && (() => {
-              const article = featuredPost;
-              return (
-                <Reveal>
-                  <Card className="group p-0 gap-0 overflow-hidden rounded-3xl border border-border bg-card shadow-sm transition-all hover:shadow-md flex flex-col md:flex-row lg:h-[500px]">
-                    <div className={cn("relative w-full md:w-3/5 bg-muted overflow-hidden flex-shrink-0 aspect-[16/9] md:aspect-auto", article.tintClass)}>
-                      {article.image && (
-                        <Image
-                          src={article.image}
-                          alt={article.title}
-                          fill
-                          className="object-cover transition-transform duration-500 group-hover:scale-105"
-                          sizes="(max-width: 768px) 100vw, 60vw"
-                          priority
-                        />
-                      )}
-                    </div>
-                    <div className="p-8 lg:p-12 flex-1 flex flex-col justify-center">
-                      <div className="flex items-center gap-4">
-                        <Badge variant="secondary" className={cn("rounded-full px-3 py-1 w-fit", article.badgeClass)}>
-                          {article.category}
-                        </Badge>
-                        {article.readTime && (
-                          <span className="text-sm font-semibold tracking-tight text-muted-foreground">{article.readTime}</span>
-                        )}
-                      </div>
-                      <h3 className="mt-6 text-3xl font-bold tracking-tight leading-tight">
-                        <Link href={`/blog/${article.slug}`} className="hover:text-primary transition-colors">
-                          {article.title}
-                        </Link>
-                      </h3>
-                      <p className="mt-5 text-lg leading-relaxed text-muted-foreground/80 line-clamp-4">
-                        {article.excerpt}
-                      </p>
-                      
-                      <div className="mt-8 border-t border-border pt-6 flex items-center justify-between">
-                        <p className="text-[13px] font-medium text-muted-foreground">
-                          {new Date(article.publishedAt).toLocaleDateString("en-IN", {
-                            month: "short",
-                            day: "numeric",
-                            year: "numeric",
-                          })}
-                        </p>
-                        <BlogShareButtons 
-                          url={`/blog/${article.slug}`} 
-                          title={article.title} 
-                          variant="ghost" 
-                          size="sm" 
-                        />
-                      </div>
-                    </div>
-                  </Card>
-                </Reveal>
-              );
-            })()}
+          {featuredPost ? (
+            <article className="grid overflow-hidden border border-border bg-card lg:grid-cols-[1.15fr_0.85fr]">
+              <Link
+                href={`/blog/${featuredPost.slug}`}
+                className="relative aspect-[16/10] overflow-hidden bg-muted lg:aspect-auto lg:min-h-[430px]"
+                aria-label={`Read ${featuredPost.title}`}
+              >
+                {featuredPost.image ? (
+                  <Image
+                    src={featuredPost.image}
+                    alt=""
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 1024px) 100vw, 58vw"
+                    priority
+                  />
+                ) : null}
+              </Link>
 
-            {/* Sub-grid Posts */}
-            <div className="grid gap-8 lg:grid-cols-3 lg:gap-10">
-              {gridPosts.map((article) => (
-                <Reveal key={article.slug}>
-                  <Card className="h-full group p-0 gap-0 overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-all hover:shadow-md flex flex-col">
-                    <div className={cn("relative w-full aspect-[2/1] bg-muted overflow-hidden", article.tintClass)}>
-                      {article.image && (
-                        <Image
-                          src={article.image}
-                          alt={article.title}
-                          fill
-                          className="object-cover transition-transform duration-500 group-hover:scale-105"
-                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                        />
-                      )}
-                    </div>
-                    <div className="p-5 md:p-6 flex-1 flex flex-col">
-                      <div className="flex items-center justify-between">
-                        <Badge variant="secondary" className={cn("rounded-full px-3 py-1 w-fit", article.badgeClass)}>
-                          {article.category}
-                        </Badge>
-                        {article.readTime && (
-                           <span className="text-xs font-bold text-muted-foreground">{article.readTime}</span>
-                        )}
-                      </div>
-                      <h4 className="mt-5 text-xl font-bold tracking-tight leading-[1.35]">
-                        <Link href={`/blog/${article.slug}`} className="hover:text-primary transition-colors">
-                          {article.title}
-                        </Link>
-                      </h4>
-                      <p className="mt-4 text-[15px] leading-relaxed text-muted-foreground/80 line-clamp-3">
-                        {article.excerpt}
-                      </p>
-                      <div className="mt-auto border-t border-border pt-6 flex items-center justify-between">
-                        <p className="text-xs font-medium text-muted-foreground">
-                          {new Date(article.publishedAt).toLocaleDateString("en-IN", { month: "short", day: "numeric", year: "numeric" })}
-                        </p>
-                        <BlogShareButtons 
-                          url={`/blog/${article.slug}`} 
-                          title={article.title} 
-                          variant="ghost" 
-                          size="sm" 
-                          showLabel={false}
-                        />
-                      </div>
-                    </div>
-                  </Card>
-                </Reveal>
-              ))}
-            </div>
-
-            {/* Pagination Controls */}
-            {totalPages > 1 && (
-              <div className="flex justify-center items-center gap-2.5 mt-12">
-                {/* Previous Button */}
-                {currentPage > 1 ? (
-                  <Link
-                    href={`/blog?page=${currentPage - 1}`}
-                    className="flex items-center justify-center h-10 w-10 rounded-full border border-border bg-card text-foreground hover:bg-muted/80 hover:scale-105 active:scale-95 transition-all duration-200"
-                    aria-label="Previous page"
-                  >
-                    <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-                    </svg>
-                  </Link>
-                ) : (
-                  <button
-                    disabled
-                    className="flex items-center justify-center h-10 w-10 rounded-full border border-border/40 bg-card/50 text-muted-foreground/30 cursor-not-allowed"
-                    aria-label="Previous page (disabled)"
-                  >
-                    <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-                    </svg>
-                  </button>
-                )}
-
-                {/* Page Numbers */}
-                <div className="flex gap-2">
-                  {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => {
-                    const isActive = page === currentPage;
-                    return isActive ? (
-                      <span
-                        key={page}
-                        className="flex items-center justify-center h-10 w-10 rounded-full bg-primary text-primary-foreground font-bold shadow-md shadow-primary/20 select-none cursor-default text-sm"
-                      >
-                        {page}
-                      </span>
-                    ) : (
-                      <Link
-                        key={page}
-                        href={`/blog?page=${page}`}
-                        className="flex items-center justify-center h-10 w-10 rounded-full border border-border bg-card text-muted-foreground hover:text-foreground hover:bg-muted/80 hover:scale-105 active:scale-95 transition-all duration-200 font-semibold text-sm"
-                      >
-                        {page}
-                      </Link>
-                    );
-                  })}
+              <div className="flex flex-col p-6 sm:p-8 lg:p-10">
+                <div className="flex items-center gap-3">
+                  <span className="data-label text-signal">
+                    {featuredPost.category}
+                  </span>
+                  <span aria-hidden="true" className="text-border">
+                    /
+                  </span>
+                  <span className="data-label">Featured report</span>
                 </div>
-
-                {/* Next Button */}
-                {currentPage < totalPages ? (
+                <h2 className="mt-6 text-3xl md:text-4xl">
                   <Link
-                    href={`/blog?page=${currentPage + 1}`}
-                    className="flex items-center justify-center h-10 w-10 rounded-full border border-border bg-card text-foreground hover:bg-muted/80 hover:scale-105 active:scale-95 transition-all duration-200"
-                    aria-label="Next page"
+                    href={`/blog/${featuredPost.slug}`}
+                    className="decoration-signal decoration-2 underline-offset-4 hover:underline"
                   >
-                    <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-                    </svg>
+                    {featuredPost.title}
                   </Link>
-                ) : (
-                  <button
-                    disabled
-                    className="flex items-center justify-center h-10 w-10 rounded-full border border-border/40 bg-card/50 text-muted-foreground/30 cursor-not-allowed"
-                    aria-label="Next page (disabled)"
-                  >
-                    <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-                    </svg>
-                  </button>
-                )}
-              </div>
-            )}
+                </h2>
+                <p className="mt-5 line-clamp-4">
+                  {featuredPost.excerpt}
+                </p>
 
+                <div className="mt-auto flex flex-wrap items-center justify-between gap-4 border-t border-border pt-6">
+                  <div className="flex items-center gap-3 text-sm text-muted-foreground">
+                    <time dateTime={featuredPost.publishedAt}>
+                      {formatDate(featuredPost.publishedAt)}
+                    </time>
+                    {featuredPost.readTime ? (
+                      <>
+                        <span aria-hidden="true">·</span>
+                        <span>{featuredPost.readTime}</span>
+                      </>
+                    ) : null}
+                  </div>
+                  <BlogShareButtons
+                    url={`/blog/${featuredPost.slug}`}
+                    title={featuredPost.title}
+                    variant="ghost"
+                    size="sm"
+                    showLabel={false}
+                  />
+                </div>
+              </div>
+            </article>
+          ) : null}
+
+          <div
+            className={cn(
+              "grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3",
+              featuredPost && "mt-14",
+            )}
+          >
+            {gridPosts.map((article) => (
+              <article key={article.slug} className="flex min-w-0 flex-col">
+                <Link
+                  href={`/blog/${article.slug}`}
+                  className="relative aspect-[16/10] overflow-hidden border border-border bg-muted"
+                  aria-label={`Read ${article.title}`}
+                >
+                  {article.image ? (
+                    <Image
+                      src={article.image}
+                      alt=""
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    />
+                  ) : null}
+                </Link>
+                <div className="flex flex-1 flex-col border-b border-border py-5">
+                  <div className="flex items-center justify-between gap-4">
+                    <span className="data-label text-signal">
+                      {article.category}
+                    </span>
+                    {article.readTime ? (
+                      <span className="data-label normal-case tracking-normal">
+                        {article.readTime}
+                      </span>
+                    ) : null}
+                  </div>
+                  <h2 className="mt-4 text-2xl leading-[1.16]">
+                    <Link
+                      href={`/blog/${article.slug}`}
+                      className="decoration-signal decoration-2 underline-offset-4 hover:underline"
+                    >
+                      {article.title}
+                    </Link>
+                  </h2>
+                  <p className="mt-3 line-clamp-3 text-sm leading-6">
+                    {article.excerpt}
+                  </p>
+                  <div className="mt-auto flex items-center justify-between gap-3 pt-5">
+                    <time
+                      dateTime={article.publishedAt}
+                      className="text-xs text-muted-foreground"
+                    >
+                      {formatDate(article.publishedAt)}
+                    </time>
+                    <BlogShareButtons
+                      url={`/blog/${article.slug}`}
+                      title={article.title}
+                      variant="ghost"
+                      size="sm"
+                      showLabel={false}
+                    />
+                  </div>
+                </div>
+              </article>
+            ))}
           </div>
-          <Reveal className="mt-20">
-            <NewsletterForm className="bg-muted/30" />
-          </Reveal>
+
+          {totalPages > 1 ? (
+            <nav
+              className="mt-14 flex items-center justify-center gap-2"
+              aria-label="Blog pagination"
+            >
+              {currentPage > 1 ? (
+                <Link
+                  href={`/blog?page=${currentPage - 1}`}
+                  className="inline-flex size-10 items-center justify-center rounded-md border border-border bg-card hover:bg-muted"
+                  aria-label="Previous page"
+                >
+                  <ArrowLeft className="size-4" aria-hidden="true" />
+                </Link>
+              ) : (
+                <span
+                  className="inline-flex size-10 items-center justify-center rounded-md border border-border text-muted-foreground opacity-40"
+                  aria-hidden="true"
+                >
+                  <ArrowLeft className="size-4" />
+                </span>
+              )}
+
+              {Array.from({ length: totalPages }, (_, index) => index + 1).map(
+                (page) =>
+                  page === currentPage ? (
+                    <span
+                      key={page}
+                      aria-current="page"
+                      className="inline-flex size-10 items-center justify-center rounded-md bg-primary font-mono text-sm font-semibold text-primary-foreground"
+                    >
+                      {page}
+                    </span>
+                  ) : (
+                    <Link
+                      key={page}
+                      href={`/blog?page=${page}`}
+                      className="inline-flex size-10 items-center justify-center rounded-md border border-border bg-card font-mono text-sm text-muted-foreground hover:bg-muted hover:text-foreground"
+                      aria-label={`Page ${page}`}
+                    >
+                      {page}
+                    </Link>
+                  ),
+              )}
+
+              {currentPage < totalPages ? (
+                <Link
+                  href={`/blog?page=${currentPage + 1}`}
+                  className="inline-flex size-10 items-center justify-center rounded-md border border-border bg-card hover:bg-muted"
+                  aria-label="Next page"
+                >
+                  <ArrowRight className="size-4" aria-hidden="true" />
+                </Link>
+              ) : (
+                <span
+                  className="inline-flex size-10 items-center justify-center rounded-md border border-border text-muted-foreground opacity-40"
+                  aria-hidden="true"
+                >
+                  <ArrowRight className="size-4" />
+                </span>
+              )}
+            </nav>
+          ) : null}
+
+          <NewsletterForm
+            className="mt-16"
+            title="The useful part of the job market, once a month."
+            description="A short briefing on compensation, hiring signals, and better resume decisions."
+          />
         </div>
       </section>
     </div>

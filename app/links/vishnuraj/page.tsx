@@ -1,12 +1,17 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
 import Script from "next/script";
-import { ArrowUpRight, Globe2, Linkedin, Mail, Phone, QrCode, Sparkles } from "lucide-react";
+import {
+  ArrowUpRight,
+  Globe2,
+  Linkedin,
+  Mail,
+  Phone,
+  QrCode,
+} from "lucide-react";
 
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
+import { buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 import { siteConfig } from "@/lib/site";
 
 const personSchema = {
@@ -22,8 +27,8 @@ const personSchema = {
   worksFor: {
     "@type": "Organization",
     name: siteConfig.name,
-    url: siteConfig.url
-  }
+    url: siteConfig.url,
+  },
 };
 
 export const metadata: Metadata = {
@@ -31,7 +36,7 @@ export const metadata: Metadata = {
   description:
     "Online business card for Vishnuraj Vishwakarma, AI Systems Representative at Zaprill.",
   alternates: {
-    canonical: "/links/vishnuraj"
+    canonical: "/links/vishnuraj",
   },
   openGraph: {
     title: "Vishnuraj Vishwakarma — AI Systems Representative",
@@ -39,133 +44,124 @@ export const metadata: Metadata = {
       "Online business card for Vishnuraj Vishwakarma, AI Systems Representative at Zaprill.",
     type: "website",
     url: `${siteConfig.url}/links/vishnuraj`,
-    images: ["/og"]
+    images: ["/og"],
   },
   twitter: {
     card: "summary_large_image",
     title: "Vishnuraj Vishwakarma — AI Systems Representative",
     description:
       "Online business card for Vishnuraj Vishwakarma, AI Systems Representative at Zaprill.",
-    images: ["/og"]
-  }
+    images: ["/og"],
+  },
 };
 
 const contactLinks = [
   {
     label: "LinkedIn",
     href: "https://www.linkedin.com/in/vishnuraj-vishwakarma/",
-    value: "linkedin.com/in/vishnuraj-vishwakarma",
-    icon: Linkedin
+    value: "/vishnuraj-vishwakarma",
+    icon: Linkedin,
+    external: true,
   },
   {
     label: "Email",
     href: "mailto:vishnurajvishwakarma@gmail.com",
     value: "vishnurajvishwakarma@gmail.com",
-    icon: Mail
+    icon: Mail,
   },
   {
     label: "Phone",
     href: "tel:+919322871984",
     value: "+91 93228 71984",
-    icon: Phone
+    icon: Phone,
   },
   {
-    label: "App",
-    href: "https://app.zaprill.com",
+    label: "Zaprill app",
+    href: siteConfig.appUrl,
     value: "app.zaprill.com",
-    icon: Globe2
-  }
+    icon: Globe2,
+    external: true,
+  },
 ];
 
-const focusPoints = ["AI Agents", "ATS Intelligence", "Automation", "Market Intelligence"];
+const focusPoints = [
+  "AI agents",
+  "ATS intelligence",
+  "Automation",
+  "Market intelligence",
+];
 
 export default function VishnurajCardPage() {
   return (
-    <main className="relative min-h-screen overflow-hidden bg-[var(--home-surface-1)] text-foreground transition-colors duration-300">
-      <Script id="vishnuraj-person-schema" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }} />
+    <div className="py-10 md:py-14">
+      <Script
+        id="vishnuraj-person-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
+      />
 
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(161,125,255,0.22),_transparent_30%),radial-gradient(circle_at_top_right,_rgba(161,125,255,0.10),_transparent_28%),linear-gradient(180deg,_rgba(255,255,255,0.94),_rgba(246,243,255,0.92))] dark:bg-[radial-gradient(circle_at_top_left,_rgba(161,125,255,0.20),_transparent_30%),radial-gradient(circle_at_top_right,_rgba(161,125,255,0.08),_transparent_28%),linear-gradient(180deg,_rgba(16,15,30,0.96),_rgba(16,15,30,0.90))]" />
-      <div className="pointer-events-none absolute -left-24 top-24 h-72 w-72 rounded-full bg-[#A17DFF]/10 blur-3xl" />
-      <div className="pointer-events-none absolute -right-20 bottom-0 h-80 w-80 rounded-full bg-[#A17DFF]/10 blur-3xl" />
+      <div className="container max-w-[1080px]">
+        <div className="mb-5 flex items-center justify-between border-b border-border pb-4">
+          <div className="data-label">Zaprill / Team card</div>
+          <div className="data-label">Mumbai, India</div>
+        </div>
 
-      <section className="relative mx-auto flex min-h-screen w-full max-w-[1480px] items-center px-4 py-8 sm:px-6 lg:px-8 lg:py-12">
-        <div className="grid w-full gap-8 xl:grid-cols-[1.12fr_0.88fr] xl:gap-10">
-          <Card className="relative overflow-hidden rounded-[32px] border border-border/70 bg-card/85 p-6 shadow-[0_30px_120px_rgba(15,23,42,0.14)] backdrop-blur-xl sm:p-8 lg:min-h-[760px] lg:p-10 xl:p-12">
-            <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-[#A17DFF] via-[#c0a9ff] to-[#7aa8ff]" />
-            <div className="absolute right-0 top-0 h-40 w-40 translate-x-1/3 -translate-y-1/3 rounded-full bg-[#A17DFF]/10 blur-3xl" />
+        <div className="grid border border-border bg-card lg:grid-cols-[1.25fr_0.75fr]">
+          <section className="p-6 sm:p-8 lg:border-r lg:border-border lg:p-10">
+            <div className="grid gap-8 sm:grid-cols-[180px_minmax(0,1fr)] sm:items-start">
+              <Image
+                src="/founder/visnhuraj.webp"
+                alt="Vishnuraj Vishwakarma"
+                width={360}
+                height={360}
+                priority
+                className="aspect-square w-full max-w-[200px] rounded-md border border-border object-cover"
+              />
 
-            <div className="flex flex-wrap items-center gap-3">
-              <Badge className="rounded-full border-0 bg-[#A17DFF]/10 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.32em] text-[#7E5BFF] hover:bg-[#A17DFF]/10 dark:text-[#D8CBFF]">
-                Online Business Card
-              </Badge>
-              <span className="inline-flex items-center gap-2 rounded-full border border-border bg-background/70 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.25em] text-muted-foreground">
-                <Sparkles className="h-3.5 w-3.5 text-[#A17DFF]" />
-                Zaprill
-              </span>
-            </div>
+              <div>
+                <div className="eyebrow">Team Zaprill</div>
+                <h1 className="max-w-[12ch] text-[40px] sm:text-[46px]">
+                  Vishnuraj Vishwakarma
+                </h1>
+                <p className="mt-3 font-mono text-sm font-semibold uppercase tracking-[0.08em] text-signal">
+                  AI Systems Representative
+                </p>
+                <p className="mt-6 max-w-xl">
+                  Vishnuraj works across product communication, AI systems, and
+                  market intelligence at Zaprill—a career intelligence and salary
+                  transparency platform.
+                </p>
 
-            <div className="mt-8 flex flex-col items-center">
-              <div className="w-full max-w-[240px] sm:max-w-[260px] md:max-w-[280px]">
-                <div className="relative aspect-square overflow-hidden rounded-full border-[10px] border-white bg-[#A17DFF] shadow-[0_20px_60px_rgba(161,125,255,0.28)] dark:border-white/10">
-                  <Image
-                    src="/founder/visnhuraj.webp"
-                    alt="Vishnuraj Vishwakarma portrait"
-                    fill
-                    priority
-                    sizes="(max-width: 1024px) 70vw, 300px"
-                    className="object-cover object-center"
-                  />
-                </div>
-              </div>
-
-              <div className="mt-8 w-full space-y-6 text-center">
-                <div className="space-y-3">
-                  <p className="text-xs font-bold uppercase tracking-[0.3em] text-muted-foreground/80">Team Zaprill</p>
-                  <h1 className="mx-auto max-w-[18ch] text-4xl font-black tracking-tight text-balance sm:text-5xl lg:text-[3.5rem] xl:text-[4rem] 2xl:text-[4.5rem] leading-[1.1] tracking-tight">
-                    Vishnuraj Vishwakarma
-                  </h1>
-                  <p className="text-lg font-semibold text-[#7E5BFF] dark:text-[#D8CBFF] sm:text-xl">
-                    AI Systems Representative
-                  </p>
+                <div className="mt-6 border-y border-border py-3">
+                  <span className="data-label mr-3">Focus</span>
+                  <span className="text-sm text-foreground">
+                    {focusPoints.join(" / ")}
+                  </span>
                 </div>
 
-                <div className="mx-auto max-w-[44rem] space-y-4 text-[15px] leading-7 text-muted-foreground sm:text-[16px]">
-                  <p>
-                    Zaprill.com is an AI-powered career intelligence and salary transparency platform.
-                  </p>
-                  <p className="text-foreground/90">
-                    AI Agents, ATS Intelligence, Automation, and Market Intelligence shape the way we help people understand their career value and make faster decisions.
-                  </p>
-                </div>
-
-                <div className="flex flex-wrap justify-center gap-2">
-                  {focusPoints.map((point) => (
-                    <span
-                      key={point}
-                      className="rounded-full border border-[#A17DFF]/20 bg-[#A17DFF]/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.24em] text-foreground/80"
-                    >
-                      {point}
-                    </span>
-                  ))}
-                </div>
-
-                <div className="flex flex-col gap-3 justify-center sm:flex-row sm:flex-wrap">
-                  <Link href="https://www.linkedin.com/in/vishnuraj-vishwakarma/" target="_blank" rel="noopener noreferrer">
-                    <Button className="h-12 rounded-full px-5 font-bold">
-                      Open LinkedIn
-                      <ArrowUpRight className="h-4 w-4" />
-                    </Button>
-                  </Link>
-                  <Link href="https://app.zaprill.com" target="_blank" rel="noopener noreferrer">
-                    <Button variant="secondary" className="h-12 rounded-full px-5 font-bold">
-                      Visit app.zaprill.com
-                    </Button>
-                  </Link>
+                <div className="mt-6 flex flex-wrap gap-3">
+                  <a
+                    href="https://www.linkedin.com/in/vishnuraj-vishwakarma/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={buttonVariants({ size: "lg" })}
+                  >
+                    Open LinkedIn
+                    <ArrowUpRight aria-hidden="true" />
+                  </a>
+                  <a
+                    href={siteConfig.appUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={buttonVariants({ variant: "outline", size: "lg" })}
+                  >
+                    Visit Zaprill
+                  </a>
                 </div>
               </div>
             </div>
 
-            <div className="mt-8 grid gap-3 sm:grid-cols-2">
+            <div className="mt-10 border-t border-border">
               {contactLinks.map((link) => {
                 const Icon = link.icon;
 
@@ -173,110 +169,72 @@ export default function VishnurajCardPage() {
                   <a
                     key={link.label}
                     href={link.href}
-                    target={link.label === "Email" || link.label === "Phone" ? undefined : "_blank"}
-                    rel={link.label === "Email" || link.label === "Phone" ? undefined : "noopener noreferrer"}
-                    className="group flex min-h-14 items-center gap-3 rounded-2xl border border-border bg-background/70 px-4 py-3 transition-all duration-200 hover:-translate-y-0.5 hover:border-[#A17DFF]/30 hover:bg-[#A17DFF]/5"
+                    target={link.external ? "_blank" : undefined}
+                    rel={link.external ? "noopener noreferrer" : undefined}
+                    className="grid gap-2 border-b border-border py-4 hover:bg-muted/50 sm:grid-cols-[150px_minmax(0,1fr)_auto] sm:items-center sm:gap-4"
                   >
-                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-muted text-foreground transition-colors group-hover:bg-[#7E5BFF] group-hover:text-white">
-                      <Icon className="h-4 w-4" />
+                    <span className="flex items-center gap-2 text-sm font-semibold text-foreground">
+                      <Icon className="size-4 text-signal" aria-hidden="true" />
+                      {link.label}
                     </span>
-                    <span className="min-w-0 flex-1">
-                      <span className="block text-[11px] font-bold uppercase tracking-[0.24em] text-muted-foreground">
-                        {link.label}
-                      </span>
-                      <span className="block truncate text-sm font-semibold text-foreground">
-                        {link.value}
-                      </span>
+                    <span className="min-w-0 truncate text-sm text-muted-foreground">
+                      {link.value}
                     </span>
+                    {link.external ? (
+                      <ArrowUpRight
+                        className="hidden size-4 text-muted-foreground sm:block"
+                        aria-hidden="true"
+                      />
+                    ) : null}
                   </a>
                 );
               })}
             </div>
-          </Card>
+          </section>
 
-          <div className="grid gap-8">
-            <Card className="overflow-hidden rounded-[32px] border border-border/70 bg-card/90 p-6 shadow-[0_30px_100px_rgba(15,23,42,0.12)] backdrop-blur-xl sm:p-8 xl:min-h-[460px]">
-              <div className="flex flex-col items-center w-full">
-                {/* QR Code Container at Top */}
-                <div className="w-full max-w-[200px] rounded-[28px] border border-border bg-white p-4 shadow-sm">
-                  <div className="overflow-hidden rounded-[20px] bg-white p-2">
-                    <Image
-                      src="/zapril-site-qr.png"
-                      alt="QR code for app.zaprill.com"
-                      width={520}
-                      height={520}
-                      className="h-auto w-full"
-                    />
-                  </div>
-                </div>
+          <aside className="border-t border-border bg-muted/30 p-6 sm:p-8 lg:border-t-0 lg:p-10">
+            <div className="flex items-center gap-2 text-signal">
+              <QrCode className="size-4" aria-hidden="true" />
+              <div className="data-label text-signal">Open the product</div>
+            </div>
+            <h2 className="mt-3 text-2xl">Scan to visit app.zaprill.com</h2>
+            <p className="mt-3 text-sm leading-6">
+              Use the QR code on a phone, or open the direct link below.
+            </p>
 
-                {/* Title Section below QR */}
-                <div className="mt-6 flex flex-col items-center gap-2 text-center">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#A17DFF]/10 text-[#7E5BFF] dark:text-[#D8CBFF]">
-                    <QrCode className="h-6 w-6" />
-                  </div>
-                  <div>
-                    <p className="text-xs font-bold uppercase tracking-[0.34em] text-muted-foreground">Scan the card</p>
-                    <h2 className="mt-1 text-2xl font-black tracking-tight">Open the site instantly</h2>
-                  </div>
-                </div>
+            <div className="mt-7 max-w-[260px] border border-border bg-white p-4">
+              <Image
+                src="/zapril-site-qr.png"
+                alt="QR code linking to app.zaprill.com"
+                width={520}
+                height={520}
+                className="h-auto w-full"
+              />
+            </div>
 
-                {/* Rest of the content down */}
-                <div className="mt-8 grid w-full gap-4 sm:grid-cols-2">
-                  <div className="rounded-3xl border border-border bg-muted/35 p-5 xl:p-6">
-                    <p className="text-xs font-bold uppercase tracking-[0.3em] text-muted-foreground">Primary link</p>
-                    <a
-                      href="https://app.zaprill.com"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="mt-2 block text-xl font-black tracking-tight text-foreground hover:text-[#7E5BFF] dark:hover:text-[#D8CBFF]"
-                    >
-                      app.zaprill.com
-                    </a>
-                    <p className="mt-2 text-sm leading-6 text-muted-foreground">
-                      Use this QR or the direct link to open the app and explore Zaprill from any device.
-                    </p>
-                  </div>
+            <a
+              href={siteConfig.appUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={cn(
+                buttonVariants({ variant: "link" }),
+                "mt-5 h-auto p-0 text-sm",
+              )}
+            >
+              app.zaprill.com
+              <ArrowUpRight aria-hidden="true" />
+            </a>
 
-                  <div className="rounded-3xl border border-border bg-background p-5">
-                    <p className="text-xs font-bold uppercase tracking-[0.3em] text-muted-foreground">Contact</p>
-                    <div className="mt-4 space-y-3.5 text-[15px]">
-                      <div className="flex flex-col gap-0.5 border-b border-border/70 pb-3">
-                        <span className="text-[11px] font-bold uppercase tracking-[0.15em] text-muted-foreground">LinkedIn</span>
-                        <a className="break-all font-semibold text-foreground hover:text-[#7E5BFF] dark:hover:text-[#D8CBFF]" href="https://www.linkedin.com/in/vishnuraj-vishwakarma/" target="_blank" rel="noopener noreferrer">
-                          /vishnuraj-vishwakarma
-                        </a>
-                      </div>
-                      <div className="flex flex-col gap-0.5 border-b border-border/70 pb-3">
-                        <span className="text-[11px] font-bold uppercase tracking-[0.15em] text-muted-foreground">Email</span>
-                        <a className="break-all font-semibold text-foreground hover:text-[#7E5BFF] dark:hover:text-[#D8CBFF]" href="mailto:vishnurajvishwakarma@gmail.com">
-                          vishnurajvishwakarma@gmail.com
-                        </a>
-                      </div>
-                      <div className="flex flex-col gap-0.5">
-                        <span className="text-[11px] font-bold uppercase tracking-[0.15em] text-muted-foreground">Phone</span>
-                        <a className="break-all font-semibold text-foreground hover:text-[#7E5BFF] dark:hover:text-[#D8CBFF]" href="tel:+919322871984">
-                          +91 93228 71984
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </Card>
-
-            <Card className="rounded-[32px] border border-border/70 bg-[linear-gradient(135deg,rgba(161,125,255,0.11),rgba(161,125,255,0.04))] p-6 shadow-[0_24px_80px_rgba(15,23,42,0.08)] sm:p-7">
-              <p className="text-xs font-bold uppercase tracking-[0.34em] text-muted-foreground">Brand line</p>
-              <h2 className="mt-3 text-2xl font-black tracking-tight">
-                AI-powered career intelligence and salary transparency platform.
-              </h2>
-              <p className="mt-3 max-w-xl text-sm leading-7 text-muted-foreground">
-                Vishnuraj helps connect the product story to users, partners, and teams through a simple contact-first card that works on phones, laptops, and QR scans.
+            <div className="mt-10 border-l-2 border-signal pl-4">
+              <div className="data-label">About Zaprill</div>
+              <p className="mt-2 text-sm leading-6">
+                Resume analysis, salary benchmarks, explainable job matches,
+                skill gaps, and ATS feedback in one career brief.
               </p>
-            </Card>
-          </div>
+            </div>
+          </aside>
         </div>
-      </section>
-    </main>
+      </div>
+    </div>
   );
 }

@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
+import { ArrowUpRight } from "lucide-react";
+
+import { buttonVariants } from "@/components/ui/button";
 import { siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -29,17 +30,19 @@ export const metadata: Metadata = {
 
 export default function DemoPage() {
   return (
-    <section className="section-padding bg-surface">
-      <div className="container max-w-3xl text-center">
+    <section className="section-padding border-b border-border bg-surface">
+      <div className="container max-w-3xl">
+        <div className="eyebrow">Product preview</div>
         <h1>See the product in action.</h1>
-        <p className="mx-auto mt-5 max-w-2xl">
+        <p className="mt-5 max-w-2xl text-lg leading-8">
           Zaprill turns a resume into salary clarity, ranked job matches, and a
           practical skill-gap plan. The live experience runs on app.zaprill.com.
         </p>
         <div className="mt-8">
-          <Link href={siteConfig.appUrl}>
-            <Button>Open App</Button>
-          </Link>
+          <a href={siteConfig.appUrl} className={buttonVariants({ size: "lg" })}>
+            Open the app
+            <ArrowUpRight aria-hidden="true" />
+          </a>
         </div>
       </div>
     </section>

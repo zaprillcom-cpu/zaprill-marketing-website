@@ -34,7 +34,7 @@ export function AdSlot({ slot, label = "Sponsored", className }: AdSlotProps) {
 
   if (!adsenseClient) {
     return (
-      <div className={cn("rounded-xl border border-dashed border-border bg-surface p-6 text-center", className)}>
+      <div className={cn("rounded-md border border-dashed border-border bg-surface p-6 text-center", className)}>
         <p className="label mb-2">{label}</p>
         <p className="text-sm text-text-secondary">
           Responsive AdSense slot placeholder. Set{" "}

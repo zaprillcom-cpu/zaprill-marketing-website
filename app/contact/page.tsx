@@ -1,138 +1,163 @@
 import type { Metadata } from "next";
-import { Mail, Clock, MapPin, ArrowRight, ExternalLink } from "lucide-react";
+import {
+  ArrowUpRight,
+  Clock3,
+  ExternalLink,
+  Mail,
+  MapPin,
+} from "lucide-react";
 
 import { ContactForm } from "@/components/contact-form";
-import { siteConfig } from "@/lib/site";
-import { Reveal } from "@/components/reveal";
 import { DynamicMap as Map } from "@/components/dynamic-map";
+import { buttonVariants } from "@/components/ui/button";
+import { siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Contact",
-  description: "Contact Zaprill for support, partnerships, press, or general inquiries. Email, call, or visit us in Mumbai.",
+  description:
+    "Contact Zaprill for product support, partnerships, press, or general questions.",
   alternates: { canonical: "/contact" },
   openGraph: {
     title: "Contact — Zaprill",
-    description: "Get in touch with Zaprill for support, partnerships, press, or general inquiries.",
+    description:
+      "Contact Zaprill for product support, partnerships, press, or general questions.",
     type: "website",
     url: `${siteConfig.url}/contact`,
-    images: ["/og"]
+    images: ["/og"],
   },
   twitter: {
     card: "summary_large_image",
     title: "Contact — Zaprill",
-    description: "Get in touch with Zaprill for support, partnerships, press, or general inquiries.",
-    images: ["/og"]
-  }
+    description:
+      "Contact Zaprill for product support, partnerships, press, or general questions.",
+    images: ["/og"],
+  },
 };
+
+const contactDetails = [
+  {
+    icon: Mail,
+    label: "Email",
+    value: siteConfig.email,
+    href: `mailto:${siteConfig.email}`,
+  },
+  {
+    icon: Clock3,
+    label: "Typical response",
+    value: "Within one business day",
+  },
+  {
+    icon: MapPin,
+    label: "Based in",
+    value: "Mumbai, India",
+    href: "https://maps.google.com/?q=Mumbai,India",
+    external: true,
+  },
+];
 
 export default function ContactPage() {
   return (
-    <div className="bg-background transition-colors duration-300 min-h-screen">
-      <section className="section-padding overflow-hidden">
-        <div className="container">
-          <div className="grid gap-16 lg:grid-cols-[0.9fr_1.1fr] lg:gap-24 items-start">
-            
-            {/* Left Column: Info */}
-            <div className="space-y-12">
-              <Reveal>
-                <div className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-primary mb-6">
-                  <span className="relative flex h-2 w-2">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
-                  </span>
-                  Contact Us
-                </div>
-                <h1 className="text-5xl md:text-6xl font-black tracking-tighter leading-[0.95] mb-8">
-                  Let&apos;s talk about <br/>your future.
-                </h1>
-                <p className="text-xl text-muted-foreground leading-relaxed max-w-md">
-                  Have a question about our data? Need support with your account? Or just want to say hi? We&apos;re here.
-                </p>
-              </Reveal>
+    <div>
+      <section className="border-b border-border py-14 md:py-16">
+        <div className="container grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
+          <div>
+            <div className="eyebrow">Contact Zaprill</div>
+            <h1>Tell us what you need.</h1>
+          </div>
+          <p className="max-w-2xl text-lg leading-8 lg:justify-self-end">
+            Product question, account issue, partnership, or press request—send
+            the relevant details and the right person will reply.
+          </p>
+        </div>
+      </section>
 
-              <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-1">
-                <Reveal delay={0.1}>
-                  <div className="group flex items-start gap-5 p-2 rounded-2xl transition-all">
-                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-muted/50 border border-border/50 text-foreground transition-all group-hover:bg-primary group-hover:text-primary-foreground">
-                      <Mail className="h-5 w-5" />
-                    </div>
-                    <div>
-                      <h3 className="text-sm font-bold uppercase tracking-widest text-muted-foreground mb-1">Email Us</h3>
-                      <p className="text-lg font-bold text-foreground hover:text-primary transition-colors">
-                        <a href={`mailto:${siteConfig.email}`} aria-label="Send email to Zaprill">{siteConfig.email}</a>
-                      </p>
-                    </div>
-                  </div>
-                </Reveal>
+      <section className="py-14 md:py-16">
+        <div className="container grid gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:gap-16">
+          <aside aria-label="Contact details">
+            <div className="border-t border-border">
+              {contactDetails.map((detail) => {
+                const Icon = detail.icon;
+                const content = (
+                  <>
+                    <span className="flex size-9 shrink-0 items-center justify-center rounded-md border border-border bg-card text-signal">
+                      <Icon className="size-4" aria-hidden="true" />
+                    </span>
+                    <span>
+                      <span className="data-label block">{detail.label}</span>
+                      <span className="mt-1 flex items-center gap-1.5 font-heading text-lg font-semibold text-foreground">
+                        {detail.value}
+                        {detail.external ? (
+                          <ExternalLink className="size-3.5" aria-hidden="true" />
+                        ) : null}
+                      </span>
+                    </span>
+                  </>
+                );
 
-                <Reveal delay={0.15}>
-                  <div className="group flex items-start gap-5 p-2 rounded-2xl transition-all">
-                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-muted/50 border border-border/50 text-foreground transition-all group-hover:bg-primary group-hover:text-primary-foreground">
-                      <Clock className="h-5 w-5" />
-                    </div>
-                    <div>
-                      <h3 className="text-sm font-bold uppercase tracking-widest text-muted-foreground mb-1">Response Time</h3>
-                      <p className="text-lg font-bold text-foreground">Within 24 business hours</p>
-                    </div>
+                return detail.href ? (
+                  <a
+                    key={detail.label}
+                    href={detail.href}
+                    target={detail.external ? "_blank" : undefined}
+                    rel={detail.external ? "noopener noreferrer" : undefined}
+                    className="flex gap-4 border-b border-border py-5 hover:bg-muted/50"
+                  >
+                    {content}
+                  </a>
+                ) : (
+                  <div
+                    key={detail.label}
+                    className="flex gap-4 border-b border-border py-5"
+                  >
+                    {content}
                   </div>
-                </Reveal>
+                );
+              })}
+            </div>
 
-                <Reveal delay={0.3}>
-                  <div className="group flex items-start gap-5 p-2 rounded-2xl transition-all">
-                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-muted/50 border border-border/50 text-foreground transition-all group-hover:bg-primary group-hover:text-primary-foreground">
-                      <MapPin className="h-5 w-5" />
-                    </div>
-                    <div>
-                      <h3 className="text-sm font-bold uppercase tracking-widest text-muted-foreground mb-1">Location</h3>
-                      <p className="text-lg font-bold text-foreground">Mumbai, India</p>
-                      <a
-                        href="https://maps.google.com/?q=Mumbai,India"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 text-sm text-primary hover:underline underline-offset-4 mt-1 font-medium"
-                        aria-label="View Zaprill on Google Maps"
-                      >
-                        View on Google Maps <ExternalLink className="h-3 w-3" />
-                      </a>
-                    </div>
-                  </div>
-                </Reveal>
+            <div className="mt-8 overflow-hidden border border-border bg-card">
+              <div className="h-[240px]">
+                <Map
+                  latitude={19.076}
+                  longitude={72.8777}
+                  zoom={11}
+                  markerTitle="Zaprill, Mumbai"
+                />
               </div>
-
-              <Reveal delay={0.4}>
-                <div className="pt-8 border-t border-border/50">
-                  <p className="text-[13px] font-medium text-muted-foreground flex items-center gap-2">
-                    Looking for the app? <ArrowRight className="h-3 w-3" /> 
-                    <a href={siteConfig.appUrl} className="text-primary font-bold hover:underline underline-offset-4">Sign in here</a>
-                  </p>
-                </div>
-              </Reveal>
+              <div className="border-t border-border px-4 py-3">
+                <p className="text-sm leading-6">
+                  Zaprill is a web-first team. Meetings are arranged in advance.
+                </p>
+              </div>
             </div>
 
-            {/* Right Column: Form + Map */}
-            <div className="relative space-y-8">
-              <Reveal delay={0.2}>
-                <div className="absolute -inset-1 bg-gradient-to-tr from-primary/20 via-primary/5 to-transparent rounded-[40px] blur-3xl opacity-30"></div>
-                <div className="relative rounded-[32px] border border-border bg-card/50 backdrop-blur-sm p-2 shadow-2xl">
-                  <div className="rounded-[24px] bg-background p-8 md:p-12 border border-border/50">
-                    <ContactForm />
-                  </div>
-                </div>
-              </Reveal>
-
-              {/* Map component */}
-              <Reveal delay={0.3}>
-                <div className="rounded-2xl border border-primary/20 hover:border-primary/40 transition-colors duration-300 overflow-hidden bg-card h-[280px]">
-                  <Map 
-                    latitude={19.0760} 
-                    longitude={72.8777} 
-                    zoom={11} 
-                    markerTitle="Zaprill Office"
-                  />
-                </div>
-              </Reveal>
+            <div className="mt-8 border-l-2 border-signal pl-4">
+              <div className="data-label">Already have an account?</div>
+              <p className="mt-1 text-sm leading-6">
+                Open Zaprill to review an existing report or manage your plan.
+              </p>
+              <a
+                href={siteConfig.appUrl}
+                className={`${buttonVariants({ variant: "link" })} mt-2 h-auto p-0 text-sm`}
+              >
+                Go to the app
+                <ArrowUpRight className="size-4" aria-hidden="true" />
+              </a>
             </div>
+          </aside>
 
+          <div className="border border-border bg-card p-6 sm:p-8 lg:p-10">
+            <div className="border-b border-border pb-6">
+              <div className="data-label text-signal">Message form</div>
+              <h2 className="mt-2 text-3xl">How can we help?</h2>
+              <p className="mt-2 text-sm">
+                Include the email tied to your Zaprill account for support
+                requests. Please do not send sensitive personal documents here.
+              </p>
+            </div>
+            <div className="pt-7">
+              <ContactForm />
+            </div>
           </div>
         </div>
       </section>

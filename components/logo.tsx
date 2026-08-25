@@ -8,11 +8,19 @@ export function Logo({ className }: { className?: string }) {
     <Link
       href="/"
       className={cn(
-        "inline-flex items-center gap-2 text-[22px] font-bold",
+        "inline-flex items-center",
         className,
       )}
+      aria-label="Zaprill home"
     >
-      <Image alt="Zaprill" src={"/logo.png"} width={100} height={100} className="h-8 w-auto md:h-9" loading="eager" />
+      <Image
+        alt="Zaprill"
+        src="/logo.png"
+        width={100}
+        height={32}
+        className="brand-wordmark h-[27px] w-auto"
+        priority
+      />
     </Link>
   );
 }

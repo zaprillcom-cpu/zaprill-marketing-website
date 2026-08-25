@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
-import { Inter } from "next/font/google";
-import localFont from 'next/font/local'
-import Script from "next/script";
+import localFont from "next/font/local";
 
 import { DynamicCookieBanner as CookieBanner } from "@/components/dynamic-cookie-banner";
 import { SiteFooter } from "@/components/site-footer";
@@ -26,6 +24,12 @@ const satoshi = localFont({
     },
   ],
   variable: "--font-satoshi",
+  display: "swap",
+});
+
+const inter = localFont({
+  src: "./fonts/inter.woff2",
+  variable: "--font-inter",
   display: "swap",
 });
 
@@ -71,7 +75,7 @@ export const metadata: Metadata = {
         url: "/og",
         width: 1200,
         height: 630,
-        alt: "Zaprill — AI-Powered Career Intelligence Platform"
+        alt: "Zaprill career brief with salary and job-match evidence"
       }
     ],
     locale: "en_IN",
@@ -182,7 +186,7 @@ const globalSchema = {
         opens: "09:00",
         closes: "18:00"
       },
-      priceRange: "₹0 - ₹350",
+      priceRange: "₹0 - ₹555",
       sameAs: Object.values(siteConfig.socials),
       areaServed: {
         "@type": "Country",
@@ -196,27 +200,18 @@ export default function RootLayout({
   children
 }: Readonly<{ children: ReactNode }>) {
   return (
-    <html lang="en" className={satoshi.variable} suppressHydrationWarning>
-      <head>
-        <link rel="preconnect" href="https://googleads.g.doubleclick.net" />
-        <link rel="preconnect" href="https://pagead2.googlesyndication.com" />
-        <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="anonymous" />
-        <link rel="dns-prefetch" href="https://googleads.g.doubleclick.net" />
-      </head>
+    <html
+      lang="en"
+      className={`${satoshi.variable} ${inter.variable}`}
+      suppressHydrationWarning
+    >
       <body className="font-sans min-h-screen bg-background text-foreground antialiased">
-        <Script
-          src="https://www.googletagmanager.com/gtm.js?id=GTM-5QS3N5ZL"
-          strategy="lazyOnload"
-        />
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-6NL8LQDZBV"
-          strategy="lazyOnload"
-        />
-        <Script
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4010004205574660"
-          strategy="lazyOnload"
-          crossOrigin="anonymous"
-        />
+        <a
+          href="#main-content"
+          className="fixed left-4 top-4 z-[100] -translate-y-24 rounded-md bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground transition-transform focus:translate-y-0"
+        >
+          Skip to content
+        </a>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
@@ -232,7 +227,9 @@ export default function RootLayout({
             />
             <div className="relative flex min-h-screen flex-col">
               <SiteHeader />
-              <main className="flex-1">{children}</main>
+              <main id="main-content" tabIndex={-1} className="flex-1">
+                {children}
+              </main>
               <SiteFooter />
             </div>
             <CookieBanner />

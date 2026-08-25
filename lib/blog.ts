@@ -38,18 +38,17 @@ export function getRecommendedArticles(currentSlug: string) {
   // Related: same category
   const related = others.filter((a) => a.category === current.category);
   
-  // Need 2 related and 1 random
-  let recommendations: BlogArticle[] = [];
+  // Keep recommendations stable across builds: two related guides, then the
+  // newest remaining guide.
+  const recommendations: BlogArticle[] = [];
   
   // Get up to 2 related
   recommendations.push(...related.slice(0, 2));
   
-  // Get 1 random from remaining (if we don't have 3 yet)
+  // Add the newest remaining guide if the category has fewer than three posts.
   const remaining = others.filter((a) => !recommendations.find((r) => r.slug === a.slug));
   if (remaining.length > 0 && recommendations.length < 3) {
-    // Pick 1 random from remaining
-    const randomIndex = Math.floor(Math.random() * remaining.length);
-    recommendations.push(remaining[randomIndex]);
+    recommendations.push(remaining[0]);
   }
   
   return recommendations;

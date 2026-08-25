@@ -1,74 +1,73 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import Link from "next/link";
+import Script from "next/script";
+import { useState } from "react";
+
 import { Button } from "@/components/ui/button";
-import { motion, AnimatePresence } from "framer-motion";
 
 export function CookieBanner() {
-  const [showBanner, setShowBanner] = useState(false);
-
-  useEffect(() => {
-    const consent = localStorage.getItem("zaprill_cookie_consent");
-    if (!consent) {
-      // Small delay for better UX
-      const timer = setTimeout(() => setShowBanner(true), 1500);
-      return () => clearTimeout(timer);
+  const [consent, setConsent] = useState<"accepted" | "declined" | null>(() => {
+    try {
+      const savedConsent = localStorage.getItem("zaprill_cookie_consent");
+      return savedConsent === "accepted" || savedConsent === "declined"
+        ? savedConsent
+        : null;
+    } catch {
+      return null;
     }
-  }, []);
+  });
 
   const handleConsent = (type: "accepted" | "declined") => {
-    localStorage.setItem("zaprill_cookie_consent", type);
-    setShowBanner(false);
-    
-    // In a real strict implementation, you would trigger/block scripts here.
-    // For now, we are providing the disclosure and user choice as required by AdSense guidelines.
-    if (type === "accepted") {
-      window.location.reload();
+    try {
+      localStorage.setItem("zaprill_cookie_consent", type);
+    } catch {
+      // Continue with an in-memory choice when storage is unavailable.
     }
+    setConsent(type);
   };
 
   return (
-    <AnimatePresence>
-      {showBanner && (
-        <motion.div
-          initial={{ y: 100, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          exit={{ y: 100, opacity: 0 }}
-          className="fixed bottom-6 left-1/2 z-50 w-[calc(100%-2rem)] max-w-2xl -translate-x-1/2 rounded-2xl border border-border bg-background/80 p-6 shadow-2xl backdrop-blur-xl md:p-8"
+    <>
+      {consent === "accepted" ? (
+        <>
+          <Script
+            src="https://www.googletagmanager.com/gtm.js?id=GTM-5QS3N5ZL"
+            strategy="lazyOnload"
+          />
+          <Script
+            src="https://www.googletagmanager.com/gtag/js?id=G-6NL8LQDZBV"
+            strategy="lazyOnload"
+          />
+          <Script
+            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4010004205574660"
+            strategy="lazyOnload"
+            crossOrigin="anonymous"
+          />
+        </>
+      ) : null}
+
+      {consent === null ? (
+        <aside
+          className="fixed inset-x-4 bottom-4 z-50 ml-auto max-w-lg rounded-lg border border-border bg-card p-5 shadow-[0_18px_50px_rgb(0_0_0/0.16)] sm:left-auto sm:right-5"
+          aria-label="Cookie preferences"
         >
-          <div className="flex flex-col items-start gap-6 md:flex-row md:items-center md:justify-between">
-            <div className="space-y-2">
-              <h3 className="text-lg font-semibold tracking-tight">Cookie Consent</h3>
-              <p className="text-sm leading-relaxed text-muted-foreground">
-                We use cookies to enhance your experience, analyze site traffic, and serve personalized ads.
-                By clicking "Accept", you consent to our use of cookies. Read our{" "}
-                <Link href="/cookies" className="underline underline-offset-4 hover:text-primary">
-                  Cookie Policy
-                </Link>{" "}
-                for more details.
-              </p>
-            </div>
-            <div className="flex w-full shrink-0 gap-3 sm:w-auto sm:items-center">
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => handleConsent("declined")}
-                className="flex-1 sm:flex-none"
-              >
-                Decline
-              </Button>
-              <Button
-                size="sm"
-                onClick={() => handleConsent("accepted")}
-                className="flex-1 sm:flex-none"
-              >
-                Accept
-              </Button>
-            </div>
+          <h2 className="text-lg">Cookies on Zaprill</h2>
+          <p className="mt-2 text-sm leading-6">
+            We use optional analytics and advertising cookies to understand site usage. You can decline them and still use Zaprill. Read our{" "}
+            <Link href="/cookies" className="font-medium text-foreground underline underline-offset-4">
+              cookie policy
+            </Link>
+            .
+          </p>
+          <div className="mt-4 flex flex-col-reverse gap-2 sm:flex-row sm:justify-end">
+            <Button variant="outline" onClick={() => handleConsent("declined")}>
+              Decline optional cookies
+            </Button>
+            <Button onClick={() => handleConsent("accepted")}>Allow cookies</Button>
           </div>
-        </motion.div>
-      )}
-    </AnimatePresence>
+        </aside>
+      ) : null}
+    </>
   );
 }

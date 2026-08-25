@@ -1,81 +1,74 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { Check, CircleAlert, Info, Lock, Sparkles } from "lucide-react";
 import { headers } from "next/headers";
+import { ArrowRight, Check, CircleAlert } from "lucide-react";
 
-import { Reveal } from "@/components/reveal";
-import { SectionHeading } from "@/components/section-heading";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
-import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
+import { buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 import { siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Pricing",
   description:
-    "Choose between Free, Quarterly Pro, and Yearly Pro plans in INR. Start free and upgrade when you want more searches and full match unlocks.",
-  alternates: {
-    canonical: "/pricing"
-  },
+    "Compare Zaprill Free, Quarterly Pro, and Yearly Pro plans. Start free and upgrade for more searches and full match insights.",
+  alternates: { canonical: "/pricing" },
   openGraph: {
     title: "Pricing — Zaprill",
-    description:
-      "Free tier with strict limits, or unlock Pro with Quarterly and Yearly INR plans.",
+    description: "Compare Zaprill Free, Quarterly Pro, and Yearly Pro plans.",
     type: "website",
     url: `${siteConfig.url}/pricing`,
-    images: ["/og"]
+    images: ["/og"],
   },
   twitter: {
     card: "summary_large_image",
     title: "Pricing — Zaprill",
-    description:
-      "Free tier with strict limits, or unlock Pro with Quarterly and Yearly INR plans.",
-    images: ["/og"]
-  }
+    description: "Compare Zaprill Free, Quarterly Pro, and Yearly Pro plans.",
+    images: ["/og"],
+  },
 };
 
-const freeFeatures = [
-  "1 job search per month",
-  "High ad density across the experience",
-  "Basic matches only",
-  "100% match jobs stay locked"
+const freePlan = {
+  title: "Free",
+  cadence: "No payment required",
+  features: [
+    "1 job search each month",
+    "Basic role matches",
+    "Ad-supported experience",
+    "Perfect-match roles remain locked",
+  ],
+};
+
+const proPlans = [
+  {
+    title: "Quarterly Pro",
+    cadence: "Billed every 3 months",
+    regularPriceINR: 299,
+    offerPriceINR: 199,
+    regularPriceUSD: 6,
+    offerPriceUSD: 3,
+    offerLimit: 500,
+    features: [
+      "4 included job searches each month",
+      "Every match score, including 100% fits",
+      "Full salary and skill-gap insights",
+      "Lower ad density",
+    ],
+  },
+  {
+    title: "Yearly Pro",
+    cadence: "Billed every 12 months",
+    regularPriceINR: 999,
+    offerPriceINR: 555,
+    regularPriceUSD: 20,
+    offerPriceUSD: 10,
+    offerLimit: 1000,
+    features: [
+      "5 included job searches each month",
+      "Every match score, including 100% fits",
+      "Full salary and skill-gap insights",
+      "No ads and the lowest effective monthly cost",
+    ],
+  },
 ];
-
-const quarterlyPlan = {
-  title: "Quarterly Pro",
-  cadence: "billed every 3 months",
-  regularPriceINR: 299,
-  offerPriceINR: 199,
-  regularPriceUSD: 6,
-  offerPriceUSD: 3,
-  offerLimit: 500,
-  claimed: 0,
-  features: [
-    "Low Ad-density across the experience",
-    "Credit based job searches (free 4 a month)",
-    "Unlock all matches, including 100% match jobs",
-    "Full salary intelligence + skill insights"
-  ]
-};
-
-const yearlyPlan = {
-  title: "Yearly Pro",
-  cadence: "billed every 12 months",
-  regularPriceINR: 999,
-  offerPriceINR: 555,
-  regularPriceUSD: 20,
-  offerPriceUSD: 10,
-  offerLimit: 1000,
-  claimed: 0,
-  features: [
-    "Ad free experience",
-    "Credit based job searches (free 5 a month)",
-    "Unlock all matches, including 100% match jobs",
-    "Full salary intelligence + skill insights",
-    "Lowest effective monthly cost"
-  ]
-};
 
 export default async function PricingPage() {
   const requestHeaders = await headers();
@@ -87,141 +80,125 @@ export default async function PricingPage() {
   const currencyCode = isIndia ? "INR" : "USD";
   const currencySymbol = isIndia ? "₹" : "$";
   const pricingContext = isIndia
-    ? "India detected: showing INR pricing"
-    : "Outside India detected: showing USD pricing";
+    ? "Showing prices for India in INR"
+    : "Showing international prices in USD";
 
-  const plans = [quarterlyPlan, yearlyPlan].map((plan) => ({
+  const plans = proPlans.map((plan) => ({
     ...plan,
     regularPrice: currencyCode === "INR" ? plan.regularPriceINR : plan.regularPriceUSD,
-    offerPrice: currencyCode === "INR" ? plan.offerPriceINR : plan.offerPriceUSD
+    offerPrice: currencyCode === "INR" ? plan.offerPriceINR : plan.offerPriceUSD,
   }));
 
   return (
-    <main className="bg-background py-20 text-foreground md:py-28">
-      <section>
-        <div className="container mx-auto max-w-[1200px]">
-          <Reveal className="mx-auto max-w-3xl text-center">
-            <Badge className="border-0 bg-muted px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-foreground">
-              {currencyCode === "INR" ? "All Pricing in INR (₹)" : "All Pricing in USD ($)"}
-            </Badge>
-            <h1 className="mt-6 text-5xl tracking-tighter md:text-[60px]">
-              Pick your plan based on how fast you want to move.
+    <div className="bg-[var(--home-surface-1)]">
+      <section className="border-b border-border py-16 md:py-20">
+        <div className="container grid gap-8 lg:grid-cols-[1fr_auto] lg:items-end">
+          <div className="max-w-3xl">
+            <div className="eyebrow">Pricing</div>
+            <h1 className="text-[44px] sm:text-[52px] lg:text-[58px]">
+              Start free. Upgrade for more searches and deeper answers.
             </h1>
-            <p className="mx-auto mt-6 max-w-2xl text-[18px] text-muted-foreground">
-              Start free with strict limits, or unlock Pro to reduce ads, get more searches, and access locked 100% match roles.
+            <p className="mt-6 max-w-2xl text-lg leading-8">
+              Every plan starts with the same clear product. Pro removes the strict limits and unlocks the complete report.
             </p>
-            <div className="mx-auto mt-5 flex w-fit items-center gap-2 rounded-full border border-border bg-card px-4 py-2 text-xs text-muted-foreground">
-              <CircleAlert className="h-3.5 w-3.5 shrink-0" />
-              <span>{pricingContext}</span>
-            </div>
-          </Reveal>
+          </div>
+          <div className="flex items-center gap-2 border border-border bg-card px-3 py-2 text-xs text-muted-foreground">
+            <CircleAlert className="h-3.5 w-3.5" aria-hidden="true" />
+            {pricingContext}
+          </div>
+        </div>
+      </section>
 
-          <div className="mt-16 grid gap-8 lg:grid-cols-3">
-            <Reveal delay={0.05}>
-              <Card className="flex h-full flex-col rounded-[24px] border-border bg-card p-8">
-                <div className="mb-8">
-                  <h2 className="text-[28px] font-bold tracking-tight">Free</h2>
-                  <p className="mt-1 text-sm font-medium text-muted-foreground">restricted tier</p>
-                </div>
-                <div className="mb-8 flex items-end gap-2">
-                  <span className="text-[52px] font-bold leading-none tracking-tighter">₹0</span>
-                  <span className="mb-2 text-muted-foreground">/ month</span>
-                </div>
-                <ul className="flex-1 space-y-4">
-                  {freeFeatures.map((feature) => (
-                    <li key={feature} className="flex items-start gap-3 text-[15px] text-muted-foreground">
-                      <Check className="mt-0.5 h-4 w-4 shrink-0 text-muted-foreground/70" />
-                      <span>{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-                <Link href={siteConfig.appUrl} className="mt-10">
-                  <Button variant="secondary" className="h-12 w-full rounded-full font-bold">
-                    Continue on Free
-                  </Button>
-                </Link>
-              </Card>
-            </Reveal>
+      <section className="py-16 md:py-20" aria-label="Zaprill plans">
+        <div className="container">
+          <div className="grid border border-border bg-card lg:grid-cols-3">
+            <article className="flex flex-col p-6 md:p-8 lg:border-r lg:border-border">
+              <div className="data-label">Free</div>
+              <h2 className="mt-3 text-2xl">{freePlan.title}</h2>
+              <p className="mt-1 text-sm">{freePlan.cadence}</p>
+              <div className="mt-7 font-heading text-4xl font-semibold tracking-[-0.04em]">
+                {currencySymbol}0
+              </div>
+              <div className="mt-7 h-px bg-border" />
+              <ul className="mt-7 flex-1 space-y-4">
+                {freePlan.features.map((feature) => (
+                  <li key={feature} className="flex items-start gap-3 text-sm leading-6 text-muted-foreground">
+                    <Check className="mt-1 h-3.5 w-3.5 shrink-0" aria-hidden="true" />
+                    {feature}
+                  </li>
+                ))}
+              </ul>
+              <a href={siteConfig.appUrl} className={cn(buttonVariants({ variant: "outline", size: "lg" }), "mt-8 w-full")}>
+                Continue free
+              </a>
+            </article>
 
-            {plans.map((plan, index) => (
-              <Reveal key={plan.title} delay={0.12 + index * 0.08}>
-                <Card className="relative flex h-full flex-col rounded-[24px] border border-primary/25 bg-card p-8 text-card-foreground shadow-xl">
-                  <div className="absolute right-6 top-6">
-                    <Badge className="border-0 bg-primary/15 px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-primary hover:bg-primary/15">
-                      Limited Offer
-                    </Badge>
+            {plans.map((plan, index) => {
+              const bestValue = index === 1;
+              return (
+                <article
+                  key={plan.title}
+                  className={cn(
+                    "relative flex flex-col border-t border-border p-6 md:p-8 lg:border-t-0",
+                    index === 0 && "lg:border-r",
+                    bestValue && "border-t-2 border-t-signal lg:border-t-2",
+                  )}
+                >
+                  <div className={cn("data-label", bestValue && "text-signal")}>
+                    {bestValue ? "Best value" : "Flexible Pro"}
                   </div>
-                  <div className="mb-7">
-                    <h2 className="text-[28px] font-bold tracking-tight">{plan.title}</h2>
-                    <p className="mt-1 text-sm font-medium text-muted-foreground">{plan.cadence}</p>
-                  </div>
+                  <h2 className="mt-3 text-2xl">{plan.title}</h2>
+                  <p className="mt-1 text-sm">{plan.cadence}</p>
 
-                  <div className="mb-3 flex items-end gap-2">
-                    <span className="text-[52px] font-bold leading-none tracking-tighter">{currencySymbol}{plan.offerPrice}</span>
-                    <span className="mb-2 text-muted-foreground">launch offer</span>
+                  <div className="mt-7 flex items-end gap-3">
+                    <span className="font-heading text-4xl font-semibold tracking-[-0.04em]">
+                      {currencySymbol}{plan.offerPrice}
+                    </span>
+                    <span className="pb-1 text-sm text-muted-foreground line-through">
+                      {currencySymbol}{plan.regularPrice}
+                    </span>
                   </div>
-                  <div className="mt-3 inline-flex w-fit items-center rounded-full bg-amber-500/15 px-3 py-1 text-xs font-semibold text-amber-700 dark:text-amber-300">
-                    Original {currencySymbol}{plan.regularPrice}
-                  </div>
+                  <p className="mt-2 font-mono text-[10px] uppercase tracking-[0.08em] text-signal">
+                    Launch price · first {plan.offerLimit.toLocaleString("en-IN")} customers
+                  </p>
 
-                  <ul className="mt-8 flex-1 space-y-4">
+                  <div className="mt-7 h-px bg-border" />
+                  <ul className="mt-7 flex-1 space-y-4">
                     {plan.features.map((feature) => (
-                      <li key={feature} className="flex items-start gap-3 text-[15px] text-muted-foreground">
-                        <Check className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
-                        <span className="flex items-center gap-1.5">
-                          {feature}
-                          {feature.includes("salary intelligence") && (
-                            <Tooltip>
-                              <TooltipTrigger>
-                                <Info className="h-3.5 w-3.5 text-muted-foreground/60 cursor-help" />
-                              </TooltipTrigger>
-                              <TooltipContent>
-                                <p className="font-medium text-xs">If available</p>
-                              </TooltipContent>
-                            </Tooltip>
-                          )}
-                        </span>
+                      <li key={feature} className="flex items-start gap-3 text-sm leading-6 text-muted-foreground">
+                        <Check className="mt-1 h-3.5 w-3.5 shrink-0 text-signal" aria-hidden="true" />
+                        {feature}
                       </li>
                     ))}
                   </ul>
-                  <Link href={siteConfig.appUrl} className="mt-10">
-                    <Button className="h-12 w-full rounded-full border-0 bg-primary font-bold text-primary-foreground hover:bg-primary/90">
-                      Upgrade to Pro
-                    </Button>
-                  </Link>
-                </Card>
-              </Reveal>
+                  <a href={siteConfig.appUrl} className={cn(buttonVariants({ size: "lg" }), "mt-8 w-full")}>
+                    Choose {plan.title}
+                  </a>
+                </article>
+              );
+            })}
+          </div>
+
+          <div className="mt-10 grid gap-8 border-t border-border pt-8 md:grid-cols-3">
+            {[
+              ["Credits", "A search uses one credit. Included credits refresh every month."],
+              ["Upgrade timing", "Start free and upgrade only when you need more searches or the full report."],
+              ["Need help?", "Contact us before paying if you are unsure which plan fits your job search."],
+            ].map(([title, body]) => (
+              <div key={title}>
+                <h3 className="text-base">{title}</h3>
+                <p className="mt-2 text-sm leading-6">{body}</p>
+              </div>
             ))}
           </div>
 
-          <Reveal delay={0.25} className="mt-12">
-            <Card className="rounded-[22px] border-border bg-muted/40 p-7">
-              <SectionHeading
-                pill="Why Pro"
-                pillClassName="bg-background border border-border text-foreground uppercase tracking-widest text-[10px] font-bold"
-                title="The difference is simple: access."
-                description="Free is for one quick check. Pro is for serious job search momentum."
-                className="mb-6 [&_h2]:text-3xl"
-              />
-              <div className="grid gap-5 md:grid-cols-3">
-                {[
-                  "Unlock every match score, including perfect 100% fits.",
-                  "Get more job searches instead of stopping at one per month.",
-                  "Reduced or no ads to stay focused on decision-quality data."
-                ].map((point) => (
-                  <div key={point} className="rounded-2xl border border-border bg-background p-5 text-[15px] text-muted-foreground">
-                    <div className="mb-3 flex items-center gap-2 text-foreground">
-                      <Sparkles className="h-4 w-4 text-primary" />
-                      <span className="text-xs font-bold uppercase tracking-widest">Pro Edge</span>
-                    </div>
-                    {point}
-                  </div>
-                ))}
-              </div>
-            </Card>
-          </Reveal>
+          <div className="mt-10 flex justify-start">
+            <a href={`mailto:${siteConfig.email}`} className="inline-flex items-center gap-2 text-sm font-semibold underline decoration-border underline-offset-4 hover:decoration-foreground">
+              Ask a pricing question <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </a>
+          </div>
         </div>
       </section>
-    </main>
+    </div>
   );
 }
